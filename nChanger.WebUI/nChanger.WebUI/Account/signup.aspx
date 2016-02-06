@@ -9,8 +9,8 @@
                 <div class="ui large form container">
                     <div class="ui stacked segment">
                         <div class="ui form">
-                            <asp:ValidationSummary runat="server" DisplayMode="List" ShowMessageBox="False" ValidationGroup="reg" CssClass="frmErrors" ShowSummary="True" />
                             <asp:Label ID="lblMsg" runat="server" Text="" CssClass="message error"></asp:Label>
+                            <asp:ValidationSummary runat="server" DisplayMode="BulletList" ShowMessageBox="False" ValidationGroup="reg" CssClass="frmErrors" ShowSummary="True" />
                             <h4 class="ui dividing header orange"><i class="signup icon"></i>Signup</h4>
                             <div class="field">
                                 <label>Name</label>
@@ -37,14 +37,14 @@
                                         <asp:RequiredFieldValidator runat="server" ForeColor="White" CssClass="ui field error" ValidationGroup="reg" ControlToValidate="txtEmailId" ErrorMessage="Please enter email-id" Text="!"></asp:RequiredFieldValidator>
                                         <asp:RegularExpressionValidator ID="regExEmail" runat="server" ForeColor="#ffffff" ValidationGroup="reg" ControlToValidate="txtEmailId" ErrorMessage="Please enter valid email-id." Text="!"
                                             ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
-                                     </div>
+                                    </div>
                                 </div>
                                 <div class="field">
                                     <label>Username</label>
                                     <div class="field">
                                         <asp:TextBox runat="server" ID="txtUserId" placeholder="Username" MaxLength="20"></asp:TextBox>
                                         <asp:RequiredFieldValidator runat="server" ForeColor="White" CssClass="ui field error" ValidationGroup="reg" ControlToValidate="txtUserId" ErrorMessage="Please enter email-id" Text="!"></asp:RequiredFieldValidator>
-                                         
+
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +86,7 @@
                                         <asp:TextBox runat="server" ID="txtAddressLine2" placeholder="Address" MaxLength="100"></asp:TextBox>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
                             <div class="two fields">
                                 <div class="field">
                                     <label>City</label>
@@ -138,7 +138,7 @@
                                 <div class="field">
                                 </div>
                                 <div class="field">
-                                    <asp:LinkButton  runat="server" CausesValidation="False" CssClass="ui button grey fluid" TabIndex="1"
+                                    <asp:LinkButton runat="server" CausesValidation="False" CssClass="ui button grey fluid" TabIndex="1"
                                         OnClientClick="document.forms[0].reset(), CleanForm();">
                                   <i class="refresh icon"></i>Reset</asp:LinkButton>
                                 </div>
@@ -153,25 +153,26 @@
                                 <div class="field">
                                 </div>
                             </div>
- 
+
                         </div>
                     </div>
                 </div>
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-    
+
     <script type="text/javascript">
+         
         function CleanForm() {
             Page_ClientValidate('');
             var i = 0;
             for (; i < Page_Validators.length; i++) {
-                    $("#" + Page_Validators[i].controltovalidate)
-                        .css("background-color", "#ffffff").css("color", "#000000").css("border-color", "");
-                 
+                $("#" + Page_Validators[i].controltovalidate)
+                    .css("background-color", "#ffffff").css("color", "#000000").css("border-color", "");
+
             }
             $("select").each(function () { this.selectedIndex = 0 });
-             
+
             return false;
 
         }
@@ -187,13 +188,13 @@
                             .css("background-color", "#fff6f6").css("color", "#9f3a38").css("border-color", "#e0b4b4");
                     } else {
                         $("#" + Page_Validators[i].controltovalidate)
-                           .css("background-color", "#ffffff").css("color", "#00000").css("border-color", "");
+                            .css("background-color", "#ffffff").css("color", "#00000").css("border-color", "");
                     }
                 }
             }
             return val;
         }
-         
+
     </script>
-     
+
 </asp:Content>

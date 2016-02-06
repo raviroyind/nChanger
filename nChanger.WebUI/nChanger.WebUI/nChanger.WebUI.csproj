@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\signupComplete.aspx" />
+    <Content Include="Content\semantic.css" />
     <Content Include="MailTemplates\activation.html" />
     <Content Include="MailTemplates\signup.html" />
     <Content Include="packages.config" />
@@ -226,7 +227,7 @@
     <Content Include="Content\components\visit.min.js" />
     <Content Include="Content\form.css" />
     <Content Include="Content\form.min.css" />
-    <Content Include="Content\semantic.css" />
+    <Content Include="Content\old_semantic.css" />
     <Content Include="Content\semantic.min.css" />
     <Content Include="Content\themes\basic\assets\fonts\icons.svg" />
     <Content Include="Content\themes\default\assets\fonts\icons.svg" />

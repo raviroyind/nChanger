@@ -18,11 +18,12 @@
 /*--------------------
         Form
 ---------------------*/
-
+ 
 .ui.form {
   position: relative;
   max-width: 100%;
   margin-top: 1%;
+    padding-bottom: 50px;
 }
 
 /*--------------------
@@ -63,6 +64,15 @@
   text-transform: none;
 }
 
+.frmErrors {
+    
+    background: #ffe7e7 !important;
+  color: #943634 !important;
+
+  border: 1px solid rgba(255, 0, 3, 0.25);
+  
+  border-radius: 0.28571429rem;
+}
 /*--------------------
     Standard Inputs
 ---------------------*/

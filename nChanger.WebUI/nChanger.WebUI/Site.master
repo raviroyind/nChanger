@@ -43,15 +43,21 @@
                             <a href="#" class="header">Home</a>
                         </div>
                         <div class="right item">
-                            <a id="ancSignUp" runat="server" href="Account/signup.aspx">Signup</a>
-                            <div id="divLogInfo" style="display: none;" runat="server">
-                                <div class="field">
-                                    <a id="ancLoginName" runat="server">
-                                        <label>Welcome Ravi Roy</label></a>
+                            <div class="item">
+                                <a id="ancSignUp" runat="server" href="Account/signup.aspx">Signup</a>
+
+                                <div id="divLogInfo" style="display: none;" runat="server">
+                                    <div class="field">
+                                        <a id="ancLoginName" runat="server">
+                                            <label>Welcome Ravi Roy</label></a>
+                                    </div>
+                                    <div class="field">
+                                        <asp:HyperLink runat="server" ID="hypLogout" CssClass="ui link" NavigateUrl="index.aspx?id=lg" Text="Logout"></asp:HyperLink>
+                                    </div>
                                 </div>
-                                <div class="field">
-                                    <asp:HyperLink runat="server" ID="hypLogout" CssClass="ui link" NavigateUrl="index.aspx?id=lg" Text="Logout"></asp:HyperLink>
-                                </div>
+                            </div>
+                            <div class="item">
+                                <a href="../index.aspx">Login</a>
                             </div>
                         </div>
                     </div>
@@ -61,11 +67,10 @@
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
-
+            <div class="ui inverted vertical footer segment right">
+                <span>Name Changer <i class="copyright icon"></i> 2016 </span>
+            </div>
         </div>
-        <footer class="footer">
-            <label>Name Changer <i class="copyright icon"></i>2016</label>
-        </footer>
     </form>
 </body>
 </html>
