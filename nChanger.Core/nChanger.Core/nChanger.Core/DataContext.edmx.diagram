@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5234f7502f194cbfa2d1d522d44bcfb6" Name="Diagram1" ZoomLevel="18">
+        <EntityTypeShape EntityType="nChangerCore.Country" Width="1.5" PointX="10.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerCore.CriminalOffenceInformation" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerCore.CustomField" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerCore.FieldMapping" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerCore.FinancialInformation" Width="1.5" PointX="3" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerCore.NameChangeInformation" Width="1.5" PointX="3" PointY="26.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerCore.OnPersonalInformation" Width="1.5" PointX="3" PointY="32.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerCore.Package" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerCore.PackageCategory" Width="1.5" PointX="5.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerCore.ParentInformation" Width="1.5" PointX="3" PointY="44.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerCore.PdfTemplate" Width="1.5" PointX="0.75" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerCore.State" Width="1.5" PointX="10.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerCore.TemplateTable" Width="1.5" PointX="3" PointY="49.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerCore.UserPackage" Width="1.5" PointX="10.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerCore.User" Width="1.5" PointX="8" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerCore.InputFormSchemaView" Width="1.5" PointX="10.75" PointY="11.75" IsExpanded="true" />
+        <AssociationConnector Association="nChangerCore.FK_dbo_CriminalOffenceInformation_dbo_PdfTemplate_PdfTemplateId" ManuallyRouted="false" />
+        <AssociationConnector Association="nChangerCore.FK_dbo_CustomField_dbo_PdfTemplate_PdfTemplateId" ManuallyRouted="false" />
+        <AssociationConnector Association="nChangerCore.FK_dbo_FieldMapping_dbo_PdfTemplate_PdfTemplateId" ManuallyRouted="false" />
+        <AssociationConnector Association="nChangerCore.FK_dbo_FinancialInformation_dbo_PdfTemplate_PdfTemplateId" ManuallyRouted="false" />
+        <AssociationConnector Association="nChangerCore.FK_dbo_NameChangeInformation_dbo_PdfTemplate_PdfTemplateId" ManuallyRouted="false" />
+        <AssociationConnector Association="nChangerCore.FK_dbo_OnPersonalInformation_dbo_PdfTemplate_PdfTemplateId" ManuallyRouted="false" />
+        <AssociationConnector Association="nChangerCore.FK_Package_PackageCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="nChangerCore.FK_UserPackages_Package" ManuallyRouted="false" />
+        <AssociationConnector Association="nChangerCore.FK_dbo_ParentInformation_dbo_PdfTemplate_PdfTemplateId" ManuallyRouted="false" />
+        <AssociationConnector Association="nChangerCore.FK_TemplateTable_PdfTemplates" ManuallyRouted="false" />
+        <AssociationConnector Association="nChangerCore.FK_UserPackages_Users" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,71 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> :: nChanger ::</title>
+    <link href="Content/semantic.css" rel="stylesheet" />
+    <link href="Content/form.css" rel="stylesheet" />
+
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <script src="<%=ResolveClientUrl("Scripts/jquery-1.8.1.min.js")%>"></script>
+    <script src="<%=ResolveClientUrl("Scripts/clipboard.min.js")%>"></script>
+    <script src="<%=ResolveClientUrl("Scripts/cookie.min.js")%>"></script>
+    <script src="<%=ResolveClientUrl("Scripts/easing.min.js")%>"></script>
+    <script src="<%=ResolveClientUrl("Scripts/highlight.min.js")%>"></script>
+    <script src="<%=ResolveClientUrl("Scripts/history.min.js")%>"></script>
+    <script src="<%=ResolveClientUrl("Scripts/tablesort.min.js")%>"></script>
+
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server" EnablePageMethods="true">
+        </asp:ScriptManager>
+        <div class="main">
+            <div class="ui inverted segment">
+                <div class="ui container fluid">
+                    <div class="ui inverted secondary menu">
+                        <div class="item">
+                            <i class="university icon large orange"></i>
+                            <span class="header">Name Changer</span>
+                        </div>
+                        <div class="item">
+                            |
+                        </div>
+                        <div class="item">
+                            <i class="home icon large orange"></i>
+                            <a href="#" class="header">Home</a>
+                        </div>
+                        <div class="right item">
+                            <a id="ancSignUp" runat="server" href="Account/signup.aspx">Signup</a>
+                            <div id="divLogInfo" style="display: none;" runat="server">
+                                <div class="field">
+                                    <a id="ancLoginName" runat="server">
+                                        <label>Welcome Ravi Roy</label></a>
+                                </div>
+                                <div class="field">
+                                    <asp:HyperLink runat="server" ID="hypLogout" CssClass="ui link" NavigateUrl="index.aspx?id=lg" Text="Logout"></asp:HyperLink>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+
+        </div>
+        <footer class="footer">
+            <label>Name Changer <i class="copyright icon"></i>2016</label>
+        </footer>
+    </form>
+</body>
+</html>
