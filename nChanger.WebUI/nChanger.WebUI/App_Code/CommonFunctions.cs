@@ -75,7 +75,7 @@ namespace nChanger.WebUI
             message = string.Empty;
             try
             {
-                using (var dataContext = new nChangerCore())
+                using (var dataContext = new nChangerDb())
                 {
                     var emailUser = dataContext.Users.FirstOrDefault(u => u.Email.ToLower().Equals(email.ToLower()));
                     if (emailUser != null)
@@ -104,7 +104,7 @@ namespace nChanger.WebUI
 
             try
             {
-                using (var dataContext = new nChangerCore())
+                using (var dataContext = new nChangerDb())
                 {
                     var emailUser = dataContext.Users.FirstOrDefault(u => u.Email.ToLower().Equals(email.ToLower()));
                     if (emailUser != null)

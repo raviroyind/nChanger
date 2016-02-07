@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="nChanger.WebUI.index" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="ui middlediv">
     <div class="loginBox">
         <div class="ui centered">
             <div class="ui large form container row">
@@ -20,14 +21,17 @@
                     <div class="ui fluid large blue submit button">Login</div>
                 </div>
                 <div class="row">
-            <a href="#">Forgot Pass?</a>
-        </div>
+                    <a href="Account/forgotpass.aspx">Forgot Pass?</a>
+                </div>
+                <div class="ui message">
+                    New to us? <a href="Account/signup.aspx">Sign Up</a>
+                </div>
                 <div class="ui error message"></div>
             </div>
             <div class="striped">
-                
             </div>
         </div>
-        
+
     </div>
+        </div>
 </asp:Content>

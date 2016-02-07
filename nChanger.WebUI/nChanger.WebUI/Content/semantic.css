@@ -14065,13 +14065,15 @@ ol.ui.horizontal.list li:before,
 /*******************************
             Segment
 *******************************/
-
+.ui.frmPad {
+    padding: 1em 1em;
+}
 .ui.segment {
   position: relative;
   background-color: #ffffff;
   box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15);
   margin: 1rem 0em;
-  padding: 1em 1em;
+  /*padding: 1em 1em;*/
   border-radius: 0.28571429rem;
   border: 1px solid rgba(34, 36, 38, 0.15);
 }
@@ -16329,6 +16331,10 @@ ol.ui.horizontal.list li:before,
    
 }
  
+.ui.middlediv {
+    margin-top: 8%;
+}
+
 .ui.form .required.fields:not(.grouped) > .field > label:after,
 .ui.form .required.fields.grouped > label:after,
 .ui.form .required.field > label:after,

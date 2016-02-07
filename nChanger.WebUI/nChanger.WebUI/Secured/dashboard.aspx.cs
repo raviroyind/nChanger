@@ -14,9 +14,6 @@ namespace nChanger.WebUI.Secured
         {
             var ctl = (HtmlGenericControl) Master.FindControl("divLogInfo");
             ctl.Style.Add(HtmlTextWriterStyle.Display, "block");
-
-            var ancSignUp = (HtmlAnchor)Master.FindControl("ancSignUp");
-            ancSignUp.Style.Add(HtmlTextWriterStyle.Display, "none");
         }
     }
 }

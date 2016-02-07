@@ -13,7 +13,7 @@ namespace nChanger.WebUI
     {
         public static string FillForm(Guid pdfTemplateId, string userId)
         {
-            var dataContext = new nChangerCore();
+            var dataContext = new nChangerDb();
 
             var pdfTemplate = dataContext.PdfTemplates.Find(pdfTemplateId);
 

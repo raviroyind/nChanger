@@ -7,7 +7,7 @@
         <ContentTemplate>
             <div class="ui centered">
                 <div class="ui large form container">
-                    <div class="ui stacked segment">
+                    <div class="ui stacked segment frmPad">
                         <div class="ui form">
                             <asp:Label ID="lblMsg" runat="server" Text="" CssClass="message error"></asp:Label>
                             <asp:ValidationSummary runat="server" DisplayMode="BulletList" ShowMessageBox="False" ValidationGroup="reg" CssClass="frmErrors" ShowSummary="True" />
@@ -99,7 +99,7 @@
                                 <div class="field">
                                     <label>Country</label>
                                     <div class="field">
-                                        <asp:DropDownList runat="server" ID="ddlCountry" CssClass="ui fluid dropdown selection" AutoPostBack="True" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged" />
+                                        <asp:DropDownList runat="server" ID="ddlCountry" AutoPostBack="True" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ValidationGroup="reg" ForeColor="#ffffff" ControlToValidate="ddlCountry" InitialValue="SEL" runat="server" Text="!" ErrorMessage="Please select a country">
                                         </asp:RequiredFieldValidator>
                                     </div>
@@ -111,7 +111,7 @@
                                     <label>State</label>
                                     <div class="field">
                                         <div id="divDropState" runat="server">
-                                            <asp:DropDownList runat="server" ID="ddlState" CssClass="disabled" />
+                                            <asp:DropDownList runat="server" ID="ddlState" />
                                         </div>
                                         <div id="divStateText" runat="server" style="display: none;">
                                             <asp:TextBox runat="server" ID="txtState" placeholder="State" MaxLength="20"></asp:TextBox>
@@ -138,14 +138,18 @@
                                 <div class="field">
                                 </div>
                                 <div class="field">
-                                    <asp:LinkButton runat="server" CausesValidation="False" CssClass="ui button grey fluid" TabIndex="1"
-                                        OnClientClick="document.forms[0].reset(), CleanForm();">
-                                  <i class="refresh icon"></i>Reset</asp:LinkButton>
+                                    <asp:LinkButton runat="server" CausesValidation="False" CssClass="ui button silver animated fade fluid" TabIndex="1"
+                                            OnClientClick="document.forms[0].reset(), CleanForm();">
+                                            <i class="refresh icon"></i><div class="visible content">Reset </div>
+                                            <div class="hidden content"> Clear</div>
+                                    </asp:LinkButton>
                                 </div>
                                 <div class="field">
-                                    <asp:LinkButton ID="btnSubmit" runat="server" ValidationGroup="reg" CausesValidation="True" CssClass="ui button blue fluid" TabIndex="0"
-                                        OnClientClick="return BtnClick();" OnClick="btnSubmit_Click">
-                                  <i class="save icon"></i>Register</asp:LinkButton>
+                                    <asp:LinkButton ID="btnSubmit" runat="server" ValidationGroup="reg" CausesValidation="True" CssClass="ui button silver animated fade fluid" TabIndex="0"
+                                            OnClientClick="return BtnClick();" OnClick="btnSubmit_Click">
+                                            <i class="checkmark icon"></i><div class="visible content">Register</div>
+                                            <div class="hidden content">Signup</div>
+                                    </asp:LinkButton>
                                 </div>
                                 <div class="field">
                                 </div>
@@ -162,7 +166,7 @@
     </asp:UpdatePanel>
 
     <script type="text/javascript">
-         
+
         function CleanForm() {
             Page_ClientValidate('');
             var i = 0;

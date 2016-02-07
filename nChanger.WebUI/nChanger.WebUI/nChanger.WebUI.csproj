@@ -71,6 +71,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Account\forgotpass.aspx" />
     <Content Include="Account\signupComplete.aspx" />
     <Content Include="Content\semantic.css" />
     <Content Include="MailTemplates\activation.html" />
@@ -277,10 +278,18 @@
     <Content Include="Secured\dashboard.aspx" />
     <Content Include="services.asmx" />
     <Content Include="Account\verification.aspx" />
+    <Content Include="UserControls\_topNav.ascx" />
     <Content Include="Web.config" />
     <Content Include="Site.master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\forgotpass.aspx.cs">
+      <DependentUpon>forgotpass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\forgotpass.aspx.designer.cs">
+      <DependentUpon>forgotpass.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\signup.aspx.cs">
       <DependentUpon>signup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -369,6 +378,13 @@
     </Compile>
     <Compile Include="Account\verification.aspx.designer.cs">
       <DependentUpon>verification.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\_topNav.ascx.cs">
+      <DependentUpon>_topNav.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\_topNav.ascx.designer.cs">
+      <DependentUpon>_topNav.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -25,7 +25,7 @@
 </head>
 <body>
     <form runat="server">
-        <asp:ScriptManager runat="server" EnablePageMethods="true">
+        <asp:ScriptManager runat="server"  >
         </asp:ScriptManager>
         <div class="main">
             <div class="ui inverted segment">
@@ -44,8 +44,6 @@
                         </div>
                         <div class="right item">
                             <div class="item">
-                                <a id="ancSignUp" runat="server" href="Account/signup.aspx">Signup</a>
-
                                 <div id="divLogInfo" style="display: none;" runat="server">
                                     <div class="field">
                                         <a id="ancLoginName" runat="server">

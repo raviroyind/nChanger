@@ -25,7 +25,7 @@ namespace nChanger.WebUI.Account
         {
             try
             {
-                using (var dataContext = new nChangerCore())
+                using (var dataContext = new nChangerDb())
                 {
                     var dbUser = dataContext.Users.FirstOrDefault(u => u.VerificationCode.ToLower().Equals(id));
                     if (dbUser != null)

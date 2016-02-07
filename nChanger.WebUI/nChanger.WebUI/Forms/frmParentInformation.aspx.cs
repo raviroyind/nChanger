@@ -39,7 +39,7 @@ namespace nChanger.WebUI.Forms
                 {
                     var id = Guid.Parse(Request.QueryString["id"]);
 
-                    using (var dataContext = new nChangerCore())
+                    using (var dataContext = new nChangerDb())
                     {
                         var frmParentInformation =
                             dataContext.ParentInformations.FirstOrDefault(
@@ -87,7 +87,7 @@ namespace nChanger.WebUI.Forms
             var returnMessage = string.Empty;
             try
             {
-                using (var dataContext = new nChangerCore())
+                using (var dataContext = new nChangerDb())
                 {
                     var dbEntry =
                         dataContext.ParentInformations.FirstOrDefault(
@@ -156,7 +156,7 @@ namespace nChanger.WebUI.Forms
         protected void btnPreviewPdf_OnClick(object sender, EventArgs e)
         {
             var id = Guid.Parse(Request.QueryString["id"]);
-            using (var dataContext = new nChangerCore())
+            using (var dataContext = new nChangerDb())
             {
                 var frmOn =
                             dataContext.ParentInformations.FirstOrDefault(

@@ -25,7 +25,7 @@ namespace nChanger.WebUI.Account
         private void BindDropdowns()
         {
              
-            using (var dataContext = new nChangerCore())
+            using (var dataContext = new nChangerDb())
             {
                 ddlCountry.DataSource = dataContext.Countries.ToList();
                 ddlCountry.DataTextField = "CountryName";
@@ -51,7 +51,7 @@ namespace nChanger.WebUI.Account
                 }
 
 
-                using (var dataContext = new nChangerCore())
+                using (var dataContext = new nChangerDb())
                 {
                     var dbEntry = new User
                     {
@@ -119,16 +119,19 @@ namespace nChanger.WebUI.Account
                 Response.Redirect("signupComplete.aspx",true);
         }
 
-
-
         protected void ddlCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+            var password = txtPassword.Text;
+            txtPassword.Attributes.Add("value", password);
+            txtConfirm.Attributes.Add("value", password);
+
             if (ddlCountry.SelectedValue.Equals("US") || ddlCountry.SelectedValue.Equals("CA"))
             {
                 var country = ddlCountry.SelectedValue;
-                using (var dataContext = new nChangerCore())
+                using (var dataContext = new nChangerDb())
                 {
-                    ddlState.DataSource = dataContext.States.Where(s => s.Country.Equals(country)).ToList();
+                    ddlState.DataSource = dataContext.States.Where(s => s.CountryId.Equals(country)).ToList();
                     ddlState.DataTextField = "StateName";
                     ddlState.DataValueField = "StateId";
                     ddlState.DataBind();
@@ -138,15 +141,14 @@ namespace nChanger.WebUI.Account
 
                     divDropState.Style.Add(HtmlTextWriterStyle.Display, "block");
                     divStateText.Style.Add(HtmlTextWriterStyle.Display, "none");
-                   
+
                 }
             }
             else
             {
-                divDropState.Style.Add(HtmlTextWriterStyle.Display,"none");
-                divStateText.Style.Add(HtmlTextWriterStyle.Display,"block");
+                divDropState.Style.Add(HtmlTextWriterStyle.Display, "none");
+                divStateText.Style.Add(HtmlTextWriterStyle.Display, "block");
             }
         }
-         
     }
 }

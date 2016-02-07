@@ -32,7 +32,7 @@ namespace nChanger.WebUI.Forms
                 {
                     var id = Guid.Parse(Request.QueryString["id"]);
 
-                    using (var dataContext = new nChangerCore())
+                    using (var dataContext = new nChangerDb())
                     {
                         var frmCriminalOffenceInformation =
                             dataContext.CriminalOffenceInformations.FirstOrDefault(
@@ -116,7 +116,7 @@ namespace nChanger.WebUI.Forms
             var returnMessage = string.Empty;
             try
             {
-                using (var dataContext = new nChangerCore())
+                using (var dataContext = new nChangerDb())
                 {
                     var dbEntry =
                         dataContext.CriminalOffenceInformations.FirstOrDefault(
@@ -211,7 +211,7 @@ namespace nChanger.WebUI.Forms
         {
             
             var id = Guid.Parse(Request.QueryString["id"]);
-            using (var dataContext = new nChangerCore())
+            using (var dataContext = new nChangerDb())
             {
                 var frmOn =
                             dataContext.CriminalOffenceInformations.FirstOrDefault(
