@@ -29,9 +29,9 @@ namespace nChanger.WebUI
             var pdfFormFields = pdfStamper.AcroFields;
 
 
-            #region OnPersonalInformations...
+            #region PersonalInformation...
 
-            var frmOn = dataContext.OnPersonalInformations.FirstOrDefault(
+            var frmOn = dataContext.PersonalInformations.FirstOrDefault(
                                 f => f.UserId.Equals(userId) && f.PdfTemplateId.Equals(pdfTemplateId));
 
             if (frmOn != null)
@@ -50,7 +50,7 @@ namespace nChanger.WebUI
                             try
                             {
                                 var result = dataContext.uspSelectValueByColumnName(mapping.DbFieldName,
-                                    "dbo.OnPersonalInformations", userId).FirstOrDefault();
+                                    "dbo.PersonalInformation", userId).FirstOrDefault();
 
                                 pdfFormFields.SetField(mapping.PdfFieldName, fieldType == 2 ? "yes" : result);
                             }
@@ -62,7 +62,7 @@ namespace nChanger.WebUI
                 }
             }
 
-            #endregion OnPersonalInformations...
+            #endregion PersonalInformation...
 
             
             #region ParentInformation...

@@ -1,0 +1,85 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="admin.master.cs" Inherits="nChanger.WebUI.AdminMaster" %>
+
+<%@ Register Src="~/UserControls/_topNav.ascx" TagPrefix="uc1" TagName="_topNav" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"  />
+    <title><%: Page.Title %> :: nChanger ::</title>
+    <link href="Content/semantic.css" rel="stylesheet" />
+    <link href="Content/form.css" rel="stylesheet" />
+    <link href="nchanger.ico" rel="shortcut icon" type="image/x-icon"  />
+    <script src="<%#ResolveClientUrl("Scripts/jquery-2.2.0.min.js")%>"></script>
+    <script src="<%#ResolveClientUrl("Scripts/clipboard.min.js")%>"></script>
+    <script src="<%#ResolveClientUrl("Scripts/cookie.min.js")%>"></script>
+    <script src="<%#ResolveClientUrl("Scripts/easing.min.js")%>"></script>
+    <script src="<%#ResolveClientUrl("Scripts/highlight.min.js")%>"></script>
+    <script src="<%#ResolveClientUrl("Scripts/history.min.js")%>"></script>
+    <script src="<%#ResolveClientUrl("Scripts/tablesort.min.js")%>"></script>
+    <script src="<%#ResolveClientUrl("Scripts/semantic.min.js")%>"></script>
+    <script src="http://tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server"  >
+        </asp:ScriptManager>
+        <div class="main">
+            <div class="ui inverted segment">
+                <div class="ui container fluid">
+                    <div class="ui inverted secondary menu">
+                        <div class="item">
+                            <i class="university icon large orange"></i>
+                            <span class="header">Name Changer</span>
+                        </div>
+                        <div class="item">
+                            |
+                        </div>
+                        <div class="item">
+                            <i class="home icon large orange"></i>
+                            <a href="../Admin/dashboard.aspx" class="header">Home</a>
+                        </div>
+                         <div class="item">
+                            |
+                        </div>
+                          <div class="item">
+                            <i class="user icon large orange"></i>
+                            <a href="../Admin/UserList.aspx" class="header">Users</a>
+                        </div>
+                        <div class="item">
+                            |
+                        </div>
+                          <div class="item">
+                            <i class="code icon large orange"></i>
+                            <a href="../Admin/PdfUpload.aspx" class="header">Templates</a>
+                        </div>
+                          <div class="item">
+                            |
+                        </div>
+                          <div class="item">
+                            <i class="cubes icon large orange"></i>
+                            <a href="../Admin/PackageList.aspx" class="header">Packages</a>
+                        </div>
+                        <div class="right item">
+                            <div class="item">
+                                <a href="index.aspx" id="ancLogin" runat="server">Login</a>
+                                <uc1:_topNav runat="server" ID="_topNav1" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div class="ui inverted vertical footer segment right">
+                <span class="ui footer span">Name Changer <i class="copyright icon"></i> 2016 </span>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

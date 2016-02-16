@@ -13,6 +13,24 @@ namespace nChanger.WebUI.Account {
     public partial class signup {
         
         /// <summary>
+        /// updProgress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdateProgress updProgress;
+        
+        /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
         /// lblMsg control.
         /// </summary>
         /// <remarks>
@@ -31,6 +49,15 @@ namespace nChanger.WebUI.Account {
         protected global::System.Web.UI.WebControls.TextBox txtFirstName;
         
         /// <summary>
+        /// RegularExpressionValidator3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator3;
+        
+        /// <summary>
         /// txtMiddleName control.
         /// </summary>
         /// <remarks>
@@ -47,6 +74,15 @@ namespace nChanger.WebUI.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtLastName;
+        
+        /// <summary>
+        /// RegularExpressionValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
         
         /// <summary>
         /// txtEmailId control.
@@ -76,6 +112,15 @@ namespace nChanger.WebUI.Account {
         protected global::System.Web.UI.WebControls.TextBox txtUserId;
         
         /// <summary>
+        /// RegularExpressionValidator2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator2;
+        
+        /// <summary>
         /// txtPassword control.
         /// </summary>
         /// <remarks>
@@ -92,6 +137,15 @@ namespace nChanger.WebUI.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        
+        /// <summary>
+        /// RegularExpressionValidator4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator4;
         
         /// <summary>
         /// txtConfirm control.
@@ -202,6 +256,15 @@ namespace nChanger.WebUI.Account {
         protected global::System.Web.UI.WebControls.DropDownList ddlState;
         
         /// <summary>
+        /// customValStateddl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator customValStateddl;
+        
+        /// <summary>
         /// divStateText control.
         /// </summary>
         /// <remarks>
@@ -236,6 +299,24 @@ namespace nChanger.WebUI.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtZipCode;
+        
+        /// <summary>
+        /// rqrdcontactZipCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rqrdcontactZipCode;
+        
+        /// <summary>
+        /// RequiredFieldValidatorZip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RequiredFieldValidatorZip;
         
         /// <summary>
         /// btnSubmit control.

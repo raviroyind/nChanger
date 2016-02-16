@@ -15,10 +15,10 @@ namespace nChanger.Core
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class nChangerCore : DbContext
+    public partial class nChangerDb : DbContext
     {
-        public nChangerCore()
-            : base("name=nChangerCoreDB")
+        public nChangerDb()
+            : base("name=nChangerDb")
         {
         }
     
@@ -32,16 +32,18 @@ namespace nChanger.Core
         public virtual DbSet<CustomField> CustomFields { get; set; }
         public virtual DbSet<FieldMapping> FieldMappings { get; set; }
         public virtual DbSet<FinancialInformation> FinancialInformations { get; set; }
+        public virtual DbSet<InputFormTable> InputFormTables { get; set; }
         public virtual DbSet<NameChangeInformation> NameChangeInformations { get; set; }
-        public virtual DbSet<OnPersonalInformation> OnPersonalInformations { get; set; }
         public virtual DbSet<Package> Packages { get; set; }
         public virtual DbSet<PackageCategory> PackageCategories { get; set; }
         public virtual DbSet<ParentInformation> ParentInformations { get; set; }
         public virtual DbSet<PdfTemplate> PdfTemplates { get; set; }
+        public virtual DbSet<PersonalInformation> PersonalInformations { get; set; }
         public virtual DbSet<State> States { get; set; }
         public virtual DbSet<TemplateTable> TemplateTables { get; set; }
         public virtual DbSet<UserPackage> UserPackages { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserType> UserTypes { get; set; }
         public virtual DbSet<InputFormSchemaView> InputFormSchemaViews { get; set; }
 
         public virtual ObjectResult<string> uspSelectValueByColumnName(string value, string table, string userId)

@@ -5,7 +5,7 @@
  *
  * Copyright 2014 Contributors
  * Released under the MIT license
- * http://opensource.org/licenses/MIT
+ * http://opensource.org/licenses/MITbutton
  *
  */
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin');
@@ -619,6 +619,7 @@ a {
 a:hover {
   color: #1e70bf;
   text-decoration: none;
+  font-weight:bold;
 }
 
 /*******************************
@@ -2486,6 +2487,8 @@ input::selection {
 
 .ui.blue.button {
   box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+    top: 10px;
+    left: 0px;
 }
 
 .ui.blue.buttons .button:hover,
@@ -14242,7 +14245,7 @@ ol.ui.horizontal.list li:before,
 --------------------*/
 
 .ui.stacked.segment {
-  padding-bottom: 1.4em;
+  padding: 1.2em;
 }
 
 .ui.stacked.segments:before,
@@ -16328,7 +16331,21 @@ ol.ui.horizontal.list li:before,
     left: 0;
     right: 0;
     height: 50px;
+    z-index:21;
    
+}
+.rightAlign {
+    text-align: right;
+}
+.lblAlert {
+    display: block;
+    color: maroon;
+
+}
+
+.ui.footer.span {
+    padding: 1em;
+     
 }
  
 .ui.middlediv {
@@ -16901,6 +16918,7 @@ ol.ui.horizontal.list li:before,
 .ui.grid > .row > img,
 .ui.grid > .row > .column > img {
   max-width: 100%;
+   padding-bottom: 1rem;
 }
 
 /*-------------------
@@ -27441,6 +27459,8 @@ select.ui.dropdown {
 
 .ui.search.dropdown {
   min-width: '';
+    top: 0px;
+    left: 0px;
 }
 
 /* Search Dropdown */
@@ -28589,7 +28609,7 @@ select.ui.dropdown {
   display: none;
   position: fixed;
   z-index: 1001;
-  top: 50%;
+  top: 15%;
   left: 50%;
   text-align: left;
   background: #ffffff;

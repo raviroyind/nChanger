@@ -22,6 +22,7 @@ namespace nChanger.Core
     
         public System.Guid Id { get; set; }
         public string UserId { get; set; }
+        public string UserTypeId { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }
@@ -43,5 +44,6 @@ namespace nChanger.Core
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserPackage> UserPackages { get; set; }
+        public virtual UserType UserType { get; set; }
     }
 }

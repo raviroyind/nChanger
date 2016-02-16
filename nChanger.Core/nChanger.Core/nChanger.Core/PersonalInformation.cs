@@ -12,7 +12,7 @@ namespace nChanger.Core
     using System;
     using System.Collections.Generic;
     
-    public partial class OnPersonalInformation
+    public partial class PersonalInformation
     {
         public System.Guid Id { get; set; }
         public System.Guid PdfTemplateId { get; set; }

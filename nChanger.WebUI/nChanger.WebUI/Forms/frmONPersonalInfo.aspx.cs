@@ -38,7 +38,7 @@ namespace nChanger.WebUI.Forms
                     using (var dataContext = new nChangerDb())
                     {
                         var frmOn =
-                            dataContext.OnPersonalInformations.FirstOrDefault(
+                            dataContext.PersonalInformations.FirstOrDefault(
                                 f => f.UserId.Equals(UserId) && f.PdfTemplateId.Equals(id));
 
                         if (frmOn != null)
@@ -157,7 +157,7 @@ namespace nChanger.WebUI.Forms
                 using (var dataContext=new nChangerDb())
                 {
                      var dbEntry =
-                            dataContext.OnPersonalInformations.FirstOrDefault(
+                            dataContext.PersonalInformations.FirstOrDefault(
                                 f => f.UserId.Equals(UserId) && f.PdfTemplateId.Equals(id));
                     if (dbEntry != null)
                     {
@@ -215,7 +215,7 @@ namespace nChanger.WebUI.Forms
                     }
                     else
                     {
-                        var entry = new OnPersonalInformation
+                        var entry = new PersonalInformation
                         {
                             Id=Guid.NewGuid(),
                             PdfTemplateId = id,
@@ -271,7 +271,7 @@ namespace nChanger.WebUI.Forms
                             EntryId = Convert.ToString(Session["USER_KEY"])
                         };
 
-                        dataContext.OnPersonalInformations.Add(entry);
+                        dataContext.PersonalInformations.Add(entry);
                     }
                       
                     dataContext.SaveChanges();
@@ -295,7 +295,7 @@ namespace nChanger.WebUI.Forms
             using (var dataContext = new nChangerDb())
             {
                 var frmOn =
-                            dataContext.OnPersonalInformations.FirstOrDefault(
+                            dataContext.PersonalInformations.FirstOrDefault(
                                 f => f.UserId.Equals(UserId) && f.PdfTemplateId.Equals(id));
 
                 if (frmOn != null)

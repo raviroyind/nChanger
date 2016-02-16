@@ -14,10 +14,11 @@ namespace nChanger.Core
     
     public partial class State
     {
-        public long Srno { get; set; }
         public string StateId { get; set; }
         public string StateName { get; set; }
-        public string Country { get; set; }
+        public string CountryId { get; set; }
         public bool IsActive { get; set; }
+    
+        public virtual Country Country { get; set; }
     }
 }

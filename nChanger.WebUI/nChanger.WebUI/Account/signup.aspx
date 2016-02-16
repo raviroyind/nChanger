@@ -3,7 +3,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:UpdatePanel runat="server">
+    <asp:UpdateProgress ID="updProgress"
+        AssociatedUpdatePanelID="UpdatePanel1"
+        runat="server">
+        <ProgressTemplate>
+            <div id="spinner" class="divspinner">   
+            </div>
+        </ProgressTemplate>
+    </asp:UpdateProgress>
+    <asp:UpdatePanel runat="server" ID="UpdatePanel1">
         <ContentTemplate>
             <div class="ui centered">
                 <div class="ui large form container">
@@ -17,14 +25,22 @@
                                 <div class="three fields">
                                     <div class="field">
                                         <asp:TextBox runat="server" ID="txtFirstName" placeholder="First Name" MaxLength="50"></asp:TextBox>
-                                        <asp:RequiredFieldValidator runat="server" ForeColor="White" CssClass="ui field error" ValidationGroup="reg" ControlToValidate="txtFirstName" ErrorMessage="Please enter first name" Text="!"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator runat="server" ForeColor="White" CssClass="ui field error" ValidationGroup="reg"
+                                            ControlToValidate="txtFirstName" ErrorMessage="Please enter first name" Text="!"></asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator Display="Dynamic" ControlToValidate="txtFirstName" ForeColor="White" Text="!" ValidationGroup="reg"
+                                            ID="RegularExpressionValidator3" ValidationExpression="^[\s\S]{3,50}$" runat="server"
+                                            ErrorMessage="First Name shoule be between 3 to 50 characters."></asp:RegularExpressionValidator>
                                     </div>
                                     <div class="field">
                                         <asp:TextBox runat="server" ID="txtMiddleName" placeholder="Middle Name" MaxLength="50"></asp:TextBox>
                                     </div>
                                     <div class="field">
                                         <asp:TextBox runat="server" ID="txtLastName" placeholder="Last Name" MaxLength="50"></asp:TextBox>
-                                        <asp:RequiredFieldValidator runat="server" ForeColor="White" CssClass="ui field error" ValidationGroup="reg" ControlToValidate="txtLastName" ErrorMessage="Please enter last name" Text="!"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator runat="server" ForeColor="White" CssClass="ui field error" ValidationGroup="reg"
+                                            ControlToValidate="txtLastName" ErrorMessage="Please enter last name" Text="!"></asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator Display="Dynamic" ForeColor="White" ControlToValidate="txtLastName" ValidationGroup="reg"
+                                            ID="RegularExpressionValidator1" ValidationExpression="^[\s\S]{3,50}$" Text="!" runat="server"
+                                            ErrorMessage="Last Name shoule be between 3 to 50 characters."></asp:RegularExpressionValidator>
                                     </div>
                                 </div>
 
@@ -44,7 +60,9 @@
                                     <div class="field">
                                         <asp:TextBox runat="server" ID="txtUserId" placeholder="Username" MaxLength="20"></asp:TextBox>
                                         <asp:RequiredFieldValidator runat="server" ForeColor="White" CssClass="ui field error" ValidationGroup="reg" ControlToValidate="txtUserId" ErrorMessage="Please enter email-id" Text="!"></asp:RequiredFieldValidator>
-
+                                        <asp:RegularExpressionValidator Display="Dynamic" ControlToValidate="txtUserId" Text="!" ValidationGroup="reg"
+                                            ID="RegularExpressionValidator2" ValidationExpression="^[\s\S]{6,12}$" runat="server"
+                                            ErrorMessage="Username shoule be between 6 to 12 characters."></asp:RegularExpressionValidator>
                                     </div>
                                 </div>
                             </div>
@@ -55,6 +73,9 @@
                                         <asp:TextBox runat="server" ID="txtPassword" placeholder="Password" TextMode="Password" MaxLength="8"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ValidationGroup="reg" ForeColor="#ffffff" ControlToValidate="txtPassword" runat="server" Text="!" ErrorMessage="Password is required.">
                                         </asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator Display="Dynamic" ControlToValidate="txtPassword" ValidationGroup="reg"
+                                            ID="RegularExpressionValidator4" ValidationExpression="^[\s\S]{6,12}$" runat="server" Text="!"
+                                            ErrorMessage="Password shoule be between 6 to 12 characters."></asp:RegularExpressionValidator>
                                     </div>
                                 </div>
                                 <div class="field">
@@ -78,6 +99,7 @@
                                         <asp:TextBox runat="server" ID="txtAddressLine1" placeholder="Address" MaxLength="100"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ValidationGroup="reg" ForeColor="#ffffff" ControlToValidate="txtAddressLine1" runat="server" Text="!" ErrorMessage="Address Line 1 is required.">
                                         </asp:RequiredFieldValidator>
+                                         
                                     </div>
                                 </div>
                                 <div class="field">
@@ -99,7 +121,7 @@
                                 <div class="field">
                                     <label>Country</label>
                                     <div class="field">
-                                        <asp:DropDownList runat="server" ID="ddlCountry" AutoPostBack="True" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged" />
+                                        <asp:DropDownList runat="server" ID="ddlCountry" AutoPostBack="True" CausesValidation="False" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ValidationGroup="reg" ForeColor="#ffffff" ControlToValidate="ddlCountry" InitialValue="SEL" runat="server" Text="!" ErrorMessage="Please select a country">
                                         </asp:RequiredFieldValidator>
                                     </div>
@@ -112,6 +134,9 @@
                                     <div class="field">
                                         <div id="divDropState" runat="server">
                                             <asp:DropDownList runat="server" ID="ddlState" />
+                                            <asp:CustomValidator runat="server" ID="customValStateddl" ValidationGroup="reg" ForeColor="White" Text="!"
+                                                ControlToValidate="ddlState" ErrorMessage="Please select State" ClientValidationFunction="valStateDropdown"
+                                                ></asp:CustomValidator>
                                         </div>
                                         <div id="divStateText" runat="server" style="display: none;">
                                             <asp:TextBox runat="server" ID="txtState" placeholder="State" MaxLength="20"></asp:TextBox>
@@ -127,7 +152,17 @@
                                 <div class="field">
                                     <label>Zip</label>
                                     <div class="field">
-                                        <asp:TextBox runat="server" ID="txtZipCode" placeholder="ZIP Code" MaxLength="12"></asp:TextBox>
+                                        <asp:TextBox runat="server" ID="txtZipCode" placeholder="ZIP Code" MaxLength="10"></asp:TextBox>
+                                        <asp:RequiredFieldValidator runat="server" ID="rqrdcontactZipCode" ValidationGroup="reg" Display="Dynamic"
+                                            ForeColor="White" ControlToValidate="txtZipCode" Text="!" ErrorMessage="Zip Code is required">
+                                        </asp:RequiredFieldValidator>
+                                        <asp:RegularExpressionValidator
+                                            ID="RequiredFieldValidatorZip"
+                                            ControlToValidate="txtZipCode"
+                                            ValidationExpression="^(\d{5}|\d{5}\-\d{4})$"
+                                            ErrorMessage="Zip code must be numeric nnnnn or nnnnn-nnnn."
+                                            Display="dynamic" Text="!" ForeColor="White" ValidationGroup="reg"
+                                            runat="server"></asp:RegularExpressionValidator>
                                     </div>
                                 </div>
                             </div>
@@ -138,17 +173,17 @@
                                 <div class="field">
                                 </div>
                                 <div class="field">
-                                    <asp:LinkButton runat="server" CausesValidation="False" CssClass="ui button silver animated fade fluid" TabIndex="1"
-                                            OnClientClick="document.forms[0].reset(), CleanForm();">
-                                            <i class="refresh icon"></i><div class="visible content">Reset </div>
-                                            <div class="hidden content"> Clear</div>
+                                    <asp:LinkButton runat="server" CausesValidation="False" CssClass="ui button blue animated fade fluid" TabIndex="1"
+                                        OnClientClick="document.forms[0].reset(), CleanForm();">
+                                            <div class="visible content">Reset</div>
+                                            <div class="hidden content"><i class="refresh icon"></i> Reset</div>
                                     </asp:LinkButton>
                                 </div>
                                 <div class="field">
-                                    <asp:LinkButton ID="btnSubmit" runat="server" ValidationGroup="reg" CausesValidation="True" CssClass="ui button silver animated fade fluid" TabIndex="0"
-                                            OnClientClick="return BtnClick();" OnClick="btnSubmit_Click">
-                                            <i class="checkmark icon"></i><div class="visible content">Register</div>
-                                            <div class="hidden content">Signup</div>
+                                    <asp:LinkButton ID="btnSubmit" runat="server" ValidationGroup="reg" CausesValidation="True" CssClass="ui button blue animated fade fluid" TabIndex="0"
+                                        OnClientClick="return BtnClick();" OnClick="btnSubmit_Click">
+                                            <div class="visible content">Register</div>
+                                            <div class="hidden content"><i class="checkmark icon"></i>Register</div>
                                     </asp:LinkButton>
                                 </div>
                                 <div class="field">
@@ -199,6 +234,19 @@
             return val;
         }
 
+        function valStateDropdown(src, args) {
+            var country = document.getElementById('<%= ddlCountry.ClientID %>');
+            var selectedCountry = country.options[country.selectedIndex].value;
+
+            if (selectedCountry == "US" || selectedCountry == "CA") {
+                var state = document.getElementById('<%= ddlState.ClientID %>');
+                var selectedState = state.options[state.selectedIndex].value;
+
+                if (selectedState == "SEL")
+                    args.isValid = false;
+            }
+        }
+         
     </script>
 
 </asp:Content>

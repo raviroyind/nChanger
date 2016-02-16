@@ -22,8 +22,8 @@ namespace nChanger.Core
             this.FieldMappings = new HashSet<FieldMapping>();
             this.FinancialInformations = new HashSet<FinancialInformation>();
             this.NameChangeInformations = new HashSet<NameChangeInformation>();
-            this.OnPersonalInformations = new HashSet<OnPersonalInformation>();
             this.ParentInformations = new HashSet<ParentInformation>();
+            this.PersonalInformations = new HashSet<PersonalInformation>();
             this.TemplateTables = new HashSet<TemplateTable>();
         }
     
@@ -47,9 +47,9 @@ namespace nChanger.Core
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NameChangeInformation> NameChangeInformations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OnPersonalInformation> OnPersonalInformations { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ParentInformation> ParentInformations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PersonalInformation> PersonalInformations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TemplateTable> TemplateTables { get; set; }
     }

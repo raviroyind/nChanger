@@ -14,9 +14,17 @@ namespace nChanger.Core
     
     public partial class Country
     {
-        public long Srno { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Country()
+        {
+            this.States = new HashSet<State>();
+        }
+    
         public string CountryId { get; set; }
         public string CountryName { get; set; }
         public bool IsActive { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<State> States { get; set; }
     }
 }

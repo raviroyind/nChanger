@@ -14,6 +14,7 @@ namespace nChanger.WebUI.Account
 {
     public partial class signup : System.Web.UI.Page
     {
+        private string queryId;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -43,7 +44,7 @@ namespace nChanger.WebUI.Account
             try
             {
                 var message = string.Empty;
-                if (CommonFunctions.CheckIfUserExists(txtEmailId.Text, txtUserId.Text, out message))
+                if (CommonFunctions.CheckIfUserExists(txtEmailId.Text, txtUserId.Text, out message,"GU"))
                 {
                     lblMsg.Text = message;
                     success = false;
@@ -56,6 +57,7 @@ namespace nChanger.WebUI.Account
                     var dbEntry = new User
                     {
                         Id = Guid.NewGuid(),
+                        UserTypeId="GU",
                         UserId = txtUserId.Text,
                         Email = txtEmailId.Text,
                         Password = txtPassword.Text,
@@ -66,7 +68,7 @@ namespace nChanger.WebUI.Account
                         City = txtCity.Text,
                         State = ddlState.SelectedIndex == -1 ? txtState.Text : ddlState.SelectedValue,
                         Zip = txtZipCode.Text,
-                        Country = ddlState.SelectedValue,
+                        Country = ddlCountry.SelectedValue,
                         Address = txtAddressLine1.Text,
                         Address2 = txtAddressLine2.Text,
                         IP = CommonFunctions.GetIpAddress(),
@@ -78,7 +80,7 @@ namespace nChanger.WebUI.Account
 
                     dataContext.Users.Add(dbEntry);
                     dataContext.SaveChanges();
-
+                    queryId = dbEntry.UserId;
                     returnMessage = SendRegistrationMail(dbEntry) ? "SUCCESS" : "MAIL_ERROR";
                 }
 
@@ -116,7 +118,7 @@ namespace nChanger.WebUI.Account
             if (!Submit(out message))
                 lblMsg.Text = message;
             else
-                Response.Redirect("signupComplete.aspx",true);
+                Response.Redirect("signupComplete.aspx?id="+ queryId, true);
         }
 
         protected void ddlCountry_SelectedIndexChanged(object sender, EventArgs e)

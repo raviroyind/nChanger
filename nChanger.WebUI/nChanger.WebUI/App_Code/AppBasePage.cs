@@ -24,6 +24,15 @@ namespace nChanger.WebUI
             
         }
 
+        public string UserType
+        {
+            get
+            {
+                return (Session[AppConfig.SessionItemNameUserType] == null ? "" : Session[AppConfig.SessionItemNameUserType].ToString());
+            }
+
+        }
+
         protected override void OnLoad(EventArgs e)
         {
             if (!Request.Url.AbsolutePath.Contains("index.aspx"))
@@ -56,6 +65,38 @@ namespace nChanger.WebUI
 
             ddl.DataBind();
             ddl.Items.Insert(0, new ListItem("--SELECT--", "SEL"));
+        }
+
+        protected void BindBottomPaging(UserControl ucPaging, UserControl ucPaging1)
+        {
+            (ucPaging1.FindControl("txtPageNo") as TextBox).Text = (ucPaging.FindControl("txtPageNo") as TextBox).Text;
+            (ucPaging1.FindControl("lblTotPages") as Label).Text = (ucPaging.FindControl("lblTotPages") as Label).Text;
+            (ucPaging1.FindControl("lnkimgbtnFirst") as LinkButton).Enabled = (ucPaging.FindControl("lnkimgbtnFirst") as LinkButton).Enabled;
+            (ucPaging1.FindControl("lnkimgbtnPrevious") as LinkButton).Enabled = (ucPaging.FindControl("lnkimgbtnPrevious") as LinkButton).Enabled;
+            (ucPaging1.FindControl("lnkimgbtnNext") as LinkButton).Enabled = (ucPaging.FindControl("lnkimgbtnNext") as LinkButton).Enabled;
+            (ucPaging1.FindControl("lnkimgbtnLast") as LinkButton).Enabled = (ucPaging.FindControl("lnkimgbtnLast") as LinkButton).Enabled;
+        }
+
+        protected void SetSorting(string sSortExp)
+        {
+            if (Convert.ToString(ViewState["sortColumn"]) == sSortExp)
+            {
+                if (ViewState["sortDirection"] != null)
+                {
+                    if ("ASC" == ViewState["sortDirection"].ToString())
+                        ViewState["sortDirection"] = "DESC";
+                    else
+                        ViewState["sortDirection"] = "ASC";
+                }
+                else
+                    ViewState["sortDirection"] = "ASC";
+            }
+            else
+            {
+                ViewState["sortColumn"] = sSortExp;
+                ViewState["sortDirection"] = "ASC";
+            }
+
         }
 
         #endregion Binding Functions...

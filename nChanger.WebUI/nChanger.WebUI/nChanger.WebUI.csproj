@@ -41,6 +41,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=15.1.4.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AjaxControlToolkit.15.1.4.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CuteWebUI.AjaxUploader, Version=4.0.0.0, Culture=neutral, PublicKeyToken=bc00d4b0e43ec38d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\Ravi Roy\Downloads\Ajax-Uploader\aspnet\advanced_cs\bin\CuteWebUI.AjaxUploader.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -53,6 +61,7 @@
       <HintPath>..\..\..\pdfForms\pdfForms.WebUI\nameChanger.WebUI\bin\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -72,11 +81,84 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\forgotpass.aspx" />
+    <Content Include="Account\passwordRecovery.aspx" />
     <Content Include="Account\signupComplete.aspx" />
+    <Content Include="Admin\dashboard.aspx" />
+    <Content Include="Admin\PackageList.aspx" />
+    <Content Include="Admin\PdfUpload.aspx" />
+    <Content Include="Admin\TemplateMapping.aspx" />
+    <Content Include="Admin\UserDetails.aspx" />
+    <Content Include="Admin\UserList.aspx" />
+    <Content Include="assets\ba.hashchange.js" />
+    <Content Include="assets\multiselect\jquery.sumoselect.js" />
+    <Content Include="assets\multiselect\jquery.sumoselect.min.js" />
+    <Content Include="assets\multiselect\sumoselect.css" />
+    <Content Include="assets\prettify.css" />
+    <Content Include="assets\prettify.js" />
+    <Content Include="assets\style.css" />
+    <Content Include="Content\jquery.multiselect.css" />
+    <Content Include="Content\jquery.multiselect.filter.css" />
+    <Content Include="Content\login.css" />
     <Content Include="Content\semantic.css" />
+    <Content Include="Content\UI-Table-master\package.js" />
+    <Content Include="Content\UI-Table-master\table.css" />
+    <Content Include="Content\UI-Table-master\table.min.css" />
+    <Content Include="image-uploader\css\fileinput.css" />
+    <Content Include="image-uploader\css\fileinput.min.css" />
+    <Content Include="image-uploader\img\loading-sm.gif" />
+    <Content Include="image-uploader\img\loading.gif" />
+    <Content Include="image-uploader\js\fileinput.js" />
+    <Content Include="image-uploader\js\fileinput.min.js" />
+    <Content Include="image-uploader\js\fileinput_locale_ar.js" />
+    <Content Include="image-uploader\js\fileinput_locale_bg.js" />
+    <Content Include="image-uploader\js\fileinput_locale_ca.js" />
+    <Content Include="image-uploader\js\fileinput_locale_cr.js" />
+    <Content Include="image-uploader\js\fileinput_locale_cz.js" />
+    <Content Include="image-uploader\js\fileinput_locale_da.js" />
+    <Content Include="image-uploader\js\fileinput_locale_de.js" />
+    <Content Include="image-uploader\js\fileinput_locale_el.js" />
+    <Content Include="image-uploader\js\fileinput_locale_es.js" />
+    <Content Include="image-uploader\js\fileinput_locale_fa.js" />
+    <Content Include="image-uploader\js\fileinput_locale_fr.js" />
+    <Content Include="image-uploader\js\fileinput_locale_hu.js" />
+    <Content Include="image-uploader\js\fileinput_locale_id.js" />
+    <Content Include="image-uploader\js\fileinput_locale_it.js" />
+    <Content Include="image-uploader\js\fileinput_locale_ja.js" />
+    <Content Include="image-uploader\js\fileinput_locale_LANG.js" />
+    <Content Include="image-uploader\js\fileinput_locale_nl.js" />
+    <Content Include="image-uploader\js\fileinput_locale_pl.js" />
+    <Content Include="image-uploader\js\fileinput_locale_pt-BR.js" />
+    <Content Include="image-uploader\js\fileinput_locale_pt.js" />
+    <Content Include="image-uploader\js\fileinput_locale_ro.js" />
+    <Content Include="image-uploader\js\fileinput_locale_ru.js" />
+    <Content Include="image-uploader\js\fileinput_locale_sk.js" />
+    <Content Include="image-uploader\js\fileinput_locale_th.js" />
+    <Content Include="image-uploader\js\fileinput_locale_tr.js" />
+    <Content Include="image-uploader\js\fileinput_locale_uk.js" />
+    <Content Include="image-uploader\js\fileinput_locale_zh-TW.js" />
+    <Content Include="image-uploader\js\fileinput_locale_zh.js" />
+    <Content Include="image-uploader\js\plugins\canvas-to-blob.js" />
+    <Content Include="image-uploader\js\plugins\canvas-to-blob.min.js" />
+    <Content Include="images\spinner.gif" />
     <Content Include="MailTemplates\activation.html" />
+    <Content Include="MailTemplates\forgotPass.html" />
+    <Content Include="MailTemplates\passwordChanged.html" />
     <Content Include="MailTemplates\signup.html" />
+    <Content Include="MailTemplates\signupComplete.html" />
+    <Content Include="nchanger.ico" />
     <Content Include="packages.config" />
+    <Content Include="admin.Master" />
+    <Content Include="adminlogin.aspx" />
+    <Content Include="Content\UI-Table-master\package.json" />
+    <Content Include="Content\UI-Table-master\composer.json" />
+    <Content Include="Content\UI-Table-master\bower.json" />
+    <Content Include="Scripts\jquery-2.2.0.min.map" />
+    <Content Include="assets\multiselect\bower.json" />
+    <Content Include="assets\multiselect\jquery.sumoselect.jquery.json" />
+    <Content Include="assets\multiselect\package.json" />
+    <Content Include="Scripts\jquery.maskMoney.js" />
+    <Content Include="Scripts\jquery.maskMoney.min.js" />
+    <Content Include="WebForm1.aspx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -267,7 +349,14 @@
     <Content Include="Scripts\index.js" />
     <Content Include="Scripts\jquery-1.8.1.js" />
     <Content Include="Scripts\jquery-1.8.1.min.js" />
+    <None Include="Scripts\jquery-2.2.0.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.0.js" />
+    <Content Include="Scripts\jquery-2.2.0.min.js" />
     <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.multiselect.filter.js" />
+    <Content Include="Scripts\jquery.multiselect.filter.min.js" />
+    <Content Include="Scripts\jquery.multiselect.js" />
+    <Content Include="Scripts\jquery.multiselect.min.js" />
     <Content Include="Scripts\less.min.js" />
     <Content Include="Scripts\live.js" />
     <Content Include="Scripts\package.js" />
@@ -276,10 +365,16 @@
     <Content Include="Scripts\tablesort.min.js" />
     <Content Include="Scripts\widgets.js" />
     <Content Include="Secured\dashboard.aspx" />
+    <Content Include="Secured\Profile.aspx" />
     <Content Include="services.asmx" />
     <Content Include="Account\verification.aspx" />
+    <Content Include="sorter_logo.ico" />
+    <Content Include="UserControls\Paging.ascx" />
+    <Content Include="UserControls\_editUser.ascx" />
     <Content Include="UserControls\_topNav.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Site.master" />
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +384,13 @@
     </Compile>
     <Compile Include="Account\forgotpass.aspx.designer.cs">
       <DependentUpon>forgotpass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\passwordRecovery.aspx.cs">
+      <DependentUpon>passwordRecovery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\passwordRecovery.aspx.designer.cs">
+      <DependentUpon>passwordRecovery.aspx</DependentUpon>
     </Compile>
     <Compile Include="Account\signup.aspx.cs">
       <DependentUpon>signup.aspx</DependentUpon>
@@ -303,6 +405,55 @@
     </Compile>
     <Compile Include="Account\signupComplete.aspx.designer.cs">
       <DependentUpon>signupComplete.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin.Master.cs">
+      <DependentUpon>admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin.Master.designer.cs">
+      <DependentUpon>admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\dashboard.aspx.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\dashboard.aspx.designer.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PackageList.aspx.cs">
+      <DependentUpon>PackageList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PackageList.aspx.designer.cs">
+      <DependentUpon>PackageList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PdfUpload.aspx.cs">
+      <DependentUpon>PdfUpload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PdfUpload.aspx.designer.cs">
+      <DependentUpon>PdfUpload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\TemplateMapping.aspx.cs">
+      <DependentUpon>TemplateMapping.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\TemplateMapping.aspx.designer.cs">
+      <DependentUpon>TemplateMapping.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserDetails.aspx.cs">
+      <DependentUpon>UserDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserDetails.aspx.designer.cs">
+      <DependentUpon>UserDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserList.aspx.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserList.aspx.designer.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmCriminalOffenceInformation.aspx.cs">
       <DependentUpon>frmCriminalOffenceInformation.aspx</DependentUpon>
@@ -353,6 +504,13 @@
     <Compile Include="Secured\dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Secured\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secured\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="services.asmx.cs">
       <DependentUpon>services.asmx</DependentUpon>
     </Compile>
@@ -379,6 +537,20 @@
     <Compile Include="Account\verification.aspx.designer.cs">
       <DependentUpon>verification.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Paging.ascx.cs">
+      <DependentUpon>Paging.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Paging.ascx.designer.cs">
+      <DependentUpon>Paging.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\_editUser.ascx.cs">
+      <DependentUpon>_editUser.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\_editUser.ascx.designer.cs">
+      <DependentUpon>_editUser.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\_topNav.ascx.cs">
       <DependentUpon>_topNav.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -386,10 +558,27 @@
     <Compile Include="UserControls\_topNav.ascx.designer.cs">
       <DependentUpon>_topNav.ascx</DependentUpon>
     </Compile>
+    <Compile Include="adminlogin.aspx.cs">
+      <DependentUpon>adminlogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="adminlogin.aspx.designer.cs">
+      <DependentUpon>adminlogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Pdf\" />
+    <Folder Include="tinymce\" />
+    <Folder Include="UploaderTemp\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\nChanger.Core\nChanger.Core\nChanger.Core\nChanger.Core.csproj">

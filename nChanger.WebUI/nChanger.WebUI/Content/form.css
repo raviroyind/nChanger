@@ -19,6 +19,63 @@
         Form
 ---------------------*/
  
+.divspinner
+{
+    display: block;
+    width:100px;
+    height: 100px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background:url(../Images/spinner.gif) no-repeat center #fff;
+    text-align:center;
+    padding:10px;
+    font:normal 16px Tahoma, Geneva, sans-serif;
+    border: none;
+    margin-left: -50px;
+    margin-top: -50px;
+    z-index:2;
+    overflow: auto;
+}
+ 
+.gridHead {
+    cursor: auto;
+    background: #f9fafb;
+    text-align: inherit;
+    color: rgba(0,0,0,.87);
+    padding: .92857143em .71428571em;
+    vertical-align: inherit;
+    font-style: none;
+    font-weight: 700;
+    text-transform: none;
+    text-wrap: none;
+    border-bottom: 1px solid rgba(34,36,38,.1);
+    border-left: none;
+    height: 50px;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+    
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+    background-color: coral;
+}
+
 .ui.form {
   position: relative;
   max-width: 100%;
@@ -40,7 +97,7 @@
 
 .ui.form .field {
   clear: both;
-  margin: 0em 0em 1em;
+  margin: 0em 0em 0em;
 }
 .ui.form .field:last-child,
 .ui.form .fields:last-child .field {
@@ -48,7 +105,7 @@
 }
 .ui.form .fields .field {
   clear: both;
-  margin: 0em 0em 1em;
+  margin: 0em 0em 0em;
 }
 
 /*--------------------
@@ -72,6 +129,11 @@
   border: 1px solid rgba(255, 0, 3, 0.25);
   
   border-radius: 0.28571429rem;
+}
+
+.paddedDiv {
+    padding-right: 1.5em;
+    padding-left: 1.5em;
 }
 /*--------------------
     Standard Inputs

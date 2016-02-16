@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using nChanger.Core;
@@ -14,39 +15,9 @@ using nChanger.Core;
 namespace nChanger.WebUI
 {
     public class CommonFunctions : Page
-    {
+    { 
 
-        protected void BindBottomPaging(UserControl ucPaging, UserControl ucPaging1)
-        {
-            (ucPaging1.FindControl("txtPageNo") as TextBox).Text = (ucPaging.FindControl("txtPageNo") as TextBox).Text;
-            (ucPaging1.FindControl("lblTotPages") as Label).Text = (ucPaging.FindControl("lblTotPages") as Label).Text;
-            (ucPaging1.FindControl("lnkimgbtnFirst") as LinkButton).Enabled = (ucPaging.FindControl("lnkimgbtnFirst") as LinkButton).Enabled;
-            (ucPaging1.FindControl("lnkimgbtnPrevious") as LinkButton).Enabled = (ucPaging.FindControl("lnkimgbtnPrevious") as LinkButton).Enabled;
-            (ucPaging1.FindControl("lnkimgbtnNext") as LinkButton).Enabled = (ucPaging.FindControl("lnkimgbtnNext") as LinkButton).Enabled;
-            (ucPaging1.FindControl("lnkimgbtnLast") as LinkButton).Enabled = (ucPaging.FindControl("lnkimgbtnLast") as LinkButton).Enabled;
-        }
-
-        protected void SetSorting(string sSortExp)
-        {
-            if (Convert.ToString(ViewState["sortColumn"]) == sSortExp)
-            {
-                if (ViewState["sortDirection"] != null)
-                {
-                    if ("ASC" == ViewState["sortDirection"].ToString())
-                        ViewState["sortDirection"] = "DESC";
-                    else
-                        ViewState["sortDirection"] = "ASC";
-                }
-                else
-                    ViewState["sortDirection"] = "ASC";
-            }
-            else
-            {
-                ViewState["sortColumn"] = sSortExp;
-                ViewState["sortDirection"] = "ASC";
-            }
-
-        }
+       
 
         /// <summary>
         /// Used to populate a list control with countries.
@@ -69,7 +40,15 @@ namespace nChanger.WebUI
             return list;
         }
 
-        public static bool CheckIfUserExists(string email, string userid, out string message)
+        public static User GetUserByVerificationCode(string verificationCode)
+        {
+            using (var dataContext = new nChangerDb())
+            {
+                return dataContext.Users.FirstOrDefault(u => u.VerificationCode.ToLower().Equals(verificationCode.ToLower()));
+            }
+        }
+
+        public static bool CheckIfUserExists(string email, string userid, out string message, string userType = null)
         {
             var exists = false;
             message = string.Empty;
@@ -157,30 +136,37 @@ namespace nChanger.WebUI
 
             return context.Request.ServerVariables["REMOTE_ADDR"];
         }
+         
 
-        
         public static bool SendMail(string toEmail, string subject, bool isBodyHtml, string body, bool enableSsl)
         {
             var bSuccess = true;
             var fromEmail = Convert.ToString(ConfigurationManager.AppSettings["SMPT_USER"]);
             var fromPassword = Convert.ToString(ConfigurationManager.AppSettings["SMPT_PASS"]);
-            var msg = new MailMessage(fromEmail, toEmail, subject, body) { IsBodyHtml = true };
             try
             {
-                var client = new SmtpClient(
-                    Convert.ToString(ConfigurationManager.AppSettings["SMPT_SERVER"]),
-                    Convert.ToInt32(ConfigurationManager.AppSettings["SMPT_PORT"]))
-                {
-                    Credentials = new NetworkCredential(fromEmail, fromPassword),
-                    EnableSsl = true
-                };
-
+                
+                MailMessage msg = new MailMessage();
+                
+                msg.To.Add(toEmail);
+               
+                MailAddress address = new MailAddress(fromEmail);
+                msg.From = address;
+                msg.Subject = subject;
+                msg.Body = body;
+                msg.IsBodyHtml = true;
+                SmtpClient client = new SmtpClient();
+                client.Host = "relay-hosting.secureserver.net";
+                client.Port = Convert.ToInt32(ConfigurationManager.AppSettings["SMPT_PORT"]);
+                 
                 client.Send(msg);
+                  
             }
             catch (Exception ex)
             {
                 bSuccess = false;
             }
+
             return bSuccess;
         }
  
