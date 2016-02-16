@@ -44,7 +44,10 @@ namespace nChanger.WebUI
             var nRet = Session["UnAuthorizedAccess"] ?? -1;
             if (nRet.ToString() == "-1")
             {
-                Response.Redirect("../Index.aspx?id=ua");
+                if (!Request.Url.AbsolutePath.Contains("Admin"))
+                    Response.Redirect("../Index.aspx?id=ua");
+                else
+                    Response.Redirect("../adminlogin.aspx?id=tm");
             }
             base.OnLoad(e);
 

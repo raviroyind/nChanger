@@ -147,7 +147,4 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-    <script type="text/javascript">
-        $(".ui-multiselect").multiselect().multiselectfilter();
-    </script>
 </asp:Content>

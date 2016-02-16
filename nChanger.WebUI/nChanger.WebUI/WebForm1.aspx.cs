@@ -16,7 +16,7 @@ namespace nChanger.WebUI
 
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
-            var img = file3.PostedFile;
+           
         }
     }
 }

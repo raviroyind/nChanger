@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="26b44850027542b3ab2b5906873ed2b3" Name="Diagram1" ZoomLevel="13">
+      <Diagram DiagramId="26b44850027542b3ab2b5906873ed2b3" Name="Diagram1" ZoomLevel="107">
         <EntityTypeShape EntityType="nChangerDb.Country" Width="1.5" PointX="10.75" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="nChangerDb.CriminalOffenceInformation" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
         <EntityTypeShape EntityType="nChangerDb.CustomField" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />

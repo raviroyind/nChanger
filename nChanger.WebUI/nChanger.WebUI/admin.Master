@@ -12,7 +12,8 @@
     <link href="Content/semantic.css" rel="stylesheet" />
     <link href="Content/form.css" rel="stylesheet" />
     <link href="nchanger.ico" rel="shortcut icon" type="image/x-icon"  />
-    <script src="<%#ResolveClientUrl("Scripts/jquery-2.2.0.min.js")%>"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script> 
+     
     <script src="<%#ResolveClientUrl("Scripts/clipboard.min.js")%>"></script>
     <script src="<%#ResolveClientUrl("Scripts/cookie.min.js")%>"></script>
     <script src="<%#ResolveClientUrl("Scripts/easing.min.js")%>"></script>
@@ -20,7 +21,7 @@
     <script src="<%#ResolveClientUrl("Scripts/history.min.js")%>"></script>
     <script src="<%#ResolveClientUrl("Scripts/tablesort.min.js")%>"></script>
     <script src="<%#ResolveClientUrl("Scripts/semantic.min.js")%>"></script>
-    <script src="http://tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+  
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
 </head>
 <body>
@@ -81,5 +82,6 @@
             </div>
         </div>
     </form>
+     
 </body>
 </html>

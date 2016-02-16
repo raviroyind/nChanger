@@ -89,6 +89,9 @@
     <Compile Include="NameChangeInformation.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="old_State.cs">
+      <DependentUpon>DataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Package.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>

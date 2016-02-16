@@ -826,7 +826,7 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
           <Property Name="PackageShortName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PackageLongName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="PackageDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ImageUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="IsDefault" Type="Boolean" Nullable="false" />
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="DurationMonths" Type="Int32" Nullable="false" />
@@ -846,7 +846,7 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
           <Property Name="Category" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CategoryShortDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="CategoryLongDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ImageUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
