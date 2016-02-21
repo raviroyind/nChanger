@@ -6,7 +6,12 @@
     <link rel="stylesheet" type="text/css" href="../assets/style.css" />
     <link rel="stylesheet" type="text/css" href="../assets/prettify.css" />
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" />
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery-2.2.0.min.js"></script>
+    
+    <script type="text/javascript" src="http://www.uploadify.com/wp-content/themes/uploadify/js/jquery.min.js"></script>
+	<script type="text/javascript" src="http://www.uploadify.com/wp-content/themes/uploadify/js/jquery.uploadify.min.js"></script>
+    
+
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.multiselect.js"></script>
     <script type="text/javascript" src="../Scripts/jquery.multiselect.filter.js"></script>
@@ -35,17 +40,19 @@
                                     <div class="ui stacked segment frmPad">
                                         <div class="ui form">
                                             <h4 class="ui dividing header orange"><i class="plus icon"></i>Upload Pdf(s)</h4>
-                                            <asp:Label ID="lblMsg" runat="server" ForeColor="DarkRed" CssClass="bold"></asp:Label>
+                                             <asp:Label runat="server" ID="lblMsg" Style="color: maroon; font-weight: bold;"></asp:Label>
                                             <h4 class="ui dividing header"></h4>
                                             <div class="one field">
-                                                <label>Pdf File</label>
+                                              
                                                 <div class="field">
                                                     <div class="sixteen wide field">
-                                                        <ajaxToolkit:AjaxFileUpload ID="asynpdfUpload" runat="server"  MaximumNumberOfFiles="25" 
-                                                              onchange="$('.ajax__fileupload_uploadbutton').trigger('click');"     
-                                                            OnUploadComplete="asynpdfUpload_OnUploadComplete" Mode="Auto"  OnUploadCompleteAll="asynpdfUpload_OnUploadCompleteAll" />
-                                                        <asp:HyperLink runat="server" ID="lnkPdfFile" Visible="False"></asp:HyperLink>
-                                                        <asp:HiddenField runat="server" ID="hidFileName" />
+                                                        <div>
+                                                     <input class="ui button orange large" type="file" name="uploadify" id="uploadify" />
+                                                            </div>
+                                                       <%--<a href="javascript:$('#uploadify').uploadifyUpload()">Upload</a>|<a href="javascript:$('#uploadify').uploadifyClearQueue()">
+                                                            Cancle</a>--%>
+                                                        <div id="fileQueue">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div> 
@@ -59,10 +66,7 @@
                     </div>
                 </div>
             </div>
-    <asp:UpdatePanel runat="server" ID="UpdatePanel1" UpdateMode="Conditional">
-        <Triggers>
-            <asp:AsyncPostBackTrigger ControlID="asynpdfUpload" EventName="" />
-        </Triggers>
+    <asp:UpdatePanel runat="server" ID="UpdatePanel1"  OnLoad = "UpdatePanel1_OnLoad">
         <ContentTemplate>
             <div class="ui grid">
                 <div class="one wide column"></div>
@@ -133,8 +137,8 @@
 
                                 <asp:TemplateField HeaderText="" ItemStyle-Width="120">
                                     <ItemTemplate>
-                                        <asp:HyperLink ID="hypMap" runat="server" CssClass="ui button orange" NavigateUrl='<%# Eval("Id", "TemplateMapping.aspx?id={0}") %>'>Mapping</asp:HyperLink>
-                                    </ItemTemplate>
+                                        <asp:HyperLink ID="hypMap" runat="server" CssClass="ui button orange" NavigateUrl='<%# string.Format("TemplateMapping.aspx?id={0}&active={1}", Eval("Id"), Eval("IsActive")) %>'>Mapping</asp:HyperLink>
+                                        </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
@@ -147,4 +151,19 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#uploadify").uploadify({
+                uploader: 'PdfUpload.aspx',
+                cancelImg: '../Uplodify/cancel.png',
+                swf: '../Uplodify/uploadify.swf',
+                folder: '../Pdf',
+                'onQueueComplete': function (queueData) {
+                     __doPostBack("<%=UpdatePanel1.UniqueID %>", "");
+                }
+            });
+        });
+         
+    </script>
 </asp:Content>

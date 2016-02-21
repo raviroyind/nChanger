@@ -21,7 +21,8 @@ namespace nChanger.WebUI
                 {
                     FormsAuthentication.SignOut();
                     Session.Abandon();
-
+                    Session.Clear();
+                     
                     // clear authentication cookie
                     var cookie1 = new HttpCookie(FormsAuthentication.FormsCookieName, "")
                     {
@@ -32,6 +33,8 @@ namespace nChanger.WebUI
                     // clear session cookie
                     var cookie2 = new HttpCookie("ASP.NET_SessionId", "") { Expires = DateTime.Now.AddYears(-1) };
                     Response.Cookies.Add(cookie2);
+
+                    
 
                     switch (Convert.ToString(Request.QueryString["id"]))
                     {

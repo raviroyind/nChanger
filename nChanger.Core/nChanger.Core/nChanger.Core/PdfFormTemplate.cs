@@ -12,12 +12,18 @@ namespace nChanger.Core
     using System;
     using System.Collections.Generic;
     
-    public partial class old_State
+    public partial class PdfFormTemplate
     {
-        public long Srno { get; set; }
-        public string StateId { get; set; }
-        public string StateName { get; set; }
-        public string Country { get; set; }
+        public System.Guid Id { get; set; }
+        public System.Guid ProvinceCategoryId { get; set; }
+        public string TemplateName { get; set; }
+        public string PdfFileName { get; set; }
+        public string Comments { get; set; }
         public bool IsActive { get; set; }
+        public System.DateTime EntryDate { get; set; }
+        public string EntryIP { get; set; }
+        public string EntryId { get; set; }
+    
+        public virtual ProvinceCategory ProvinceCategory { get; set; }
     }
 }

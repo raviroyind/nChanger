@@ -80,6 +80,17 @@ namespace nChanger.WebUI
             (ucPaging1.FindControl("lnkimgbtnLast") as LinkButton).Enabled = (ucPaging.FindControl("lnkimgbtnLast") as LinkButton).Enabled;
         }
 
+
+        protected void ShowUpdatePanelAlert(UpdatePanel updatePanel,string message)
+        {
+            ScriptManager.RegisterStartupScript(
+                updatePanel,
+                updatePanel.GetType(),
+                Guid.NewGuid().ToString(),
+                " alert('"+ message + "');",
+                true);
+        }
+
         protected void SetSorting(string sSortExp)
         {
             if (Convert.ToString(ViewState["sortColumn"]) == sSortExp)

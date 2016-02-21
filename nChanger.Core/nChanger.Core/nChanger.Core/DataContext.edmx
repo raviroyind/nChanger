@@ -43,43 +43,6 @@
           <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="CustomFields">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="PdfTemplateId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="FieldValue" Type="nvarchar" MaxLength="500" />
-          <Property Name="FieldType" Type="nvarchar" MaxLength="50" />
-          <Property Name="PdfPageNumber" Type="int" Nullable="false" />
-          <Property Name="Left" Type="float" />
-          <Property Name="Right" Type="float" />
-          <Property Name="Top" Type="float" />
-          <Property Name="Bottom" Type="float" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="EntryDate" Type="datetime" Nullable="false" />
-          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="FieldMappings">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="PdfTemplateId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="PdfFieldName" Type="nvarchar" MaxLength="50" />
-          <Property Name="PdfPageNumber" Type="int" Nullable="false" />
-          <Property Name="FieldType" Type="nvarchar" MaxLength="50" />
-          <Property Name="Left" Type="float" />
-          <Property Name="Right" Type="float" />
-          <Property Name="Top" Type="float" />
-          <Property Name="Bottom" Type="float" />
-          <Property Name="DbFieldName" Type="nvarchar" MaxLength="50" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="EntryDate" Type="datetime" Nullable="false" />
-          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
         <EntityType Name="FinancialInformation">
           <Key>
             <PropertyRef Name="Id" />
@@ -112,17 +75,6 @@
           <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="InputFormTables">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="TableName" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="EntryDate" Type="datetime" Nullable="false" />
-          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
         <EntityType Name="NameChangeInformation">
           <Key>
             <PropertyRef Name="Id" />
@@ -149,19 +101,6 @@
           <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'NameChangerDB.dbo.old_State' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="old_State">
-          <Key>
-            <PropertyRef Name="Srno" />
-            <PropertyRef Name="IsActive" />
-          </Key>
-          <Property Name="Srno" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StateId" Type="nvarchar" MaxLength="50" />
-          <Property Name="StateName" Type="nvarchar" MaxLength="250" />
-          <Property Name="Country" Type="nvarchar" MaxLength="250" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
-        </EntityType>
         <EntityType Name="Package">
           <Key>
             <PropertyRef Name="Id" />
@@ -171,7 +110,7 @@ warning 6002: The table/view 'NameChangerDB.dbo.old_State' does not have a prima
           <Property Name="PackageShortName" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="PackageLongName" Type="nvarchar" MaxLength="500" />
           <Property Name="PackageDescription" Type="nvarchar(max)" />
-          <Property Name="ImageUrl" Type="nvarchar" MaxLength="50" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="500" />
           <Property Name="IsDefault" Type="bit" Nullable="false" />
           <Property Name="Price" Type="money" Nullable="false" />
           <Property Name="DurationMonths" Type="int" Nullable="false" />
@@ -217,11 +156,12 @@ warning 6002: The table/view 'NameChangerDB.dbo.old_State' does not have a prima
           <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="PdfTemplates">
+        <EntityType Name="PdfFormTemplate">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProvinceCategoryId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="TemplateName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="PdfFileName" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="Comments" Type="nvarchar" MaxLength="500" />
@@ -287,6 +227,31 @@ warning 6002: The table/view 'NameChangerDB.dbo.old_State' does not have a prima
           <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Province">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Province" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProvinceCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProvinceId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="State">
           <Key>
             <PropertyRef Name="StateId" />
@@ -301,8 +266,10 @@ warning 6002: The table/view 'NameChangerDB.dbo.old_State' does not have a prima
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="PdfTemplateId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PdfFormTemplateId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="TableName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="SectionName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="SectionPath" Type="nvarchar" MaxLength="1000" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="EntryDate" Type="datetime" Nullable="false" />
           <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -355,7 +322,7 @@ warning 6002: The table/view 'NameChangerDB.dbo.old_State' does not have a prima
           <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="InputFormSchemaView">
           <Key>
             <PropertyRef Name="TABLE_NAME" />
@@ -384,100 +351,6 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
           <Property Name="DOMAIN_SCHEMA" Type="nvarchar" MaxLength="128" />
           <Property Name="DOMAIN_NAME" Type="nvarchar" MaxLength="128" />
         </EntityType>
-        <Association Name="FK_dbo_CriminalOffenceInformation_dbo_PdfTemplate_PdfTemplateId">
-          <End Role="PdfTemplates" Type="Self.PdfTemplates" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="CriminalOffenceInformation" Type="Self.CriminalOffenceInformation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PdfTemplates">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CriminalOffenceInformation">
-              <PropertyRef Name="PdfTemplateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_CustomField_dbo_PdfTemplate_PdfTemplateId">
-          <End Role="PdfTemplates" Type="Self.PdfTemplates" Multiplicity="1" />
-          <End Role="CustomFields" Type="Self.CustomFields" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PdfTemplates">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CustomFields">
-              <PropertyRef Name="PdfTemplateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_FieldMapping_dbo_PdfTemplate_PdfTemplateId">
-          <End Role="PdfTemplates" Type="Self.PdfTemplates" Multiplicity="1" />
-          <End Role="FieldMappings" Type="Self.FieldMappings" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PdfTemplates">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="FieldMappings">
-              <PropertyRef Name="PdfTemplateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_FinancialInformation_dbo_PdfTemplate_PdfTemplateId">
-          <End Role="PdfTemplates" Type="Self.PdfTemplates" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="FinancialInformation" Type="Self.FinancialInformation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PdfTemplates">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="FinancialInformation">
-              <PropertyRef Name="PdfTemplateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_NameChangeInformation_dbo_PdfTemplate_PdfTemplateId">
-          <End Role="PdfTemplates" Type="Self.PdfTemplates" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="NameChangeInformation" Type="Self.NameChangeInformation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PdfTemplates">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="NameChangeInformation">
-              <PropertyRef Name="PdfTemplateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_OnPersonalInformation_dbo_PdfTemplate_PdfTemplateId">
-          <End Role="PdfTemplates" Type="Self.PdfTemplates" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="PersonalInformation" Type="Self.PersonalInformation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PdfTemplates">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PersonalInformation">
-              <PropertyRef Name="PdfTemplateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_ParentInformation_dbo_PdfTemplate_PdfTemplateId">
-          <End Role="PdfTemplates" Type="Self.PdfTemplates" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="ParentInformation" Type="Self.ParentInformation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PdfTemplates">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ParentInformation">
-              <PropertyRef Name="PdfTemplateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Package_PackageCategory">
           <End Role="PackageCategory" Type="Self.PackageCategory" Multiplicity="1" />
           <End Role="Package" Type="Self.Package" Multiplicity="*" />
@@ -490,6 +363,30 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PdfFormTemplate_ProvinceCategory">
+          <End Role="ProvinceCategory" Type="Self.ProvinceCategory" Multiplicity="1" />
+          <End Role="PdfFormTemplate" Type="Self.PdfFormTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProvinceCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PdfFormTemplate">
+              <PropertyRef Name="ProvinceCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProvinceCategory_Province">
+          <End Role="Province" Type="Self.Province" Multiplicity="1" />
+          <End Role="ProvinceCategory" Type="Self.ProvinceCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProvinceCategory">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_State_Country">
           <End Role="Country" Type="Self.Country" Multiplicity="1" />
           <End Role="State" Type="Self.State" Multiplicity="*" />
@@ -499,18 +396,6 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
             </Principal>
             <Dependent Role="State">
               <PropertyRef Name="CountryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TemplateTable_PdfTemplates">
-          <End Role="PdfTemplates" Type="Self.PdfTemplates" Multiplicity="1" />
-          <End Role="TemplateTable" Type="Self.TemplateTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PdfTemplates">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="TemplateTable">
-              <PropertyRef Name="PdfTemplateId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -558,30 +443,20 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
         <EntityContainer Name="nChangerDbStoreContainer">
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CriminalOffenceInformation" EntityType="Self.CriminalOffenceInformation" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CustomFields" EntityType="Self.CustomFields" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="FieldMappings" EntityType="Self.FieldMappings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FinancialInformation" EntityType="Self.FinancialInformation" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="InputFormTables" EntityType="Self.InputFormTables" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NameChangeInformation" EntityType="Self.NameChangeInformation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Package" EntityType="Self.Package" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PackageCategory" EntityType="Self.PackageCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ParentInformation" EntityType="Self.ParentInformation" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PdfTemplates" EntityType="Self.PdfTemplates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PdfFormTemplate" EntityType="Self.PdfFormTemplate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonalInformation" EntityType="Self.PersonalInformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Province" EntityType="Self.Province" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProvinceCategory" EntityType="Self.ProvinceCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TemplateTable" EntityType="Self.TemplateTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserPackages" EntityType="Self.UserPackages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="old_State" EntityType="Self.old_State" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [old_State].[Srno] AS [Srno], 
-    [old_State].[StateId] AS [StateId], 
-    [old_State].[StateName] AS [StateName], 
-    [old_State].[Country] AS [Country], 
-    [old_State].[IsActive] AS [IsActive]
-    FROM [dbo].[old_State] AS [old_State]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="InputFormSchemaView" EntityType="Self.InputFormSchemaView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [InputFormSchemaView].[TABLE_CATALOG] AS [TABLE_CATALOG], 
@@ -609,45 +484,21 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
     [InputFormSchemaView].[DOMAIN_NAME] AS [DOMAIN_NAME]
     FROM [dbo].[InputFormSchemaView] AS [InputFormSchemaView]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_dbo_CriminalOffenceInformation_dbo_PdfTemplate_PdfTemplateId" Association="Self.FK_dbo_CriminalOffenceInformation_dbo_PdfTemplate_PdfTemplateId">
-            <End Role="PdfTemplates" EntitySet="PdfTemplates" />
-            <End Role="CriminalOffenceInformation" EntitySet="CriminalOffenceInformation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_CustomField_dbo_PdfTemplate_PdfTemplateId" Association="Self.FK_dbo_CustomField_dbo_PdfTemplate_PdfTemplateId">
-            <End Role="PdfTemplates" EntitySet="PdfTemplates" />
-            <End Role="CustomFields" EntitySet="CustomFields" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_FieldMapping_dbo_PdfTemplate_PdfTemplateId" Association="Self.FK_dbo_FieldMapping_dbo_PdfTemplate_PdfTemplateId">
-            <End Role="PdfTemplates" EntitySet="PdfTemplates" />
-            <End Role="FieldMappings" EntitySet="FieldMappings" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_FinancialInformation_dbo_PdfTemplate_PdfTemplateId" Association="Self.FK_dbo_FinancialInformation_dbo_PdfTemplate_PdfTemplateId">
-            <End Role="PdfTemplates" EntitySet="PdfTemplates" />
-            <End Role="FinancialInformation" EntitySet="FinancialInformation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_NameChangeInformation_dbo_PdfTemplate_PdfTemplateId" Association="Self.FK_dbo_NameChangeInformation_dbo_PdfTemplate_PdfTemplateId">
-            <End Role="PdfTemplates" EntitySet="PdfTemplates" />
-            <End Role="NameChangeInformation" EntitySet="NameChangeInformation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_OnPersonalInformation_dbo_PdfTemplate_PdfTemplateId" Association="Self.FK_dbo_OnPersonalInformation_dbo_PdfTemplate_PdfTemplateId">
-            <End Role="PdfTemplates" EntitySet="PdfTemplates" />
-            <End Role="PersonalInformation" EntitySet="PersonalInformation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_ParentInformation_dbo_PdfTemplate_PdfTemplateId" Association="Self.FK_dbo_ParentInformation_dbo_PdfTemplate_PdfTemplateId">
-            <End Role="PdfTemplates" EntitySet="PdfTemplates" />
-            <End Role="ParentInformation" EntitySet="ParentInformation" />
-          </AssociationSet>
           <AssociationSet Name="FK_Package_PackageCategory" Association="Self.FK_Package_PackageCategory">
             <End Role="PackageCategory" EntitySet="PackageCategory" />
             <End Role="Package" EntitySet="Package" />
           </AssociationSet>
+          <AssociationSet Name="FK_PdfFormTemplate_ProvinceCategory" Association="Self.FK_PdfFormTemplate_ProvinceCategory">
+            <End Role="ProvinceCategory" EntitySet="ProvinceCategory" />
+            <End Role="PdfFormTemplate" EntitySet="PdfFormTemplate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProvinceCategory_Province" Association="Self.FK_ProvinceCategory_Province">
+            <End Role="Province" EntitySet="Province" />
+            <End Role="ProvinceCategory" EntitySet="ProvinceCategory" />
+          </AssociationSet>
           <AssociationSet Name="FK_State_Country" Association="Self.FK_State_Country">
             <End Role="Country" EntitySet="Country" />
             <End Role="State" EntitySet="State" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TemplateTable_PdfTemplates" Association="Self.FK_TemplateTable_PdfTemplates">
-            <End Role="PdfTemplates" EntitySet="PdfTemplates" />
-            <End Role="TemplateTable" EntitySet="TemplateTable" />
           </AssociationSet>
           <AssociationSet Name="FK_UserPackages_Package" Association="Self.FK_UserPackages_Package">
             <End Role="Package" EntitySet="Package" />
@@ -705,46 +556,6 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="PdfTemplate" Relationship="Self.FK_dbo_CriminalOffenceInformation_dbo_PdfTemplate_PdfTemplateId" FromRole="CriminalOffenceInformation" ToRole="PdfTemplates" />
-        </EntityType>
-        <EntityType Name="CustomField">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="PdfTemplateId" Type="Guid" Nullable="false" />
-          <Property Name="FieldValue" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="FieldType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PdfPageNumber" Type="Int32" Nullable="false" />
-          <Property Name="Left" Type="Double" />
-          <Property Name="Right" Type="Double" />
-          <Property Name="Top" Type="Double" />
-          <Property Name="Bottom" Type="Double" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="PdfTemplate" Relationship="Self.FK_dbo_CustomField_dbo_PdfTemplate_PdfTemplateId" FromRole="CustomFields" ToRole="PdfTemplates" />
-        </EntityType>
-        <EntityType Name="FieldMapping">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="PdfTemplateId" Type="Guid" Nullable="false" />
-          <Property Name="PdfFieldName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PdfPageNumber" Type="Int32" Nullable="false" />
-          <Property Name="FieldType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Left" Type="Double" />
-          <Property Name="Right" Type="Double" />
-          <Property Name="Top" Type="Double" />
-          <Property Name="Bottom" Type="Double" />
-          <Property Name="DbFieldName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="PdfTemplate" Relationship="Self.FK_dbo_FieldMapping_dbo_PdfTemplate_PdfTemplateId" FromRole="FieldMappings" ToRole="PdfTemplates" />
         </EntityType>
         <EntityType Name="FinancialInformation">
           <Key>
@@ -777,18 +588,6 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="PdfTemplate" Relationship="Self.FK_dbo_FinancialInformation_dbo_PdfTemplate_PdfTemplateId" FromRole="FinancialInformation" ToRole="PdfTemplates" />
-        </EntityType>
-        <EntityType Name="InputFormTable">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="TableName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="NameChangeInformation">
           <Key>
@@ -815,7 +614,6 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="PdfTemplate" Relationship="Self.FK_dbo_NameChangeInformation_dbo_PdfTemplate_PdfTemplateId" FromRole="NameChangeInformation" ToRole="PdfTemplates" />
         </EntityType>
         <EntityType Name="Package">
           <Key>
@@ -846,7 +644,7 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
           <Property Name="Category" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CategoryShortDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="CategoryLongDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ImageUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -874,13 +672,13 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="PdfTemplate" Relationship="Self.FK_dbo_ParentInformation_dbo_PdfTemplate_PdfTemplateId" FromRole="ParentInformation" ToRole="PdfTemplates" />
         </EntityType>
-        <EntityType Name="PdfTemplate">
+        <EntityType Name="PdfFormTemplate">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ProvinceCategoryId" Type="Guid" Nullable="false" />
           <Property Name="TemplateName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PdfFileName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
@@ -888,14 +686,7 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="CriminalOffenceInformations" Relationship="Self.FK_dbo_CriminalOffenceInformation_dbo_PdfTemplate_PdfTemplateId" FromRole="PdfTemplates" ToRole="CriminalOffenceInformation" />
-          <NavigationProperty Name="CustomFields" Relationship="Self.FK_dbo_CustomField_dbo_PdfTemplate_PdfTemplateId" FromRole="PdfTemplates" ToRole="CustomFields" />
-          <NavigationProperty Name="FieldMappings" Relationship="Self.FK_dbo_FieldMapping_dbo_PdfTemplate_PdfTemplateId" FromRole="PdfTemplates" ToRole="FieldMappings" />
-          <NavigationProperty Name="FinancialInformations" Relationship="Self.FK_dbo_FinancialInformation_dbo_PdfTemplate_PdfTemplateId" FromRole="PdfTemplates" ToRole="FinancialInformation" />
-          <NavigationProperty Name="NameChangeInformations" Relationship="Self.FK_dbo_NameChangeInformation_dbo_PdfTemplate_PdfTemplateId" FromRole="PdfTemplates" ToRole="NameChangeInformation" />
-          <NavigationProperty Name="ParentInformations" Relationship="Self.FK_dbo_ParentInformation_dbo_PdfTemplate_PdfTemplateId" FromRole="PdfTemplates" ToRole="ParentInformation" />
-          <NavigationProperty Name="PersonalInformations" Relationship="Self.FK_dbo_OnPersonalInformation_dbo_PdfTemplate_PdfTemplateId" FromRole="PdfTemplates" ToRole="PersonalInformation" />
-          <NavigationProperty Name="TemplateTables" Relationship="Self.FK_TemplateTable_PdfTemplates" FromRole="PdfTemplates" ToRole="TemplateTable" />
+          <NavigationProperty Name="ProvinceCategory" Relationship="Self.FK_PdfFormTemplate_ProvinceCategory" FromRole="PdfFormTemplate" ToRole="ProvinceCategory" />
         </EntityType>
         <EntityType Name="PersonalInformation">
           <Key>
@@ -953,7 +744,34 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="PdfTemplate" Relationship="Self.FK_dbo_OnPersonalInformation_dbo_PdfTemplate_PdfTemplateId" FromRole="PersonalInformation" ToRole="PdfTemplates" />
+        </EntityType>
+        <EntityType Name="Province">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Province1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ProvinceCategories" Relationship="Self.FK_ProvinceCategory_Province" FromRole="Province" ToRole="ProvinceCategory" />
+        </EntityType>
+        <EntityType Name="ProvinceCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ProvinceId" Type="Guid" Nullable="false" />
+          <Property Name="Category" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PdfFormTemplates" Relationship="Self.FK_PdfFormTemplate_ProvinceCategory" FromRole="ProvinceCategory" ToRole="PdfFormTemplate" />
+          <NavigationProperty Name="Province" Relationship="Self.FK_ProvinceCategory_Province" FromRole="ProvinceCategory" ToRole="Province" />
         </EntityType>
         <EntityType Name="State">
           <Key>
@@ -970,13 +788,14 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="PdfTemplateId" Type="Guid" Nullable="false" />
+          <Property Name="PdfFormTemplateId" Type="Guid" Nullable="false" />
           <Property Name="TableName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SectionName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SectionPath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="PdfTemplate" Relationship="Self.FK_TemplateTable_PdfTemplates" FromRole="TemplateTable" ToRole="PdfTemplates" />
         </EntityType>
         <EntityType Name="UserPackage">
           <Key>
@@ -1029,17 +848,6 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
           <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Users_UserType" FromRole="UserType" ToRole="Users" />
         </EntityType>
-        <EntityType Name="old_State">
-          <Key>
-            <PropertyRef Name="Srno" />
-            <PropertyRef Name="IsActive" />
-          </Key>
-          <Property Name="Srno" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StateId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="StateName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Country" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-        </EntityType>
         <EntityType Name="InputFormSchemaView">
           <Key>
             <PropertyRef Name="TABLE_NAME" />
@@ -1080,72 +888,6 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_CriminalOffenceInformation_dbo_PdfTemplate_PdfTemplateId">
-          <End Role="PdfTemplates" Type="Self.PdfTemplate" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="CriminalOffenceInformation" Type="Self.CriminalOffenceInformation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PdfTemplates">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CriminalOffenceInformation">
-              <PropertyRef Name="PdfTemplateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_CustomField_dbo_PdfTemplate_PdfTemplateId">
-          <End Role="PdfTemplates" Type="Self.PdfTemplate" Multiplicity="1" />
-          <End Role="CustomFields" Type="Self.CustomField" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PdfTemplates">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CustomFields">
-              <PropertyRef Name="PdfTemplateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_FieldMapping_dbo_PdfTemplate_PdfTemplateId">
-          <End Role="PdfTemplates" Type="Self.PdfTemplate" Multiplicity="1" />
-          <End Role="FieldMappings" Type="Self.FieldMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PdfTemplates">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="FieldMappings">
-              <PropertyRef Name="PdfTemplateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_FinancialInformation_dbo_PdfTemplate_PdfTemplateId">
-          <End Role="PdfTemplates" Type="Self.PdfTemplate" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="FinancialInformation" Type="Self.FinancialInformation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PdfTemplates">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="FinancialInformation">
-              <PropertyRef Name="PdfTemplateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_NameChangeInformation_dbo_PdfTemplate_PdfTemplateId">
-          <End Role="PdfTemplates" Type="Self.PdfTemplate" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="NameChangeInformation" Type="Self.NameChangeInformation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PdfTemplates">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="NameChangeInformation">
-              <PropertyRef Name="PdfTemplateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Package_PackageCategory">
           <End Role="PackageCategory" Type="Self.PackageCategory" Multiplicity="1" />
           <End Role="Package" Type="Self.Package" Multiplicity="*" />
@@ -1170,43 +912,27 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_ParentInformation_dbo_PdfTemplate_PdfTemplateId">
-          <End Role="PdfTemplates" Type="Self.PdfTemplate" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="ParentInformation" Type="Self.ParentInformation" Multiplicity="*" />
+        <Association Name="FK_PdfFormTemplate_ProvinceCategory">
+          <End Role="ProvinceCategory" Type="Self.ProvinceCategory" Multiplicity="1" />
+          <End Role="PdfFormTemplate" Type="Self.PdfFormTemplate" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="PdfTemplates">
+            <Principal Role="ProvinceCategory">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="ParentInformation">
-              <PropertyRef Name="PdfTemplateId" />
+            <Dependent Role="PdfFormTemplate">
+              <PropertyRef Name="ProvinceCategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_OnPersonalInformation_dbo_PdfTemplate_PdfTemplateId">
-          <End Role="PdfTemplates" Type="Self.PdfTemplate" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="PersonalInformation" Type="Self.PersonalInformation" Multiplicity="*" />
+        <Association Name="FK_ProvinceCategory_Province">
+          <End Role="Province" Type="Self.Province" Multiplicity="1" />
+          <End Role="ProvinceCategory" Type="Self.ProvinceCategory" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="PdfTemplates">
+            <Principal Role="Province">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="PersonalInformation">
-              <PropertyRef Name="PdfTemplateId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TemplateTable_PdfTemplates">
-          <End Role="PdfTemplates" Type="Self.PdfTemplate" Multiplicity="1" />
-          <End Role="TemplateTable" Type="Self.TemplateTable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PdfTemplates">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="TemplateTable">
-              <PropertyRef Name="PdfTemplateId" />
+            <Dependent Role="ProvinceCategory">
+              <PropertyRef Name="ProvinceId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1237,46 +963,24 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Countries" EntityType="Self.Country" />
           <EntitySet Name="CriminalOffenceInformations" EntityType="Self.CriminalOffenceInformation" />
-          <EntitySet Name="CustomFields" EntityType="Self.CustomField" />
-          <EntitySet Name="FieldMappings" EntityType="Self.FieldMapping" />
           <EntitySet Name="FinancialInformations" EntityType="Self.FinancialInformation" />
-          <EntitySet Name="InputFormTables" EntityType="Self.InputFormTable" />
           <EntitySet Name="NameChangeInformations" EntityType="Self.NameChangeInformation" />
           <EntitySet Name="Packages" EntityType="Self.Package" />
           <EntitySet Name="PackageCategories" EntityType="Self.PackageCategory" />
           <EntitySet Name="ParentInformations" EntityType="Self.ParentInformation" />
-          <EntitySet Name="PdfTemplates" EntityType="Self.PdfTemplate" />
+          <EntitySet Name="PdfFormTemplates" EntityType="Self.PdfFormTemplate" />
           <EntitySet Name="PersonalInformations" EntityType="Self.PersonalInformation" />
+          <EntitySet Name="Provinces" EntityType="Self.Province" />
+          <EntitySet Name="ProvinceCategories" EntityType="Self.ProvinceCategory" />
           <EntitySet Name="States" EntityType="Self.State" />
           <EntitySet Name="TemplateTables" EntityType="Self.TemplateTable" />
           <EntitySet Name="UserPackages" EntityType="Self.UserPackage" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="UserTypes" EntityType="Self.UserType" />
-          <EntitySet Name="old_State" EntityType="Self.old_State" />
           <EntitySet Name="InputFormSchemaViews" EntityType="Self.InputFormSchemaView" />
           <AssociationSet Name="FK_State_Country" Association="Self.FK_State_Country">
             <End Role="Country" EntitySet="Countries" />
             <End Role="State" EntitySet="States" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_CriminalOffenceInformation_dbo_PdfTemplate_PdfTemplateId" Association="Self.FK_dbo_CriminalOffenceInformation_dbo_PdfTemplate_PdfTemplateId">
-            <End Role="PdfTemplates" EntitySet="PdfTemplates" />
-            <End Role="CriminalOffenceInformation" EntitySet="CriminalOffenceInformations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_CustomField_dbo_PdfTemplate_PdfTemplateId" Association="Self.FK_dbo_CustomField_dbo_PdfTemplate_PdfTemplateId">
-            <End Role="PdfTemplates" EntitySet="PdfTemplates" />
-            <End Role="CustomFields" EntitySet="CustomFields" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_FieldMapping_dbo_PdfTemplate_PdfTemplateId" Association="Self.FK_dbo_FieldMapping_dbo_PdfTemplate_PdfTemplateId">
-            <End Role="PdfTemplates" EntitySet="PdfTemplates" />
-            <End Role="FieldMappings" EntitySet="FieldMappings" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_FinancialInformation_dbo_PdfTemplate_PdfTemplateId" Association="Self.FK_dbo_FinancialInformation_dbo_PdfTemplate_PdfTemplateId">
-            <End Role="PdfTemplates" EntitySet="PdfTemplates" />
-            <End Role="FinancialInformation" EntitySet="FinancialInformations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_NameChangeInformation_dbo_PdfTemplate_PdfTemplateId" Association="Self.FK_dbo_NameChangeInformation_dbo_PdfTemplate_PdfTemplateId">
-            <End Role="PdfTemplates" EntitySet="PdfTemplates" />
-            <End Role="NameChangeInformation" EntitySet="NameChangeInformations" />
           </AssociationSet>
           <AssociationSet Name="FK_Package_PackageCategory" Association="Self.FK_Package_PackageCategory">
             <End Role="PackageCategory" EntitySet="PackageCategories" />
@@ -1286,17 +990,13 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
             <End Role="Package" EntitySet="Packages" />
             <End Role="UserPackages" EntitySet="UserPackages" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_ParentInformation_dbo_PdfTemplate_PdfTemplateId" Association="Self.FK_dbo_ParentInformation_dbo_PdfTemplate_PdfTemplateId">
-            <End Role="PdfTemplates" EntitySet="PdfTemplates" />
-            <End Role="ParentInformation" EntitySet="ParentInformations" />
+          <AssociationSet Name="FK_PdfFormTemplate_ProvinceCategory" Association="Self.FK_PdfFormTemplate_ProvinceCategory">
+            <End Role="ProvinceCategory" EntitySet="ProvinceCategories" />
+            <End Role="PdfFormTemplate" EntitySet="PdfFormTemplates" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_OnPersonalInformation_dbo_PdfTemplate_PdfTemplateId" Association="Self.FK_dbo_OnPersonalInformation_dbo_PdfTemplate_PdfTemplateId">
-            <End Role="PdfTemplates" EntitySet="PdfTemplates" />
-            <End Role="PersonalInformation" EntitySet="PersonalInformations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TemplateTable_PdfTemplates" Association="Self.FK_TemplateTable_PdfTemplates">
-            <End Role="PdfTemplates" EntitySet="PdfTemplates" />
-            <End Role="TemplateTable" EntitySet="TemplateTables" />
+          <AssociationSet Name="FK_ProvinceCategory_Province" Association="Self.FK_ProvinceCategory_Province">
+            <End Role="Province" EntitySet="Provinces" />
+            <End Role="ProvinceCategory" EntitySet="ProvinceCategories" />
           </AssociationSet>
           <AssociationSet Name="FK_UserPackages_Users" Association="Self.FK_UserPackages_Users">
             <End Role="Users" EntitySet="Users" />
@@ -1358,45 +1058,6 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CustomFields">
-            <EntityTypeMapping TypeName="nChangerDb.CustomField">
-              <MappingFragment StoreEntitySet="CustomFields">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="PdfTemplateId" ColumnName="PdfTemplateId" />
-                <ScalarProperty Name="FieldValue" ColumnName="FieldValue" />
-                <ScalarProperty Name="FieldType" ColumnName="FieldType" />
-                <ScalarProperty Name="PdfPageNumber" ColumnName="PdfPageNumber" />
-                <ScalarProperty Name="Left" ColumnName="Left" />
-                <ScalarProperty Name="Right" ColumnName="Right" />
-                <ScalarProperty Name="Top" ColumnName="Top" />
-                <ScalarProperty Name="Bottom" ColumnName="Bottom" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
-                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FieldMappings">
-            <EntityTypeMapping TypeName="nChangerDb.FieldMapping">
-              <MappingFragment StoreEntitySet="FieldMappings">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="PdfTemplateId" ColumnName="PdfTemplateId" />
-                <ScalarProperty Name="PdfFieldName" ColumnName="PdfFieldName" />
-                <ScalarProperty Name="PdfPageNumber" ColumnName="PdfPageNumber" />
-                <ScalarProperty Name="FieldType" ColumnName="FieldType" />
-                <ScalarProperty Name="Left" ColumnName="Left" />
-                <ScalarProperty Name="Right" ColumnName="Right" />
-                <ScalarProperty Name="Top" ColumnName="Top" />
-                <ScalarProperty Name="Bottom" ColumnName="Bottom" />
-                <ScalarProperty Name="DbFieldName" ColumnName="DbFieldName" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
-                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="FinancialInformations">
             <EntityTypeMapping TypeName="nChangerDb.FinancialInformation">
               <MappingFragment StoreEntitySet="FinancialInformation">
@@ -1423,18 +1084,6 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
                 <ScalarProperty Name="FinancialStatementsRegitrationNumber" ColumnName="FinancialStatementsRegitrationNumber" />
                 <ScalarProperty Name="UndischargedBankrupt" ColumnName="UndischargedBankrupt" />
                 <ScalarProperty Name="DetailsOfBankruptcy" ColumnName="DetailsOfBankruptcy" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
-                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="InputFormTables">
-            <EntityTypeMapping TypeName="nChangerDb.InputFormTable">
-              <MappingFragment StoreEntitySet="InputFormTables">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="TableName" ColumnName="TableName" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
                 <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
@@ -1527,10 +1176,11 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PdfTemplates">
-            <EntityTypeMapping TypeName="nChangerDb.PdfTemplate">
-              <MappingFragment StoreEntitySet="PdfTemplates">
+          <EntitySetMapping Name="PdfFormTemplates">
+            <EntityTypeMapping TypeName="nChangerDb.PdfFormTemplate">
+              <MappingFragment StoreEntitySet="PdfFormTemplate">
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProvinceCategoryId" ColumnName="ProvinceCategoryId" />
                 <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
                 <ScalarProperty Name="PdfFileName" ColumnName="PdfFileName" />
                 <ScalarProperty Name="Comments" ColumnName="Comments" />
@@ -1599,6 +1249,33 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Provinces">
+            <EntityTypeMapping TypeName="nChangerDb.Province">
+              <MappingFragment StoreEntitySet="Province">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Province1" ColumnName="Province" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProvinceCategories">
+            <EntityTypeMapping TypeName="nChangerDb.ProvinceCategory">
+              <MappingFragment StoreEntitySet="ProvinceCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="States">
             <EntityTypeMapping TypeName="nChangerDb.State">
               <MappingFragment StoreEntitySet="State">
@@ -1613,8 +1290,10 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
             <EntityTypeMapping TypeName="nChangerDb.TemplateTable">
               <MappingFragment StoreEntitySet="TemplateTable">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="PdfTemplateId" ColumnName="PdfTemplateId" />
+                <ScalarProperty Name="PdfFormTemplateId" ColumnName="PdfFormTemplateId" />
                 <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="SectionName" ColumnName="SectionName" />
+                <ScalarProperty Name="SectionPath" ColumnName="SectionPath" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
                 <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
@@ -1668,17 +1347,6 @@ warning 6002: The table/view 'NameChangerDB.dbo.InputFormSchemaView' does not ha
                 <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
                 <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
                 <ScalarProperty Name="EntryId" ColumnName="EntryId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="old_State">
-            <EntityTypeMapping TypeName="nChangerDb.old_State">
-              <MappingFragment StoreEntitySet="old_State">
-                <ScalarProperty Name="Srno" ColumnName="Srno" />
-                <ScalarProperty Name="StateId" ColumnName="StateId" />
-                <ScalarProperty Name="StateName" ColumnName="StateName" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

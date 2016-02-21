@@ -1,6 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="nChanger.WebUI.index" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+       <asp:UpdateProgress ID="updProgress"
+        AssociatedUpdatePanelID="UpdatePanel1"
+        runat="server">
+        <ProgressTemplate>
+            <div id="spinner" class="divspinner">
+            </div>
+        </ProgressTemplate>
+    </asp:UpdateProgress>
+      <asp:UpdatePanel runat="server" ID="UpdatePanel1">
+          <Triggers>
+              <asp:AsyncPostBackTrigger ControlID="btnSubmit" EventName="Click"/>
+          </Triggers>
+        <ContentTemplate>
     <div class="ui middlediv">
         <div class="loginBox">
             <div class="ui centered">
@@ -34,7 +47,7 @@
                         <a href="Account/forgotpass.aspx">Forgot Pass?</a>
                     </div>
                     <div class="ui message">
-                        New to us? <a href="Account/signup.aspx">Sign Up</a>
+                        New to us? <a href="eligiblityQuestions.aspx">Sign Up</a>
                     </div>
                     <div class="ui error message"></div>
                 </div>
@@ -63,4 +76,6 @@
             }
         </script>
     </div>
+               </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>

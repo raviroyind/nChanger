@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
@@ -11,7 +12,8 @@ namespace nChanger.WebUI.UserControls
     public partial class _topNav : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
-        {
+        { 
+             
             if (Session["USER_KEY"] != null)
             {
                 if (Convert.ToString(Session["USER_TYPE"]) == "AU")

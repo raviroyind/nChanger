@@ -14,31 +14,30 @@ namespace nChanger.Core
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
     using System.Linq;
-
+    
     public partial class nChangerDb : DbContext
     {
         public nChangerDb()
             : base("name=nChangerDb")
         {
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-
+    
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<CriminalOffenceInformation> CriminalOffenceInformations { get; set; }
-        public virtual DbSet<CustomField> CustomFields { get; set; }
-        public virtual DbSet<FieldMapping> FieldMappings { get; set; }
         public virtual DbSet<FinancialInformation> FinancialInformations { get; set; }
-        public virtual DbSet<InputFormTable> InputFormTables { get; set; }
         public virtual DbSet<NameChangeInformation> NameChangeInformations { get; set; }
         public virtual DbSet<Package> Packages { get; set; }
         public virtual DbSet<PackageCategory> PackageCategories { get; set; }
         public virtual DbSet<ParentInformation> ParentInformations { get; set; }
-        public virtual DbSet<PdfTemplate> PdfTemplates { get; set; }
+        public virtual DbSet<PdfFormTemplate> PdfFormTemplates { get; set; }
         public virtual DbSet<PersonalInformation> PersonalInformations { get; set; }
+        public virtual DbSet<Province> Provinces { get; set; }
+        public virtual DbSet<ProvinceCategory> ProvinceCategories { get; set; }
         public virtual DbSet<State> States { get; set; }
         public virtual DbSet<TemplateTable> TemplateTables { get; set; }
         public virtual DbSet<UserPackage> UserPackages { get; set; }

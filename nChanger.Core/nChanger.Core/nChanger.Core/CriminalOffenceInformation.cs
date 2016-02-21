@@ -39,7 +39,5 @@ namespace nChanger.Core
         public System.DateTime EntryDate { get; set; }
         public string EntryIP { get; set; }
         public string EntryId { get; set; }
-    
-        public virtual PdfTemplate PdfTemplate { get; set; }
     }
 }

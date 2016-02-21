@@ -46,9 +46,8 @@ namespace nChanger.WebUI.Account
                 var message = string.Empty;
                 if (CommonFunctions.CheckIfUserExists(txtEmailId.Text, txtUserId.Text, out message,"GU"))
                 {
-                    lblMsg.Text = message;
-                    success = false;
-                    return success;
+                    returnMessage = message;
+                    return false;
                 }
 
 

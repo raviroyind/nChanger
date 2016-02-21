@@ -15,13 +15,13 @@ namespace nChanger.Core
     public partial class TemplateTable
     {
         public System.Guid Id { get; set; }
-        public System.Guid PdfTemplateId { get; set; }
+        public System.Guid PdfFormTemplateId { get; set; }
         public string TableName { get; set; }
+        public string SectionName { get; set; }
+        public string SectionPath { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime EntryDate { get; set; }
         public string EntryIP { get; set; }
         public string EntryId { get; set; }
-    
-        public virtual PdfTemplate PdfTemplate { get; set; }
     }
 }

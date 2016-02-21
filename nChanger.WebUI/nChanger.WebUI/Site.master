@@ -32,8 +32,10 @@
                 <div class="ui container fluid">
                     <div class="ui inverted secondary menu">
                         <div class="item">
-                            <i class="university icon large orange"></i>
-                            <span class="header">Name Changer</span>
+                           <a href="http://orcasolutions.in/">
+                                <i class="university icon large orange"></i>
+                                <span class="header">Name Changer</span>
+                            </a>
                         </div>
                         <div class="item">
                             |

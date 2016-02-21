@@ -31,33 +31,6 @@ namespace nChanger.WebUI.Admin {
         protected global::System.Web.UI.WebControls.Label lblMsg;
         
         /// <summary>
-        /// asynpdfUpload control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.AjaxFileUpload asynpdfUpload;
-        
-        /// <summary>
-        /// lnkPdfFile control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkPdfFile;
-        
-        /// <summary>
-        /// hidFileName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidFileName;
-        
-        /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>

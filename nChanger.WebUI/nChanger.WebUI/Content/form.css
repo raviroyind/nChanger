@@ -18,24 +18,33 @@
 /*--------------------
         Form
 ---------------------*/
- 
-.divspinner
+ .pagerLabel {
+     -webkit-text-wrap: none;
+     -moz-text-wrap: none;
+     -ms-text-wrap: none;
+     -o-text-wrap: none;
+     text-wrap: none;
+ }
+
+ .divspinner
 {
     display: block;
-    width:100px;
+    width:134px;
     height: 100px;
     position: fixed;
-    top: 50%;
+    top: 45%;
     left: 50%;
-    background:url(../Images/spinner.gif) no-repeat center #fff;
+    background:url(../Images/spinner.gif) no-repeat center #f5fffa;
+
     text-align:center;
     padding:10px;
     font:normal 16px Tahoma, Geneva, sans-serif;
     border: none;
     margin-left: -50px;
-    margin-top: -50px;
+    margin-top: -45px;
     z-index:2;
     overflow: auto;
+ 
 }
  
 .gridHead {

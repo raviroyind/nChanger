@@ -3,22 +3,26 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:UpdateProgress ID="updProgress"
+      <asp:UpdateProgress ID="updProgress"
         AssociatedUpdatePanelID="UpdatePanel1"
         runat="server">
         <ProgressTemplate>
-            <div id="spinner" class="divspinner">   
+            <div id="spinner" class="divspinner">
             </div>
         </ProgressTemplate>
     </asp:UpdateProgress>
-    <asp:UpdatePanel runat="server" ID="UpdatePanel1">
+      <asp:UpdatePanel runat="server" ID="UpdatePanel1">
+          <Triggers>
+              <asp:AsyncPostBackTrigger ControlID="btnSubmit" EventName="Click"/>
+          </Triggers>
         <ContentTemplate>
             <div class="ui centered">
                 <div class="ui large form container">
                     <div class="ui stacked segment frmPad">
                         <div class="ui form">
-                            <asp:Label ID="lblMsg" runat="server" Text="" CssClass="message error"></asp:Label>
+                             
                             <asp:ValidationSummary runat="server" DisplayMode="BulletList" ShowMessageBox="False" ValidationGroup="reg" CssClass="frmErrors" ShowSummary="True" />
+                             <asp:Label runat="server" ID="lblMsg" Style="color: maroon; font-weight: bold;"></asp:Label>
                             <h4 class="ui dividing header orange"><i class="signup icon"></i>Signup</h4>
                             <div class="field">
                                 <label>Name</label>
@@ -174,16 +178,12 @@
                                 </div>
                                 <div class="field">
                                     <asp:LinkButton runat="server" CausesValidation="False" CssClass="ui button blue animated fade fluid" TabIndex="1"
-                                        OnClientClick="document.forms[0].reset(), CleanForm();">
-                                            <div class="visible content">Reset</div>
-                                            <div class="hidden content"><i class="refresh icon"></i> Reset</div>
+                                        OnClientClick="document.forms[0].reset(), CleanForm();">Reset
                                     </asp:LinkButton>
                                 </div>
                                 <div class="field">
                                     <asp:LinkButton ID="btnSubmit" runat="server" ValidationGroup="reg" CausesValidation="True" CssClass="ui button blue animated fade fluid" TabIndex="0"
-                                        OnClientClick="return BtnClick();" OnClick="btnSubmit_Click">
-                                            <div class="visible content">Register</div>
-                                            <div class="hidden content"><i class="checkmark icon"></i>Register</div>
+                                         OnClick="btnSubmit_Click">Register
                                     </asp:LinkButton>
                                 </div>
                                 <div class="field">
@@ -197,9 +197,9 @@
                     </div>
                 </div>
             </div>
-        </ContentTemplate>
+            </ContentTemplate>
     </asp:UpdatePanel>
-
+        
     <script type="text/javascript">
 
         function CleanForm() {

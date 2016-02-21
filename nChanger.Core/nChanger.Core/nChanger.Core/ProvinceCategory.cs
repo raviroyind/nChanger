@@ -12,13 +12,25 @@ namespace nChanger.Core
     using System;
     using System.Collections.Generic;
     
-    public partial class InputFormTable
+    public partial class ProvinceCategory
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ProvinceCategory()
+        {
+            this.PdfFormTemplates = new HashSet<PdfFormTemplate>();
+        }
+    
         public System.Guid Id { get; set; }
-        public string TableName { get; set; }
+        public System.Guid ProvinceId { get; set; }
+        public string Category { get; set; }
+        public string Description { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime EntryDate { get; set; }
         public string EntryIP { get; set; }
         public string EntryId { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PdfFormTemplate> PdfFormTemplates { get; set; }
+        public virtual Province Province { get; set; }
     }
 }

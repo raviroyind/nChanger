@@ -12,23 +12,23 @@ namespace nChanger.Core
     using System;
     using System.Collections.Generic;
     
-    public partial class FieldMapping
+    public partial class Province
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Province()
+        {
+            this.ProvinceCategories = new HashSet<ProvinceCategory>();
+        }
+    
         public System.Guid Id { get; set; }
-        public System.Guid PdfTemplateId { get; set; }
-        public string PdfFieldName { get; set; }
-        public int PdfPageNumber { get; set; }
-        public string FieldType { get; set; }
-        public Nullable<double> Left { get; set; }
-        public Nullable<double> Right { get; set; }
-        public Nullable<double> Top { get; set; }
-        public Nullable<double> Bottom { get; set; }
-        public string DbFieldName { get; set; }
+        public string Province1 { get; set; }
+        public string Description { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime EntryDate { get; set; }
         public string EntryIP { get; set; }
         public string EntryId { get; set; }
     
-        public virtual PdfTemplate PdfTemplate { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProvinceCategory> ProvinceCategories { get; set; }
     }
 }

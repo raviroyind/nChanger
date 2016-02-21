@@ -28609,7 +28609,7 @@ select.ui.dropdown {
   display: none;
   position: fixed;
   z-index: 1001;
-  top: 15%;
+  top: 45%;
   left: 50%;
   text-align: left;
   background: #ffffff;
@@ -28649,7 +28649,7 @@ select.ui.dropdown {
   cursor: pointer;
   position: absolute;
   top: -2.5rem;
-  right: -2.5rem;
+  right: -3.5rem;
   z-index: 1;
   opacity: 0.8;
   font-size: 1.25em;

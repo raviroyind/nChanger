@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web.UI.WebControls;
 using AjaxControlToolkit;
 using nChanger.Core;
 using System.IO;
+using System.Web;
 
 namespace nChanger.WebUI.Admin
 {
@@ -23,7 +26,28 @@ namespace nChanger.WebUI.Admin
         #endregion Variable Declarations...
 
         protected void Page_Load(object sender, EventArgs e)
-        {
+        { 
+            var file = Request.Files["FileData"];
+           
+            if (file != null)
+            {
+                try
+                {
+                    var filePath = ConfigurationManager.AppSettings["FolderPath"] + file.FileName;
+                    
+                    
+                    file.SaveAs(Server.MapPath(filePath));
+                    UploadPdf(file.FileName);
+                     
+                }
+                catch (Exception exception)
+                {
+                    lblMsg.Text = exception.Message;
+                }
+            }
+
+
+             
             this.Form.Enctype= "multipart / form - data";
 
             if (!IsPostBack)
@@ -129,47 +153,45 @@ namespace nChanger.WebUI.Admin
 
         #endregion Paging and Sorting
 
-        protected void asynpdfUpload_OnUploadComplete(object sender, AjaxFileUploadEventArgs e)
+        private void UploadPdf(string file)
         {
             try
-            {
-                var fileName = Path.GetFileName(e.FileName);
-                asynpdfUpload.SaveAs(Server.MapPath("../Pdf/" + fileName));
-
-                using (var dataContext=new nChangerDb())
+            { 
+                using (var dataContext = new nChangerDb())
                 {
                     dataContext.PdfTemplates.Add(new PdfTemplate
                     {
                         Id = Guid.NewGuid(),
-                        PdfFileName = Path.GetFileName(e.FileName),
-                        TemplateName = Path.GetFileNameWithoutExtension(e.FileName),
-                        EntryIP=CommonFunctions.GetIpAddress(),
+                        PdfFileName = file,
+                        TemplateName = file,
+                        EntryIP = CommonFunctions.GetIpAddress(),
                         EntryId = UserId,
                         EntryDate = DateTime.Now,
-                        IsActive=false,
+                        IsActive = false,
                     });
 
                     dataContext.SaveChanges();
+                   
                 }
             }
-            catch (Exception exception)
+            catch (DbEntityValidationException ex)
             {
-                lblMsg.Text = exception.Message;
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    lblMsg.Text += eve.Entry.Entity.GetType().Name + "<br/>" + eve.Entry.State;
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        lblMsg.Text += ve.PropertyName + "<br/>" + ve.ErrorMessage;
+                    }
+                }
             }
-            
+             
         }
 
-        protected void asynpdfUpload_OnUploadCompleteAll(object sender, AjaxFileUploadCompleteAllEventArgs e)
+
+        protected void UpdatePanel1_OnLoad(object sender, EventArgs e)
         {
-            ViewState["sortColumn"] = "EntryDate";
-            ViewState["sortDirection"] = "DESC";
-
-            //Start ################ Bellow code is for Initializing Paging ###############                
-            TextBox txtPageno1 = (TextBox)ucPaging.FindControl("txtPageNo");
-
-            txtPageno1.Attributes.Add("onkeypress", "return SetPagenoValue('" + txtPageno1.ClientID + "','" + txtPageno1.ClientID + "');");
-            //End
-            BindTemplates();
+           BindTemplates();
         }
     }
 }

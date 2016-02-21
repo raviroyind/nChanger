@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="_topNav.ascx.cs" Inherits="nChanger.WebUI.UserControls._topNav" %>
 <link href="../Content/login.css" rel="stylesheet" />
- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script> 
+
  <nav>
   <ul>
     <li id="login" runat="server">
