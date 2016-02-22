@@ -10,7 +10,7 @@
 namespace nChanger.WebUI.Admin {
     
     
-    public partial class ManageProvinces {
+    public partial class ManageProvinceCategory {
         
         /// <summary>
         /// lblMsg control.
@@ -22,49 +22,67 @@ namespace nChanger.WebUI.Admin {
         protected global::System.Web.UI.WebControls.Label lblMsg;
         
         /// <summary>
-        /// txtProvince control.
+        /// reqId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProvince;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqId;
         
         /// <summary>
-        /// txtProvinceDescription control.
+        /// ddlProvinceAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProvinceDescription;
+        protected global::System.Web.UI.WebControls.DropDownList ddlProvinceAdd;
         
         /// <summary>
-        /// btnAddProvince control.
+        /// txtCateory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAddProvince;
+        protected global::System.Web.UI.WebControls.TextBox txtCateory;
         
         /// <summary>
-        /// hidName control.
+        /// txtProvinceCateoryDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidName;
+        protected global::System.Web.UI.WebControls.TextBox txtProvinceCateoryDescription;
         
         /// <summary>
-        /// hidDesc control.
+        /// btnAddProvinceCateory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hidDesc;
+        protected global::System.Web.UI.WebControls.LinkButton btnAddProvinceCateory;
+        
+        /// <summary>
+        /// hidCategoryName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidCategoryName;
+        
+        /// <summary>
+        /// hidCategoryDesc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidCategoryDesc;
         
         /// <summary>
         /// hiddenProvinceId control.
@@ -74,6 +92,42 @@ namespace nChanger.WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hiddenProvinceId;
+        
+        /// <summary>
+        /// hiddenCategoryId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddenCategoryId;
+        
+        /// <summary>
+        /// lblCurrentProvince control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCurrentProvince;
+        
+        /// <summary>
+        /// lblCaption control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblCaption;
+        
+        /// <summary>
+        /// ddlProvince control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlProvince;
         
         /// <summary>
         /// ucPaging control.
@@ -94,13 +148,22 @@ namespace nChanger.WebUI.Admin {
         protected global::System.Web.UI.WebControls.HyperLink hypAddCat;
         
         /// <summary>
-        /// gvProvince control.
+        /// hypBack control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvProvince;
+        protected global::System.Web.UI.WebControls.HyperLink hypBack;
+        
+        /// <summary>
+        /// gvProvinceCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvProvinceCategory;
         
         /// <summary>
         /// ucPaging1 control.
@@ -110,14 +173,5 @@ namespace nChanger.WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::nChanger.WebUI.Paging ucPaging1;
-        
-        /// <summary>
-        /// hiddenId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddenId;
     }
 }

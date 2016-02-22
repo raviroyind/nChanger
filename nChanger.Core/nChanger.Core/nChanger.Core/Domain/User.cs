@@ -16,7 +16,6 @@ namespace nChanger.Core
 
         public Guid Id { get; set; }
 
-        [Key]
         [StringLength(20)]
         public string UserId { get; set; }
 

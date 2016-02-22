@@ -15,7 +15,6 @@ namespace nChanger.Core
             PdfFormTemplates = new HashSet<PdfFormTemplate>();
         }
 
-        [Key]
         public Guid Id { get; set; }
 
         public Guid ProvinceId { get; set; }

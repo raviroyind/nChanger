@@ -35,10 +35,16 @@ namespace nChanger.WebUI
 
         protected override void OnLoad(EventArgs e)
         {
-            if (!Request.Url.AbsolutePath.Contains("index.aspx"))
+            if (!Request.Url.AbsolutePath.Contains("index.aspx") || !Request.Url.AbsolutePath.Contains("adminlogin.aspx"))
             {
                 if (string.IsNullOrEmpty(UserId))
-                    Response.Redirect("../index.aspx?id=ua", true);
+                {
+                    if (!Request.Url.AbsolutePath.ToLower().Contains("admin"))
+                        Response.Redirect("../Index.aspx?id=ua");
+                    else
+                        Response.Redirect("../adminlogin.aspx?id=tm");
+                }
+                     
             }
 
             var nRet = Session["UnAuthorizedAccess"] ?? -1;

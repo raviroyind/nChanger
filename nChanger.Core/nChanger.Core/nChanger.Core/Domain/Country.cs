@@ -15,7 +15,6 @@ namespace nChanger.Core
             States = new HashSet<State>();
         }
 
-        [Key]
         [StringLength(50)]
         public string CountryId { get; set; }
 

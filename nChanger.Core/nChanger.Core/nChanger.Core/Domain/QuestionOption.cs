@@ -6,24 +6,15 @@ namespace nChanger.Core
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("TemplateTable")]
-    public partial class TemplateTable
+    public partial class QuestionOption
     {
         public Guid Id { get; set; }
 
-        public Guid PdfFormTemplateId { get; set; }
-
-        [Required]
-        [StringLength(250)]
-        public string TableName { get; set; }
+        public Guid DefineQuestionsId { get; set; }
 
         [Required]
         [StringLength(500)]
-        public string SectionName { get; set; }
-
-        [Required]
-        [StringLength(1000)]
-        public string SectionPath { get; set; }
+        public string OptionLabel { get; set; }
 
         public bool IsActive { get; set; }
 
@@ -36,5 +27,7 @@ namespace nChanger.Core
         [Required]
         [StringLength(50)]
         public string EntryId { get; set; }
+
+        public virtual DefineQuestion DefineQuestion { get; set; }
     }
 }

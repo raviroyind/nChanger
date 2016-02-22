@@ -6,31 +6,24 @@ namespace nChanger.Core
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("PackageCategory")]
-    public partial class PackageCategory
+    public partial class DefineQuestion
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PackageCategory()
+        public DefineQuestion()
         {
-            Packages = new HashSet<Package>();
+            QuestionOptions = new HashSet<QuestionOption>();
         }
 
         public Guid Id { get; set; }
 
+        public Guid ProvinceCategoryId { get; set; }
+
         [Required]
-        [StringLength(200)]
-        public string Category { get; set; }
-
-        [StringLength(500)]
-        public string CategoryShortDescription { get; set; }
-
-        public string CategoryLongDescription { get; set; }
-
         [StringLength(50)]
-        public string ImageUrl { get; set; }
+        public string QuestionType { get; set; }
 
-        [StringLength(500)]
-        public string Comments { get; set; }
+        [Required]
+        public string Question { get; set; }
 
         public bool IsActive { get; set; }
 
@@ -45,6 +38,6 @@ namespace nChanger.Core
         public string EntryId { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Package> Packages { get; set; }
+        public virtual ICollection<QuestionOption> QuestionOptions { get; set; }
     }
 }

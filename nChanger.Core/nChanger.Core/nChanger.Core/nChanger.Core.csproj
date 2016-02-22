@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Domain\Country.cs" />
     <Compile Include="Domain\CriminalOffenceInformation.cs" />
+    <Compile Include="Domain\DefineQuestion.cs" />
     <Compile Include="Domain\FinancialInformation.cs" />
     <Compile Include="Domain\InputFormSchemaView.cs" />
     <Compile Include="Domain\NameChangeInformation.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Domain\PersonalInformation.cs" />
     <Compile Include="Domain\Province.cs" />
     <Compile Include="Domain\ProvinceCategory.cs" />
+    <Compile Include="Domain\QuestionOption.cs" />
     <Compile Include="Domain\State.cs" />
     <Compile Include="Domain\TemplateTable.cs" />
     <Compile Include="Domain\User.cs" />

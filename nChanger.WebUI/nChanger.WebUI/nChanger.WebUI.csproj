@@ -93,7 +93,10 @@
     <Content Include="Account\passwordRecovery.aspx" />
     <Content Include="Account\signupComplete.aspx" />
     <Content Include="Admin\dashboard.aspx" />
+    <Content Include="Admin\ManagePdfTemplate.aspx" />
+    <Content Include="Admin\ManageProvinceCategory.aspx" />
     <Content Include="Admin\ManageProvinces.aspx" />
+    <Content Include="Admin\ManageQuestions.aspx" />
     <Content Include="Admin\PackageList.aspx" />
     <Content Include="Admin\uploadify.swf" />
     <Content Include="Admin\UserDetails.aspx" />
@@ -652,12 +655,33 @@
     <Compile Include="Admin\dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\ManagePdfTemplate.aspx.cs">
+      <DependentUpon>ManagePdfTemplate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManagePdfTemplate.aspx.designer.cs">
+      <DependentUpon>ManagePdfTemplate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageProvinceCategory.aspx.cs">
+      <DependentUpon>ManageProvinceCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageProvinceCategory.aspx.designer.cs">
+      <DependentUpon>ManageProvinceCategory.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ManageProvinces.aspx.cs">
       <DependentUpon>ManageProvinces.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\ManageProvinces.aspx.designer.cs">
       <DependentUpon>ManageProvinces.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageQuestions.aspx.cs">
+      <DependentUpon>ManageQuestions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageQuestions.aspx.designer.cs">
+      <DependentUpon>ManageQuestions.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\PackageList.aspx.cs">
       <DependentUpon>PackageList.aspx</DependentUpon>

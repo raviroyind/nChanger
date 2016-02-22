@@ -1,6 +1,5 @@
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
- 
 
 namespace nChanger.Core
 {
@@ -18,6 +17,7 @@ namespace nChanger.Core
 
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<CriminalOffenceInformation> CriminalOffenceInformations { get; set; }
+        public virtual DbSet<DefineQuestion> DefineQuestions { get; set; }
         public virtual DbSet<FinancialInformation> FinancialInformations { get; set; }
         public virtual DbSet<NameChangeInformation> NameChangeInformations { get; set; }
         public virtual DbSet<Package> Packages { get; set; }
@@ -27,6 +27,7 @@ namespace nChanger.Core
         public virtual DbSet<PersonalInformation> PersonalInformations { get; set; }
         public virtual DbSet<Province> Provinces { get; set; }
         public virtual DbSet<ProvinceCategory> ProvinceCategories { get; set; }
+        public virtual DbSet<QuestionOption> QuestionOptions { get; set; }
         public virtual DbSet<State> States { get; set; }
         public virtual DbSet<TemplateTable> TemplateTables { get; set; }
         public virtual DbSet<UserPackage> UserPackages { get; set; }
@@ -39,7 +40,12 @@ namespace nChanger.Core
             modelBuilder.Entity<Country>()
                 .HasMany(e => e.States)
                 .WithRequired(e => e.Country)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
+
+            modelBuilder.Entity<DefineQuestion>()
+                .HasMany(e => e.QuestionOptions)
+                .WithRequired(e => e.DefineQuestion)
+                .HasForeignKey(e => e.DefineQuestionsId);
 
             modelBuilder.Entity<Package>()
                 .Property(e => e.Price)
@@ -48,13 +54,13 @@ namespace nChanger.Core
             modelBuilder.Entity<Package>()
                 .HasMany(e => e.UserPackages)
                 .WithRequired(e => e.Package)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
 
             modelBuilder.Entity<PackageCategory>()
                 .HasMany(e => e.Packages)
                 .WithRequired(e => e.PackageCategory)
                 .HasForeignKey(e => e.CategoryId)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
 
             modelBuilder.Entity<PersonalInformation>()
                 .Property(e => e.LivedInOntarioPast12Months)
@@ -75,11 +81,6 @@ namespace nChanger.Core
                 .Property(e => e.SubmittedForm4)
                 .IsFixedLength()
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Province>()
-                .HasMany(e => e.ProvinceCategories)
-                .WithRequired(e => e.Province)
-                .WillCascadeOnDelete(true);
 
             modelBuilder.Entity<ProvinceCategory>()
                 .HasMany(e => e.PdfFormTemplates)
@@ -110,6 +111,7 @@ namespace nChanger.Core
                 .Property(e => e.IS_NULLABLE)
                 .IsUnicode(false);
         }
+
 
         public virtual ObjectResult<string> UspSelectValueByColumnName(string value, string table, string userId)
         {

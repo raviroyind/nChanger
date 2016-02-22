@@ -15,7 +15,6 @@ namespace nChanger.Core
             Users = new HashSet<User>();
         }
 
-        [Key]
         [StringLength(2)]
         public string Id { get; set; }
 

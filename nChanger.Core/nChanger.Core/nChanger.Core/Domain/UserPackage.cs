@@ -8,7 +8,6 @@ namespace nChanger.Core
 
     public partial class UserPackage
     {
-        [Key]
         public Guid Id { get; set; }
 
         [Required]

@@ -14,12 +14,11 @@ namespace nChanger.Core
         {
             ProvinceCategories = new HashSet<ProvinceCategory>();
         }
-        [Key]
+
         public Guid Id { get; set; }
 
-        
         [Required]
-        [StringLength(200, MinimumLength = 3, ErrorMessage = "Province Name is required.")]
+        [StringLength(200)]
         public string ProvinceName { get; set; }
 
         public string Description { get; set; }

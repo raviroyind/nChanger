@@ -32,7 +32,7 @@
         <div class="main">
             <div class="ui inverted segment">
                 <div class="ui container fluid">
-                    <div class="ui inverted secondary menu">
+                    <div class="ui inverted menu">
                         <div class="item">
                             <a href="http://orcasolutions.in/">
                                 <i class="university icon large orange"></i>
@@ -56,10 +56,19 @@
                          <div class="item">
                             |
                         </div>
-                          <div class="item">
+                        
+                          
+                        <div class="ui dropdown item" tabindex="0">
                             <i class="location arrow icon large orange"></i>
                             <a href="../Admin/ManageProvinces.aspx" class="header">Province</a>
+                            <i class="dropdown icon"></i>
+                           <div class="menu transition hidden" tabindex="-1">
+                             <div class="ui item black">
+                                <a href="../Admin/ManageProvinceCategory.aspx" class="ui header">Categories</a>
+                                  </div>
+                            </div>
                         </div>
+                         
                         <div class="item">
                             |
                         </div>
@@ -92,6 +101,25 @@
             </div>
         </div>
     </form>
-     
+     <script type="text/javascript" src="../Scripts/semantic.min.js"></script>
+   <script>
+  $(document)
+    .ready(function() {
+      $('.ui.menu .ui.dropdown').dropdown({
+        on: 'hover'
+      });
+      $('.ui.menu a.item')
+        .on('click', function() {
+          $(this)
+            .addClass('active')
+            .siblings()
+            .removeClass('active')
+          ;
+        })
+      ;
+    })
+  ;
+  </script>
 </body>
+    
 </html>

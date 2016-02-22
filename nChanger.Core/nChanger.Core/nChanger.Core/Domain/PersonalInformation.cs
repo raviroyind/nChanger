@@ -9,7 +9,6 @@ namespace nChanger.Core
     [Table("PersonalInformation")]
     public partial class PersonalInformation
     {
-        [Key]
         public Guid Id { get; set; }
 
         public Guid PdfTemplateId { get; set; }

@@ -15,7 +15,6 @@ namespace nChanger.Core
             UserPackages = new HashSet<UserPackage>();
         }
 
-        [Key]
         public Guid Id { get; set; }
 
         public Guid CategoryId { get; set; }

@@ -9,7 +9,6 @@ namespace nChanger.Core
     [Table("State")]
     public partial class State
     {
-        [Key]
         [StringLength(50)]
         public string StateId { get; set; }
 

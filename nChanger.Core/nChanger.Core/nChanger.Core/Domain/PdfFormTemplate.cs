@@ -9,7 +9,6 @@ namespace nChanger.Core
     [Table("PdfFormTemplate")]
     public partial class PdfFormTemplate
     {
-        [Key]
         public Guid Id { get; set; }
 
         public Guid ProvinceCategoryId { get; set; }

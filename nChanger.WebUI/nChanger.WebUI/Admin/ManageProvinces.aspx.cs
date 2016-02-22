@@ -52,9 +52,7 @@ namespace nChanger.WebUI.Admin
                 ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), "showAlert()", true);
                 txtProvince.Text = string.Empty;
                 BindProvince();
-            }
-
-            
+            } 
         }
 
         public bool Submit()
@@ -258,31 +256,31 @@ namespace nChanger.WebUI.Admin
             }
         }
 
-        protected void lnkViewCategories_OnClick(object sender, EventArgs e)
-        {
-            var lnk = (LinkButton)sender;
+        //protected void lnkViewCategories_OnClick(object sender, EventArgs e)
+        //{
+        //    var lnk = (LinkButton)sender;
 
-            if (lnk.CommandName.Equals("View"))
-                LoadCategories(Guid.Parse(lnk.CommandArgument));
-        }
-
-
-        private void LoadCategories(Guid id)
-        {
-            using (var dataContext = new nChangerDb())
-            {
-                var categories = dataContext.Provinces.Find(id).ProvinceCategories.ToList();
-                if(categories.Count>0)
-                    BindCategories(categories);
-            }
-        }
+        //    if (lnk.CommandName.Equals("View"))
+        //        LoadCategories(Guid.Parse(lnk.CommandArgument));
+        //}
 
 
-        private void BindCategories(List<ProvinceCategory> list)
-        {
-            lblCategories.Text = "Province " + list[0].Province.ProvinceName + " Categories list.";
-            gvCategories.DataSource = list;
-            gvCategories.DataBind();
-        }
+        //private void LoadCategories(Guid id)
+        //{
+        //    using (var dataContext = new nChangerDb())
+        //    {
+        //        var categories = dataContext.Provinces.Find(id).ProvinceCategories.ToList();
+        //        if(categories.Count>0)
+        //            BindCategories(categories);
+        //    }
+        //}
+
+
+        //private void BindCategories(List<ProvinceCategory> list)
+        //{
+        //    lblCategories.Text = "Province " + list[0].Province.ProvinceName + " Categories list.";
+        //    gvCategories.DataSource = list;
+        //    gvCategories.DataBind();
+        //}
     }
 }
