@@ -56,8 +56,6 @@
                          <div class="item">
                             |
                         </div>
-                        
-                          
                         <div class="ui dropdown item" tabindex="0">
                             <i class="location arrow icon large orange"></i>
                             <a href="../Admin/ManageProvinces.aspx" class="header">Province</a>
@@ -76,13 +74,21 @@
                             <i class="code icon large orange"></i>
                             <a href="../Admin/PdfUpload.aspx" class="header">Templates</a>
                         </div>
-                          <div class="item">
+                          
+                        <div class="item">
                             |
                         </div>
-                          <div class="item">
+                        <div class="ui dropdown item" tabindex="0">
                             <i class="cubes icon large orange"></i>
-                            <a href="../Admin/PackageList.aspx" class="header">Packages</a>
+                            <a href="../Admin/ManagePackage.aspx" class="header">Packages</a>
+                            <i class="dropdown icon"></i>
+                           <div class="menu transition hidden" tabindex="-1">
+                             <div class="ui item black">
+                                <a href="../Admin/ManagePackageFeatures.aspx" class="ui header">Packages Features</a>
+                                  </div>
+                            </div>
                         </div>
+
                         <div class="right item">
                             <div class="item">
                                 <a href="index.aspx" id="ancLogin" runat="server">Login</a>

@@ -6,25 +6,18 @@ namespace nChanger.Core
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("PackageCategory")]
-    public partial class PackageCategory
+    [Table("PackageFeature")]
+    public partial class PackageFeature
     {
         public Guid Id { get; set; }
 
+        public Guid PackageId { get; set; }
+
+        public Guid FeatureId { get; set; }
+
         [Required]
-        [StringLength(200)]
-        public string Category { get; set; }
-
-        [StringLength(500)]
-        public string CategoryShortDescription { get; set; }
-
-        public string CategoryLongDescription { get; set; }
-
-        [StringLength(50)]
-        public string ImageUrl { get; set; }
-
-        [StringLength(500)]
-        public string Comments { get; set; }
+        [StringLength(150)]
+        public string FeatureName { get; set; }
 
         public bool IsActive { get; set; }
 
@@ -37,5 +30,9 @@ namespace nChanger.Core
         [Required]
         [StringLength(50)]
         public string EntryId { get; set; }
+
+        public virtual FeatureMaster FeatureMaster { get; set; }
+
+        public virtual Package Package { get; set; }
     }
 }

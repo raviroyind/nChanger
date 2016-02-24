@@ -10,7 +10,7 @@
 namespace nChanger.WebUI.Admin {
     
     
-    public partial class ManagePdfTemplate {
+    public partial class PdfFieldMapping {
         
         /// <summary>
         /// updProgress control.
@@ -31,6 +31,42 @@ namespace nChanger.WebUI.Admin {
         protected global::System.Web.UI.WebControls.Label lblMsg;
         
         /// <summary>
+        /// divMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMsg;
+        
+        /// <summary>
+        /// lblMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMessage;
+        
+        /// <summary>
+        /// txtTemplateName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTemplateName;
+        
+        /// <summary>
+        /// hypPdf control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hypPdf;
+        
+        /// <summary>
         /// updatePanelPdf control.
         /// </summary>
         /// <remarks>
@@ -49,22 +85,22 @@ namespace nChanger.WebUI.Admin {
         protected global::nChanger.WebUI.Paging ucPaging;
         
         /// <summary>
-        /// hypBack control.
+        /// btnSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hypBack;
+        protected global::System.Web.UI.WebControls.LinkButton btnSubmit;
         
         /// <summary>
-        /// gvTemplate control.
+        /// gvFields control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvTemplate;
+        protected global::System.Web.UI.WebControls.GridView gvFields;
         
         /// <summary>
         /// ucPaging1 control.

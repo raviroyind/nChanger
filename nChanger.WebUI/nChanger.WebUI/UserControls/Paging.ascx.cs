@@ -353,12 +353,12 @@ namespace nChanger.WebUI
             if (iTotRecords > 0)
             {
                 int i = (((Convert.ToInt32(sPageNo) - 1) * iPageSize) + 1);
-                lblRecords.Text = "Records <strong>" + i + " - " + ((i + iPerPageCount) - 1) + "</strong> of <strong>" + iTotRecords + "</strong>";
+                lblRecords.Text = "Showing Records <strong>" + i + " - " + ((i + iPerPageCount) - 1) + "</strong> of <strong>" + iTotRecords + "</strong>";
                 ddlNoOfRecords.Enabled = true;
             }
             else
             {
-                lblRecords.Text = "Records <strong>" + 0 + " - " + 0 + "</strong> of <strong> " + iTotRecords + "</strong>";
+                lblRecords.Text = "Showing Records <strong>" + 0 + " - " + 0 + "</strong> of <strong> " + iTotRecords + "</strong>";
                 ddlNoOfRecords.Enabled = false;
             }
         }

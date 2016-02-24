@@ -93,11 +93,13 @@
     <Content Include="Account\passwordRecovery.aspx" />
     <Content Include="Account\signupComplete.aspx" />
     <Content Include="Admin\dashboard.aspx" />
+    <Content Include="Admin\FieldMapping.aspx" />
+    <Content Include="Admin\ManagePackage.aspx" />
+    <Content Include="Admin\ManagePackageFeatures.aspx" />
     <Content Include="Admin\ManagePdfTemplate.aspx" />
     <Content Include="Admin\ManageProvinceCategory.aspx" />
     <Content Include="Admin\ManageProvinces.aspx" />
     <Content Include="Admin\ManageQuestions.aspx" />
-    <Content Include="Admin\PackageList.aspx" />
     <Content Include="Admin\uploadify.swf" />
     <Content Include="Admin\UserDetails.aspx" />
     <Content Include="Admin\UserList.aspx" />
@@ -655,6 +657,27 @@
     <Compile Include="Admin\dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\FieldMapping.aspx.cs">
+      <DependentUpon>FieldMapping.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\FieldMapping.aspx.designer.cs">
+      <DependentUpon>FieldMapping.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManagePackage.aspx.cs">
+      <DependentUpon>ManagePackage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManagePackage.aspx.designer.cs">
+      <DependentUpon>ManagePackage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManagePackageFeatures.aspx.cs">
+      <DependentUpon>ManagePackageFeatures.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManagePackageFeatures.aspx.designer.cs">
+      <DependentUpon>ManagePackageFeatures.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ManagePdfTemplate.aspx.cs">
       <DependentUpon>ManagePdfTemplate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -682,13 +705,6 @@
     </Compile>
     <Compile Include="Admin\ManageQuestions.aspx.designer.cs">
       <DependentUpon>ManageQuestions.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\PackageList.aspx.cs">
-      <DependentUpon>PackageList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\PackageList.aspx.designer.cs">
-      <DependentUpon>PackageList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\UserDetails.aspx.cs">
       <DependentUpon>UserDetails.aspx</DependentUpon>

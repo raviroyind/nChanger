@@ -69,20 +69,20 @@
                         </tr>
                     </table>
                 </td>
-                <td align="right"   id="tdNoOfRecords" runat="server">
+                <td align="right"  id="tdNoOfRecords" runat="server">
 
                     <table border="0" cellpadding="0" cellspacing="0">
                         <tr>
-                            <td style="padding-top: 0px;">
-                                <asp:Label ID="lblRecords" runat="server" CssClass="pagerLabel"></asp:Label>
+                            <td style="padding-top: 5px;">
+                                <asp:Label ID="lblRecords" CssClass="ui label" runat="server" ></asp:Label>
                             </td>
                             <td>
                                 <div class="clear" style="width: 15px"></div>
                             </td>
                             <td valign="middle">
-                                <asp:Label ID="lblNoOfRecords" runat="server" Text="Show per page&nbsp;"></asp:Label><asp:DropDownList
-                                    ID="ddlNoOfRecords" Width="60" runat="server" AutoPostBack="true" Font-Size="11px" OnSelectedIndexChanged="ddlNoOfRecords_SelectedIndexChanged">
-                                </asp:DropDownList>
+                                <asp:Label ID="lblNoOfRecords" runat="server"  Text="Show per page&nbsp;"></asp:Label><asp:DropDownList
+                                    ID="ddlNoOfRecords"   runat="server" AutoPostBack="true" CssClass="ui normal selection dropdown compact"   OnSelectedIndexChanged="ddlNoOfRecords_SelectedIndexChanged">
+                                </asp:DropDownList> Records
                             </td>
                         </tr>
                     </table>
@@ -92,5 +92,8 @@
                 <asp:Button ID="btnPageNo" runat="server" Text="pageno" OnClick="btnPageNo_Click" CausesValidation="false" />
             </tr>
         </table>
-    
+     <script type="text/javascript" src="../Scripts/semantic.min.js"></script>
+    <script type="text/javascript">
+        $('.ui.normal.selection.dropdown.compact').dropdown();
+        </script>
 </div>

@@ -9,6 +9,12 @@ namespace nChanger.Core
     [Table("PdfFormTemplate")]
     public partial class PdfFormTemplate
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PdfFormTemplate()
+        {
+            FieldMappings = new HashSet<FieldMapping>();
+        }
+
         public Guid Id { get; set; }
 
         public Guid ProvinceCategoryId { get; set; }
@@ -34,6 +40,9 @@ namespace nChanger.Core
         [Required]
         [StringLength(50)]
         public string EntryId { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FieldMapping> FieldMappings { get; set; }
 
         public virtual ProvinceCategory ProvinceCategory { get; set; }
     }

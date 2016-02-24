@@ -54,12 +54,16 @@
     <Compile Include="Domain\Country.cs" />
     <Compile Include="Domain\CriminalOffenceInformation.cs" />
     <Compile Include="Domain\DefineQuestion.cs" />
+    <Compile Include="Domain\FeatureMaster.cs" />
+    <Compile Include="Domain\FieldMapping.cs" />
     <Compile Include="Domain\FinancialInformation.cs" />
     <Compile Include="Domain\InputFormSchemaView.cs" />
+    <Compile Include="Domain\InputFormTable.cs" />
     <Compile Include="Domain\NameChangeInformation.cs" />
     <Compile Include="Domain\nChangerDb.cs" />
     <Compile Include="Domain\Package.cs" />
     <Compile Include="Domain\PackageCategory.cs" />
+    <Compile Include="Domain\PackageFeature.cs" />
     <Compile Include="Domain\ParentInformation.cs" />
     <Compile Include="Domain\PdfFormTemplate.cs" />
     <Compile Include="Domain\PersonalInformation.cs" />

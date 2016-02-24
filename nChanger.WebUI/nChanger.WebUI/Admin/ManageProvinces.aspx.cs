@@ -217,12 +217,7 @@ namespace nChanger.WebUI.Admin
                 throw new Exception(exception.Message);
             }
         }
-
-        protected void UpdatePanel1_OnLoad(object sender, EventArgs e)
-        {
-
-        }
-
+         
         protected void gvProvince_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             var id = Guid.Parse(Convert.ToString(gvProvince.DataKeys[e.RowIndex].Values[0]));

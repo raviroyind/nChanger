@@ -26102,7 +26102,7 @@ a.ui.card:hover,
 
 .ui.checkbox {
   position: relative;
-  display: inline-block;
+  /*display: inline-block;*/
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   outline: none;
@@ -26116,7 +26116,7 @@ a.ui.card:hover,
 .ui.checkbox input[type="checkbox"],
 .ui.checkbox input[type="radio"] {
   cursor: pointer;
-  position: absolute;
+  /*position: absolute;*/
   top: 0px;
   left: 0px;
   opacity: 0 !important;
@@ -27292,7 +27292,7 @@ body.dimmable > .dimmer {
 }
 
 select.ui.dropdown {
-  height: 38px;
+  /*height: 38px;*/
   padding: 0.5em;
   border: 1px solid rgba(34, 36, 38, 0.15);
   visibility: visible;

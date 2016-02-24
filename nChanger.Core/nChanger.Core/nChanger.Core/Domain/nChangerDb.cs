@@ -18,10 +18,13 @@ namespace nChanger.Core
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<CriminalOffenceInformation> CriminalOffenceInformations { get; set; }
         public virtual DbSet<DefineQuestion> DefineQuestions { get; set; }
+        public virtual DbSet<FeatureMaster> FeatureMasters { get; set; }
+        public virtual DbSet<FieldMapping> FieldMappings { get; set; }
         public virtual DbSet<FinancialInformation> FinancialInformations { get; set; }
         public virtual DbSet<NameChangeInformation> NameChangeInformations { get; set; }
         public virtual DbSet<Package> Packages { get; set; }
         public virtual DbSet<PackageCategory> PackageCategories { get; set; }
+        public virtual DbSet<PackageFeature> PackageFeatures { get; set; }
         public virtual DbSet<ParentInformation> ParentInformations { get; set; }
         public virtual DbSet<PdfFormTemplate> PdfFormTemplates { get; set; }
         public virtual DbSet<PersonalInformation> PersonalInformations { get; set; }
@@ -33,6 +36,7 @@ namespace nChanger.Core
         public virtual DbSet<UserPackage> UserPackages { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserType> UserTypes { get; set; }
+        public virtual DbSet<InputFormTable> InputFormTables { get; set; }
         public virtual DbSet<InputFormSchemaView> InputFormSchemaViews { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -40,26 +44,26 @@ namespace nChanger.Core
             modelBuilder.Entity<Country>()
                 .HasMany(e => e.States)
                 .WithRequired(e => e.Country)
-                .WillCascadeOnDelete(true);
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<DefineQuestion>()
                 .HasMany(e => e.QuestionOptions)
                 .WithRequired(e => e.DefineQuestion)
                 .HasForeignKey(e => e.DefineQuestionsId);
 
+            modelBuilder.Entity<FeatureMaster>()
+                .HasMany(e => e.PackageFeatures)
+                .WithRequired(e => e.FeatureMaster)
+                .HasForeignKey(e => e.FeatureId)
+                .WillCascadeOnDelete(true);
+
             modelBuilder.Entity<Package>()
                 .Property(e => e.Price)
                 .HasPrecision(19, 4);
 
-            modelBuilder.Entity<Package>()
-                .HasMany(e => e.UserPackages)
-                .WithRequired(e => e.Package)
-                .WillCascadeOnDelete(true);
-
-            modelBuilder.Entity<PackageCategory>()
-                .HasMany(e => e.Packages)
-                .WithRequired(e => e.PackageCategory)
-                .HasForeignKey(e => e.CategoryId)
+            modelBuilder.Entity<PdfFormTemplate>()
+                .HasMany(e => e.FieldMappings)
+                .WithRequired(e => e.PdfFormTemplate)
                 .WillCascadeOnDelete(true);
 
             modelBuilder.Entity<PersonalInformation>()
@@ -91,11 +95,6 @@ namespace nChanger.Core
                 .Property(e => e.UserTypeId)
                 .IsFixedLength()
                 .IsUnicode(false);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.UserPackages)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UserType>()
                 .Property(e => e.Id)

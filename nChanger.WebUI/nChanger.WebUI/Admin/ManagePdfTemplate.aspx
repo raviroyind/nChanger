@@ -71,10 +71,15 @@
                         OnPageNo_Changed="txtPageNo_Changed" />
                 </div>
                 <div class="one wide column"></div>
+                
+                <div class="one wide column"></div>
+                <div class="fourteen wide column">
+                    <asp:HyperLink runat="server" ID="hypBack" CssClass="ui button green" Text="Back" NavigateUrl="ManageProvinceCategory.aspx" ToolTip="Back to province categories."><strong><i class="arrow left icon large"></i>&nbsp;Back</strong></asp:HyperLink>
+                </div>
+                <div class="one wide column"></div>
 
                 <div class="one wide column"></div>
                 <div class="fourteen wide column">
-                    
                         <asp:GridView ID="gvTemplate" runat="server" AutoGenerateColumns="False" DataKeyNames="Id"
                             CssClass="ui compact celled definition table" OnSorting="gvTemplate_OnSorting">
                             <HeaderStyle CssClass="gridHead" Height="50"></HeaderStyle>
@@ -133,7 +138,7 @@
 
                                 <asp:TemplateField HeaderText="" ItemStyle-Width="120">
                                     <ItemTemplate>
-                                        <asp:HyperLink ID="hypMap" runat="server" CssClass="ui button small green" NavigateUrl='<%# string.Format("TemplateMapping.aspx?id={0}&active={1}", Eval("Id"), Eval("IsActive")) %>'>Mapping</asp:HyperLink>
+                                        <asp:HyperLink ID="hypMap" runat="server" CssClass="ui button small green" NavigateUrl='<%# string.Format("FieldMapping.aspx?id={0}&active={1}", Eval("Id"), Eval("IsActive")) %>'>Mapping</asp:HyperLink>
                                         </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>

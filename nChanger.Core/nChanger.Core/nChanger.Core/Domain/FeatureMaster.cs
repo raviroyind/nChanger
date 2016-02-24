@@ -6,22 +6,23 @@ namespace nChanger.Core
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Package")]
-    public partial class Package
+    [Table("FeatureMaster")]
+    public partial class FeatureMaster
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Package()
+        public FeatureMaster()
         {
             PackageFeatures = new HashSet<PackageFeature>();
         }
 
         public Guid Id { get; set; }
 
-        [StringLength(50)]
-        public string PackageName { get; set; }
+        [Required]
+        [StringLength(150)]
+        public string Feature { get; set; }
 
-        [Column(TypeName = "money")]
-        public decimal Price { get; set; }
+        [StringLength(500)]
+        public string Description { get; set; }
 
         public bool IsActive { get; set; }
 

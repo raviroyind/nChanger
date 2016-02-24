@@ -55,9 +55,17 @@ namespace nChanger.WebUI.Admin
         }
         private void BindTemplates()
         {
-            using (var dataContext = new nChangerDb())
+            var id = Guid.Empty;
+
+            if (Request.QueryString["id"] != null)
+                id = Guid.Parse(Request.QueryString["id"]);
+            else if (Request.UrlReferrer != null)
+                id = Guid.Parse(Request.UrlReferrer.Query.Substring(4));
+
+
+             using (var dataContext = new nChangerDb())
             {
-                var templateList = dataContext.PdfFormTemplates.ToList();
+                var templateList = dataContext.PdfFormTemplates.Where(p => p.ProvinceCategoryId.Equals(id)) .ToList();
 
                 if (templateList.Count != 0)
                 {
