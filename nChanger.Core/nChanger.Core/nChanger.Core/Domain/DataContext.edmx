@@ -1,0 +1,1809 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="nChangerDb.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CountryName" Type="nvarchar" MaxLength="250" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CriminalOffenceInformation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PdfTemplateId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="30" />
+          <Property Name="OutstandingCourtProceedings" Type="bit" Nullable="false" />
+          <Property Name="CourtFileNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="CourtName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CourtAddress" Type="nvarchar" MaxLength="200" />
+          <Property Name="DescribeProceedings" Type="nvarchar" MaxLength="500" />
+          <Property Name="OutstandingEnforcementOrders" Type="bit" Nullable="false" />
+          <Property Name="DetailsOfOutstandingEnforcementOrders" Type="nvarchar" MaxLength="500" />
+          <Property Name="EverConvictedOfCriminalOffence" Type="bit" Nullable="false" />
+          <Property Name="DetailsOfCriminalOffence" Type="nvarchar" MaxLength="500" />
+          <Property Name="FoundGuiltyDischarged" Type="bit" Nullable="false" />
+          <Property Name="FoundGuiltyDetailsOfOffence" Type="nvarchar" MaxLength="500" />
+          <Property Name="AdultSentenceImposed" Type="bit" Nullable="false" />
+          <Property Name="DescribeAdultSentence" Type="nvarchar" MaxLength="500" />
+          <Property Name="PendingCharges" Type="bit" Nullable="false" />
+          <Property Name="PendingChargesCourtNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="PendingChargesCourtName" Type="nvarchar" MaxLength="100" />
+          <Property Name="PendingChargesCourtAddress" Type="nvarchar" MaxLength="200" />
+          <Property Name="PendingChargesDescribe" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DefineQuestions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProvinceCategoryId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="QuestionType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Question" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FeatureMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Feature" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FieldMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PdfFormTemplateId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PdfFieldName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PdfPageNumber" Type="int" Nullable="false" />
+          <Property Name="FieldType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Left" Type="float" />
+          <Property Name="Right" Type="float" />
+          <Property Name="Top" Type="float" />
+          <Property Name="Bottom" Type="float" />
+          <Property Name="DbFieldName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FinancialInformation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PdfTemplateId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="30" />
+          <Property Name="CourtOrTribunalOrder" Type="bit" Nullable="false" />
+          <Property Name="CourtFileNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="NameOfCourt" Type="nvarchar" MaxLength="100" />
+          <Property Name="DateOfCourtOrderDay" Type="int" />
+          <Property Name="DateOfCourtOrderMonth" Type="int" />
+          <Property Name="DateOfCourtOrderYear" Type="int" />
+          <Property Name="NameOfPersonWhoSuedYou" Type="nvarchar" MaxLength="100" />
+          <Property Name="AddressCourtTribunal" Type="nvarchar" MaxLength="200" />
+          <Property Name="SheriffDirected" Type="bit" Nullable="false" />
+          <Property Name="WritNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="NameOfSherrif" Type="nvarchar" MaxLength="100" />
+          <Property Name="AddressOfSheriff" Type="nvarchar" MaxLength="100" />
+          <Property Name="LiensOrSecurityInterests" Type="bit" Nullable="false" />
+          <Property Name="LiensOrSecurityInterestsNameOfPerson" Type="nvarchar" MaxLength="100" />
+          <Property Name="AmountOfMoneyOwed" Type="nvarchar" MaxLength="100" />
+          <Property Name="RegitrationNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="FinancialStatementsRegistered" Type="bit" Nullable="false" />
+          <Property Name="FinancialStatementsRegitrationNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="UndischargedBankrupt" Type="bit" Nullable="false" />
+          <Property Name="DetailsOfBankruptcy" Type="nvarchar" MaxLength="1000" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'nChangerDb.dbo.InputFormTables' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="InputFormTables">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="TableName" />
+            <PropertyRef Name="IsActive" />
+            <PropertyRef Name="EntryDate" />
+            <PropertyRef Name="EntryIP" />
+            <PropertyRef Name="EntryId" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NameChangeInformation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PdfTemplateId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="30" />
+          <Property Name="ResonForNameChange" Type="nvarchar(max)" />
+          <Property Name="ChangedNamePriviously" Type="nvarchar" MaxLength="100" />
+          <Property Name="PreviousNameChangeDay" Type="int" />
+          <Property Name="PreviousNameChangeMonth" Type="int" />
+          <Property Name="PreviousNameChangeYear" Type="int" />
+          <Property Name="PreviousFirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="PreviousMiddleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="PreviousLastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="FirstNameAfterChange" Type="nvarchar" MaxLength="100" />
+          <Property Name="MiddleNameAfterChange" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastNameAfterChange" Type="nvarchar" MaxLength="100" />
+          <Property Name="PreviousNameChangeProvince" Type="nvarchar" MaxLength="100" />
+          <Property Name="PreviousNameChangeCountry" Type="nvarchar" MaxLength="100" />
+          <Property Name="AppliedForChangeAndRefused" Type="bit" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Package">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PackageName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PackageCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="CategoryShortDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="CategoryLongDescription" Type="nvarchar(max)" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="50" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PackageFeature">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PackageId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FeatureId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FeatureName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ParentInformation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PdfTemplateId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="30" />
+          <Property Name="FatherFirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="FatherMiddleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="FatherLastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="FatherOtherLastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="MotherFirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="MotherMiddleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="MotherLastNameWhenBorn" Type="nvarchar" MaxLength="100" />
+          <Property Name="MotherLastNamePresent" Type="nvarchar" MaxLength="100" />
+          <Property Name="MotherLastNameOther" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PdfFormTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProvinceCategoryId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TemplateName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PdfFileName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonalInformation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PdfTemplateId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="30" />
+          <Property Name="PresentFirstName" Type="nvarchar" MaxLength="500" />
+          <Property Name="PresentMiddleName" Type="nvarchar" MaxLength="500" />
+          <Property Name="PresentLastName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Sex" Type="nvarchar" MaxLength="500" />
+          <Property Name="MailAddStreetNo" Type="nvarchar" MaxLength="500" />
+          <Property Name="MailAddPOBox" Type="nvarchar" MaxLength="500" />
+          <Property Name="MailAddAptSuitNo" Type="nvarchar" MaxLength="500" />
+          <Property Name="MailAddBuzzerNo" Type="nvarchar" MaxLength="500" />
+          <Property Name="MailAddCityTownVillage" Type="nvarchar" MaxLength="500" />
+          <Property Name="MailAddProvience" Type="nvarchar" MaxLength="500" />
+          <Property Name="MailAddPostalCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="MailAddHomePhoneCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="MailAddHomePhoneNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="MailAddWorkPhoneCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="MailAddWorkPhoneNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="LivedInOntarioYears" Type="int" />
+          <Property Name="LivedInOntarioMonths" Type="int" />
+          <Property Name="LivedInOntarioPast12Months" Type="char" MaxLength="1" />
+          <Property Name="DOBYear" Type="int" />
+          <Property Name="DOBMonth" Type="int" />
+          <Property Name="DOBDay" Type="int" />
+          <Property Name="BirthCityTownVillage" Type="nvarchar" MaxLength="500" />
+          <Property Name="BirthProvinceOrState" Type="nvarchar" MaxLength="500" />
+          <Property Name="BirthCountry" Type="nvarchar" MaxLength="500" />
+          <Property Name="NewFirstName" Type="nvarchar" MaxLength="500" />
+          <Property Name="NewMiddleName" Type="nvarchar" MaxLength="500" />
+          <Property Name="NewLastName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Married" Type="char" MaxLength="1" />
+          <Property Name="PartnerFisrtName" Type="nvarchar" MaxLength="500" />
+          <Property Name="PartnerMiddleName" Type="nvarchar" MaxLength="500" />
+          <Property Name="PartnerLastName" Type="nvarchar" MaxLength="500" />
+          <Property Name="DateMarriedMonth" Type="int" />
+          <Property Name="DateMarriedDay" Type="int" />
+          <Property Name="DateMarriedYear" Type="int" />
+          <Property Name="CityTownMarried" Type="nvarchar" MaxLength="500" />
+          <Property Name="StateOrProvinceMarried" Type="nvarchar" MaxLength="500" />
+          <Property Name="CountryMarried" Type="nvarchar" MaxLength="500" />
+          <Property Name="JDeclarationSigned" Type="char" MaxLength="1" />
+          <Property Name="JDeclarationPersonFirstName" Type="nvarchar" MaxLength="500" />
+          <Property Name="JDeclarationPersonMiddleName" Type="nvarchar" MaxLength="500" />
+          <Property Name="JDeclarationPersonLastName" Type="nvarchar" MaxLength="500" />
+          <Property Name="SentRegistrarMonth" Type="int" />
+          <Property Name="SentRegistrarDay" Type="int" />
+          <Property Name="SentRegistrarYear" Type="int" />
+          <Property Name="SubmittedForm4" Type="char" MaxLength="1" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Province">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProvinceName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProvinceCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProvinceId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuestionOptions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DefineQuestionsId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OptionLabel" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StateName" Type="nvarchar" MaxLength="250" />
+          <Property Name="CountryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TemplateTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PdfFormTemplateId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="SectionName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="SectionPath" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserPackages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PackageId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="UserTypeId" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="90" />
+          <Property Name="State" Type="nvarchar" MaxLength="20" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="12" />
+          <Property Name="Country" Type="nvarchar" MaxLength="20" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="20" />
+          <Property Name="EmailVerified" Type="bit" />
+          <Property Name="RegistrationDate" Type="datetime" Nullable="false" />
+          <Property Name="VerificationCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="IP" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="UserType" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="InputFormSchemaView">
+          <Key>
+            <PropertyRef Name="TABLE_NAME" />
+          </Key>
+          <Property Name="TABLE_CATALOG" Type="nvarchar" MaxLength="128" />
+          <Property Name="TABLE_SCHEMA" Type="nvarchar" MaxLength="128" />
+          <Property Name="TABLE_NAME" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="COLUMN_NAME" Type="nvarchar" MaxLength="128" />
+          <Property Name="ORDINAL_POSITION" Type="int" />
+          <Property Name="COLUMN_DEFAULT" Type="nvarchar" MaxLength="4000" />
+          <Property Name="IS_NULLABLE" Type="varchar" MaxLength="3" />
+          <Property Name="DATA_TYPE" Type="nvarchar" MaxLength="128" />
+          <Property Name="CHARACTER_MAXIMUM_LENGTH" Type="int" />
+          <Property Name="CHARACTER_OCTET_LENGTH" Type="int" />
+          <Property Name="NUMERIC_PRECISION" Type="tinyint" />
+          <Property Name="NUMERIC_PRECISION_RADIX" Type="smallint" />
+          <Property Name="NUMERIC_SCALE" Type="int" />
+          <Property Name="DATETIME_PRECISION" Type="smallint" />
+          <Property Name="CHARACTER_SET_CATALOG" Type="nvarchar" MaxLength="128" />
+          <Property Name="CHARACTER_SET_SCHEMA" Type="nvarchar" MaxLength="128" />
+          <Property Name="CHARACTER_SET_NAME" Type="nvarchar" MaxLength="128" />
+          <Property Name="COLLATION_CATALOG" Type="nvarchar" MaxLength="128" />
+          <Property Name="COLLATION_SCHEMA" Type="nvarchar" MaxLength="128" />
+          <Property Name="COLLATION_NAME" Type="nvarchar" MaxLength="128" />
+          <Property Name="DOMAIN_CATALOG" Type="nvarchar" MaxLength="128" />
+          <Property Name="DOMAIN_SCHEMA" Type="nvarchar" MaxLength="128" />
+          <Property Name="DOMAIN_NAME" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <Association Name="FK_dbo_FieldMapping_dbo_PdfFormTemplate_PdfFormTemplateId">
+          <End Role="PdfFormTemplate" Type="Self.PdfFormTemplate" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FieldMapping" Type="Self.FieldMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PdfFormTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FieldMapping">
+              <PropertyRef Name="PdfFormTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DefineQuestions_ProvinceCategory">
+          <End Role="ProvinceCategory" Type="Self.ProvinceCategory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DefineQuestions" Type="Self.DefineQuestions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProvinceCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DefineQuestions">
+              <PropertyRef Name="ProvinceCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PackageFeature_FeatureMaster">
+          <End Role="FeatureMaster" Type="Self.FeatureMaster" Multiplicity="1" />
+          <End Role="PackageFeature" Type="Self.PackageFeature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FeatureMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PackageFeature">
+              <PropertyRef Name="FeatureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PackageFeature_Package">
+          <End Role="Package" Type="Self.Package" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PackageFeature" Type="Self.PackageFeature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Package">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PackageFeature">
+              <PropertyRef Name="PackageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PdfFormTemplate_ProvinceCategory">
+          <End Role="ProvinceCategory" Type="Self.ProvinceCategory" Multiplicity="1" />
+          <End Role="PdfFormTemplate" Type="Self.PdfFormTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProvinceCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PdfFormTemplate">
+              <PropertyRef Name="ProvinceCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProvinceCategory_Province">
+          <End Role="Province" Type="Self.Province" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProvinceCategory" Type="Self.ProvinceCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProvinceCategory">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionOptions_DefineQuestions">
+          <End Role="DefineQuestions" Type="Self.DefineQuestions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="QuestionOptions" Type="Self.QuestionOptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DefineQuestions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionOptions">
+              <PropertyRef Name="DefineQuestionsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="State" Type="Self.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPackages_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserPackages" Type="Self.UserPackages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserPackages">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_UserType">
+          <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="UserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="uspSelectValueByColumnName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="value" Type="nvarchar" Mode="In" />
+          <Parameter Name="table" Type="nvarchar" Mode="In" />
+          <Parameter Name="userId" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="nChangerDbStoreContainer">
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CriminalOffenceInformation" EntityType="Self.CriminalOffenceInformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DefineQuestions" EntityType="Self.DefineQuestions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FeatureMaster" EntityType="Self.FeatureMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FieldMapping" EntityType="Self.FieldMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FinancialInformation" EntityType="Self.FinancialInformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NameChangeInformation" EntityType="Self.NameChangeInformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Package" EntityType="Self.Package" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PackageCategory" EntityType="Self.PackageCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PackageFeature" EntityType="Self.PackageFeature" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ParentInformation" EntityType="Self.ParentInformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PdfFormTemplate" EntityType="Self.PdfFormTemplate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonalInformation" EntityType="Self.PersonalInformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Province" EntityType="Self.Province" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProvinceCategory" EntityType="Self.ProvinceCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionOptions" EntityType="Self.QuestionOptions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TemplateTable" EntityType="Self.TemplateTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserPackages" EntityType="Self.UserPackages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InputFormTables" EntityType="Self.InputFormTables" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [InputFormTables].[Id] AS [Id], 
+    [InputFormTables].[TableName] AS [TableName], 
+    [InputFormTables].[IsActive] AS [IsActive], 
+    [InputFormTables].[EntryDate] AS [EntryDate], 
+    [InputFormTables].[EntryIP] AS [EntryIP], 
+    [InputFormTables].[EntryId] AS [EntryId]
+    FROM [dbo].[InputFormTables] AS [InputFormTables]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="InputFormSchemaView" EntityType="Self.InputFormSchemaView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [InputFormSchemaView].[TABLE_CATALOG] AS [TABLE_CATALOG], 
+    [InputFormSchemaView].[TABLE_SCHEMA] AS [TABLE_SCHEMA], 
+    [InputFormSchemaView].[TABLE_NAME] AS [TABLE_NAME], 
+    [InputFormSchemaView].[COLUMN_NAME] AS [COLUMN_NAME], 
+    [InputFormSchemaView].[ORDINAL_POSITION] AS [ORDINAL_POSITION], 
+    [InputFormSchemaView].[COLUMN_DEFAULT] AS [COLUMN_DEFAULT], 
+    [InputFormSchemaView].[IS_NULLABLE] AS [IS_NULLABLE], 
+    [InputFormSchemaView].[DATA_TYPE] AS [DATA_TYPE], 
+    [InputFormSchemaView].[CHARACTER_MAXIMUM_LENGTH] AS [CHARACTER_MAXIMUM_LENGTH], 
+    [InputFormSchemaView].[CHARACTER_OCTET_LENGTH] AS [CHARACTER_OCTET_LENGTH], 
+    [InputFormSchemaView].[NUMERIC_PRECISION] AS [NUMERIC_PRECISION], 
+    [InputFormSchemaView].[NUMERIC_PRECISION_RADIX] AS [NUMERIC_PRECISION_RADIX], 
+    [InputFormSchemaView].[NUMERIC_SCALE] AS [NUMERIC_SCALE], 
+    [InputFormSchemaView].[DATETIME_PRECISION] AS [DATETIME_PRECISION], 
+    [InputFormSchemaView].[CHARACTER_SET_CATALOG] AS [CHARACTER_SET_CATALOG], 
+    [InputFormSchemaView].[CHARACTER_SET_SCHEMA] AS [CHARACTER_SET_SCHEMA], 
+    [InputFormSchemaView].[CHARACTER_SET_NAME] AS [CHARACTER_SET_NAME], 
+    [InputFormSchemaView].[COLLATION_CATALOG] AS [COLLATION_CATALOG], 
+    [InputFormSchemaView].[COLLATION_SCHEMA] AS [COLLATION_SCHEMA], 
+    [InputFormSchemaView].[COLLATION_NAME] AS [COLLATION_NAME], 
+    [InputFormSchemaView].[DOMAIN_CATALOG] AS [DOMAIN_CATALOG], 
+    [InputFormSchemaView].[DOMAIN_SCHEMA] AS [DOMAIN_SCHEMA], 
+    [InputFormSchemaView].[DOMAIN_NAME] AS [DOMAIN_NAME]
+    FROM [dbo].[InputFormSchemaView] AS [InputFormSchemaView]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_dbo_FieldMapping_dbo_PdfFormTemplate_PdfFormTemplateId" Association="Self.FK_dbo_FieldMapping_dbo_PdfFormTemplate_PdfFormTemplateId">
+            <End Role="PdfFormTemplate" EntitySet="PdfFormTemplate" />
+            <End Role="FieldMapping" EntitySet="FieldMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DefineQuestions_ProvinceCategory" Association="Self.FK_DefineQuestions_ProvinceCategory">
+            <End Role="ProvinceCategory" EntitySet="ProvinceCategory" />
+            <End Role="DefineQuestions" EntitySet="DefineQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PackageFeature_FeatureMaster" Association="Self.FK_PackageFeature_FeatureMaster">
+            <End Role="FeatureMaster" EntitySet="FeatureMaster" />
+            <End Role="PackageFeature" EntitySet="PackageFeature" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PackageFeature_Package" Association="Self.FK_PackageFeature_Package">
+            <End Role="Package" EntitySet="Package" />
+            <End Role="PackageFeature" EntitySet="PackageFeature" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PdfFormTemplate_ProvinceCategory" Association="Self.FK_PdfFormTemplate_ProvinceCategory">
+            <End Role="ProvinceCategory" EntitySet="ProvinceCategory" />
+            <End Role="PdfFormTemplate" EntitySet="PdfFormTemplate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProvinceCategory_Province" Association="Self.FK_ProvinceCategory_Province">
+            <End Role="Province" EntitySet="Province" />
+            <End Role="ProvinceCategory" EntitySet="ProvinceCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionOptions_DefineQuestions" Association="Self.FK_QuestionOptions_DefineQuestions">
+            <End Role="DefineQuestions" EntitySet="DefineQuestions" />
+            <End Role="QuestionOptions" EntitySet="QuestionOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State_Country" Association="Self.FK_State_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="State" EntitySet="State" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPackages_Users" Association="Self.FK_UserPackages_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserPackages" EntitySet="UserPackages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_UserType" Association="Self.FK_Users_UserType">
+            <End Role="UserType" EntitySet="UserType" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="nChangerDb" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CountryName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="States" Relationship="Self.FK_State_Country" FromRole="Country" ToRole="State" />
+        </EntityType>
+        <EntityType Name="CriminalOffenceInformation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="PdfTemplateId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="OutstandingCourtProceedings" Type="Boolean" Nullable="false" />
+          <Property Name="CourtFileNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CourtName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CourtAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DescribeProceedings" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="OutstandingEnforcementOrders" Type="Boolean" Nullable="false" />
+          <Property Name="DetailsOfOutstandingEnforcementOrders" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="EverConvictedOfCriminalOffence" Type="Boolean" Nullable="false" />
+          <Property Name="DetailsOfCriminalOffence" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FoundGuiltyDischarged" Type="Boolean" Nullable="false" />
+          <Property Name="FoundGuiltyDetailsOfOffence" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AdultSentenceImposed" Type="Boolean" Nullable="false" />
+          <Property Name="DescribeAdultSentence" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PendingCharges" Type="Boolean" Nullable="false" />
+          <Property Name="PendingChargesCourtNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PendingChargesCourtName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PendingChargesCourtAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PendingChargesDescribe" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DefineQuestion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ProvinceCategoryId" Type="Guid" Nullable="false" />
+          <Property Name="QuestionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Question" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PackageCategory" Relationship="Self.FK_DefineQuestions_PackageCategory" FromRole="DefineQuestions" ToRole="PackageCategory" />
+          <NavigationProperty Name="QuestionOptions" Relationship="Self.FK_QuestionOptions_DefineQuestions" FromRole="DefineQuestions" ToRole="QuestionOptions" />
+          <NavigationProperty Name="ProvinceCategory" Relationship="nChangerDb.FK_DefineQuestions_ProvinceCategory" FromRole="DefineQuestion" ToRole="ProvinceCategory" />
+        </EntityType>
+        <EntityType Name="FeatureMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Feature" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PackageFeatures" Relationship="Self.FK_PackageFeature_FeatureMaster" FromRole="FeatureMaster" ToRole="PackageFeature" />
+        </EntityType>
+        <EntityType Name="FieldMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="PdfFormTemplateId" Type="Guid" Nullable="false" />
+          <Property Name="PdfFieldName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PdfPageNumber" Type="Int32" Nullable="false" />
+          <Property Name="FieldType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Left" Type="Double" />
+          <Property Name="Right" Type="Double" />
+          <Property Name="Top" Type="Double" />
+          <Property Name="Bottom" Type="Double" />
+          <Property Name="DbFieldName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PdfFormTemplate" Relationship="Self.FK_dbo_FieldMapping_dbo_PdfFormTemplate_PdfFormTemplateId" FromRole="FieldMapping" ToRole="PdfFormTemplate" />
+        </EntityType>
+        <EntityType Name="FinancialInformation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="PdfTemplateId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CourtOrTribunalOrder" Type="Boolean" Nullable="false" />
+          <Property Name="CourtFileNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NameOfCourt" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfCourtOrderDay" Type="Int32" />
+          <Property Name="DateOfCourtOrderMonth" Type="Int32" />
+          <Property Name="DateOfCourtOrderYear" Type="Int32" />
+          <Property Name="NameOfPersonWhoSuedYou" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AddressCourtTribunal" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SheriffDirected" Type="Boolean" Nullable="false" />
+          <Property Name="WritNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NameOfSherrif" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AddressOfSheriff" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LiensOrSecurityInterests" Type="Boolean" Nullable="false" />
+          <Property Name="LiensOrSecurityInterestsNameOfPerson" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AmountOfMoneyOwed" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RegitrationNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FinancialStatementsRegistered" Type="Boolean" Nullable="false" />
+          <Property Name="FinancialStatementsRegitrationNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UndischargedBankrupt" Type="Boolean" Nullable="false" />
+          <Property Name="DetailsOfBankruptcy" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NameChangeInformation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="PdfTemplateId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ResonForNameChange" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ChangedNamePriviously" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PreviousNameChangeDay" Type="Int32" />
+          <Property Name="PreviousNameChangeMonth" Type="Int32" />
+          <Property Name="PreviousNameChangeYear" Type="Int32" />
+          <Property Name="PreviousFirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PreviousMiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PreviousLastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FirstNameAfterChange" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleNameAfterChange" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastNameAfterChange" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PreviousNameChangeProvince" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PreviousNameChangeCountry" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AppliedForChangeAndRefused" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Package">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="PackageName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PackageFeatures" Relationship="Self.FK_PackageFeature_Package" FromRole="Package" ToRole="PackageFeature" />
+        </EntityType>
+        <EntityType Name="PackageCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Category" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CategoryShortDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryLongDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DefineQuestions" Relationship="Self.FK_DefineQuestions_PackageCategory" FromRole="PackageCategory" ToRole="DefineQuestions" />
+        </EntityType>
+        <EntityType Name="PackageFeature">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="PackageId" Type="Guid" Nullable="false" />
+          <Property Name="FeatureId" Type="Guid" Nullable="false" />
+          <Property Name="FeatureName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FeatureMaster" Relationship="Self.FK_PackageFeature_FeatureMaster" FromRole="PackageFeature" ToRole="FeatureMaster" />
+          <NavigationProperty Name="Package" Relationship="Self.FK_PackageFeature_Package" FromRole="PackageFeature" ToRole="Package" />
+        </EntityType>
+        <EntityType Name="ParentInformation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="PdfTemplateId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="FatherFirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FatherMiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FatherLastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FatherOtherLastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MotherFirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MotherMiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MotherLastNameWhenBorn" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MotherLastNamePresent" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MotherLastNameOther" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PdfFormTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ProvinceCategoryId" Type="Guid" Nullable="false" />
+          <Property Name="TemplateName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PdfFileName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FieldMappings" Relationship="Self.FK_dbo_FieldMapping_dbo_PdfFormTemplate_PdfFormTemplateId" FromRole="PdfFormTemplate" ToRole="FieldMapping" />
+          <NavigationProperty Name="ProvinceCategory" Relationship="Self.FK_PdfFormTemplate_ProvinceCategory" FromRole="PdfFormTemplate" ToRole="ProvinceCategory" />
+        </EntityType>
+        <EntityType Name="PersonalInformation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="PdfTemplateId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PresentFirstName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PresentMiddleName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PresentLastName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Sex" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MailAddStreetNo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MailAddPOBox" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MailAddAptSuitNo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MailAddBuzzerNo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MailAddCityTownVillage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MailAddProvience" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MailAddPostalCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MailAddHomePhoneCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="MailAddHomePhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MailAddWorkPhoneCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="MailAddWorkPhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LivedInOntarioYears" Type="Int32" />
+          <Property Name="LivedInOntarioMonths" Type="Int32" />
+          <Property Name="LivedInOntarioPast12Months" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DOBYear" Type="Int32" />
+          <Property Name="DOBMonth" Type="Int32" />
+          <Property Name="DOBDay" Type="Int32" />
+          <Property Name="BirthCityTownVillage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="BirthProvinceOrState" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="BirthCountry" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="NewFirstName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="NewMiddleName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="NewLastName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Married" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="PartnerFisrtName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PartnerMiddleName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PartnerLastName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DateMarriedMonth" Type="Int32" />
+          <Property Name="DateMarriedDay" Type="Int32" />
+          <Property Name="DateMarriedYear" Type="Int32" />
+          <Property Name="CityTownMarried" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="StateOrProvinceMarried" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CountryMarried" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="JDeclarationSigned" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="JDeclarationPersonFirstName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="JDeclarationPersonMiddleName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="JDeclarationPersonLastName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SentRegistrarMonth" Type="Int32" />
+          <Property Name="SentRegistrarDay" Type="Int32" />
+          <Property Name="SentRegistrarYear" Type="Int32" />
+          <Property Name="SubmittedForm4" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Province">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ProvinceName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ProvinceCategories" Relationship="Self.FK_ProvinceCategory_Province" FromRole="Province" ToRole="ProvinceCategory" />
+        </EntityType>
+        <EntityType Name="ProvinceCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ProvinceId" Type="Guid" Nullable="false" />
+          <Property Name="Category" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PdfFormTemplates" Relationship="Self.FK_PdfFormTemplate_ProvinceCategory" FromRole="ProvinceCategory" ToRole="PdfFormTemplate" />
+          <NavigationProperty Name="Province" Relationship="Self.FK_ProvinceCategory_Province" FromRole="ProvinceCategory" ToRole="Province" />
+          <NavigationProperty Name="DefineQuestions" Relationship="nChangerDb.FK_DefineQuestions_ProvinceCategory" FromRole="ProvinceCategory" ToRole="DefineQuestion" />
+        </EntityType>
+        <EntityType Name="QuestionOption">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="DefineQuestionsId" Type="Guid" Nullable="false" />
+          <Property Name="OptionLabel" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DefineQuestion" Relationship="Self.FK_QuestionOptions_DefineQuestions" FromRole="QuestionOptions" ToRole="DefineQuestions" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StateName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CountryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_State_Country" FromRole="State" ToRole="Country" />
+        </EntityType>
+        <EntityType Name="TemplateTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="PdfFormTemplateId" Type="Guid" Nullable="false" />
+          <Property Name="TableName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SectionName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SectionPath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserPackage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PackageId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserPackages_Users" FromRole="UserPackages" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserTypeId" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="90" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EmailVerified" Type="Boolean" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="VerificationCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UserPackages" Relationship="Self.FK_UserPackages_Users" FromRole="Users" ToRole="UserPackages" />
+          <NavigationProperty Name="UserType" Relationship="Self.FK_Users_UserType" FromRole="Users" ToRole="UserType" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="UserType1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_UserType" FromRole="UserType" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="InputFormTable">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="TableName" />
+            <PropertyRef Name="IsActive" />
+            <PropertyRef Name="EntryDate" />
+            <PropertyRef Name="EntryIP" />
+            <PropertyRef Name="EntryId" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="TableName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InputFormSchemaView">
+          <Key>
+            <PropertyRef Name="TABLE_NAME" />
+          </Key>
+          <Property Name="TABLE_CATALOG" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="TABLE_SCHEMA" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="TABLE_NAME" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="COLUMN_NAME" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ORDINAL_POSITION" Type="Int32" />
+          <Property Name="COLUMN_DEFAULT" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="IS_NULLABLE" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="DATA_TYPE" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CHARACTER_MAXIMUM_LENGTH" Type="Int32" />
+          <Property Name="CHARACTER_OCTET_LENGTH" Type="Int32" />
+          <Property Name="NUMERIC_PRECISION" Type="Byte" />
+          <Property Name="NUMERIC_PRECISION_RADIX" Type="Int16" />
+          <Property Name="NUMERIC_SCALE" Type="Int32" />
+          <Property Name="DATETIME_PRECISION" Type="Int16" />
+          <Property Name="CHARACTER_SET_CATALOG" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CHARACTER_SET_SCHEMA" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CHARACTER_SET_NAME" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="COLLATION_CATALOG" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="COLLATION_SCHEMA" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="COLLATION_NAME" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DOMAIN_CATALOG" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DOMAIN_SCHEMA" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="DOMAIN_NAME" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_State_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="State" Type="Self.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DefineQuestions_PackageCategory">
+          <End Role="PackageCategory" Type="Self.PackageCategory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DefineQuestions" Type="Self.DefineQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PackageCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DefineQuestions">
+              <PropertyRef Name="ProvinceCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionOptions_DefineQuestions">
+          <End Role="DefineQuestions" Type="Self.DefineQuestion" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="QuestionOptions" Type="Self.QuestionOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DefineQuestions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionOptions">
+              <PropertyRef Name="DefineQuestionsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PackageFeature_FeatureMaster">
+          <End Role="FeatureMaster" Type="Self.FeatureMaster" Multiplicity="1" />
+          <End Role="PackageFeature" Type="Self.PackageFeature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FeatureMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PackageFeature">
+              <PropertyRef Name="FeatureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_FieldMapping_dbo_PdfFormTemplate_PdfFormTemplateId">
+          <End Role="PdfFormTemplate" Type="Self.PdfFormTemplate" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FieldMapping" Type="Self.FieldMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PdfFormTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FieldMapping">
+              <PropertyRef Name="PdfFormTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PackageFeature_Package">
+          <End Role="Package" Type="Self.Package" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PackageFeature" Type="Self.PackageFeature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Package">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PackageFeature">
+              <PropertyRef Name="PackageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PdfFormTemplate_ProvinceCategory">
+          <End Role="ProvinceCategory" Type="Self.ProvinceCategory" Multiplicity="1" />
+          <End Role="PdfFormTemplate" Type="Self.PdfFormTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProvinceCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PdfFormTemplate">
+              <PropertyRef Name="ProvinceCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProvinceCategory_Province">
+          <End Role="Province" Type="Self.Province" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProvinceCategory" Type="Self.ProvinceCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProvinceCategory">
+              <PropertyRef Name="ProvinceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPackages_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserPackages" Type="Self.UserPackage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserPackages">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_UserType">
+          <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="UserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="nChangerDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Countries" EntityType="Self.Country" />
+          <EntitySet Name="CriminalOffenceInformations" EntityType="Self.CriminalOffenceInformation" />
+          <EntitySet Name="DefineQuestions" EntityType="Self.DefineQuestion" />
+          <EntitySet Name="FeatureMasters" EntityType="Self.FeatureMaster" />
+          <EntitySet Name="FieldMappings" EntityType="Self.FieldMapping" />
+          <EntitySet Name="FinancialInformations" EntityType="Self.FinancialInformation" />
+          <EntitySet Name="NameChangeInformations" EntityType="Self.NameChangeInformation" />
+          <EntitySet Name="Packages" EntityType="Self.Package" />
+          <EntitySet Name="PackageCategories" EntityType="Self.PackageCategory" />
+          <EntitySet Name="PackageFeatures" EntityType="Self.PackageFeature" />
+          <EntitySet Name="ParentInformations" EntityType="Self.ParentInformation" />
+          <EntitySet Name="PdfFormTemplates" EntityType="Self.PdfFormTemplate" />
+          <EntitySet Name="PersonalInformations" EntityType="Self.PersonalInformation" />
+          <EntitySet Name="Provinces" EntityType="Self.Province" />
+          <EntitySet Name="ProvinceCategories" EntityType="Self.ProvinceCategory" />
+          <EntitySet Name="QuestionOptions" EntityType="Self.QuestionOption" />
+          <EntitySet Name="States" EntityType="Self.State" />
+          <EntitySet Name="TemplateTables" EntityType="Self.TemplateTable" />
+          <EntitySet Name="UserPackages" EntityType="Self.UserPackage" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserTypes" EntityType="Self.UserType" />
+          <EntitySet Name="InputFormTables" EntityType="Self.InputFormTable" />
+          <EntitySet Name="InputFormSchemaViews" EntityType="Self.InputFormSchemaView" />
+          <AssociationSet Name="FK_State_Country" Association="Self.FK_State_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="State" EntitySet="States" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DefineQuestions_PackageCategory" Association="Self.FK_DefineQuestions_PackageCategory">
+            <End Role="PackageCategory" EntitySet="PackageCategories" />
+            <End Role="DefineQuestions" EntitySet="DefineQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionOptions_DefineQuestions" Association="Self.FK_QuestionOptions_DefineQuestions">
+            <End Role="DefineQuestions" EntitySet="DefineQuestions" />
+            <End Role="QuestionOptions" EntitySet="QuestionOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PackageFeature_FeatureMaster" Association="Self.FK_PackageFeature_FeatureMaster">
+            <End Role="FeatureMaster" EntitySet="FeatureMasters" />
+            <End Role="PackageFeature" EntitySet="PackageFeatures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_FieldMapping_dbo_PdfFormTemplate_PdfFormTemplateId" Association="Self.FK_dbo_FieldMapping_dbo_PdfFormTemplate_PdfFormTemplateId">
+            <End Role="PdfFormTemplate" EntitySet="PdfFormTemplates" />
+            <End Role="FieldMapping" EntitySet="FieldMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PackageFeature_Package" Association="Self.FK_PackageFeature_Package">
+            <End Role="Package" EntitySet="Packages" />
+            <End Role="PackageFeature" EntitySet="PackageFeatures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PdfFormTemplate_ProvinceCategory" Association="Self.FK_PdfFormTemplate_ProvinceCategory">
+            <End Role="ProvinceCategory" EntitySet="ProvinceCategories" />
+            <End Role="PdfFormTemplate" EntitySet="PdfFormTemplates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProvinceCategory_Province" Association="Self.FK_ProvinceCategory_Province">
+            <End Role="Province" EntitySet="Provinces" />
+            <End Role="ProvinceCategory" EntitySet="ProvinceCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPackages_Users" Association="Self.FK_UserPackages_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserPackages" EntitySet="UserPackages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_UserType" Association="Self.FK_Users_UserType">
+            <End Role="UserType" EntitySet="UserTypes" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <FunctionImport Name="uspSelectValueByColumnName">
+            <Parameter Name="value" Mode="In" Type="String" />
+            <Parameter Name="table" Mode="In" Type="String" />
+            <Parameter Name="userId" Mode="In" Type="String" />
+          </FunctionImport>
+          <AssociationSet Name="FK_DefineQuestions_ProvinceCategory" Association="nChangerDb.FK_DefineQuestions_ProvinceCategory">
+            <End Role="ProvinceCategory" EntitySet="ProvinceCategories" />
+            <End Role="DefineQuestion" EntitySet="DefineQuestions" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_DefineQuestions_ProvinceCategory">
+          <End Type="nChangerDb.ProvinceCategory" Role="ProvinceCategory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="nChangerDb.DefineQuestion" Role="DefineQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProvinceCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DefineQuestion">
+              <PropertyRef Name="ProvinceCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="nChangerDbStoreContainer" CdmEntityContainer="nChangerDbEntities">
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="nChangerDb.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CriminalOffenceInformations">
+            <EntityTypeMapping TypeName="nChangerDb.CriminalOffenceInformation">
+              <MappingFragment StoreEntitySet="CriminalOffenceInformation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PdfTemplateId" ColumnName="PdfTemplateId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="OutstandingCourtProceedings" ColumnName="OutstandingCourtProceedings" />
+                <ScalarProperty Name="CourtFileNumber" ColumnName="CourtFileNumber" />
+                <ScalarProperty Name="CourtName" ColumnName="CourtName" />
+                <ScalarProperty Name="CourtAddress" ColumnName="CourtAddress" />
+                <ScalarProperty Name="DescribeProceedings" ColumnName="DescribeProceedings" />
+                <ScalarProperty Name="OutstandingEnforcementOrders" ColumnName="OutstandingEnforcementOrders" />
+                <ScalarProperty Name="DetailsOfOutstandingEnforcementOrders" ColumnName="DetailsOfOutstandingEnforcementOrders" />
+                <ScalarProperty Name="EverConvictedOfCriminalOffence" ColumnName="EverConvictedOfCriminalOffence" />
+                <ScalarProperty Name="DetailsOfCriminalOffence" ColumnName="DetailsOfCriminalOffence" />
+                <ScalarProperty Name="FoundGuiltyDischarged" ColumnName="FoundGuiltyDischarged" />
+                <ScalarProperty Name="FoundGuiltyDetailsOfOffence" ColumnName="FoundGuiltyDetailsOfOffence" />
+                <ScalarProperty Name="AdultSentenceImposed" ColumnName="AdultSentenceImposed" />
+                <ScalarProperty Name="DescribeAdultSentence" ColumnName="DescribeAdultSentence" />
+                <ScalarProperty Name="PendingCharges" ColumnName="PendingCharges" />
+                <ScalarProperty Name="PendingChargesCourtNumber" ColumnName="PendingChargesCourtNumber" />
+                <ScalarProperty Name="PendingChargesCourtName" ColumnName="PendingChargesCourtName" />
+                <ScalarProperty Name="PendingChargesCourtAddress" ColumnName="PendingChargesCourtAddress" />
+                <ScalarProperty Name="PendingChargesDescribe" ColumnName="PendingChargesDescribe" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefineQuestions">
+            <EntityTypeMapping TypeName="nChangerDb.DefineQuestion">
+              <MappingFragment StoreEntitySet="DefineQuestions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProvinceCategoryId" ColumnName="ProvinceCategoryId" />
+                <ScalarProperty Name="QuestionType" ColumnName="QuestionType" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FeatureMasters">
+            <EntityTypeMapping TypeName="nChangerDb.FeatureMaster">
+              <MappingFragment StoreEntitySet="FeatureMaster">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Feature" ColumnName="Feature" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FieldMappings">
+            <EntityTypeMapping TypeName="nChangerDb.FieldMapping">
+              <MappingFragment StoreEntitySet="FieldMapping">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PdfFormTemplateId" ColumnName="PdfFormTemplateId" />
+                <ScalarProperty Name="PdfFieldName" ColumnName="PdfFieldName" />
+                <ScalarProperty Name="PdfPageNumber" ColumnName="PdfPageNumber" />
+                <ScalarProperty Name="FieldType" ColumnName="FieldType" />
+                <ScalarProperty Name="Left" ColumnName="Left" />
+                <ScalarProperty Name="Right" ColumnName="Right" />
+                <ScalarProperty Name="Top" ColumnName="Top" />
+                <ScalarProperty Name="Bottom" ColumnName="Bottom" />
+                <ScalarProperty Name="DbFieldName" ColumnName="DbFieldName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FinancialInformations">
+            <EntityTypeMapping TypeName="nChangerDb.FinancialInformation">
+              <MappingFragment StoreEntitySet="FinancialInformation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PdfTemplateId" ColumnName="PdfTemplateId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CourtOrTribunalOrder" ColumnName="CourtOrTribunalOrder" />
+                <ScalarProperty Name="CourtFileNumber" ColumnName="CourtFileNumber" />
+                <ScalarProperty Name="NameOfCourt" ColumnName="NameOfCourt" />
+                <ScalarProperty Name="DateOfCourtOrderDay" ColumnName="DateOfCourtOrderDay" />
+                <ScalarProperty Name="DateOfCourtOrderMonth" ColumnName="DateOfCourtOrderMonth" />
+                <ScalarProperty Name="DateOfCourtOrderYear" ColumnName="DateOfCourtOrderYear" />
+                <ScalarProperty Name="NameOfPersonWhoSuedYou" ColumnName="NameOfPersonWhoSuedYou" />
+                <ScalarProperty Name="AddressCourtTribunal" ColumnName="AddressCourtTribunal" />
+                <ScalarProperty Name="SheriffDirected" ColumnName="SheriffDirected" />
+                <ScalarProperty Name="WritNumber" ColumnName="WritNumber" />
+                <ScalarProperty Name="NameOfSherrif" ColumnName="NameOfSherrif" />
+                <ScalarProperty Name="AddressOfSheriff" ColumnName="AddressOfSheriff" />
+                <ScalarProperty Name="LiensOrSecurityInterests" ColumnName="LiensOrSecurityInterests" />
+                <ScalarProperty Name="LiensOrSecurityInterestsNameOfPerson" ColumnName="LiensOrSecurityInterestsNameOfPerson" />
+                <ScalarProperty Name="AmountOfMoneyOwed" ColumnName="AmountOfMoneyOwed" />
+                <ScalarProperty Name="RegitrationNumber" ColumnName="RegitrationNumber" />
+                <ScalarProperty Name="FinancialStatementsRegistered" ColumnName="FinancialStatementsRegistered" />
+                <ScalarProperty Name="FinancialStatementsRegitrationNumber" ColumnName="FinancialStatementsRegitrationNumber" />
+                <ScalarProperty Name="UndischargedBankrupt" ColumnName="UndischargedBankrupt" />
+                <ScalarProperty Name="DetailsOfBankruptcy" ColumnName="DetailsOfBankruptcy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NameChangeInformations">
+            <EntityTypeMapping TypeName="nChangerDb.NameChangeInformation">
+              <MappingFragment StoreEntitySet="NameChangeInformation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PdfTemplateId" ColumnName="PdfTemplateId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ResonForNameChange" ColumnName="ResonForNameChange" />
+                <ScalarProperty Name="ChangedNamePriviously" ColumnName="ChangedNamePriviously" />
+                <ScalarProperty Name="PreviousNameChangeDay" ColumnName="PreviousNameChangeDay" />
+                <ScalarProperty Name="PreviousNameChangeMonth" ColumnName="PreviousNameChangeMonth" />
+                <ScalarProperty Name="PreviousNameChangeYear" ColumnName="PreviousNameChangeYear" />
+                <ScalarProperty Name="PreviousFirstName" ColumnName="PreviousFirstName" />
+                <ScalarProperty Name="PreviousMiddleName" ColumnName="PreviousMiddleName" />
+                <ScalarProperty Name="PreviousLastName" ColumnName="PreviousLastName" />
+                <ScalarProperty Name="FirstNameAfterChange" ColumnName="FirstNameAfterChange" />
+                <ScalarProperty Name="MiddleNameAfterChange" ColumnName="MiddleNameAfterChange" />
+                <ScalarProperty Name="LastNameAfterChange" ColumnName="LastNameAfterChange" />
+                <ScalarProperty Name="PreviousNameChangeProvince" ColumnName="PreviousNameChangeProvince" />
+                <ScalarProperty Name="PreviousNameChangeCountry" ColumnName="PreviousNameChangeCountry" />
+                <ScalarProperty Name="AppliedForChangeAndRefused" ColumnName="AppliedForChangeAndRefused" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Packages">
+            <EntityTypeMapping TypeName="nChangerDb.Package">
+              <MappingFragment StoreEntitySet="Package">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PackageName" ColumnName="PackageName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PackageCategories">
+            <EntityTypeMapping TypeName="nChangerDb.PackageCategory">
+              <MappingFragment StoreEntitySet="PackageCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="CategoryShortDescription" ColumnName="CategoryShortDescription" />
+                <ScalarProperty Name="CategoryLongDescription" ColumnName="CategoryLongDescription" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PackageFeatures">
+            <EntityTypeMapping TypeName="nChangerDb.PackageFeature">
+              <MappingFragment StoreEntitySet="PackageFeature">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PackageId" ColumnName="PackageId" />
+                <ScalarProperty Name="FeatureId" ColumnName="FeatureId" />
+                <ScalarProperty Name="FeatureName" ColumnName="FeatureName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ParentInformations">
+            <EntityTypeMapping TypeName="nChangerDb.ParentInformation">
+              <MappingFragment StoreEntitySet="ParentInformation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PdfTemplateId" ColumnName="PdfTemplateId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FatherFirstName" ColumnName="FatherFirstName" />
+                <ScalarProperty Name="FatherMiddleName" ColumnName="FatherMiddleName" />
+                <ScalarProperty Name="FatherLastName" ColumnName="FatherLastName" />
+                <ScalarProperty Name="FatherOtherLastName" ColumnName="FatherOtherLastName" />
+                <ScalarProperty Name="MotherFirstName" ColumnName="MotherFirstName" />
+                <ScalarProperty Name="MotherMiddleName" ColumnName="MotherMiddleName" />
+                <ScalarProperty Name="MotherLastNameWhenBorn" ColumnName="MotherLastNameWhenBorn" />
+                <ScalarProperty Name="MotherLastNamePresent" ColumnName="MotherLastNamePresent" />
+                <ScalarProperty Name="MotherLastNameOther" ColumnName="MotherLastNameOther" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PdfFormTemplates">
+            <EntityTypeMapping TypeName="nChangerDb.PdfFormTemplate">
+              <MappingFragment StoreEntitySet="PdfFormTemplate">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProvinceCategoryId" ColumnName="ProvinceCategoryId" />
+                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+                <ScalarProperty Name="PdfFileName" ColumnName="PdfFileName" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonalInformations">
+            <EntityTypeMapping TypeName="nChangerDb.PersonalInformation">
+              <MappingFragment StoreEntitySet="PersonalInformation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PdfTemplateId" ColumnName="PdfTemplateId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PresentFirstName" ColumnName="PresentFirstName" />
+                <ScalarProperty Name="PresentMiddleName" ColumnName="PresentMiddleName" />
+                <ScalarProperty Name="PresentLastName" ColumnName="PresentLastName" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="MailAddStreetNo" ColumnName="MailAddStreetNo" />
+                <ScalarProperty Name="MailAddPOBox" ColumnName="MailAddPOBox" />
+                <ScalarProperty Name="MailAddAptSuitNo" ColumnName="MailAddAptSuitNo" />
+                <ScalarProperty Name="MailAddBuzzerNo" ColumnName="MailAddBuzzerNo" />
+                <ScalarProperty Name="MailAddCityTownVillage" ColumnName="MailAddCityTownVillage" />
+                <ScalarProperty Name="MailAddProvience" ColumnName="MailAddProvience" />
+                <ScalarProperty Name="MailAddPostalCode" ColumnName="MailAddPostalCode" />
+                <ScalarProperty Name="MailAddHomePhoneCode" ColumnName="MailAddHomePhoneCode" />
+                <ScalarProperty Name="MailAddHomePhoneNo" ColumnName="MailAddHomePhoneNo" />
+                <ScalarProperty Name="MailAddWorkPhoneCode" ColumnName="MailAddWorkPhoneCode" />
+                <ScalarProperty Name="MailAddWorkPhoneNo" ColumnName="MailAddWorkPhoneNo" />
+                <ScalarProperty Name="LivedInOntarioYears" ColumnName="LivedInOntarioYears" />
+                <ScalarProperty Name="LivedInOntarioMonths" ColumnName="LivedInOntarioMonths" />
+                <ScalarProperty Name="LivedInOntarioPast12Months" ColumnName="LivedInOntarioPast12Months" />
+                <ScalarProperty Name="DOBYear" ColumnName="DOBYear" />
+                <ScalarProperty Name="DOBMonth" ColumnName="DOBMonth" />
+                <ScalarProperty Name="DOBDay" ColumnName="DOBDay" />
+                <ScalarProperty Name="BirthCityTownVillage" ColumnName="BirthCityTownVillage" />
+                <ScalarProperty Name="BirthProvinceOrState" ColumnName="BirthProvinceOrState" />
+                <ScalarProperty Name="BirthCountry" ColumnName="BirthCountry" />
+                <ScalarProperty Name="NewFirstName" ColumnName="NewFirstName" />
+                <ScalarProperty Name="NewMiddleName" ColumnName="NewMiddleName" />
+                <ScalarProperty Name="NewLastName" ColumnName="NewLastName" />
+                <ScalarProperty Name="Married" ColumnName="Married" />
+                <ScalarProperty Name="PartnerFisrtName" ColumnName="PartnerFisrtName" />
+                <ScalarProperty Name="PartnerMiddleName" ColumnName="PartnerMiddleName" />
+                <ScalarProperty Name="PartnerLastName" ColumnName="PartnerLastName" />
+                <ScalarProperty Name="DateMarriedMonth" ColumnName="DateMarriedMonth" />
+                <ScalarProperty Name="DateMarriedDay" ColumnName="DateMarriedDay" />
+                <ScalarProperty Name="DateMarriedYear" ColumnName="DateMarriedYear" />
+                <ScalarProperty Name="CityTownMarried" ColumnName="CityTownMarried" />
+                <ScalarProperty Name="StateOrProvinceMarried" ColumnName="StateOrProvinceMarried" />
+                <ScalarProperty Name="CountryMarried" ColumnName="CountryMarried" />
+                <ScalarProperty Name="JDeclarationSigned" ColumnName="JDeclarationSigned" />
+                <ScalarProperty Name="JDeclarationPersonFirstName" ColumnName="JDeclarationPersonFirstName" />
+                <ScalarProperty Name="JDeclarationPersonMiddleName" ColumnName="JDeclarationPersonMiddleName" />
+                <ScalarProperty Name="JDeclarationPersonLastName" ColumnName="JDeclarationPersonLastName" />
+                <ScalarProperty Name="SentRegistrarMonth" ColumnName="SentRegistrarMonth" />
+                <ScalarProperty Name="SentRegistrarDay" ColumnName="SentRegistrarDay" />
+                <ScalarProperty Name="SentRegistrarYear" ColumnName="SentRegistrarYear" />
+                <ScalarProperty Name="SubmittedForm4" ColumnName="SubmittedForm4" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provinces">
+            <EntityTypeMapping TypeName="nChangerDb.Province">
+              <MappingFragment StoreEntitySet="Province">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProvinceCategories">
+            <EntityTypeMapping TypeName="nChangerDb.ProvinceCategory">
+              <MappingFragment StoreEntitySet="ProvinceCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionOptions">
+            <EntityTypeMapping TypeName="nChangerDb.QuestionOption">
+              <MappingFragment StoreEntitySet="QuestionOptions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DefineQuestionsId" ColumnName="DefineQuestionsId" />
+                <ScalarProperty Name="OptionLabel" ColumnName="OptionLabel" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="nChangerDb.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TemplateTables">
+            <EntityTypeMapping TypeName="nChangerDb.TemplateTable">
+              <MappingFragment StoreEntitySet="TemplateTable">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PdfFormTemplateId" ColumnName="PdfFormTemplateId" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="SectionName" ColumnName="SectionName" />
+                <ScalarProperty Name="SectionPath" ColumnName="SectionPath" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserPackages">
+            <EntityTypeMapping TypeName="nChangerDb.UserPackage">
+              <MappingFragment StoreEntitySet="UserPackages">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PackageId" ColumnName="PackageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="nChangerDb.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="EmailVerified" ColumnName="EmailVerified" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="VerificationCode" ColumnName="VerificationCode" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTypes">
+            <EntityTypeMapping TypeName="nChangerDb.UserType">
+              <MappingFragment StoreEntitySet="UserType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserType1" ColumnName="UserType" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InputFormTables">
+            <EntityTypeMapping TypeName="nChangerDb.InputFormTable">
+              <MappingFragment StoreEntitySet="InputFormTables">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InputFormSchemaViews">
+            <EntityTypeMapping TypeName="nChangerDb.InputFormSchemaView">
+              <MappingFragment StoreEntitySet="InputFormSchemaView">
+                <ScalarProperty Name="TABLE_CATALOG" ColumnName="TABLE_CATALOG" />
+                <ScalarProperty Name="TABLE_SCHEMA" ColumnName="TABLE_SCHEMA" />
+                <ScalarProperty Name="TABLE_NAME" ColumnName="TABLE_NAME" />
+                <ScalarProperty Name="COLUMN_NAME" ColumnName="COLUMN_NAME" />
+                <ScalarProperty Name="ORDINAL_POSITION" ColumnName="ORDINAL_POSITION" />
+                <ScalarProperty Name="COLUMN_DEFAULT" ColumnName="COLUMN_DEFAULT" />
+                <ScalarProperty Name="IS_NULLABLE" ColumnName="IS_NULLABLE" />
+                <ScalarProperty Name="DATA_TYPE" ColumnName="DATA_TYPE" />
+                <ScalarProperty Name="CHARACTER_MAXIMUM_LENGTH" ColumnName="CHARACTER_MAXIMUM_LENGTH" />
+                <ScalarProperty Name="CHARACTER_OCTET_LENGTH" ColumnName="CHARACTER_OCTET_LENGTH" />
+                <ScalarProperty Name="NUMERIC_PRECISION" ColumnName="NUMERIC_PRECISION" />
+                <ScalarProperty Name="NUMERIC_PRECISION_RADIX" ColumnName="NUMERIC_PRECISION_RADIX" />
+                <ScalarProperty Name="NUMERIC_SCALE" ColumnName="NUMERIC_SCALE" />
+                <ScalarProperty Name="DATETIME_PRECISION" ColumnName="DATETIME_PRECISION" />
+                <ScalarProperty Name="CHARACTER_SET_CATALOG" ColumnName="CHARACTER_SET_CATALOG" />
+                <ScalarProperty Name="CHARACTER_SET_SCHEMA" ColumnName="CHARACTER_SET_SCHEMA" />
+                <ScalarProperty Name="CHARACTER_SET_NAME" ColumnName="CHARACTER_SET_NAME" />
+                <ScalarProperty Name="COLLATION_CATALOG" ColumnName="COLLATION_CATALOG" />
+                <ScalarProperty Name="COLLATION_SCHEMA" ColumnName="COLLATION_SCHEMA" />
+                <ScalarProperty Name="COLLATION_NAME" ColumnName="COLLATION_NAME" />
+                <ScalarProperty Name="DOMAIN_CATALOG" ColumnName="DOMAIN_CATALOG" />
+                <ScalarProperty Name="DOMAIN_SCHEMA" ColumnName="DOMAIN_SCHEMA" />
+                <ScalarProperty Name="DOMAIN_NAME" ColumnName="DOMAIN_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="uspSelectValueByColumnName" FunctionName="nChangerDb.Store.uspSelectValueByColumnName" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

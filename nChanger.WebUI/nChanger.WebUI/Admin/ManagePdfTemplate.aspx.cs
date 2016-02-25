@@ -16,6 +16,10 @@ namespace nChanger.WebUI.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            //if (Request.QueryString["id"] != null)
+            //    hypBack.NavigateUrl = "ManageProvinceCategory.aspx?id=" + Request.QueryString["id"];
+
             var file = Request.Files["FileData"];
 
             if (file != null)
@@ -69,6 +73,7 @@ namespace nChanger.WebUI.Admin
 
                 if (templateList.Count != 0)
                 {
+                    gvTemplate.Visible = true;
                     var dtSearch = CommonFunctions.ToDataTable<PdfFormTemplate>(templateList);
 
                     if (dtSearch != null)
@@ -78,6 +83,10 @@ namespace nChanger.WebUI.Admin
                             Convert.ToString(ViewState["sortDirection"]), Convert.ToString(ViewState["sortColumn"]));
                         BindBottomPaging(ucPaging, ucPaging1);
                     }
+                }
+                else
+                {
+                    gvTemplate.Visible = false;
                 }
             }
         }
@@ -189,6 +198,38 @@ namespace nChanger.WebUI.Admin
         protected void updatePanelPdf_OnLoad(object sender, EventArgs e)
         {
             BindTemplates();
+        }
+
+        protected void gvTemplate_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            var id = Guid.Parse(Convert.ToString(gvTemplate.DataKeys[e.RowIndex].Values[0]));
+
+            try
+            {
+                using (var dataContext = new nChangerDb())
+                {
+                    var dbEntry = dataContext.PdfFormTemplates.Find(id);
+                    dataContext.PdfFormTemplates.Remove(dbEntry);
+                    dataContext.SaveChanges();
+                    lblMsg.Text = "Template " + dbEntry.TemplateName + " deleted successfully.";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), "showAlert()", true);
+
+                    BindTemplates();
+                }
+            }
+            catch (Exception exception)
+            {
+                lblMsg.Text = exception.Message;
+            }
+        }
+
+        protected void gvTemplate_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowIndex != gvTemplate.EditIndex)
+            {
+                (e.Row.Cells[5].Controls[0] as ImageButton).Attributes["onclick"] =
+                    "if(!confirm('Do you want to delete the record?')){ return false; };";
+            }
         }
     }
 }

@@ -204,11 +204,11 @@ liability.
                                 <p>
                                 </p>
                                 <div style="text-align: center; padding-bottom: 100px;">
-                                    <div class="ui checked checkbox">
+                                    <div>
                                         <input type="checkbox"  value="Accept"  onClick="enableSubmit(this)">
                                         <label>Agree</label>
                                     </div>
-                                    <a id="sbtn" value="Accept"   class="ui right labeled icon button green disabled" href="Account/signup.aspx">
+                                    <a id="sbtn" value="Accept"   class="ui right labeled icon button green disabled" href="selectPackage.aspx">
                                         <i class="right arrow icon"></i>
                                         Proceed</a>
                                 </div>

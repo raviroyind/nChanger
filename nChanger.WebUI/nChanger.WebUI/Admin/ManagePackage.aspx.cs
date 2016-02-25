@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Migrations;
+using System.Data.Entity.ModelConfiguration.Configuration;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
@@ -143,7 +144,7 @@ namespace nChanger.WebUI.Admin
         {
             if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowIndex != gvPackage.EditIndex)
             {
-                (e.Row.Cells[2].Controls[0] as ImageButton).Attributes["onclick"] =
+                (e.Row.Cells[4].Controls[0] as ImageButton).Attributes["onclick"] =
                     "if(!confirm('Do you want to delete the record?')){ return false; };";
             }
         }
@@ -183,7 +184,18 @@ namespace nChanger.WebUI.Admin
                     {
                         txtPackageName.Text = package.PackageName;
                         txtPrice.Text = package.Price.ToString("N");
+                        chkIsActive.Checked = package.IsActive;
                         hidPackageId.Value = id.ToString();
+
+
+                        if (package.PackageFeatures.Count > 0)
+                        {
+                            foreach (var feature in package.PackageFeatures)
+                            {
+                                chkFeatures.Items.FindByValue(feature.FeatureId.ToString()).Selected = true;
+                            }
+                        }
+
                         ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), "loadEdit()", true);
                     }
                 }
@@ -200,6 +212,10 @@ namespace nChanger.WebUI.Admin
             hidPackageId.Value = string.Empty;
             hidPackageName.Value = string.Empty;
             hidPrice.Value = string.Empty;
+            hidFeatures.Value = string.Empty;
+            chkFeatures.ClearSelection();
+            hidActive.Value = string.Empty;
+            chkIsActive.Checked = true;
             BindPackages();
         }
 
@@ -217,19 +233,45 @@ namespace nChanger.WebUI.Admin
                         Id = id,
                         PackageName = hidPackageName.Value,
                         Price = Convert.ToDecimal(hidPrice.Value),
-                        IsActive = true,
+                        IsActive = !string.IsNullOrEmpty(hidActive.Value) && Convert.ToBoolean(hidActive.Value),
                         EntryDate = DateTime.Now,
                         EntryIP = CommonFunctions.GetIpAddress(),
-                        EntryId = UserId
+                        EntryId = UserId,
+
                     };
 
                     dataContext.Packages.AddOrUpdate(package);
+
+                    #region Package Features...
+                     
+                    dataContext.Database.ExecuteSqlCommand("DELETE FROM PackageFeature WHERE PackageId='"+id+"'");
+
+                    if (!string.IsNullOrEmpty(hidFeatures.Value))
+                    {
+                        var featureArray = hidFeatures.Value.Substring(0, hidFeatures.Value.Length - 1).Split(',');
+
+                        foreach (var feature in featureArray.Select(item => new PackageFeature
+                        {
+                            Id = Guid.NewGuid(),
+                            PackageId = id,
+                            FeatureId = Guid.Parse(chkFeatures.Items.FindByText(item).Value),
+                            FeatureName = item,
+                            EntryDate = DateTime.Now,
+                            EntryIP = CommonFunctions.GetIpAddress(),
+                            EntryId = UserId,
+                            IsActive = true
+                        }))
+                        {
+                            dataContext.PackageFeatures.AddOrUpdate(feature);
+                        }
+                    }
+
+                    #endregion Package Features...
+                     
                     dataContext.SaveChanges();
                     lblMsg.Text = "Package \"" + package.PackageName + "\" " + (string.IsNullOrEmpty(hidPackageId.Value) ?  "added" : "updated") + " successfully.";
                     ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), "showAlert()", true);
-
                 }
-
             }
             catch (DbEntityValidationException ex)
             {

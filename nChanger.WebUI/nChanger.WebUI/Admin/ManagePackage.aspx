@@ -7,6 +7,8 @@
     <asp:HiddenField runat="server" ID="hidPackageId" />
     <asp:HiddenField runat="server" ID="hidPackageName" />
     <asp:HiddenField runat="server" ID="hidPrice" />
+    <asp:HiddenField runat="server" ID="hidFeatures" />
+    <asp:HiddenField runat="server" ID="hidActive" />
     <div class="ui modal" id="divPackage">
         <i class="close icon black" onclick="$('.modal').modal('hide');"></i>
         <div class="header">
@@ -17,7 +19,7 @@
                 <div class="field">
                     <div class="field">
                         <label>Package Name</label>
-                        <asp:TextBox runat="server" ID="txtPackageName" placeholder="Package Name" MaxLength="50"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="txtPackageName" name="name" placeholder="Package Name" MaxLength="50"></asp:TextBox>
                     </div>
                 </div>
                 <h3 class="ui divider"></h3>
@@ -34,6 +36,14 @@
                      <asp:CheckBoxList runat="server" ID="chkFeatures" RepeatColumns="2" Width="100%" RepeatDirection="Vertical" CssClass="ui checkbox large fluid" CellPadding="40" CellSpacing="40" />
                 </div>
                  <h3 class="ui divider"></h3>
+                <div class="field">
+                    <div class="field">
+                        <div class="ui toggle checkbox green">
+                            <asp:CheckBox runat="server" ID="chkIsActive" Checked="True" CssClass="large checkmark icon green" Text="Is Active" />
+                        </div>
+                    </div>
+                </div>
+                <h3 class="ui divider"></h3>
                 <div class="actions">
                     <div class="ui button" onclick="$('.modal').modal('hide');">Cancel</div>
                     <asp:LinkButton runat="server" ID="btnAddPackage"
@@ -45,7 +55,7 @@
             </div>
         </div>
     </div>
-
+         
     <div class="ui warning message fluid" style="display: none;" id="success-alert">
         <asp:Label ID="lblMsg" Style="font-size: 1.2em; font-weight: bold;" runat="server"></asp:Label>
     </div>
@@ -122,7 +132,31 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:CommandField ButtonType="Image"
+                        <asp:TemplateField>
+                            <HeaderTemplate>
+                                <asp:LinkButton ID="lnkbtnIsActive" runat="server" CommandArgument="IsActive" OnClick="gvPackage_Sorting"
+                                    Text="Active" ForeColor="#000000"></asp:LinkButton>
+                                <asp:LinkButton ID="btnSort_IsActive" runat="server"
+                                    CommandArgument="IsActive"> </asp:LinkButton>
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                               <%# Convert.ToBoolean(Eval("IsActive").ToString())? "<i class='ui check icon green large'/>":"" %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        
+                        <asp:TemplateField>
+                            <HeaderTemplate>
+                                <asp:LinkButton ID="lnkbtnEntryDate" runat="server" CommandArgument="EntryDate" OnClick="gvPackage_Sorting"
+                                    Text="Entry Date" ForeColor="#000000"></asp:LinkButton>
+                                <asp:LinkButton ID="btnSort_EntryDate" runat="server"
+                                    CommandArgument="EntryDate"> </asp:LinkButton>
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                <%# string.IsNullOrEmpty(Eval("EntryDate","{0:dd/MM/yyyy}"))?"": Convert.ToDateTime(Eval("EntryDate")).ToString("M/dd/yyyy") %>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                         <asp:CommandField ButtonType="Image"
                             SelectImageUrl="../images/edit.png"
                             HeaderText="Actions"
                             DeleteImageUrl="../images/delete.png"
@@ -132,15 +166,6 @@
                             ShowDeleteButton="true">
                             <ItemStyle HorizontalAlign="Center"></ItemStyle>
                         </asp:CommandField>
-
-                        <asp:TemplateField>
-                            <HeaderTemplate>
-                                View/ Add Features
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <i class="arrow right icon large"></i>
-                            </ItemTemplate>
-                        </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
             </div>
@@ -151,7 +176,7 @@
     <script type="text/javascript" src="../Scripts/semantic.min.js"></script>
     <script src="../Scripts/jquery.maskMoney.min.js"></script>
     <script type="text/javascript">
-        $('.ui.normal.selection.dropdown.compact').dropdown();
+       $('.ui.normal.selection.dropdown.compact').dropdown();
         $(document).on('click', "#MainContent_hypPackage", function () {
             $('#divPackage').modal({
                 detachable: false,
@@ -159,6 +184,9 @@
                 onShow: function () {
                     document.getElementById("<%=txtPackageName.ClientID%>").value = "";
                     document.getElementById("<%=txtPrice.ClientID%>").value = "";
+                },
+                onHide:function() {
+                    clearCheck();
                 }
             }).modal('show').modal('refresh');
         });
@@ -181,23 +209,55 @@
         function loadEdit() {
             $('#divPackage').modal({
                 detachable: true,
-                observeChanges: true
+                observeChanges: true,
+                onHide: function () {
+                    clearCheck();
+                }
             }).modal('show').modal('refresh');
         }
 
         function doCustomPost() {
-
+            GetSelectedItem();
+            document.getElementById('<%=hidActive.ClientID %>').value = "";
             var modalPackageName = document.getElementById("<%=txtPackageName.ClientID%>");
             var modalPackagePrice = document.getElementById("<%=txtPrice.ClientID%>");
 
             document.getElementById('<%=hidPackageName.ClientID %>').value = modalPackageName.value;
             document.getElementById('<%=hidPrice.ClientID %>').value = modalPackagePrice.value;
 
+            if (document.getElementById('<%=chkIsActive.ClientID %>').checked)
+                document.getElementById('<%=hidActive.ClientID %>').value = "true";
+            else
+                document.getElementById('<%=hidActive.ClientID %>').value = "false";
+
+            clearCheck();
             $('.modal').modal('hide');
 
         }
 
-        function showAlert() {
+       function clearCheck() {
+           var CHK = document.getElementById("<%=chkFeatures.ClientID%>");
+           var checkbox = CHK.getElementsByTagName("input");
+           var label = CHK.getElementsByTagName("label");
+           for (var i = 0; i < checkbox.length; i++) {
+               checkbox[i].checked = false;
+           }
+       }
+
+
+        function GetSelectedItem() {
+            document.getElementById("<%=hidFeatures.ClientID%>").value = '';
+           var CHK = document.getElementById("<%=chkFeatures.ClientID%>");
+           var checkbox = CHK.getElementsByTagName("input");
+           var label = CHK.getElementsByTagName("label");
+           for (var i = 0; i < checkbox.length; i++) {
+               if (checkbox[i].checked) {
+                   document.getElementById("<%=hidFeatures.ClientID%>").value += label[i].innerHTML + ',';
+               }
+           }
+       }
+
+       function showAlert() {
             $("#success-alert").show().delay(5000).fadeOut();
         }
     </script>

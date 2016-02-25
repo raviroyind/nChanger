@@ -147,7 +147,7 @@
                             </HeaderTemplate>
                             <ItemTemplate>
                                 <div class="actions center aligned">
-                                    <asp:HyperLink ID="hypViewQuestions" runat="server" CssClass="ui button small blue disabled" 
+                                    <asp:HyperLink ID="hypViewQuestions" runat="server" CssClass="ui button small blue" 
                                          NavigateUrl='<%# string.Format("ManageQuestions.aspx?id={0}", Eval("Id")) %>' 
                                          CommandArgument='<%#Eval("Id").ToString() %>' CommandName="View"
                                         OnClick="lnkViewCategories_OnClick">

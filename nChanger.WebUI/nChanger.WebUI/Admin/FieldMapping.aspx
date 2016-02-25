@@ -13,7 +13,7 @@
         </ProgressTemplate>
     </asp:UpdateProgress>
       <div class="ui warning message fluid" style="display: none;" id="success-alert">
-        <asp:Label ID="lblMsg" Style="font-size: 1.2em; font-weight: bold;" runat="server"></asp:Label>
+        <asp:Label ID="lblMsg" Style="font-size: 1.2em; font-weight: bold;" runat="server" Text="Template mapping saved!"></asp:Label>
     </div>
 <div class="ui sixteen wide column fluid">
     <div class="ui grid">
@@ -107,6 +107,7 @@
                               <asp:LinkButton runat="server" ID="btnSubmit" Width="200" CausesValidation="False" CssClass="ui button green large" TabIndex="0" OnClick="btnSubmit_OnClick">
                             <i class="database icon large"></i>Submit
                               </asp:LinkButton>
+                                <asp:HyperLink runat="server" ID="hypBack" CssClass="ui button green" Text="Back" NavigateUrl="ManagePdfTemplate.aspx" ToolTip="Back to form listing."><strong><i class="arrow left icon large"></i>&nbsp;Back</strong></asp:HyperLink>
                           </div>
                       </div>
                   </div>

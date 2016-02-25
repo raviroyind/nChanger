@@ -234,6 +234,8 @@ namespace nChanger.WebUI.Admin
                 using (var dataContext = new nChangerDb())
                 {
                     var dbEntry = dataContext.FeatureMasters.Find(id);
+
+                    dataContext.Database.ExecuteSqlCommand("DELETE FROM PackageFeature WHERE FeatureId='" + id + "'");
                     dataContext.FeatureMasters.Remove(dbEntry);
                     dataContext.SaveChanges();
                     lblMsg.Text = "Feature " + dbEntry.Feature + " deleted successfully.";

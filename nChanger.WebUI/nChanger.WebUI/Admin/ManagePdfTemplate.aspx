@@ -15,7 +15,7 @@
         </ProgressTemplate>
     </asp:UpdateProgress>
       <div class="ui warning message fluid" style="display: none;" id="success-alert">
-        <asp:Label ID="lblMsg" Style="font-size: 1.2em; font-weight: bold;" runat="server"></asp:Label>
+        <asp:Label ID="lblMsg" Style="font-size: 1.2em; font-weight: bold;" runat="server" Text="Template deleted successfully!"></asp:Label>
     </div>
 <div class="ui sixteen wide column fluid">
     <div class="ui grid">
@@ -61,7 +61,7 @@
     </div>
     <div class="one wide column"></div>
     
-    <asp:UpdatePanel runat="server" ID="updatePanelPdf"  OnLoad = "updatePanelPdf_OnLoad">
+    <asp:UpdatePanel runat="server" ID="updatePanelPdf"  OnLoad = "updatePanelPdf_OnLoad" ChildrenAsTriggers="True">
         <ContentTemplate>
             <div class="ui grid">
                 <div class="one wide column"></div>
@@ -81,7 +81,7 @@
                 <div class="one wide column"></div>
                 <div class="fourteen wide column">
                         <asp:GridView ID="gvTemplate" runat="server" AutoGenerateColumns="False" DataKeyNames="Id"
-                            CssClass="ui compact celled definition table" OnSorting="gvTemplate_OnSorting">
+                            CssClass="ui compact celled definition table" OnSorting="gvTemplate_OnSorting" OnRowDeleting="gvTemplate_RowDeleting" OnRowDataBound="gvTemplate_RowDataBound">
                             <HeaderStyle CssClass="gridHead" Height="50"></HeaderStyle>
                             <EmptyDataTemplate>
                                 <span class="message">No records found.</span>
@@ -141,6 +141,17 @@
                                         <asp:HyperLink ID="hypMap" runat="server" CssClass="ui button small green" NavigateUrl='<%# string.Format("FieldMapping.aspx?id={0}&active={1}", Eval("Id"), Eval("IsActive")) %>'>Mapping</asp:HyperLink>
                                         </ItemTemplate>
                                 </asp:TemplateField>
+                                
+                                <asp:CommandField ButtonType="Image"
+                            SelectImageUrl="../images/edit.png"
+                            HeaderText="Delete"
+                            DeleteImageUrl="../images/delete.png"
+                            DeleteText="Delete" SelectText="Edit"
+                            ShowSelectButton="False"
+                            CausesValidation="False"
+                            ShowDeleteButton="true">
+                            <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:CommandField>
                             </Columns>
                         </asp:GridView>
                         <uc1:Paging ID="ucPaging1" Visible="False" runat="server" />
@@ -153,7 +164,7 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-    
+    <script type="text/javascript" src="../Scripts/semantic.min.js"></script>
      <script type="text/javascript">
         $(document).ready(function () {
             $("#uploadify").uploadify({
@@ -167,5 +178,8 @@
             });
         });
          
+         function showAlert() {
+             $("#success-alert").show().delay(5000).fadeOut();
+         }
     </script>
 </asp:Content>

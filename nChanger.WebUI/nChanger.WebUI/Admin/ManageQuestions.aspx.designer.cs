@@ -22,6 +22,15 @@ namespace nChanger.WebUI.Admin {
         protected global::System.Web.UI.WebControls.Label lblMsg;
         
         /// <summary>
+        /// txtQuestion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtQuestion;
+        
+        /// <summary>
         /// reqId control.
         /// </summary>
         /// <remarks>
@@ -40,13 +49,13 @@ namespace nChanger.WebUI.Admin {
         protected global::System.Web.UI.WebControls.DropDownList ddlQuestionTypeAdd;
         
         /// <summary>
-        /// txtQuestion control.
+        /// txtOptionLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtQuestion;
+        protected global::System.Web.UI.WebControls.TextBox txtOptionLabel;
         
         /// <summary>
         /// btnAddQuestion control.
@@ -94,6 +103,15 @@ namespace nChanger.WebUI.Admin {
         protected global::System.Web.UI.WebControls.HiddenField hidQuestion;
         
         /// <summary>
+        /// hidOptions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidOptions;
+        
+        /// <summary>
         /// lblCurrentProvince control.
         /// </summary>
         /// <remarks>
@@ -101,33 +119,6 @@ namespace nChanger.WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCurrentProvince;
-        
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
-        /// lblCaption control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblCaption;
-        
-        /// <summary>
-        /// ddlProvince control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlProvince;
         
         /// <summary>
         /// ucPaging control.
@@ -139,13 +130,13 @@ namespace nChanger.WebUI.Admin {
         protected global::nChanger.WebUI.Paging ucPaging;
         
         /// <summary>
-        /// hypAddCat control.
+        /// hypAddQuestion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hypAddCat;
+        protected global::System.Web.UI.WebControls.HyperLink hypAddQuestion;
         
         /// <summary>
         /// hypBack control.

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity.Migrations;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -13,12 +15,106 @@ namespace nChanger.WebUI.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-             
+            if (!IsPostBack)
+            {
+                BindQuestions();
+            }
+        }
+
+        private void BindQuestions()
+        {
+            using (var dataContext = new nChangerDb())
+            {
+                var provinceCategoryId = Guid.Parse(Request.QueryString["id"]);
+                var questionsList = dataContext.DefineQuestions.Where(q => q.ProvinceCategoryId.Equals(provinceCategoryId)).ToList();
+
+                if (questionsList.Count > 0)
+                {
+                    var dtSearch = CommonFunctions.ToDataTable<DefineQuestion>(questionsList);
+                    if (dtSearch != null)
+                    {
+                        gvDefineQuestions.Visible = true;
+                        Session.Add("GetDataTable", dtSearch);
+                        ucPaging.BindPaging(gvDefineQuestions, dtSearch, ucPaging.PageNo, "txt",
+                            Convert.ToString(ViewState["sortDirection"]), Convert.ToString(ViewState["sortColumn"]));
+                        BindBottomPaging(ucPaging, ucPaging1);
+                    }
+                }
+                else
+                    gvDefineQuestions.Visible = false;
+            }
         }
 
         protected void btnAddQuestion_OnClick(object sender, EventArgs e)
         {
-             
+            Submit();
+            hidQuestionId.Value = string.Empty;
+            hidQuestion.Value = string.Empty;
+            hidOptions.Value = string.Empty;
+            BindQuestions();
+        }
+
+        public bool Submit()
+        {
+           
+            var success = true;
+            var id = string.IsNullOrEmpty(hidQuestionId.Value) ? Guid.NewGuid() : Guid.Parse(hidQuestionId.Value);
+            try
+            {
+                using (var dataContext = new nChangerDb())
+                {
+                    var question = new DefineQuestion()
+                    {
+                        Id = id,
+                        ProvinceCategoryId = Guid.Parse(Request.QueryString["id"]),
+                        Question = hidQuestion.Value,
+                        QuestionType = hidQuestionType.Value,
+                       
+                        IsActive =true,
+                        EntryDate = DateTime.Now,
+                        EntryIP = CommonFunctions.GetIpAddress(),
+                        EntryId = UserId,
+
+                    };
+
+                    dataContext.DefineQuestions.AddOrUpdate(question);
+
+                    #region Options...
+
+                    dataContext.Database.ExecuteSqlCommand("DELETE FROM QuestionOptions WHERE DefineQuestionsId='" + id + "'");
+
+                    if (!string.IsNullOrEmpty(hidOptions.Value))
+                    {
+                        var optionsArray = hidOptions.Value.Substring(0, hidOptions.Value.Length - 1).Split(',');
+
+                        foreach (var option in optionsArray.Select(item => new QuestionOption
+                        {
+                            Id = Guid.NewGuid(),
+                            DefineQuestionsId = id,
+                            OptionLabel = item,
+                            EntryDate = DateTime.Now,
+                            EntryIP = CommonFunctions.GetIpAddress(),
+                            EntryId = UserId,
+                            IsActive = true
+                        }))
+                        {
+                            dataContext.QuestionOptions.AddOrUpdate(option);
+                        }
+                    }
+
+                    #endregion Package Features...
+
+                    dataContext.SaveChanges();
+                    lblMsg.Text = "Question " + (string.IsNullOrEmpty(hidQuestionId.Value) ? "added" : "updated") + " successfully.";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), "showAlert()", true);
+                }
+            }
+            catch (DbEntityValidationException ex)
+            {
+                success = false;
+            }
+
+            return success;
         }
 
 
@@ -117,10 +213,10 @@ namespace nChanger.WebUI.Admin
         {
              
         }
-
-        protected void gvDefineQuestions_SelectedIndexChanged(object sender, EventArgs e)
+         
+        protected void gvDefineQuestions_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-             
+            
         }
     }
 }

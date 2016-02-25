@@ -80,6 +80,7 @@ namespace nChanger.WebUI.Account
                     dataContext.Users.Add(dbEntry);
                     dataContext.SaveChanges();
                     queryId = dbEntry.UserId;
+                    AddUserPackage(queryId);
                     returnMessage = SendRegistrationMail(dbEntry) ? "SUCCESS" : "MAIL_ERROR";
                 }
 
@@ -88,6 +89,32 @@ namespace nChanger.WebUI.Account
             {
                 success = false;
                 returnMessage = ex.EntityValidationErrors.SelectMany(eve => eve.ValidationErrors).Aggregate(returnMessage, (current, ve) => current + (ve.PropertyName + " Error Msg:" + ve.ErrorMessage));
+            }
+
+            return success;
+        }
+
+        private bool AddUserPackage(string userId)
+        {
+            var success = true;
+            try
+            {
+                using (var dataContext = new nChangerDb())
+                {
+                    dataContext.UserPackages.Add(new UserPackage
+                    {
+                        Id=Guid.NewGuid(),
+                        PackageId = Guid.Parse(Request.QueryString["pid"]),
+                        UserId=userId,
+                    });
+
+                    dataContext.SaveChanges();
+                }
+            }
+            catch (Exception exception)
+            {
+                var msg = exception.Message;
+                success = false;
             }
 
             return success;

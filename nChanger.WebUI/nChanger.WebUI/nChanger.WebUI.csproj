@@ -109,6 +109,22 @@
     <Content Include="assets\multiselect\jquery.sumoselect.js" />
     <Content Include="assets\multiselect\jquery.sumoselect.min.js" />
     <Content Include="assets\multiselect\sumoselect.css" />
+    <Content Include="assets\package.css" />
+    <Content Include="assets\packagecss\2536007149-postmessagerelay.js" />
+    <Content Include="assets\packagecss\api.js" />
+    <Content Include="assets\packagecss\core-rpc-shindig.random-shindig.sha1.js" />
+    <Content Include="assets\packagecss\dc.js" />
+    <Content Include="assets\packagecss\easy.big.js" />
+    <Content Include="assets\packagecss\easy.css" />
+    <Content Include="assets\packagecss\iealert.min.js" />
+    <Content Include="assets\packagecss\inpage_linkid.js" />
+    <Content Include="assets\packagecss\jquery.slicknav.min.js" />
+    <Content Include="assets\packagecss\plusone.js" />
+    <Content Include="assets\packagecss\slicknav.css" />
+    <Content Include="assets\packagecss\style.css" />
+    <Content Include="assets\packagecss\trustlogo.js" />
+    <Content Include="assets\packagecss\us.css" />
+    <Content Include="assets\packagecss\widget.js" />
     <Content Include="assets\prettify.css" />
     <Content Include="assets\prettify.js" />
     <Content Include="assets\style.css" />
@@ -139,6 +155,7 @@
     <Content Include="Content\UI-Table-master\package.json" />
     <Content Include="Content\UI-Table-master\composer.json" />
     <Content Include="Content\UI-Table-master\bower.json" />
+    <Content Include="packageSelection.aspx" />
     <Content Include="Scripts\jquery-2.2.0.min.map" />
     <Content Include="assets\multiselect\bower.json" />
     <Content Include="assets\multiselect\jquery.sumoselect.jquery.json" />
@@ -149,6 +166,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="selectPackage.aspx" />
     <Content Include="tinymce\jscripts\tiny_mce\langs\en.js" />
     <Content Include="tinymce\jscripts\tiny_mce\license.txt" />
     <Content Include="tinymce\jscripts\tiny_mce\plugins\advhr\css\advhr.css" />
@@ -748,6 +766,13 @@
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="packageSelection.aspx.cs">
+      <DependentUpon>packageSelection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="packageSelection.aspx.designer.cs">
+      <DependentUpon>packageSelection.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Secured\dashboard.aspx.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -761,6 +786,13 @@
     </Compile>
     <Compile Include="Secured\Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="selectPackage.aspx.cs">
+      <DependentUpon>selectPackage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="selectPackage.aspx.designer.cs">
+      <DependentUpon>selectPackage.aspx</DependentUpon>
     </Compile>
     <Compile Include="services.asmx.cs">
       <DependentUpon>services.asmx</DependentUpon>

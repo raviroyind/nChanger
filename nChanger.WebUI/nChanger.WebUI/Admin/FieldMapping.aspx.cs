@@ -25,16 +25,51 @@ namespace nChanger.WebUI.Admin
         private IList _tableList;
         private string _fileName;
         private IQueryable<string> _columns;
+        private  ListItem[] _generalQuestions;
         private nChangerDb _dataContext = new nChangerDb();
 
         #endregion Variable Declarations...
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //if (Request.QueryString["id"] != null)
+            //    hypBack.NavigateUrl = "ManagePdfTemplate.aspx?id=" + Request.QueryString["id"];
+
             if (!IsPostBack)
             {
+
+
+
                 if (Request.QueryString["id"] != null)
+                {
+                    #region Add Quetions....
+
+                    using (var dataContext = new nChangerDb())
+                    {
+                        var id = Guid.Parse(Request.QueryString["id"]);
+                        var provinceCategoryId = dataContext.PdfFormTemplates.Find(id).ProvinceCategoryId;
+                        var listQuestions = dataContext.DefineQuestions.Where(q => q.ProvinceCategoryId.Equals(provinceCategoryId)).ToList();
+
+                        if (listQuestions.Count > 0)
+                        {
+                            _generalQuestions=new ListItem[listQuestions.Count];
+                            for (var i = 0; i < listQuestions.Count; i++)
+                            {
+                                _generalQuestions[i] = new ListItem
+                                {
+                                    Text = "General Questions | " + listQuestions[i].Question,
+                                    Value = listQuestions[i].Id.ToString()
+                                };
+                            }
+
+                        }
+                    }
+
+                    #endregion....
+
                     LoadPdfData();
+                    
+                }
             }
         }
 
@@ -75,10 +110,10 @@ namespace nChanger.WebUI.Admin
             if (!string.IsNullOrEmpty(hypPdf.Text))
             {
                 //If EF
-                //var builder = new EntityConnectionStringBuilder(ConfigurationManager.ConnectionStrings["nChangerDb"].ConnectionString);
-                //var cnnStr = builder.ProviderConnectionString;
+                var builder = new EntityConnectionStringBuilder(ConfigurationManager.ConnectionStrings["nChangerDb"].ConnectionString);
+                var cnnStr = builder.ProviderConnectionString;
 
-                var sqlBuilder = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["nChangerDb"].ConnectionString);
+                var sqlBuilder = new SqlConnectionStringBuilder(cnnStr);
 
 
                 _columns = from c in _dataContext.InputFormSchemaViews
@@ -211,6 +246,8 @@ namespace nChanger.WebUI.Admin
                 {
 
                     BindDropdownList(ddlSqlColumn, _columns.ToList(), "", "");
+                    ddlSqlColumn.Items.AddRange(_generalQuestions);
+
 
                     if (Request.QueryString["id"] != null)
                     {
