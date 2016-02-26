@@ -24,6 +24,7 @@
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
 </head>
 <body>
+
     <form runat="server">
         <asp:ScriptManager runat="server"  >
         </asp:ScriptManager>

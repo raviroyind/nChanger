@@ -65,12 +65,12 @@
                     <a href="ManageProvinces.aspx" class="section">Provinces</a>
                     <i class="right chevron icon divider"></i>
                     <div class="active section">
-                        <asp:Label ID="lblCurrentProvince" runat="server" />
+                        <asp:Label ID="lblCurrentProvince" Visible="False" runat="server" />
                     </div>
                 </div>
 
-                <h3 class="ui header orange" id="lblCaption" runat="server"></h3>
-                <asp:DropDownList runat="server" ID="ddlProvince" CssClass="ui normal selection dropdown" AutoPostBack="True" OnSelectedIndexChanged="ddlProvince_OnSelectedIndexChanged"/>
+                <h3 class="ui header orange" id="lblCaption" Visible="False" runat="server"></h3>
+               <asp:DropDownList runat="server" ID="ddlProvince" CssClass="ui normal selection dropdown" AutoPostBack="True" OnSelectedIndexChanged="ddlProvince_OnSelectedIndexChanged"/>
                 <uc1:paging ID="ucPaging" runat="server" Align="right" PageSize="5" OnNavigator_Click="ImgbtnNavigator_Click" ShowNoOfRecordsDropDown="True"
                     OnNoOfRecords_SelectedIndexChanged="ddlNoOfRecords_IndexChanged"
                     OnPageNo_Changed="txtPageNo_Changed" />

@@ -34,6 +34,7 @@
     </div>
 </div>
  
+   
     <div class="one wide column"></div>
     <div class="fourteen wide column">
         <div class="ui centered">
@@ -104,10 +105,14 @@
                   <div class="fourteen wide column">
                       <div class="row right aligned">
                           <div class="right item">
-                              <asp:LinkButton runat="server" ID="btnSubmit" Width="200" CausesValidation="False" CssClass="ui button green large" TabIndex="0" OnClick="btnSubmit_OnClick">
+                              <asp:LinkButton runat="server" ID="btnSubmit" Width="200" CausesValidation="False" CssClass="ui orange button" TabIndex="0" OnClick="btnSubmit_OnClick">
                             <i class="database icon large"></i>Submit
                               </asp:LinkButton>
                                 <asp:HyperLink runat="server" ID="hypBack" CssClass="ui button green" Text="Back" NavigateUrl="ManagePdfTemplate.aspx" ToolTip="Back to form listing."><strong><i class="arrow left icon large"></i>&nbsp;Back</strong></asp:HyperLink>
+                               <asp:LinkButton runat="server" ID="btnEditFields" OnClick="btnEditFields_OnClick" Visible="False" CssClass="ui right floated blue button">
+                                   <i class="edit icon large"></i>
+                                   Edit Field Bindings
+                               </asp:LinkButton>
                           </div>
                       </div>
                   </div>
@@ -137,7 +142,8 @@
                                 <asp:BoundField HeaderText="Right" DataField="Right" />
                                 <asp:TemplateField HeaderText="SQL Field Name">
                                     <ItemTemplate>
-                                        <asp:DropDownList runat="server" CssClass="ui fluid search selection dropdown" ID="ddlSQLColumn">
+                                        <asp:Label runat="server" ID="lblSQLColumn" Visible="False" Text='<%# Eval("TableName") +" | "+ Eval("DbFieldName") %>'></asp:Label>
+                                        <asp:DropDownList runat="server" CssClass="ui fluid search selection dropdown" ID="ddlSQLColumn" >
                                         </asp:DropDownList>
                                     </ItemTemplate>
                                 </asp:TemplateField>
@@ -155,6 +161,7 @@
             <h4 class="ui dividing header"></h4>
         </ContentTemplate>
     </asp:UpdatePanel>
+        
      <script type="text/javascript" src="../Scripts/semantic.min.js"></script>
     <script type="text/javascript">
         $('.ui.fluid.search.selection.dropdown').dropdown();

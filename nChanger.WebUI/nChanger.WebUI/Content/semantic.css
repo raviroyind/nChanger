@@ -4087,6 +4087,347 @@ input::selection {
   color: #ffe21f !important;
 }
 
+
+
+/*
+    CUSTOM BUTTON
+*/
+
+/*--- 0e566c ---*/
+
+.ui.slate.buttons .button,
+.ui.slate.button {
+  background-color: #0e566c;
+  color: #ffffff;
+  text-shadow: none;
+  background-image: none;
+}
+
+.ui.slate.button {
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+
+.ui.slate.buttons .button:hover,
+.ui.slate.button:hover {
+  background-color: #0C495A;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.ui.slate.buttons .button:focus,
+.ui.slate.button:focus {
+  background-color: #008c86;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.ui.slate.buttons .button:active,
+.ui.slate.button:active {
+  background-color: #00827c;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.ui.slate.buttons .active.button,
+.ui.slate.buttons .active.button:active,
+.ui.slate.active.button,
+.ui.slate.button .active.button:active {
+  background-color: #009c95;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+/* Basic */
+
+.ui.basic.slate.buttons .button,
+.ui.basic.slate.button {
+  box-shadow: 0px 0px 0px 1px rgba(34, 36, 38, 0.15) inset !important;
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+
+.ui.basic.slate.buttons .button:hover,
+.ui.basic.slate.button:hover {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 2px #009c95 inset !important;
+  color: #009c95 !important;
+}
+
+.ui.basic.slate.buttons .button:focus,
+.ui.basic.slate.button:focus {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 2px #008c86 inset !important;
+}
+
+.ui.basic.slate.buttons .active.button,
+.ui.basic.slate.active.button {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 2px #009c95 inset !important;
+  color: #00827c !important;
+}
+
+.ui.basic.slate.buttons .button:active,
+.ui.basic.slate.button:active {
+  box-shadow: 0px 0px 0px 2px #00827c inset !important;
+  color: #00827c !important;
+}
+
+.ui.buttons > .basic.slate.button:not(:first-child) {
+  margin-left: -2px;
+}
+
+/* Inverted */
+
+.ui.inverted.slate.buttons .button,
+.ui.inverted.slate.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px #6dffff inset !important;
+  color: #6dffff;
+}
+
+.ui.inverted.slate.buttons .button:hover,
+.ui.inverted.slate.button:hover,
+.ui.inverted.slate.buttons .button:focus,
+.ui.inverted.slate.button:focus,
+.ui.inverted.slate.buttons .button.active,
+.ui.inverted.slate.button.active,
+.ui.inverted.slate.buttons .button:active,
+.ui.inverted.slate.button:active {
+  box-shadow: none !important;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.ui.inverted.slate.buttons .button:hover,
+.ui.inverted.slate.button:hover {
+  background-color: #54ffff;
+}
+
+.ui.inverted.slate.buttons .button:focus,
+.ui.inverted.slate.button:focus {
+  background-color: #44ffff;
+}
+
+.ui.inverted.slate.buttons .active.button,
+.ui.inverted.slate.active.button {
+  background-color: #54ffff;
+}
+
+.ui.inverted.slate.buttons .button:active,
+.ui.inverted.slate.button:active {
+  background-color: #3affff;
+}
+
+/* Inverted Basic */
+
+.ui.inverted.slate.basic.buttons .button,
+.ui.inverted.slate.buttons .basic.button,
+.ui.inverted.slate.basic.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 0.5) inset !important;
+  color: #ffffff !important;
+}
+
+.ui.inverted.slate.basic.buttons .button:hover,
+.ui.inverted.slate.buttons .basic.button:hover,
+.ui.inverted.slate.basic.button:hover {
+  box-shadow: 0px 0px 0px 2px #54ffff inset !important;
+  color: #6dffff !important;
+}
+
+.ui.inverted.slate.basic.buttons .button:focus,
+.ui.inverted.slate.basic.buttons .button:focus,
+.ui.inverted.slate.basic.button:focus {
+  box-shadow: 0px 0px 0px 2px #44ffff inset !important;
+  color: #6dffff !important;
+}
+
+.ui.inverted.slate.basic.buttons .active.button,
+.ui.inverted.slate.buttons .basic.active.button,
+.ui.inverted.slate.basic.active.button {
+  box-shadow: 0px 0px 0px 2px #54ffff inset !important;
+  color: #6dffff !important;
+}
+
+.ui.inverted.slate.basic.buttons .button:active,
+.ui.inverted.slate.buttons .basic.button:active,
+.ui.inverted.slate.basic.button:active {
+  box-shadow: 0px 0px 0px 2px #3affff inset !important;
+  color: #6dffff !important;
+}
+
+/*
+    END CUSTOM BUTTON
+*/
+
+
+
+/*
+    CUSTOM BUTTON 2
+*/
+
+/*--- 0e566c ---*/
+
+.ui.dryred.buttons .button,
+.ui.dryred.button {
+  background-color: #E63946;
+  color: #ffffff;
+  text-shadow: none;
+  background-image: none;
+}
+
+.ui.dryred.button {
+  box-shadow: 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+}
+
+.ui.dryred.buttons .button:hover,
+.ui.dryred.button:hover {
+  background-color: #CB1922;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.ui.dryred.buttons .button:focus,
+.ui.dryred.button:focus {
+  background-color: #008c86;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.ui.dryred.buttons .button:active,
+.ui.dryred.button:active {
+  background-color: #00827c;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.ui.dryred.buttons .active.button,
+.ui.dryred.buttons .active.button:active,
+.ui.dryred.active.button,
+.ui.dryred.button .active.button:active {
+  background-color: #009c95;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+/* Basic */
+
+.ui.basic.dryred.buttons .button,
+.ui.basic.dryred.button {
+  box-shadow: 0px 0px 0px 1px rgba(34, 36, 38, 0.15) inset !important;
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+
+.ui.basic.dryred.buttons .button:hover,
+.ui.basic.dryred.button:hover {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 2px #009c95 inset !important;
+  color: #009c95 !important;
+}
+
+.ui.basic.dryred.buttons .button:focus,
+.ui.basic.dryred.button:focus {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 2px #008c86 inset !important;
+}
+
+.ui.basic.dryred.buttons .active.button,
+.ui.basic.dryred.active.button {
+  background: transparent !important;
+  box-shadow: 0px 0px 0px 2px #009c95 inset !important;
+  color: #00827c !important;
+}
+
+.ui.basic.dryred.buttons .button:active,
+.ui.basic.dryred.button:active {
+  box-shadow: 0px 0px 0px 2px #00827c inset !important;
+  color: #00827c !important;
+}
+
+.ui.buttons > .basic.dryred.button:not(:first-child) {
+  margin-left: -2px;
+}
+
+/* Inverted */
+
+.ui.inverted.dryred.buttons .button,
+.ui.inverted.dryred.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px #6dffff inset !important;
+  color: #6dffff;
+}
+
+.ui.inverted.dryred.buttons .button:hover,
+.ui.inverted.dryred.button:hover,
+.ui.inverted.dryred.buttons .button:focus,
+.ui.inverted.dryred.button:focus,
+.ui.inverted.dryred.buttons .button.active,
+.ui.inverted.dryred.button.active,
+.ui.inverted.dryred.buttons .button:active,
+.ui.inverted.dryred.button:active {
+  box-shadow: none !important;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.ui.inverted.dryred.buttons .button:hover,
+.ui.inverted.dryred.button:hover {
+  background-color: #54ffff;
+}
+
+.ui.inverted.dryred.buttons .button:focus,
+.ui.inverted.dryred.button:focus {
+  background-color: #44ffff;
+}
+
+.ui.inverted.dryred.buttons .active.button,
+.ui.inverted.dryred.active.button {
+  background-color: #54ffff;
+}
+
+.ui.inverted.dryred.buttons .button:active,
+.ui.inverted.dryred.button:active {
+  background-color: #3affff;
+}
+
+/* Inverted Basic */
+
+.ui.inverted.dryred.basic.buttons .button,
+.ui.inverted.dryred.buttons .basic.button,
+.ui.inverted.dryred.basic.button {
+  background-color: transparent;
+  box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 0.5) inset !important;
+  color: #ffffff !important;
+}
+
+.ui.inverted.dryred.basic.buttons .button:hover,
+.ui.inverted.dryred.buttons .basic.button:hover,
+.ui.inverted.dryred.basic.button:hover {
+  box-shadow: 0px 0px 0px 2px #54ffff inset !important;
+  color: #6dffff !important;
+}
+
+.ui.inverted.dryred.basic.buttons .button:focus,
+.ui.inverted.dryred.basic.buttons .button:focus,
+.ui.inverted.dryred.basic.button:focus {
+  box-shadow: 0px 0px 0px 2px #44ffff inset !important;
+  color: #6dffff !important;
+}
+
+.ui.inverted.dryred.basic.buttons .active.button,
+.ui.inverted.dryred.buttons .basic.active.button,
+.ui.inverted.dryred.basic.active.button {
+  box-shadow: 0px 0px 0px 2px #54ffff inset !important;
+  color: #6dffff !important;
+}
+
+.ui.inverted.dryred.basic.buttons .button:active,
+.ui.inverted.dryred.buttons .basic.button:active,
+.ui.inverted.dryred.basic.button:active {
+  box-shadow: 0px 0px 0px 2px #3affff inset !important;
+  color: #6dffff !important;
+}
+
+/*
+    END CUSTOM BUTTON 2
+*/
 /*-------------------
        Primary
 --------------------*/
@@ -15263,15 +15604,15 @@ ol.ui.horizontal.list li:before,
 
 .ui.steps .step.active {
   cursor: auto;
-  background: #f3f4f5;
+  background: #00BCD4;
 }
 
 .ui.steps .step.active:after {
-  background: #f3f4f5;
+  background: #00BCD4;
 }
 
 .ui.steps .step.active .title {
-  color: #4183c4;
+  color: #ffffff;
 }
 
 .ui.ordered.steps .step.active:before,
@@ -21316,7 +21657,7 @@ Floated Menu / Item
 /* Info */
 
 .ui.info.message {
-  background-color: #f8ffff;
+  background-color: #f8ffff;    
   color: #276f86;
 }
 
@@ -27268,6 +27609,7 @@ body.dimmable > .dimmer {
 .ui.selection.dropdown {
   cursor: pointer;
   word-wrap: break-word;
+   
   line-height: 1em;
   white-space: normal;
   outline: 0;

@@ -132,6 +132,7 @@
     <Content Include="Content\jquery.multiselect.css" />
     <Content Include="Content\jquery.multiselect.filter.css" />
     <Content Include="Content\login.css" />
+    <Content Include="Content\packageStyle.css" />
     <Content Include="Content\semantic.css" />
     <Content Include="Content\UI-Table-master\package.js" />
     <Content Include="Content\UI-Table-master\table.css" />

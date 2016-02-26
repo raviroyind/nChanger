@@ -12,15 +12,13 @@ using System.IO;
 
 namespace nChanger.WebUI.Account
 {
-    public partial class signup : System.Web.UI.Page
+    public partial class Signup : System.Web.UI.Page
     {
-        private string queryId;
+        private string _queryId;
         protected void Page_Load(object sender, EventArgs e)
-        {
+        { 
             if (!IsPostBack)
-            {
                 BindDropdowns();
-            }
         }
 
         private void BindDropdowns()
@@ -79,8 +77,8 @@ namespace nChanger.WebUI.Account
 
                     dataContext.Users.Add(dbEntry);
                     dataContext.SaveChanges();
-                    queryId = dbEntry.UserId;
-                    AddUserPackage(queryId);
+                    _queryId = dbEntry.UserId;
+                    AddUserPackage(_queryId);
                     returnMessage = SendRegistrationMail(dbEntry) ? "SUCCESS" : "MAIL_ERROR";
                 }
 
@@ -144,7 +142,7 @@ namespace nChanger.WebUI.Account
             if (!Submit(out message))
                 lblMsg.Text = message;
             else
-                Response.Redirect("signupComplete.aspx?id="+ queryId, true);
+                Response.Redirect("signupComplete.aspx?id="+ _queryId, true);
         }
 
         protected void ddlCountry_SelectedIndexChanged(object sender, EventArgs e)

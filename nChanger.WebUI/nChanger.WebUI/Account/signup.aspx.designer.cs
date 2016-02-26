@@ -10,7 +10,7 @@
 namespace nChanger.WebUI.Account {
     
     
-    public partial class signup {
+    public partial class Signup {
         
         /// <summary>
         /// updProgress control.

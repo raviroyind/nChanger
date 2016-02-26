@@ -29,9 +29,8 @@ namespace nChanger.Core
         public string EntryIP { get; set; }
         public string EntryId { get; set; }
     
-        public virtual PackageCategory PackageCategory { get; set; }
+        public virtual ProvinceCategory ProvinceCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuestionOption> QuestionOptions { get; set; }
-        public virtual ProvinceCategory ProvinceCategory { get; set; }
     }
 }

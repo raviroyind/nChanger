@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeBehind="signup.aspx.cs" Inherits="nChanger.WebUI.Account.signup" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeBehind="signup.aspx.cs" Inherits="nChanger.WebUI.Account.Signup" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
@@ -63,7 +63,7 @@
                                     <label>Username</label>
                                     <div class="field">
                                         <asp:TextBox runat="server" ID="txtUserId" placeholder="Username" MaxLength="20"></asp:TextBox>
-                                        <asp:RequiredFieldValidator runat="server" ForeColor="White" CssClass="ui field error" ValidationGroup="reg" ControlToValidate="txtUserId" ErrorMessage="Please enter email-id" Text="!"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator runat="server" ForeColor="White" CssClass="ui field error" ValidationGroup="reg" ControlToValidate="txtUserId" ErrorMessage="Please enter userid." Text="!"></asp:RequiredFieldValidator>
                                         <asp:RegularExpressionValidator Display="Dynamic" ControlToValidate="txtUserId" Text="!" ValidationGroup="reg"
                                             ID="RegularExpressionValidator2" ValidationExpression="^[\s\S]{6,12}$" runat="server"
                                             ErrorMessage="Username shoule be between 6 to 12 characters."></asp:RegularExpressionValidator>
@@ -125,7 +125,7 @@
                                 <div class="field">
                                     <label>Country</label>
                                     <div class="field">
-                                        <asp:DropDownList runat="server" ID="ddlCountry" AutoPostBack="True" CausesValidation="False" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged" />
+                                        <asp:DropDownList runat="server" ID="ddlCountry" AutoPostBack="True" CssClass="ui normal selection dropdown"  CausesValidation="False" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ValidationGroup="reg" ForeColor="#ffffff" ControlToValidate="ddlCountry" InitialValue="SEL" runat="server" Text="!" ErrorMessage="Please select a country">
                                         </asp:RequiredFieldValidator>
                                     </div>
@@ -137,7 +137,7 @@
                                     <label>State</label>
                                     <div class="field">
                                         <div id="divDropState" runat="server">
-                                            <asp:DropDownList runat="server" ID="ddlState" />
+                                            <asp:DropDownList runat="server" ID="ddlState" CssClass="ui normal selection dropdown" />
                                             <asp:CustomValidator runat="server" ID="customValStateddl" ValidationGroup="reg" ForeColor="White" Text="!"
                                                 ControlToValidate="ddlState" ErrorMessage="Please select State" ClientValidationFunction="valStateDropdown"
                                                 ></asp:CustomValidator>
@@ -200,7 +200,9 @@
             </ContentTemplate>
     </asp:UpdatePanel>
         
+    <script type="text/javascript" src="../Scripts/semantic.min.js"></script>
     <script type="text/javascript">
+        $('.ui.normal.selection.dropdown').dropdown();
 
         function CleanForm() {
             Page_ClientValidate('');

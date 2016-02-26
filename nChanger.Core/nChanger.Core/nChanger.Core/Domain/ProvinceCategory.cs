@@ -17,8 +17,8 @@ namespace nChanger.Core
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ProvinceCategory()
         {
-            this.PdfFormTemplates = new HashSet<PdfFormTemplate>();
             this.DefineQuestions = new HashSet<DefineQuestion>();
+            this.PdfFormTemplates = new HashSet<PdfFormTemplate>();
         }
     
         public System.Guid Id { get; set; }
@@ -31,9 +31,9 @@ namespace nChanger.Core
         public string EntryId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DefineQuestion> DefineQuestions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PdfFormTemplate> PdfFormTemplates { get; set; }
         public virtual Province Province { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DefineQuestion> DefineQuestions { get; set; }
     }
 }

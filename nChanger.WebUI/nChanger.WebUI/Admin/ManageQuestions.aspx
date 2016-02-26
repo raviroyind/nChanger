@@ -18,6 +18,9 @@
         </div>
         <div class="content">
             <div class="ui form fluid">
+                <div class="field"> 
+                        Category : <asp:DropDownList runat="server" ID="ddlCategoryAdd" CssClass="ui normal selection dropdown"/>
+                </div> 
                 <div class="field">
                     <div class="field">
                         <label>Question</label>
@@ -28,7 +31,6 @@
                 <h3 class="ui divider"></h3>
 
                 <div class="field">
-                    <asp:RequiredFieldValidator runat="server" ValidationGroup="add" ID="reqId" ControlToValidate="ddlQuestionTypeAdd" InitialValue="SEL" ErrorMessage="Please select type of question." Style="color: maroon;"></asp:RequiredFieldValidator>
                     <div class="field fluid">
                         <asp:DropDownList runat="server" ID="ddlQuestionTypeAdd" CssClass="ui normal selection dropdown">
                             <Items>
@@ -59,7 +61,6 @@
                     <div class="ui button" onclick="$('.modal').modal('hide');">Cancel</div>
                     <asp:LinkButton runat="server" ID="btnAddQuestion"
                         OnClientClick="javascript:doCustomPost();" UseSubmitBehavior="false"
-                        ValidationGroup="add" CausesValidation="True"
                         CssClass="ui green button" OnClick="btnAddQuestion_OnClick">
                             <i class="plus sign icon White"></i>Submit
                     </asp:LinkButton>
@@ -83,12 +84,9 @@
                     <i class="right chevron icon divider"></i>
                     <a href="ManageProvinces.aspx" class="section">Provinces</a>
                     <i class="right chevron icon divider"></i>
-                    <a href="ManageProvinceCategory.aspx" class="section">Category</a>
-                    <i class="right chevron icon divider"></i>
-                    <div class="active section">
-                        Questions
-                        <asp:Label ID="lblCurrentProvince" runat="server" />
-                    </div>
+                    <span class="section active">Category : </span>
+                        
+                    <asp:DropDownList runat="server" ID="ddlCategory" CssClass="ui normal selection dropdown" AutoPostBack="True" OnSelectedIndexChanged="ddlCategory_OnSelectedIndexChanged"  />
                 </div>
             </div>
         </div>
@@ -99,8 +97,6 @@
         <div class="ui grid">
             <div class="one wide column"></div>
             <div class="fourteen wide column">
-
-                
                 <uc1:paging  ID="ucPaging" runat="server" Align="right" PageSize="10" 
                     OnNavigator_Click="ImgbtnNavigator_Click" ShowNoOfRecordsDropDown="True"
                     OnNoOfRecords_SelectedIndexChanged="ddlNoOfRecords_IndexChanged"
@@ -140,13 +136,13 @@
                         <asp:TemplateField>
                             <HeaderStyle Width="20%" />
                             <HeaderTemplate>
-                                <asp:LinkButton ID="lnkbtnCategory" runat="server" CommandArgument="Category" OnClick="gvDefineQuestions_Sorting"
-                                    Text="Category" ForeColor="#000000"></asp:LinkButton>
-                                <asp:LinkButton ID="btnSort_Category" runat="server"
-                                    CommandArgument="Category"></asp:LinkButton>
+                                <asp:LinkButton ID="lnkbtnQuestionType" runat="server" CommandArgument="QuestionType" OnClick="gvDefineQuestions_Sorting"
+                                    Text="Question Type" ForeColor="#000000"></asp:LinkButton>
+                                <asp:LinkButton ID="btnSort_QuestionType" runat="server"
+                                    CommandArgument="QuestionType"></asp:LinkButton>
                             </HeaderTemplate>
                             <ItemTemplate>
-                                <%#Eval("QuestionType").ToString() %>
+                               <asp:Label CssClass="ui label yellow" ID="lblType" runat="server" Text='<%#Eval("QuestionType") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
@@ -184,8 +180,8 @@
         $(".ui.normal.selection.dropdown").dropdown();
 
         $(document).ready(function () {
-            $('#MainContent_ddlQuestionTypeAdd').on('change', function () {
-                if (this.value == 'chk')
+            $("#MainContent_ddlQuestionTypeAdd").on("change", function () {
+                if (this.value == "chk" || this.value == "rdb")
                 {
                     $("#divOptions").show();
                 }
@@ -203,6 +199,7 @@
                onShow: function() {
                    document.getElementById("<%=txtQuestion.ClientID%>").value = "";
                    document.getElementById('<%=hidOptions.ClientID %>').value = "";
+                   document.getElementById('<%=txtOptionLabel.ClientID %>').value = "";
                },
                onHide: function() {
                    $("#divOptions").hide();
@@ -216,8 +213,16 @@
                observeChanges: true,
                onHide: function() {
                    $("#divOptions").hide();
+               },
+               onShow:function() {
+                   var e = document.getElementById('<%=ddlQuestionTypeAdd.ClientID%>');
+                   var controlType = e.options[e.selectedIndex].value;
+                   if (controlType == "chk" || controlType == "rdb") {
+                       $("#divOptions").show();
+                   }
                }
            }).modal("show").modal("refresh");
+            
        }
 
        function doCustomPost() {
@@ -225,12 +230,16 @@
 
            var e = document.getElementById("<%=ddlQuestionTypeAdd.ClientID%>");
            var modalQuestionType = e.options[e.selectedIndex].value;
-
            
+           var modalProvinceAdd = document.getElementById('<%=ddlCategoryAdd.ClientID%>');
+           var provCategoryId = modalProvinceAdd.options[modalProvinceAdd.selectedIndex].value;
+           
+           document.getElementById('<%=hidProvinceCategoryId.ClientID %>').value = provCategoryId;
            document.getElementById('<%=hidQuestion.ClientID %>').value = modalQuestion.value;
            document.getElementById('<%=hidQuestionType.ClientID %>').value = modalQuestionType;
            document.getElementById('<%=hidOptions.ClientID %>').value = document.getElementById("<%=txtOptionLabel.ClientID%>").value;
-
+           document.getElementById("<%=txtOptionLabel.ClientID%>").value = "";
+           
            $(".modal").modal("hide");
        }
 

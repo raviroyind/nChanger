@@ -22,6 +22,15 @@ namespace nChanger.WebUI.Admin {
         protected global::System.Web.UI.WebControls.Label lblMsg;
         
         /// <summary>
+        /// ddlCategoryAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategoryAdd;
+        
+        /// <summary>
         /// txtQuestion control.
         /// </summary>
         /// <remarks>
@@ -29,15 +38,6 @@ namespace nChanger.WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtQuestion;
-        
-        /// <summary>
-        /// reqId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator reqId;
         
         /// <summary>
         /// ddlQuestionTypeAdd control.
@@ -112,13 +112,13 @@ namespace nChanger.WebUI.Admin {
         protected global::System.Web.UI.WebControls.HiddenField hidOptions;
         
         /// <summary>
-        /// lblCurrentProvince control.
+        /// ddlCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCurrentProvince;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
         
         /// <summary>
         /// ucPaging control.

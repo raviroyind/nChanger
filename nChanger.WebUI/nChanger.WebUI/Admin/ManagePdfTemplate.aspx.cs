@@ -16,10 +16,6 @@ namespace nChanger.WebUI.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            //if (Request.QueryString["id"] != null)
-            //    hypBack.NavigateUrl = "ManageProvinceCategory.aspx?id=" + Request.QueryString["id"];
-
             var file = Request.Files["FileData"];
 
             if (file != null)
@@ -27,8 +23,6 @@ namespace nChanger.WebUI.Admin
                 try
                 {
                     var filePath = ConfigurationManager.AppSettings["FolderPath"] + file.FileName;
-
-
                     file.SaveAs(Server.MapPath(filePath));
                     UploadPdf(file.FileName);
 
@@ -55,6 +49,10 @@ namespace nChanger.WebUI.Admin
                 txtPageno1.Attributes.Add("onkeypress", "return SetPagenoValue('" + txtPageno1.ClientID + "','" + txtPageno1.ClientID + "');");
                 //End
                 BindTemplates();
+                if(!string.IsNullOrEmpty(PreviousPageId))
+                    hypBack.NavigateUrl= "ManageProvinceCategory.aspx?id=" + PreviousPageId;
+
+                PreviousPageId = Request.QueryString["id"];
             }
         }
         private void BindTemplates()
@@ -64,12 +62,17 @@ namespace nChanger.WebUI.Admin
             if (Request.QueryString["id"] != null)
                 id = Guid.Parse(Request.QueryString["id"]);
             else if (Request.UrlReferrer != null)
-                id = Guid.Parse(Request.UrlReferrer.Query.Substring(4));
-
-
+            {
+                if(!string.IsNullOrEmpty(Request.UrlReferrer.Query))
+                    id = Guid.Parse(Request.UrlReferrer.Query.Substring(4));
+            }
+                
              using (var dataContext = new nChangerDb())
             {
-                var templateList = dataContext.PdfFormTemplates.Where(p => p.ProvinceCategoryId.Equals(id)) .ToList();
+                var templateList = dataContext.PdfFormTemplates.ToList();
+
+                if (Guid.Empty != id)
+                    templateList = templateList.Where(p => p.ProvinceCategoryId.Equals(id)).ToList();
 
                 if (templateList.Count != 0)
                 {

@@ -21,7 +21,6 @@ namespace nChanger.WebUI
             {
                 return (Session[AppConfig.SessionItemNameUserName] == null ? "" : Session[AppConfig.SessionItemNameUserName].ToString());
             }
-            
         }
 
         public string UserType
@@ -30,8 +29,17 @@ namespace nChanger.WebUI
             {
                 return (Session[AppConfig.SessionItemNameUserType] == null ? "" : Session[AppConfig.SessionItemNameUserType].ToString());
             }
-
         }
+
+        public string PreviousPageId
+        {
+            get
+            {
+                return (Session[AppConfig.PreviousPageId] == null ? "" : Session[AppConfig.PreviousPageId].ToString());
+            }
+            set { Session[AppConfig.PreviousPageId] = value; }
+        }
+        
 
         protected override void OnLoad(EventArgs e)
         {

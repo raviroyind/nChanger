@@ -23,6 +23,7 @@ namespace nChanger.Core
         public Nullable<double> Right { get; set; }
         public Nullable<double> Top { get; set; }
         public Nullable<double> Bottom { get; set; }
+        public string TableName { get; set; }
         public string DbFieldName { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime EntryDate { get; set; }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="nChangerDb.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="nChangerDb.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Country">
           <Key>
             <PropertyRef Name="CountryId" />
@@ -81,7 +81,8 @@
           <Property Name="Right" Type="float" />
           <Property Name="Top" Type="float" />
           <Property Name="Bottom" Type="float" />
-          <Property Name="DbFieldName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="500" />
+          <Property Name="DbFieldName" Type="nvarchar" MaxLength="500" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="EntryDate" Type="datetime" Nullable="false" />
           <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -486,7 +487,9 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PdfFormTemplate_ProvinceCategory">
-          <End Role="ProvinceCategory" Type="Self.ProvinceCategory" Multiplicity="1" />
+          <End Role="ProvinceCategory" Type="Self.ProvinceCategory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="PdfFormTemplate" Type="Self.PdfFormTemplate" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProvinceCategory">
@@ -668,7 +671,8 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="nChangerDb" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -723,9 +727,8 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="PackageCategory" Relationship="Self.FK_DefineQuestions_PackageCategory" FromRole="DefineQuestions" ToRole="PackageCategory" />
+          <NavigationProperty Name="ProvinceCategory" Relationship="Self.FK_DefineQuestions_ProvinceCategory" FromRole="DefineQuestions" ToRole="ProvinceCategory" />
           <NavigationProperty Name="QuestionOptions" Relationship="Self.FK_QuestionOptions_DefineQuestions" FromRole="DefineQuestions" ToRole="QuestionOptions" />
-          <NavigationProperty Name="ProvinceCategory" Relationship="nChangerDb.FK_DefineQuestions_ProvinceCategory" FromRole="DefineQuestion" ToRole="ProvinceCategory" />
         </EntityType>
         <EntityType Name="FeatureMaster">
           <Key>
@@ -753,7 +756,8 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
           <Property Name="Right" Type="Double" />
           <Property Name="Top" Type="Double" />
           <Property Name="Bottom" Type="Double" />
-          <Property Name="DbFieldName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TableName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DbFieldName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -845,7 +849,6 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="DefineQuestions" Relationship="Self.FK_DefineQuestions_PackageCategory" FromRole="PackageCategory" ToRole="DefineQuestions" />
         </EntityType>
         <EntityType Name="PackageFeature">
           <Key>
@@ -981,9 +984,9 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DefineQuestions" Relationship="Self.FK_DefineQuestions_ProvinceCategory" FromRole="ProvinceCategory" ToRole="DefineQuestions" />
           <NavigationProperty Name="PdfFormTemplates" Relationship="Self.FK_PdfFormTemplate_ProvinceCategory" FromRole="ProvinceCategory" ToRole="PdfFormTemplate" />
           <NavigationProperty Name="Province" Relationship="Self.FK_ProvinceCategory_Province" FromRole="ProvinceCategory" ToRole="Province" />
-          <NavigationProperty Name="DefineQuestions" Relationship="nChangerDb.FK_DefineQuestions_ProvinceCategory" FromRole="ProvinceCategory" ToRole="DefineQuestion" />
         </EntityType>
         <EntityType Name="QuestionOption">
           <Key>
@@ -1128,13 +1131,13 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DefineQuestions_PackageCategory">
-          <End Role="PackageCategory" Type="Self.PackageCategory" Multiplicity="1">
+        <Association Name="FK_DefineQuestions_ProvinceCategory">
+          <End Role="ProvinceCategory" Type="Self.ProvinceCategory" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="DefineQuestions" Type="Self.DefineQuestion" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="PackageCategory">
+            <Principal Role="ProvinceCategory">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="DefineQuestions">
@@ -1197,7 +1200,9 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PdfFormTemplate_ProvinceCategory">
-          <End Role="ProvinceCategory" Type="Self.ProvinceCategory" Multiplicity="1" />
+          <End Role="ProvinceCategory" Type="Self.ProvinceCategory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="PdfFormTemplate" Type="Self.PdfFormTemplate" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProvinceCategory">
@@ -1248,7 +1253,7 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="nChangerDbEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Countries" EntityType="Self.Country" />
           <EntitySet Name="CriminalOffenceInformations" EntityType="Self.CriminalOffenceInformation" />
           <EntitySet Name="DefineQuestions" EntityType="Self.DefineQuestion" />
@@ -1276,8 +1281,8 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
             <End Role="Country" EntitySet="Countries" />
             <End Role="State" EntitySet="States" />
           </AssociationSet>
-          <AssociationSet Name="FK_DefineQuestions_PackageCategory" Association="Self.FK_DefineQuestions_PackageCategory">
-            <End Role="PackageCategory" EntitySet="PackageCategories" />
+          <AssociationSet Name="FK_DefineQuestions_ProvinceCategory" Association="Self.FK_DefineQuestions_ProvinceCategory">
+            <End Role="ProvinceCategory" EntitySet="ProvinceCategories" />
             <End Role="DefineQuestions" EntitySet="DefineQuestions" />
           </AssociationSet>
           <AssociationSet Name="FK_QuestionOptions_DefineQuestions" Association="Self.FK_QuestionOptions_DefineQuestions">
@@ -1317,31 +1322,13 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
             <Parameter Name="table" Mode="In" Type="String" />
             <Parameter Name="userId" Mode="In" Type="String" />
           </FunctionImport>
-          <AssociationSet Name="FK_DefineQuestions_ProvinceCategory" Association="nChangerDb.FK_DefineQuestions_ProvinceCategory">
-            <End Role="ProvinceCategory" EntitySet="ProvinceCategories" />
-            <End Role="DefineQuestion" EntitySet="DefineQuestions" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_DefineQuestions_ProvinceCategory">
-          <End Type="nChangerDb.ProvinceCategory" Role="ProvinceCategory" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="nChangerDb.DefineQuestion" Role="DefineQuestion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProvinceCategory">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="DefineQuestion">
-              <PropertyRef Name="ProvinceCategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="nChangerDbStoreContainer" CdmEntityContainer="nChangerDbEntities">
+        <EntityContainerMapping StorageEntityContainer="nChangerDbStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Countries">
             <EntityTypeMapping TypeName="nChangerDb.Country">
               <MappingFragment StoreEntitySet="Country">
@@ -1421,6 +1408,7 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
                 <ScalarProperty Name="Right" ColumnName="Right" />
                 <ScalarProperty Name="Top" ColumnName="Top" />
                 <ScalarProperty Name="Bottom" ColumnName="Bottom" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
                 <ScalarProperty Name="DbFieldName" ColumnName="DbFieldName" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />

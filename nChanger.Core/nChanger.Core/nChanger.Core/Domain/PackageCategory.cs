@@ -14,12 +14,6 @@ namespace nChanger.Core
     
     public partial class PackageCategory
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PackageCategory()
-        {
-            this.DefineQuestions = new HashSet<DefineQuestion>();
-        }
-    
         public System.Guid Id { get; set; }
         public string Category { get; set; }
         public string CategoryShortDescription { get; set; }
@@ -30,8 +24,5 @@ namespace nChanger.Core
         public System.DateTime EntryDate { get; set; }
         public string EntryIP { get; set; }
         public string EntryId { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DefineQuestion> DefineQuestions { get; set; }
     }
 }
