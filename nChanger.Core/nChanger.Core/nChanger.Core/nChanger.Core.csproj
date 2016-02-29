@@ -84,6 +84,12 @@
     <Compile Include="Domain\FinancialInformation.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Domain\FormInfo.cs">
+      <DependentUpon>DataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\FormSection.cs">
+      <DependentUpon>DataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Domain\InputFormSchemaView.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
@@ -127,6 +133,9 @@
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Domain\User.cs">
+      <DependentUpon>DataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\UserFormDetail.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Domain\UserPackage.cs">

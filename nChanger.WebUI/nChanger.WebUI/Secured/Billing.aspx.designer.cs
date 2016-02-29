@@ -7,27 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace nChanger.WebUI {
+namespace nChanger.WebUI.Secured {
     
     
-    public partial class SelectPackage {
+    public partial class Billing {
         
         /// <summary>
-        /// rowPackage control.
+        /// ancPayment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl rowPackage;
-        
-        /// <summary>
-        /// divWrapper control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divWrapper;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor ancPayment;
     }
 }

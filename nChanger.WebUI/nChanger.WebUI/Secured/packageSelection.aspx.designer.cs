@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace nChanger.WebUI {
+namespace nChanger.WebUI.Secured {
     
     
-    public partial class SelectPackage {
+    public partial class PackageSelection {
         
         /// <summary>
         /// rowPackage control.

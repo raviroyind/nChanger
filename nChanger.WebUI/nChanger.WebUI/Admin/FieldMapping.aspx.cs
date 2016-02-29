@@ -31,6 +31,8 @@ namespace nChanger.WebUI.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         { 
+             
+
             if (!IsPostBack)
             { 
                 if(!string.IsNullOrEmpty(PreviousPageId))
@@ -75,6 +77,7 @@ namespace nChanger.WebUI.Admin
                         txtTemplateName.Text = pdfFormTemplate.TemplateName;
                         hypPdf.Text = pdfFormTemplate.PdfFileName;
                         hypPdf.NavigateUrl = @"../Pdf/" + pdfFormTemplate.PdfFileName;
+                        txtComments.Text = pdfFormTemplate.Comments;
                          
                         if (Convert.ToString(Request.QueryString["active"]).Equals("False"))
                             ReadPdfFields();
@@ -248,6 +251,7 @@ namespace nChanger.WebUI.Admin
                 txtTemplateName.Text = pdfFormTemplate.TemplateName;
                 hypPdf.Text = pdfFormTemplate.PdfFileName;
                 hypPdf.NavigateUrl = @"../Pdf/" + pdfFormTemplate.PdfFileName;
+                txtComments.Text = pdfFormTemplate.Comments;
                 btnSubmit.CssClass = "ui orange button disabled";
                 btnEditFields.Visible = true;
             }
@@ -296,6 +300,7 @@ namespace nChanger.WebUI.Admin
             if (pdfFormTemplate != null)
             {
                 pdfFormTemplate.TemplateName = txtTemplateName.Text;
+                pdfFormTemplate.Comments = txtComments.Text;
                 pdfFormTemplate.IsActive = true;
                 pdfFormTemplate.EntryDate = DateTime.Today;
                 pdfFormTemplate.EntryIP = CommonFunctions.GetIpAddress();
@@ -381,6 +386,48 @@ namespace nChanger.WebUI.Admin
             }
 
             #endregion Deep Save...
+
+            #region FormSections...
+
+            try
+            {
+                var distinctFieldMapping = fieldMapping.Select(f => f.TableName).Distinct();
+
+                foreach (var table in distinctFieldMapping)
+                {
+                    if (!string.IsNullOrEmpty(table))
+                    {
+                        var formSection = _dataContext.FormSections.FirstOrDefault(f => f.TableName.Equals(table));
+
+                        if (formSection != null)
+                        {
+                            _dataContext.FormInfoes.AddOrUpdate(
+                                new FormInfo
+                                {
+                                    Id = Guid.NewGuid(),
+                                    PdfFormTemplateId = pdfFormTemplateId,
+                                    FormSectionId = formSection.Id
+                                });
+                        }
+                    }   
+                }
+
+                _dataContext.SaveChanges();
+
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    lblMessage.Text += eve.Entry.Entity.GetType().Name + "<br/>" + eve.Entry.State;
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        lblMessage.Text += ve.PropertyName + "<br/>" + ve.ErrorMessage;
+                    }
+                }
+            }
+
+            #endregion FormSections...
         }
 
         private void RemoveExisting(string recordId)
@@ -393,8 +440,8 @@ namespace nChanger.WebUI.Admin
                 try
                 {
                     _dataContext.Database.ExecuteSqlCommand("DELETE FROM PdfFormTemplate WHERE Id='" + recordId + "'");
-                    _dataContext.Database.ExecuteSqlCommand("DELETE FROM FieldMapping WHERE PdfFormTemplateId='" +
-                                                            recordId + "'");
+                    _dataContext.Database.ExecuteSqlCommand("DELETE FROM FieldMapping WHERE PdfFormTemplateId='" + recordId + "'");
+                    _dataContext.Database.ExecuteSqlCommand("DELETE FROM FormInfo WHERE PdfFormTemplateId='" + recordId + "'");
                 }
                 catch (Exception exception)
                 {
@@ -454,13 +501,14 @@ namespace nChanger.WebUI.Admin
 
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
+            //ScriptManager.RegisterStartupScript(this, this.GetType(), "trigg", "tinyMCE.get('" + txtComments.UniqueID + "').save();", true);
+
             if (Request.QueryString["active"] == "True")
                 RemoveExisting(Request.QueryString["id"]);
   
             try
             {
                 Add();
-                ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), "$('.ui.fluid.search.selection.dropdown').dropdown();", true);
                 lblMsg.Text = "Template saved successfully!";
                 ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), "showAlert()", true);
             }

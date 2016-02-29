@@ -9,25 +9,35 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"  />
-    <title><%: Page.Title %> :: nChanger ::</title>
+    <title>:: nChanger ::</title>
+    
     <link href="Content/semantic.css" rel="stylesheet" />
     <link href="Content/form.css" rel="stylesheet" />
     <link href="nchanger.ico" rel="shortcut icon" type="image/x-icon"  />
-    <script src="<%=ResolveClientUrl("Scripts/jquery-1.8.1.min.js")%>"></script>
-    <script src="<%=ResolveClientUrl("Scripts/clipboard.min.js")%>"></script>
-    <script src="<%=ResolveClientUrl("Scripts/cookie.min.js")%>"></script>
-    <script src="<%=ResolveClientUrl("Scripts/easing.min.js")%>"></script>
-    <script src="<%=ResolveClientUrl("Scripts/highlight.min.js")%>"></script>
-    <script src="<%=ResolveClientUrl("Scripts/history.min.js")%>"></script>
-    <script src="<%=ResolveClientUrl("Scripts/tablesort.min.js")%>"></script>
-    <script src="<%=ResolveClientUrl("Scripts/semantic.min.js")%>"></script>
-    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+     
+    <script src="<%# ResolveClientUrl("Scripts/clipboard.min.js")%>"></script>
+    <script src="<%# ResolveClientUrl("Scripts/cookie.min.js")%>"></script>
+    <script src="<%# ResolveClientUrl("Scripts/easing.min.js")%>"></script>
+    <script src="<%# ResolveClientUrl("Scripts/highlight.min.js")%>"></script>
+    <script src="<%# ResolveClientUrl("Scripts/history.min.js")%>"></script>
+    <script src="<%# ResolveClientUrl("Scripts/tablesort.min.js")%>"></script>
+    <script src="<%# ResolveClientUrl("Scripts/semantic.min.js")%>"></script>
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent">
+        </asp:ContentPlaceHolder>
 </head>
 <body>
 
     <form runat="server">
-        <asp:ScriptManager runat="server"  >
+        <asp:ScriptManager runat="server" EnablePageMethods="True">
         </asp:ScriptManager>
+      <%--  <script type="text/javascript">
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
+            function EndRequestHandler(sender, args) {
+                if (args.get_error() != undefined) {
+                    args.set_errorHandled(true);
+                }
+            }
+        </script>--%>
         <div class="main">
             <div class="ui inverted segment">
                 <div class="ui container fluid">

@@ -23,6 +23,7 @@ namespace nChanger.Core
         public string CountryId { get; set; }
         public string CountryName { get; set; }
         public bool IsActive { get; set; }
+        public Nullable<bool> HasForms { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<State> States { get; set; }

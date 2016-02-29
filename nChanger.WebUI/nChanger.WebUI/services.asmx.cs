@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
+using System.Web.Script.Services;
 using System.Web.Services;
+using AjaxControlToolkit;
+using nChanger.Core;
 
 namespace nChanger.WebUI
 {
@@ -37,7 +42,39 @@ namespace nChanger.WebUI
             }
 
             return result;
-        }   
+        }
+
+
+        [WebMethod]
+        [ScriptMethod]
+        public CascadingDropDownNameValue[] GetProvinceList(string knownCategoryValues, string category)
+        {
+            var values = new List<CascadingDropDownNameValue>();
+            using (var dataContext=new nChangerDb())
+            {
+                var listProvices = dataContext.Provinces.ToList();
+                values.AddRange(from provice in listProvices let id = provice.Id let name = provice.ProvinceName select new CascadingDropDownNameValue(name, id.ToString()));
+            }
+             
+            return values.ToArray();
+        }
+       
+        [WebMethod]
+        public CascadingDropDownNameValue[] GetProvinceCategoryList(string knownCategoryValues, string category)
+        {
+            var provId = knownCategoryValues.Substring(knownCategoryValues.IndexOf(":", StringComparison.Ordinal) + 1);
+            provId = provId.Substring(0, provId.Length - 1);
+            var id = Guid.Parse(provId);
+            var values = new List<CascadingDropDownNameValue>();
+            using (var dataContext = new nChangerDb())
+            {
+                var listCategories = dataContext.ProvinceCategories.Where(p => p.ProvinceId.Equals(id)).OrderBy(p => p.Category).ToList();
+                values.AddRange(from provinceCategory in listCategories let pid = provinceCategory.Id.ToString() let category1 = provinceCategory.Category select new CascadingDropDownNameValue(category1, pid));
+            }
+
+            return values.ToArray();
+        }
+         
     }
 
 

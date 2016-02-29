@@ -1,8 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeBehind="selectPackage.aspx.cs" Inherits="nChanger.WebUI.SelectPackage" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeBehind="packageSelection.aspx.cs" Inherits="nChanger.WebUI.Secured.PackageSelection" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
- <link href="Content/packageStyle.css" rel="stylesheet" />
+   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+ <link href="../Content/packageStyle.css" rel="stylesheet" />
   <div style="padding-left: 10%;">
         <div class="one wide column"></div>
         <div class="fourteen wide column bordered round-corners">
@@ -61,4 +62,3 @@
 
 
 </asp:Content>
-

@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
-using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using nChanger.Core;
 
-namespace nChanger.WebUI
+namespace nChanger.WebUI.Secured
 {
-    public partial class SelectPackage : System.Web.UI.Page
+    public partial class PackageSelection : AppBasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -47,9 +46,9 @@ namespace nChanger.WebUI
 
                     sbBuilder.Append("<hr class=\"ui divider header\"> ");
                     sbBuilder.Append("<div>");
-                    sbBuilder.Append("<button class=\"large ui " + GetButtonColor(iCount) + " button fluid\"><i class=\"ui check circular icon small\"></i>Select");
+                    sbBuilder.Append("<a class=\"large ui " + GetButtonColor(iCount) + " button fluid\" href=\"Billing.aspx?p1="+ package.Price.ToString("C") + "\"><i class=\"ui check circular icon small\"></i>Select");
 
-                    sbBuilder.Append("</button>");
+                    sbBuilder.Append("</a>");
                     sbBuilder.Append("</div>");
                     sbBuilder.Append("</div>");
                     divWrapper.InnerHtml += sbBuilder.ToString();

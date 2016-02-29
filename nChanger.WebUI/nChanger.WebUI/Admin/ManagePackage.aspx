@@ -33,7 +33,7 @@
                 </div>
                   <h3 class="ui header green">Select Package Features</h3>
                 <div class="field fluid">
-                     <asp:CheckBoxList runat="server" ID="chkFeatures" RepeatColumns="2" Width="100%" RepeatDirection="Vertical" CssClass="ui checkbox large fluid" CellPadding="40" CellSpacing="40" />
+                     <asp:CheckBoxList runat="server" ID="chkFeatures" RepeatColumns="2"  RepeatDirection="Vertical" CssClass="ui checkbox large fluid" CellPadding="40" CellSpacing="40" />
                 </div>
                  <h3 class="ui divider"></h3>
                 <div class="field">
@@ -176,7 +176,8 @@
     <script type="text/javascript" src="../Scripts/semantic.min.js"></script>
     <script src="../Scripts/jquery.maskMoney.min.js"></script>
     <script type="text/javascript">
-       $('.ui.normal.selection.dropdown.compact').dropdown();
+        
+        $('.ui.normal.selection.dropdown.compact').dropdown();
         $(document).on('click', "#MainContent_hypPackage", function () {
             $('#divPackage').modal({
                 detachable: false,
@@ -235,29 +236,29 @@
 
         }
 
-       function clearCheck() {
-           var CHK = document.getElementById("<%=chkFeatures.ClientID%>");
-           var checkbox = CHK.getElementsByTagName("input");
-           var label = CHK.getElementsByTagName("label");
-           for (var i = 0; i < checkbox.length; i++) {
-               checkbox[i].checked = false;
-           }
-       }
+        function clearCheck() {
+            var CHK = document.getElementById("<%=chkFeatures.ClientID%>");
+            var checkbox = CHK.getElementsByTagName("input");
+            var label = CHK.getElementsByTagName("label");
+            for (var i = 0; i < checkbox.length; i++) {
+                checkbox[i].checked = false;
+            }
+        }
 
 
         function GetSelectedItem() {
             document.getElementById("<%=hidFeatures.ClientID%>").value = '';
-           var CHK = document.getElementById("<%=chkFeatures.ClientID%>");
-           var checkbox = CHK.getElementsByTagName("input");
-           var label = CHK.getElementsByTagName("label");
-           for (var i = 0; i < checkbox.length; i++) {
-               if (checkbox[i].checked) {
-                   document.getElementById("<%=hidFeatures.ClientID%>").value += label[i].innerHTML + ',';
-               }
-           }
-       }
+            var CHK = document.getElementById("<%=chkFeatures.ClientID%>");
+            var checkbox = CHK.getElementsByTagName("input");
+            var label = CHK.getElementsByTagName("label");
+            for (var i = 0; i < checkbox.length; i++) {
+                if (checkbox[i].checked) {
+                    document.getElementById("<%=hidFeatures.ClientID%>").value += label[i].innerHTML + ',';
+                }
+            }
+        }
 
-       function showAlert() {
+        function showAlert() {
             $("#success-alert").show().delay(5000).fadeOut();
         }
     </script>

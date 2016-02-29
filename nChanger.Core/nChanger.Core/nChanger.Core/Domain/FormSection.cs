@@ -12,32 +12,23 @@ namespace nChanger.Core
     using System;
     using System.Collections.Generic;
     
-    public partial class PdfFormTemplate
+    public partial class FormSection
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PdfFormTemplate()
+        public FormSection()
         {
-            this.FieldMappings = new HashSet<FieldMapping>();
             this.FormInfoes = new HashSet<FormInfo>();
-            this.UserFormDetails = new HashSet<UserFormDetail>();
         }
     
         public System.Guid Id { get; set; }
-        public System.Guid ProvinceCategoryId { get; set; }
-        public string TemplateName { get; set; }
-        public string PdfFileName { get; set; }
-        public string Comments { get; set; }
+        public string TableName { get; set; }
+        public string FormPath { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime EntryDate { get; set; }
         public string EntryIP { get; set; }
         public string EntryId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FieldMapping> FieldMappings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FormInfo> FormInfoes { get; set; }
-        public virtual ProvinceCategory ProvinceCategory { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserFormDetail> UserFormDetails { get; set; }
     }
 }

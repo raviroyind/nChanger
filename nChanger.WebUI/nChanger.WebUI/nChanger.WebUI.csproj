@@ -139,6 +139,8 @@
     <Content Include="Content\UI-Table-master\table.min.css" />
     <Content Include="default.aspx" />
     <Content Include="eligiblityQuestions.aspx" />
+    <Content Include="Forms\frmCriminalOffenceInformation.aspx" />
+    <Content Include="Forms\OLD_frmCriminalOffenceInformation.aspx" />
     <Content Include="images\cancel.png" />
     <Content Include="images\delete.png" />
     <Content Include="images\edit.png" />
@@ -167,6 +169,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Secured\Billing.aspx" />
+    <Content Include="Secured\GeneralQuestions.aspx" />
+    <Content Include="Secured\packageSelection.aspx" />
     <Content Include="selectPackage.aspx" />
     <Content Include="tinymce\jscripts\tiny_mce\langs\en.js" />
     <Content Include="tinymce\jscripts\tiny_mce\license.txt" />
@@ -746,6 +751,7 @@
     <Compile Include="Anon.Master.designer.cs">
       <DependentUpon>Anon.Master</DependentUpon>
     </Compile>
+    <Compile Include="App_Code\FrmSection.cs" />
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -759,6 +765,20 @@
     </Compile>
     <Compile Include="eligiblityQuestions.aspx.designer.cs">
       <DependentUpon>eligiblityQuestions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmCriminalOffenceInformation.aspx.cs">
+      <DependentUpon>frmCriminalOffenceInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCriminalOffenceInformation.aspx.designer.cs">
+      <DependentUpon>frmCriminalOffenceInformation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OLD_frmCriminalOffenceInformation.aspx.cs">
+      <DependentUpon>OLD_frmCriminalOffenceInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\OLD_frmCriminalOffenceInformation.aspx.designer.cs">
+      <DependentUpon>OLD_frmCriminalOffenceInformation.aspx</DependentUpon>
     </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
@@ -774,12 +794,33 @@
     <Compile Include="packageSelection.aspx.designer.cs">
       <DependentUpon>packageSelection.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Secured\Billing.aspx.cs">
+      <DependentUpon>Billing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secured\Billing.aspx.designer.cs">
+      <DependentUpon>Billing.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Secured\dashboard.aspx.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Secured\dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Secured\GeneralQuestions.aspx.cs">
+      <DependentUpon>GeneralQuestions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secured\GeneralQuestions.aspx.designer.cs">
+      <DependentUpon>GeneralQuestions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Secured\packageSelection.aspx.cs">
+      <DependentUpon>packageSelection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secured\packageSelection.aspx.designer.cs">
+      <DependentUpon>packageSelection.aspx</DependentUpon>
     </Compile>
     <Compile Include="Secured\Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
@@ -852,7 +893,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Forms\" />
     <Folder Include="Models\" />
     <Folder Include="PackageImages\" />
     <Folder Include="Pdf\" />

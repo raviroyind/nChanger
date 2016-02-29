@@ -10,25 +10,25 @@
 namespace nChanger.WebUI.Forms {
     
     
-    public partial class FrmCriminalOffenceInformation {
+    public partial class frmCriminalOffenceInformation {
         
         /// <summary>
-        /// divMsg control.
+        /// rdOutstandingCourtProceedingsYes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMsg;
+        protected global::System.Web.UI.WebControls.RadioButton rdOutstandingCourtProceedingsYes;
         
         /// <summary>
-        /// rdLstOutstandingCourtProceedings control.
+        /// rdOutstandingCourtProceedingsNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdLstOutstandingCourtProceedings;
+        protected global::System.Web.UI.WebControls.RadioButton rdOutstandingCourtProceedingsNo;
         
         /// <summary>
         /// txtCourtFileNumber control.
@@ -49,13 +49,13 @@ namespace nChanger.WebUI.Forms {
         protected global::System.Web.UI.WebControls.TextBox txtCourtName;
         
         /// <summary>
-        /// txtCourtAddress control.
+        /// TextBox1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCourtAddress;
+        protected global::System.Web.UI.WebControls.TextBox TextBox1;
         
         /// <summary>
         /// txtDescribeProceedings control.
@@ -67,147 +67,57 @@ namespace nChanger.WebUI.Forms {
         protected global::System.Web.UI.WebControls.TextBox txtDescribeProceedings;
         
         /// <summary>
-        /// rdLstOutstandingEnforcementOrders control.
+        /// RadioButton1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdLstOutstandingEnforcementOrders;
+        protected global::System.Web.UI.WebControls.RadioButton RadioButton1;
         
         /// <summary>
-        /// txtDetailsOfOutstandingEnforcementOrders control.
+        /// RadioButton2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDetailsOfOutstandingEnforcementOrders;
+        protected global::System.Web.UI.WebControls.RadioButton RadioButton2;
         
         /// <summary>
-        /// rdLstEverConvictedOfCriminalOffence control.
+        /// TextBox2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdLstEverConvictedOfCriminalOffence;
+        protected global::System.Web.UI.WebControls.TextBox TextBox2;
         
         /// <summary>
-        /// txtDetailsOfCriminalOffence control.
+        /// TextBox3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDetailsOfCriminalOffence;
+        protected global::System.Web.UI.WebControls.TextBox TextBox3;
         
         /// <summary>
-        /// rdLstFoundGuiltyDischarged control.
+        /// TextBox4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdLstFoundGuiltyDischarged;
+        protected global::System.Web.UI.WebControls.TextBox TextBox4;
         
         /// <summary>
-        /// txtFoundGuiltyDetailsOfOffence control.
+        /// TextBox5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFoundGuiltyDetailsOfOffence;
-        
-        /// <summary>
-        /// rdLstAdultSentenceImposed control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdLstAdultSentenceImposed;
-        
-        /// <summary>
-        /// txtDescribeAdultSentence control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescribeAdultSentence;
-        
-        /// <summary>
-        /// rdLstPendingCharges control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdLstPendingCharges;
-        
-        /// <summary>
-        /// txtPendingChargesCourtNumber control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPendingChargesCourtNumber;
-        
-        /// <summary>
-        /// txtPendingChargesCourtName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPendingChargesCourtName;
-        
-        /// <summary>
-        /// txtPendingChargesCourtAddress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPendingChargesCourtAddress;
-        
-        /// <summary>
-        /// txtPendingChargesDescribe control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPendingChargesDescribe;
-        
-        /// <summary>
-        /// hypBack control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hypBack;
-        
-        /// <summary>
-        /// btnSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnSubmit;
-        
-        /// <summary>
-        /// btnPreviewPdf control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnPreviewPdf;
+        protected global::System.Web.UI.WebControls.TextBox TextBox5;
     }
 }

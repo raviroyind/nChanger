@@ -1,7 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using nChanger.WebUI.Navigation;
 namespace nChanger.WebUI
 {
     public class AppBasePage : Page
@@ -39,7 +40,24 @@ namespace nChanger.WebUI
             }
             set { Session[AppConfig.PreviousPageId] = value; }
         }
-        
+
+        public string CurrentId
+        {
+            get { return (Session[AppConfig.CurrentId] == null ? "" : Session[AppConfig.CurrentId].ToString()); }
+            set { Session[AppConfig.CurrentId] = value; }
+        }
+
+        public List<FrmSection> Sections
+        {
+            get
+            {
+                return (Session[AppConfig.FormSetions] == null
+                    ? null
+                    : (List<FrmSection>) Session[AppConfig.FormSetions]);
+            }
+            set { Session[AppConfig.FormSetions] = value; }
+            
+        }
 
         protected override void OnLoad(EventArgs e)
         {
@@ -93,8 +111,7 @@ namespace nChanger.WebUI
             (ucPaging1.FindControl("lnkimgbtnNext") as LinkButton).Enabled = (ucPaging.FindControl("lnkimgbtnNext") as LinkButton).Enabled;
             (ucPaging1.FindControl("lnkimgbtnLast") as LinkButton).Enabled = (ucPaging.FindControl("lnkimgbtnLast") as LinkButton).Enabled;
         }
-
-
+         
         protected void ShowUpdatePanelAlert(UpdatePanel updatePanel,string message)
         {
             ScriptManager.RegisterStartupScript(
@@ -125,6 +142,28 @@ namespace nChanger.WebUI
                 ViewState["sortDirection"] = "ASC";
             }
 
+        }
+
+
+        public List<string> ExtractFromString(string text, string startString, string endString)
+        {
+            List<string> matched = new List<string>();
+            int indexStart = 0, indexEnd = 0;
+            bool exit = false;
+            while (!exit)
+            {
+                indexStart = text.IndexOf(startString, StringComparison.Ordinal);
+                indexEnd = text.IndexOf(endString, StringComparison.Ordinal);
+                if (indexStart != -1 && indexEnd != -1)
+                {
+                    matched.Add(text.Substring(indexStart + startString.Length,
+                        indexEnd - indexStart - startString.Length));
+                    text = text.Substring(indexEnd + endString.Length);
+                }
+                else
+                    exit = true;
+            }
+            return matched;
         }
 
         #endregion Binding Functions...

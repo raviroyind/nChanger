@@ -1,17 +1,18 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin.Master" AutoEventWireup="true" CodeBehind="FieldMapping.aspx.cs" Inherits="nChanger.WebUI.Admin.PdfFieldMapping" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin.Master" AutoEventWireup="true" ValidateRequest="false   " CodeBehind="FieldMapping.aspx.cs" Inherits="nChanger.WebUI.Admin.PdfFieldMapping" %>
 <%@ Register Src="../UserControls/Paging.ascx" TagName="Paging" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <script type="text/javascript" src="../Scripts/jquery-2.2.0.js"></script>
+        <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:UpdateProgress ID="updProgress"
+    <%--<asp:UpdateProgress ID="updProgress"
         AssociatedUpdatePanelID="updatePanelPdf"
         runat="server">
         <ProgressTemplate>
             <div id="spinner" class="divspinner">
             </div>
         </ProgressTemplate>
-    </asp:UpdateProgress>
+    </asp:UpdateProgress>--%>
       <div class="ui warning message fluid" style="display: none;" id="success-alert">
         <asp:Label ID="lblMsg" Style="font-size: 1.2em; font-weight: bold;" runat="server" Text="Template mapping saved!"></asp:Label>
     </div>
@@ -53,6 +54,17 @@
                     <h4 class="ui dividing header"></h4>
                     <div class="one field">
                         <div class="field">
+                            <label>Pdf</label>
+                            <div class="field">
+                                <div class="sixteen wide field">
+                                    <asp:HyperLink runat="server" ID="hypPdf" Target="_blank" CssClass="ui active"></asp:HyperLink>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="ui dividing header"></h4>
+                    <div class="one field">
+                        <div class="field">
                             <label>Template Name</label>
                             <div class="field">
                                 <div class="sixteen wide field">
@@ -64,14 +76,16 @@
                     <h4 class="ui dividing header"></h4>
                     <div class="one field">
                         <div class="field">
-                            <label>Pdf</label>
+                            <label>Comments/ Instructions</label>
                             <div class="field">
                                 <div class="sixteen wide field">
-                                    <asp:HyperLink runat="server" ID="hypPdf" Target="_blank" CssClass="ui active"></asp:HyperLink>
+                                    <asp:TextBox runat="server" ID="txtComments" CssClass="myTextEditor" MaxLength="500" TextMode="MultiLine"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
                     <div class="ui large info message">
                         <div class="ui header">
                              <p>
@@ -89,8 +103,8 @@
     </div>
     <div class="one wide column"></div>
     
-    <asp:UpdatePanel runat="server" ID="updatePanelPdf">
-        <ContentTemplate>
+   <%-- <asp:UpdatePanel runat="server" ID="updatePanelPdf">
+        <ContentTemplate>--%>
               <div class="ui grid">
                 <div class="one wide column"></div>
                 <div class="fourteen wide column">
@@ -159,15 +173,36 @@
             <div class="one wide column"></div>
             <h4 class="ui dividing header"></h4>
             <h4 class="ui dividing header"></h4>
-        </ContentTemplate>
-    </asp:UpdatePanel>
+     <%--   </ContentTemplate>
+    </asp:UpdatePanel>--%>
         
      <script type="text/javascript" src="../Scripts/semantic.min.js"></script>
     <script type="text/javascript">
         $('.ui.fluid.search.selection.dropdown').dropdown();
 
         function showAlert() {
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
             $("#success-alert").show().delay(5000).fadeOut();
+            $('.ui.fluid.search.selection.dropdown').dropdown(); 
         }
+
+        $(document).ready(function() {
+            tinymce.init({
+                selector: 'textarea',
+                theme: 'modern',
+               
+                height: 200,
+                plugins: [
+                  'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                  'searchreplace wordcount visualblocks visualchars code fullscreen',
+                  'insertdatetime media nonbreaking save table contextmenu directionality',
+                  'emoticons template paste textcolor colorpicker textpattern imagetools'
+                ],
+                toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                toolbar2: 'print preview media | forecolor backcolor emoticons',
+                image_advtab: true
+            });
+        });
+         
     </script>
 </asp:Content>

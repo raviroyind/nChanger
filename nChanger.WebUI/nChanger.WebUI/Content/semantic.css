@@ -14593,7 +14593,7 @@ ol.ui.horizontal.list li:before,
 .ui.stacked.segments:after,
 .ui.stacked.segment:before,
 .ui.stacked.segment:after {
-  content: '';
+  /*content: '';*/
   position: absolute;
   bottom: -3px;
   left: 0%;
@@ -15596,7 +15596,7 @@ ol.ui.horizontal.list li:before,
 .ui.steps .link.step:active,
 .ui.steps a.step:active::after,
 .ui.steps a.step:active {
-  background: #f3f4f5;
+    background-color:#dcddde;
   color: rgba(0, 0, 0, 0.9);
 }
 
@@ -15604,11 +15604,11 @@ ol.ui.horizontal.list li:before,
 
 .ui.steps .step.active {
   cursor: auto;
-  background: #00BCD4;
+  background: #dcddde;
 }
 
 .ui.steps .step.active:after {
-  background: #00BCD4;
+  background: #dcddde;
 }
 
 .ui.steps .step.active .title {

@@ -17,6 +17,7 @@ namespace nChanger.Core
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
+            this.UserFormDetails = new HashSet<UserFormDetail>();
             this.UserPackages = new HashSet<UserPackage>();
         }
     
@@ -42,6 +43,8 @@ namespace nChanger.Core
         public string IP { get; set; }
         public bool IsActive { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserFormDetail> UserFormDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserPackage> UserPackages { get; set; }
         public virtual UserType UserType { get; set; }

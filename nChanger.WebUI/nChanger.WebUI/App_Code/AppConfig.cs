@@ -15,7 +15,8 @@ namespace nChanger.WebUI
         public static string SessionItemNameUserName = "USR_NAME";
         public static string SessionItemNameUserType = "USER_TYPE";
         public static string PreviousPageId = "PREV_KEY_PROVCAT";
-
+        public static string CurrentId = "CURRENT_ID";
+        public static string FormSetions = "FRM_SECTIONS";
         #endregion
 
     }

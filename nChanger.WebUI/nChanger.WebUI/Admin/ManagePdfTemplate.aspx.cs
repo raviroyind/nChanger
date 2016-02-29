@@ -16,6 +16,7 @@ namespace nChanger.WebUI.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+              
             var file = Request.Files["FileData"];
 
             if (file != null)
@@ -56,18 +57,26 @@ namespace nChanger.WebUI.Admin
             }
         }
         private void BindTemplates()
-        {
+        { 
             var id = Guid.Empty;
 
             if (Request.QueryString["id"] != null)
                 id = Guid.Parse(Request.QueryString["id"]);
             else if (Request.UrlReferrer != null)
             {
-                if(!string.IsNullOrEmpty(Request.UrlReferrer.Query))
-                    id = Guid.Parse(Request.UrlReferrer.Query.Substring(4));
+                if(!Request.UrlReferrer.AbsoluteUri.Contains("ManagePdfTemplate.aspx"))
+                    divWrapper.Style.Add(HtmlTextWriterStyle.Display, "none");
+                else
+                    divWrapper.Style.Add(HtmlTextWriterStyle.Display, "block");
+
+                if (!string.IsNullOrEmpty(Request.UrlReferrer.Query))
+                {
+                    if (Request.UrlReferrer.Query.Contains("=") && Request.UrlReferrer.Query.Contains("&"))
+                        id = Guid.Parse(ExtractFromString(Request.UrlReferrer.Query, "=", "&")[0]);
+                 }
             }
-                
-             using (var dataContext = new nChangerDb())
+
+            using (var dataContext = new nChangerDb())
             {
                 var templateList = dataContext.PdfFormTemplates.ToList();
 

@@ -13,15 +13,6 @@ namespace nChanger.WebUI.Admin {
     public partial class PdfFieldMapping {
         
         /// <summary>
-        /// updProgress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdateProgress updProgress;
-        
-        /// <summary>
         /// lblMsg control.
         /// </summary>
         /// <remarks>
@@ -49,15 +40,6 @@ namespace nChanger.WebUI.Admin {
         protected global::System.Web.UI.WebControls.Label lblMessage;
         
         /// <summary>
-        /// txtTemplateName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTemplateName;
-        
-        /// <summary>
         /// hypPdf control.
         /// </summary>
         /// <remarks>
@@ -67,13 +49,22 @@ namespace nChanger.WebUI.Admin {
         protected global::System.Web.UI.WebControls.HyperLink hypPdf;
         
         /// <summary>
-        /// updatePanelPdf control.
+        /// txtTemplateName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel updatePanelPdf;
+        protected global::System.Web.UI.WebControls.TextBox txtTemplateName;
+        
+        /// <summary>
+        /// txtComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtComments;
         
         /// <summary>
         /// ucPaging control.
