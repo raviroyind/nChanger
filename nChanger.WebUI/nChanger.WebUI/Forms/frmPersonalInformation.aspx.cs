@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
 using System.Web.UI.HtmlControls;
+using nameChanger.WebUI;
 using nChanger.Core;
 
 namespace nChanger.WebUI.Forms
@@ -14,13 +16,8 @@ namespace nChanger.WebUI.Forms
         {
             if (!IsPostBack)
             {
-                var loginName = (HtmlAnchor)Master.FindControl("ancLoginName");
-                loginName.InnerText = "Welcome " + Convert.ToString(Session["USR_NAME"]);
-
-                var anHome = (HtmlAnchor)Master.FindControl("anHome");
-                anHome.HRef = "~/Secured/Home.aspx";
-                 
-                Display();
+               FormIndex = 1;
+               Display();
             }
         }
 
@@ -29,17 +26,21 @@ namespace nChanger.WebUI.Forms
             ddlCountryMarried.DataSource = CommonFunctions.GetCountriesList();
             ddlCountryMarried.DataBind();
             ddlCountryMarried.Items.Insert(0, "Select");
-            if (Request.QueryString["id"] != null)
-            {
+             
                 try
                 {
-                    var id = Guid.Parse(Request.QueryString["id"]);
+                    var id = Guid.Parse(CurrentId);
 
                     using (var dataContext = new nChangerDb())
                     {
-                        var frmOn =
+                        var pdfFoemTemplate = dataContext.PdfFormTemplates.Find(id);
+                        var questions = pdfFoemTemplate.ProvinceCategory.DefineQuestions;
+
+                    var frmOn =
                             dataContext.PersonalInformations.FirstOrDefault(
-                                f => f.UserId.Equals(UserId) && f.PdfTemplateId.Equals(id));
+                                f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
+
+                        
 
                         if (frmOn != null)
                         {
@@ -135,30 +136,52 @@ namespace nChanger.WebUI.Forms
 
                 }
                 catch (Exception)
-                {
-
-                }
-            }
+                { }
         }
 
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         { 
             divMsg.InnerText = Submit();
-            Response.Redirect("frmParentInformation.aspx?id=" + Request.QueryString["id"]);
+
+            var sections = Sections;
+            var page = Path.GetFileName(Request.PhysicalPath);
+            var curret = Sections.FirstOrDefault(s => s.AspxPath.Contains(page));
+
+            using (var dataContext = new nChangerDb())
+            {
+
+                dataContext.UserFormDetails.AddOrUpdate(new UserFormDetail
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = UserId,
+                    AspxPath = curret.AspxPath,
+                    TableName = curret.TableName,
+                    PdfTemplateId = Guid.Parse(CurrentId),
+                    FrmGuid = curret.FrmGuid,
+                    Completed = "Y"
+                });
+
+                dataContext.SaveChanges();
+            }
+
+            var nextPage = FormIndex + 1;
+            var redirect = Sections.Where(s => s.DisplayOrder.Equals(nextPage)).FirstOrDefault().AspxPath;
+             
+            Response.Redirect(redirect);
         }
 
         private string Submit()
         {
-              
-           var id = Guid.Parse(Request.QueryString["id"]);
-           var returnMessage = string.Empty;
+
+            var id = Guid.Parse(CurrentId);
+            var returnMessage = string.Empty;
             try
             {
                 using (var dataContext=new nChangerDb())
                 {
                      var dbEntry =
                             dataContext.PersonalInformations.FirstOrDefault(
-                                f => f.UserId.Equals(UserId) && f.PdfTemplateId.Equals(id));
+                                f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
                     if (dbEntry != null)
                     {
                         dbEntry.PresentFirstName = txtPresentFirstName.Text;
@@ -218,7 +241,7 @@ namespace nChanger.WebUI.Forms
                         var entry = new PersonalInformation
                         {
                             Id=Guid.NewGuid(),
-                            PdfTemplateId = id,
+                            PdfFormTemplateId = id,
                             UserId = Convert.ToString(Session["USER_KEY"]),
                             PresentFirstName = txtPresentFirstName.Text,
                             PresentMiddleName = txtPresentMiddleName.Text,
@@ -291,12 +314,12 @@ namespace nChanger.WebUI.Forms
 
         protected void btnPreviewPdf_OnClick(object sender, EventArgs e)
         {
-            var id = Guid.Parse(Request.QueryString["id"]);
+            var id = Guid.Parse(CurrentId);
             using (var dataContext = new nChangerDb())
             {
                 var frmOn =
                             dataContext.PersonalInformations.FirstOrDefault(
-                                f => f.UserId.Equals(UserId) && f.PdfTemplateId.Equals(id));
+                                f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
 
                 if (frmOn != null)
                 {

@@ -140,6 +140,10 @@
     <Content Include="default.aspx" />
     <Content Include="eligiblityQuestions.aspx" />
     <Content Include="Forms\frmCriminalOffenceInformation.aspx" />
+    <Content Include="Forms\frmFinancialInformation.aspx" />
+    <Content Include="Forms\frmNameChangeInformation.aspx" />
+    <Content Include="Forms\frmParentInformation.aspx" />
+    <Content Include="Forms\frmPersonalInformation.aspx" />
     <Content Include="Forms\OLD_frmCriminalOffenceInformation.aspx" />
     <Content Include="images\cancel.png" />
     <Content Include="images\delete.png" />
@@ -173,6 +177,14 @@
     <Content Include="Secured\GeneralQuestions.aspx" />
     <Content Include="Secured\packageSelection.aspx" />
     <Content Include="selectPackage.aspx" />
+    <Content Include="Style\css\bootstrap-theme.css" />
+    <Content Include="Style\css\bootstrap-theme.min.css" />
+    <Content Include="Style\css\bootstrap.css" />
+    <Content Include="Style\css\bootstrap.min.css" />
+    <Content Include="Style\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Style\js\bootstrap.js" />
+    <Content Include="Style\js\bootstrap.min.js" />
+    <Content Include="Style\js\npm.js" />
     <Content Include="tinymce\jscripts\tiny_mce\langs\en.js" />
     <Content Include="tinymce\jscripts\tiny_mce\license.txt" />
     <Content Include="tinymce\jscripts\tiny_mce\plugins\advhr\css\advhr.css" />
@@ -418,6 +430,16 @@
     <Content Include="Uplodify\check-exists.php" />
     <Content Include="Uplodify\index.php" />
     <Content Include="Uplodify\uploadify.php" />
+    <Content Include="Forms.Master" />
+    <None Include="Properties\PublishProfiles\godaddy.pubxml" />
+    <Content Include="Style\css\bootstrap-theme.css.map" />
+    <Content Include="Style\css\bootstrap-theme.min.css.map" />
+    <Content Include="Style\css\bootstrap.css.map" />
+    <Content Include="Style\css\bootstrap.min.css.map" />
+    <Content Include="Style\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Style\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Style\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Style\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -752,6 +774,7 @@
       <DependentUpon>Anon.Master</DependentUpon>
     </Compile>
     <Compile Include="App_Code\FrmSection.cs" />
+    <Compile Include="App_Code\PdfInjector.cs" />
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -766,12 +789,47 @@
     <Compile Include="eligiblityQuestions.aspx.designer.cs">
       <DependentUpon>eligiblityQuestions.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Forms.Master.cs">
+      <DependentUpon>Forms.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms.Master.designer.cs">
+      <DependentUpon>Forms.Master</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmCriminalOffenceInformation.aspx.cs">
       <DependentUpon>frmCriminalOffenceInformation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Forms\frmCriminalOffenceInformation.aspx.designer.cs">
       <DependentUpon>frmCriminalOffenceInformation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmFinancialInformation.aspx.cs">
+      <DependentUpon>frmFinancialInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\frmFinancialInformation.aspx.designer.cs">
+      <DependentUpon>frmFinancialInformation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmNameChangeInformation.aspx.cs">
+      <DependentUpon>frmNameChangeInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\frmNameChangeInformation.aspx.designer.cs">
+      <DependentUpon>frmNameChangeInformation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmParentInformation.aspx.cs">
+      <DependentUpon>frmParentInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\frmParentInformation.aspx.designer.cs">
+      <DependentUpon>frmParentInformation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPersonalInformation.aspx.cs">
+      <DependentUpon>frmPersonalInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPersonalInformation.aspx.designer.cs">
+      <DependentUpon>frmPersonalInformation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\OLD_frmCriminalOffenceInformation.aspx.cs">
       <DependentUpon>OLD_frmCriminalOffenceInformation.aspx</DependentUpon>
@@ -894,6 +952,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Output\" />
     <Folder Include="PackageImages\" />
     <Folder Include="Pdf\" />
     <Folder Include="UploaderTemp\" />

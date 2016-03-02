@@ -17,8 +17,13 @@ namespace nChanger.Core
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PdfFormTemplate()
         {
+            this.CriminalOffenceInformations = new HashSet<CriminalOffenceInformation>();
             this.FieldMappings = new HashSet<FieldMapping>();
+            this.FinancialInformations = new HashSet<FinancialInformation>();
             this.FormInfoes = new HashSet<FormInfo>();
+            this.NameChangeInformations = new HashSet<NameChangeInformation>();
+            this.ParentInformations = new HashSet<ParentInformation>();
+            this.PersonalInformations = new HashSet<PersonalInformation>();
             this.UserFormDetails = new HashSet<UserFormDetail>();
         }
     
@@ -33,10 +38,20 @@ namespace nChanger.Core
         public string EntryId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CriminalOffenceInformation> CriminalOffenceInformations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FieldMapping> FieldMappings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FinancialInformation> FinancialInformations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FormInfo> FormInfoes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NameChangeInformation> NameChangeInformations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ParentInformation> ParentInformations { get; set; }
         public virtual ProvinceCategory ProvinceCategory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PersonalInformation> PersonalInformations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserFormDetail> UserFormDetails { get; set; }
     }

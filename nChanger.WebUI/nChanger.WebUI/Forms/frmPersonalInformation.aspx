@@ -1,9 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmONPersonalInfo.aspx.cs" Inherits="nChanger.WebUI.Forms.FrmOnPersonalInfo" %>
+﻿<%@ Page Title="" Language="C#"  MasterPageFile="../Forms.Master"  AutoEventWireup="true" CodeBehind="frmPersonalInformation.aspx.cs" Inherits="nChanger.WebUI.Forms.FrmOnPersonalInfo" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<script type="text/javascript" src="../Scripts/jquery-2.2.0.js"></script>
+<link href="../Style/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../Style/css/bootstrap-theme.min.css" rel="stylesheet" />
+<script src="../Style/js/bootstrap.min.js"></script>  
     <link href="https://code.jquery.com/ui/1.12.0-beta.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
         $(function () {
@@ -12,14 +13,15 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container-fluid">
+      <div class="container fluid" style="width: 100%; margin-top: 3%;">
         <div class="panel panel-info" style="margin-bottom: 5%;">
             <div class="panel-heading">
               <strong>A. Information about you.</strong>
             </div>
-            <div class="panel-body">
-                <div class="form-horizontal">
-                    <div id="divMsg" class="alert" style="color: #dc143c;" runat="server"></div>
+             <div class="panel-body"  style="width: 100%;">
+              <div id="divMsg" class="alert" style="color: #dc143c;" runat="server"></div>
+               <div class="container"  style="width: 100%;">
+                    
                     <div class="row">
                         <div class="col-md-1">
                             <label class="control-label">First Name</label>

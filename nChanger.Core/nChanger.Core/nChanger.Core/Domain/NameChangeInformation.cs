@@ -15,7 +15,7 @@ namespace nChanger.Core
     public partial class NameChangeInformation
     {
         public System.Guid Id { get; set; }
-        public System.Guid PdfTemplateId { get; set; }
+        public System.Guid PdfFormTemplateId { get; set; }
         public string UserId { get; set; }
         public string ResonForNameChange { get; set; }
         public string ChangedNamePriviously { get; set; }
@@ -35,5 +35,8 @@ namespace nChanger.Core
         public System.DateTime EntryDate { get; set; }
         public string EntryIP { get; set; }
         public string EntryId { get; set; }
+    
+        public virtual PdfFormTemplate PdfFormTemplate { get; set; }
+        public virtual User User { get; set; }
     }
 }

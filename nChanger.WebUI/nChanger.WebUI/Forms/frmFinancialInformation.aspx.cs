@@ -2,7 +2,7 @@
 using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
-using System.Web.UI.HtmlControls;
+using nameChanger.WebUI;
 using nChanger.Core;
 
 namespace nChanger.WebUI.Forms
@@ -13,30 +13,23 @@ namespace nChanger.WebUI.Forms
         {
             if (!IsPostBack)
             {
-                var loginName = (HtmlAnchor) Master.FindControl("ancLoginName");
-                loginName.InnerText = "Welcome " + Convert.ToString(Session["USR_NAME"]);
-
-                var anHome = (HtmlAnchor) Master.FindControl("anHome");
-                anHome.HRef = "~/Secured/Home.aspx";
-
+                FormIndex = 5;
                 Display();
             }
         }
 
         private void Display()
-        {
-            if (Request.QueryString["id"] != null)
-            {
-                hypBack.NavigateUrl = "../Forms/frmCriminalOffenceInformation.aspx?id=" + Request.QueryString["id"];
+        { 
                 try
                 {
-                    var id = Guid.Parse(Request.QueryString["id"]);
+                    hypBack.NavigateUrl = "../Forms/frmCriminalOffenceInformation.aspx?id=" + CurrentId;
+                    var id = Guid.Parse(CurrentId);
 
                     using (var dataContext = new nChangerDb())
                     {
                         var frmFinancialInformation =
                             dataContext.FinancialInformations.FirstOrDefault(
-                                f => f.UserId.Equals(UserId) && f.PdfTemplateId.Equals(id));
+                                f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
 
                         if (frmFinancialInformation != null)
                         {
@@ -88,12 +81,12 @@ namespace nChanger.WebUI.Forms
                 {
 
                 }
-            }
+            
         }
 
         private string Submit()
         {
-            var id = Guid.Parse(Request.QueryString["id"]);
+            var id = Guid.Parse(CurrentId);
             var returnMessage = string.Empty;
             try
             {
@@ -101,7 +94,7 @@ namespace nChanger.WebUI.Forms
                 {
                     var dbEntry =
                         dataContext.FinancialInformations.FirstOrDefault(
-                            f => f.UserId.Equals(UserId) && f.PdfTemplateId.Equals(id));
+                            f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
 
 
                     if (dbEntry != null)
@@ -143,7 +136,7 @@ namespace nChanger.WebUI.Forms
                         var entry = new FinancialInformation
                         {
                             Id = Guid.NewGuid(),
-                            PdfTemplateId = id,
+                            PdfFormTemplateId = id,
                             UserId = UserId,
                             CourtOrTribunalOrder = rdLstCourtOrTribunalOrder.SelectedIndex == 0,
                             CourtFileNumber = txtCourtFileNumber.Text,
@@ -208,12 +201,12 @@ namespace nChanger.WebUI.Forms
 
         protected void btnPreviewPdf_OnClick(object sender, EventArgs e)
         {
-            var id = Guid.Parse(Request.QueryString["id"]);
+            var id = Guid.Parse(CurrentId);
             using (var dataContext = new nChangerDb())
             {
                 var frmOn =
                             dataContext.FinancialInformations.FirstOrDefault(
-                                f => f.UserId.Equals(UserId) && f.PdfTemplateId.Equals(id));
+                                f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
 
                 if (frmOn != null)
                 {

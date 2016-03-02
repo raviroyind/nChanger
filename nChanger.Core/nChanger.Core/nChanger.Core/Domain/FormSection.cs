@@ -27,6 +27,7 @@ namespace nChanger.Core
         public System.DateTime EntryDate { get; set; }
         public string EntryIP { get; set; }
         public string EntryId { get; set; }
+        public int FormOrder { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FormInfo> FormInfoes { get; set; }

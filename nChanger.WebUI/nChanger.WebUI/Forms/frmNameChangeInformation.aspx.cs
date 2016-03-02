@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
 using System.Web.UI.HtmlControls;
+using nameChanger.WebUI;
 using nChanger.Core;
 
 namespace nChanger.WebUI.Forms
@@ -14,12 +16,7 @@ namespace nChanger.WebUI.Forms
         {
             if (!IsPostBack)
             {
-                var loginName = (HtmlAnchor)Master.FindControl("ancLoginName");
-                loginName.InnerText = "Welcome " + Convert.ToString(Session["USR_NAME"]);
-
-                var anHome = (HtmlAnchor)Master.FindControl("anHome");
-                anHome.HRef = "~/Secured/Home.aspx";
-
+                FormIndex = 3;
                 Display();
             }
         }
@@ -29,74 +26,72 @@ namespace nChanger.WebUI.Forms
             ddlCountry.DataSource = CommonFunctions.GetCountriesList();
             ddlCountry.DataBind();
             ddlCountry.Items.Insert(0, "Select");
-
-            if (Request.QueryString["id"] != null)
+    
+            try
             {
-                hypBack.NavigateUrl = "../Forms/frmParentInformation.aspx?id=" + Request.QueryString["id"];
-                try
+                hypBack.NavigateUrl = "../Forms/frmParentInformation.aspx?id=" + CurrentId;
+                var id = Guid.Parse(CurrentId);
+
+                using (var dataContext = new nChangerDb())
                 {
-                    var id = Guid.Parse(Request.QueryString["id"]);
+                    var frmNameChangeInformation =
+                        dataContext.NameChangeInformations.FirstOrDefault(
+                            f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
 
-                    using (var dataContext = new nChangerDb())
+                    if (frmNameChangeInformation != null)
                     {
-                        var frmNameChangeInformation =
-                            dataContext.NameChangeInformations.FirstOrDefault(
-                                f => f.UserId.Equals(UserId) && f.PdfTemplateId.Equals(id));
+                        btnPreviewPdf.CssClass = string.Empty;
+                        btnPreviewPdf.CssClass = "btn btn-sm btn-primary";
 
-                        if (frmNameChangeInformation != null)
+                        txtResonForNameChange.Text = frmNameChangeInformation.ResonForNameChange;
+
+                        if (!string.IsNullOrEmpty(frmNameChangeInformation.ChangedNamePriviously))
+                            rdListChangedNamePriviously.Items.FindByValue(
+                                frmNameChangeInformation.ChangedNamePriviously).Selected = true;
+
+
+                        if (frmNameChangeInformation.PreviousNameChangeMonth > 0 && frmNameChangeInformation.PreviousNameChangeDay > 0 && frmNameChangeInformation.PreviousNameChangeYear > 0)
                         {
-                            btnPreviewPdf.CssClass = string.Empty;
-                            btnPreviewPdf.CssClass = "btn btn-sm btn-primary";
-
-                           txtResonForNameChange.Text = frmNameChangeInformation.ResonForNameChange;
-
-                            if (!string.IsNullOrEmpty(frmNameChangeInformation.ChangedNamePriviously))
-                                rdListChangedNamePriviously.Items.FindByValue(
-                                    frmNameChangeInformation.ChangedNamePriviously).Selected = true;
-
-
-                            if (frmNameChangeInformation.PreviousNameChangeMonth > 0 && frmNameChangeInformation.PreviousNameChangeDay > 0 && frmNameChangeInformation.PreviousNameChangeYear > 0)
-                            {
-                                DateTime dt = new DateTime(frmNameChangeInformation.PreviousNameChangeYear.Value, frmNameChangeInformation.PreviousNameChangeMonth.Value, frmNameChangeInformation.PreviousNameChangeDay.Value);
-                                txtPreviousNameChangeDate.Text = dt.ToString("MM/dd/yyyy");
-                            }
+                            DateTime dt = new DateTime(frmNameChangeInformation.PreviousNameChangeYear.Value, frmNameChangeInformation.PreviousNameChangeMonth.Value, frmNameChangeInformation.PreviousNameChangeDay.Value);
+                            txtPreviousNameChangeDate.Text = dt.ToString("MM/dd/yyyy");
+                        }
 
                              
-                           txtPreviousFirstName.Text =  frmNameChangeInformation.PreviousFirstName;
-                           txtPreviousMiddleName.Text= frmNameChangeInformation.PreviousMiddleName;
-                           txtPreviousLastName.Text = frmNameChangeInformation.PreviousLastName;
-                           txtFirstNameAfterChange.Text = frmNameChangeInformation.FirstNameAfterChange;
-                           txtMiddleNameAfterChange.Text = frmNameChangeInformation.MiddleNameAfterChange;
-                           txtLastNameAfterChange.Text = frmNameChangeInformation.LastNameAfterChange;
-                           txtPreviousNameChangeProvince.Text = frmNameChangeInformation.PreviousNameChangeProvince;
+                        txtPreviousFirstName.Text =  frmNameChangeInformation.PreviousFirstName;
+                        txtPreviousMiddleName.Text= frmNameChangeInformation.PreviousMiddleName;
+                        txtPreviousLastName.Text = frmNameChangeInformation.PreviousLastName;
+                        txtFirstNameAfterChange.Text = frmNameChangeInformation.FirstNameAfterChange;
+                        txtMiddleNameAfterChange.Text = frmNameChangeInformation.MiddleNameAfterChange;
+                        txtLastNameAfterChange.Text = frmNameChangeInformation.LastNameAfterChange;
+                        txtPreviousNameChangeProvince.Text = frmNameChangeInformation.PreviousNameChangeProvince;
 
-                            if (!string.IsNullOrEmpty(frmNameChangeInformation.PreviousNameChangeCountry))
-                                ddlCountry.Items.FindByValue(frmNameChangeInformation.PreviousNameChangeCountry)
-                                    .Selected = true;
+                        if (!string.IsNullOrEmpty(frmNameChangeInformation.PreviousNameChangeCountry))
+                            ddlCountry.Items.FindByValue(frmNameChangeInformation.PreviousNameChangeCountry)
+                                .Selected = true;
 
-                            if(frmNameChangeInformation.AppliedForChangeAndRefused != null && frmNameChangeInformation.AppliedForChangeAndRefused.Value)
-                                rdLstAppliedForChangeAndRefused.SelectedIndex = 0;
-                            else
-                                rdLstAppliedForChangeAndRefused.SelectedIndex = 1;
-
-                        }
+                        if(frmNameChangeInformation.AppliedForChangeAndRefused != null && frmNameChangeInformation.AppliedForChangeAndRefused.Value)
+                            rdLstAppliedForChangeAndRefused.SelectedIndex = 0;
                         else
-                        {
-                            btnPreviewPdf.CssClass = string.Empty;
-                            btnPreviewPdf.CssClass = "btn btn-sm btn-primary disabled";
-                        }
+                            rdLstAppliedForChangeAndRefused.SelectedIndex = 1;
+
+                    }
+                    else
+                    {
+                        btnPreviewPdf.CssClass = string.Empty;
+                        btnPreviewPdf.CssClass = "btn btn-sm btn-primary disabled";
                     }
                 }
-                catch (Exception)
-                {
-
-                }
             }
+            catch (Exception)
+            {
+
+            }
+            
         }
 
         private string Submit()
         {
-            var id = Guid.Parse(Request.QueryString["id"]);
+            var id = Guid.Parse(CurrentId);
             var returnMessage = string.Empty;
             try
             {
@@ -104,9 +99,8 @@ namespace nChanger.WebUI.Forms
                 {
                     var dbEntry =
                         dataContext.NameChangeInformations.FirstOrDefault(
-                            f => f.UserId.Equals(UserId) && f.PdfTemplateId.Equals(id));
-
-
+                            f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
+                     
                     if (dbEntry != null)
                     {
                         dbEntry.ResonForNameChange = txtResonForNameChange.Text;
@@ -138,7 +132,7 @@ namespace nChanger.WebUI.Forms
                         var entry = new NameChangeInformation()
                         {
                             Id = Guid.NewGuid(),
-                            PdfTemplateId =id,
+                            PdfFormTemplateId = id,
                             UserId = UserId,
                             ResonForNameChange = txtResonForNameChange.Text,
                             ChangedNamePriviously = rdListChangedNamePriviously.SelectedIndex != -1? rdListChangedNamePriviously.SelectedValue:string.Empty,
@@ -180,18 +174,47 @@ namespace nChanger.WebUI.Forms
  
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
-            divMsg.InnerText = Submit();
-            Response.Redirect("frmCriminalOffenceInformation.aspx?id=" + Request.QueryString["id"]);
+            try
+            {
+                divMsg.InnerText = Submit();
+                var sections = Sections;
+                var page = Path.GetFileName(Request.PhysicalPath);
+                var curret = Sections.FirstOrDefault(s => s.AspxPath.Contains(page));
+
+                using (var dataContext = new nChangerDb())
+                {
+                    dataContext.UserFormDetails.AddOrUpdate(new UserFormDetail
+                    {
+                        Id = Guid.NewGuid(),
+                        UserId = UserId,
+                        AspxPath = curret.AspxPath,
+                        TableName = curret.TableName,
+                        PdfTemplateId = Guid.Parse(CurrentId),
+                        FrmGuid = curret.FrmGuid,
+                        Completed = "Y"
+                    });
+
+                    dataContext.SaveChanges();
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+
+            var nextPage = FormIndex + 1;
+            var redirect = Sections.Where(s => s.DisplayOrder.Equals(nextPage)).FirstOrDefault().AspxPath;
+
+            Response.Redirect(redirect);
         }
 
         protected void btnPreviewPdf_OnClick(object sender, EventArgs e)
         {
-            var id = Guid.Parse(Request.QueryString["id"]);
+            var id = Guid.Parse(CurrentId);
             using (var dataContext = new nChangerDb())
             {
-                var frmOn =
-                            dataContext.NameChangeInformations.FirstOrDefault(
-                                f => f.UserId.Equals(UserId) && f.PdfTemplateId.Equals(id));
+                var frmOn = dataContext.NameChangeInformations.FirstOrDefault(
+                                f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
 
                 if (frmOn != null)
                 {

@@ -117,7 +117,7 @@ namespace nChanger.WebUI.Admin
                            select c.TABLE_NAME + " | " + c.COLUMN_NAME;
 
              
-                var pdfTemplate = Server.MapPath(@"~/Pdf/" + hypPdf.Text);
+                var pdfTemplate = Server.MapPath(@"../Pdf/" + hypPdf.Text);
 
 
                 var pdfReader = new PdfReader(pdfTemplate);

@@ -17,6 +17,11 @@ namespace nChanger.Core
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
+            this.CriminalOffenceInformations = new HashSet<CriminalOffenceInformation>();
+            this.FinancialInformations = new HashSet<FinancialInformation>();
+            this.NameChangeInformations = new HashSet<NameChangeInformation>();
+            this.ParentInformations = new HashSet<ParentInformation>();
+            this.PersonalInformations = new HashSet<PersonalInformation>();
             this.UserFormDetails = new HashSet<UserFormDetail>();
             this.UserPackages = new HashSet<UserPackage>();
         }
@@ -43,6 +48,16 @@ namespace nChanger.Core
         public string IP { get; set; }
         public bool IsActive { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CriminalOffenceInformation> CriminalOffenceInformations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FinancialInformation> FinancialInformations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NameChangeInformation> NameChangeInformations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ParentInformation> ParentInformations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PersonalInformation> PersonalInformations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserFormDetail> UserFormDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

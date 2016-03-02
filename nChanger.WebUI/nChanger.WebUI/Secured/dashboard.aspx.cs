@@ -75,14 +75,15 @@ namespace nChanger.WebUI.Secured
                 if (pdfTemplate != null)
                 {
                     Sections=new List<FrmSection>();
-                    foreach (var form in pdfTemplate.FormInfoes.OrderBy(f => f.FormSection.TableName))
+                    foreach (var form in pdfTemplate.FormInfoes.OrderBy(f => f.FormSection.FormOrder))
                     {
                         var path = form.FormSection.FormPath;
                         Sections.Add(new FrmSection
                         {
                             FrmGuid= form.FormSection.Id,
                             TableName=form.FormSection.TableName,
-                            AspxPath=form.FormSection.FormPath
+                            AspxPath=form.FormSection.FormPath,
+                            DisplayOrder= form.FormSection.FormOrder
                         });
                     }
 

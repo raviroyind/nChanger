@@ -47,6 +47,15 @@ namespace nChanger.WebUI
             set { Session[AppConfig.CurrentId] = value; }
         }
 
+        public int FormIndex
+        {
+            get
+            {
+                return (Session[AppConfig.CurrentFormIndex] == null ?-1 : Convert.ToInt32(Session[AppConfig.CurrentFormIndex].ToString()));
+            }
+            set { Session[AppConfig.CurrentFormIndex] = value; }
+        }
+
         public List<FrmSection> Sections
         {
             get

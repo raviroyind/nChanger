@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using iTextSharp.text.pdf;
+using nameChanger.WebUI;
 using nChanger.Core;
 
 
@@ -20,70 +16,95 @@ namespace nChanger.WebUI.Forms
         {
             if (!IsPostBack)
             {
-                var loginName = (HtmlAnchor)Master.FindControl("ancLoginName");
-                loginName.InnerText = "Welcome " + Convert.ToString(Session["USR_NAME"]);
-
-                var anHome = (HtmlAnchor)Master.FindControl("anHome");
-                anHome.HRef = "~/Secured/Home.aspx";
-
+                FormIndex = 2;
                 Display();
             }
         }
 
         private void Display()
         {
-            if (Request.QueryString["id"] != null)
+            try
             {
-                hypBack.NavigateUrl = "../Forms/frmONPersonalInfo.aspx?id=" + Request.QueryString["id"];
-                try
+                var id = Guid.Parse(CurrentId);
+
+                hypBack.NavigateUrl = "../Forms/frmONPersonalInfo.aspx?id=" + CurrentId;
+
+                using (var dataContext = new nChangerDb())
                 {
-                    var id = Guid.Parse(Request.QueryString["id"]);
+                    var frmParentInformation =
+                        dataContext.ParentInformations.FirstOrDefault(
+                            f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
 
-                    using (var dataContext = new nChangerDb())
+                    if (frmParentInformation != null)
                     {
-                        var frmParentInformation =
-                            dataContext.ParentInformations.FirstOrDefault(
-                                f => f.UserId.Equals(UserId) && f.PdfTemplateId.Equals(id));
+                        btnPreviewPdf.CssClass = string.Empty;
+                        btnPreviewPdf.CssClass = "btn btn-sm btn-primary";
 
-                        if (frmParentInformation != null)
-                        {
-                            btnPreviewPdf.CssClass = string.Empty;
-                            btnPreviewPdf.CssClass = "btn btn-sm btn-primary";
-
-                            txtFatherFirstName.Text = frmParentInformation.FatherFirstName;	
-                            txtFatherMiddleName.Text = frmParentInformation.FatherMiddleName;
-                            txtFatherLastName.Text = frmParentInformation.FatherLastName;
-                            txtFatherLastNameOther.Text = frmParentInformation.FatherOtherLastName;
-                            txtMotherFirstName.Text = frmParentInformation.MotherFirstName;
-                            txtMotherMiddleName.Text = frmParentInformation.MotherMiddleName;
-                            txtMotherLastNameBorn.Text = frmParentInformation.MotherLastNameWhenBorn;
-                            txtMotherLastNamePresent.Text = frmParentInformation.MotherLastNamePresent;
-                            txtMotherLastNameOther.Text = frmParentInformation.MotherLastNameOther;
-                        }
-                        else
-                        {
-                            btnPreviewPdf.CssClass = string.Empty;
-                            btnPreviewPdf.CssClass = "btn btn-sm btn-primary disabled";
-                        }
+                        txtFatherFirstName.Text = frmParentInformation.FatherFirstName;	
+                        txtFatherMiddleName.Text = frmParentInformation.FatherMiddleName;
+                        txtFatherLastName.Text = frmParentInformation.FatherLastName;
+                        txtFatherLastNameOther.Text = frmParentInformation.FatherOtherLastName;
+                        txtMotherFirstName.Text = frmParentInformation.MotherFirstName;
+                        txtMotherMiddleName.Text = frmParentInformation.MotherMiddleName;
+                        txtMotherLastNameBorn.Text = frmParentInformation.MotherLastNameWhenBorn;
+                        txtMotherLastNamePresent.Text = frmParentInformation.MotherLastNamePresent;
+                        txtMotherLastNameOther.Text = frmParentInformation.MotherLastNameOther;
+                    }
+                    else
+                    {
+                        btnPreviewPdf.CssClass = string.Empty;
+                        btnPreviewPdf.CssClass = "btn btn-sm btn-primary disabled";
                     }
                 }
-                catch (Exception)
-                {
+            }
+            catch (Exception)
+            {
 
-                }
             }
         }
 
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
-            divMsg.InnerText = Submit();
-            Response.Redirect("frmNameChangeInformation.aspx?id=" + Request.QueryString["id"]);
+
+            try
+            {
+                divMsg.InnerText = Submit();
+                var sections = Sections;
+                var page = Path.GetFileName(Request.PhysicalPath);
+                var curret = Sections.FirstOrDefault(s => s.AspxPath.Contains(page));
+
+                using (var dataContext = new nChangerDb())
+                {
+
+                    dataContext.UserFormDetails.AddOrUpdate(new UserFormDetail
+                    {
+                        Id = Guid.NewGuid(),
+                        UserId = UserId,
+                        AspxPath = curret.AspxPath,
+                        TableName = curret.TableName,
+                        PdfTemplateId = Guid.Parse(CurrentId),
+                        FrmGuid = curret.FrmGuid,
+                        Completed = "Y"
+                    });
+
+                    dataContext.SaveChanges();
+                }
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(exception.Message);
+            }
+
+            var nextPage = FormIndex + 1;
+            var redirect = Sections.Where(s => s.DisplayOrder.Equals(nextPage)).FirstOrDefault().AspxPath;
+
+            Response.Redirect(redirect);
         }
 
         private string Submit()
         {
 
-            var id = Guid.Parse(Request.QueryString["id"]);
+            var id = Guid.Parse(CurrentId);
             var returnMessage = string.Empty;
             try
             {
@@ -91,7 +112,7 @@ namespace nChanger.WebUI.Forms
                 {
                     var dbEntry =
                         dataContext.ParentInformations.FirstOrDefault(
-                            f => f.UserId.Equals(UserId) && f.PdfTemplateId.Equals(id));
+                            f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
 
 
                     if (dbEntry != null)
@@ -117,7 +138,7 @@ namespace nChanger.WebUI.Forms
                         var entry = new ParentInformation()
                         {
                             Id = Guid.NewGuid(),
-                            PdfTemplateId = id,
+                            PdfFormTemplateId = id,
                             UserId = UserId,
                             FatherFirstName = txtFatherFirstName.Text,
                             FatherMiddleName = txtFatherMiddleName.Text,
@@ -155,12 +176,12 @@ namespace nChanger.WebUI.Forms
 
         protected void btnPreviewPdf_OnClick(object sender, EventArgs e)
         {
-            var id = Guid.Parse(Request.QueryString["id"]);
+            var id = Guid.Parse(CurrentId);
             using (var dataContext = new nChangerDb())
             {
                 var frmOn =
                             dataContext.ParentInformations.FirstOrDefault(
-                                f => f.UserId.Equals(UserId) && f.PdfTemplateId.Equals(id));
+                                f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
 
                 if (frmOn != null)
                 {

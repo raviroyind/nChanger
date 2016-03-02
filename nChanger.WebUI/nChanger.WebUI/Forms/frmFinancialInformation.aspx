@@ -1,16 +1,38 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmFinancialInformation.aspx.cs" Inherits="nChanger.WebUI.Forms.FrmFinancialInformation" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+﻿<%@ Page Title="" Language="C#" MasterPageFile="../Forms.Master" AutoEventWireup="true" CodeBehind="frmFinancialInformation.aspx.cs" Inherits="nChanger.WebUI.Forms.FrmFinancialInformation" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<script type="text/javascript" src="../Scripts/jquery-2.2.0.js"></script>
+<link href="../Style/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../Style/css/bootstrap-theme.min.css" rel="stylesheet" />
+<script src="../Style/js/bootstrap.min.js"></script>  
+    <link href="https://code.jquery.com/ui/1.12.0-beta.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        $(function () {
+            $(".date-input").datepicker();
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container-fluid">
+    <div class="one wide column"></div>
+    <div class="fourteen wide column">
+        <div class="ui small breadcrumb">
+            <a href="../Secured/dashboard.aspx" class="active section"></a>
+           
+            <a href="#" class="section">Forms</a>
+            <i class="right chevron icon divider"></i>
+            <div class="active section">
+            </div>
+        </div>
+    </div>
+    <div class="one wide column"></div>
+    
+     <div class="container fluid" style="width: 100%; margin-top: 2%;">
         <div class="panel panel-info" style="margin-bottom: 5%;">
             <div class="panel-heading">
                 <strong>E. Financial Information.</strong>
             </div>
-            <div class="panel-body">
+             <div class="panel-body"  style="width: 100%;">
                 <div id="divMsg" class="alert" style="color: #dc143c;" runat="server"></div>
-                <div class="form-horizontal">
+               <div class="container"  style="width: 100%;">
                     <div class="row">
                         <div class="col-md-3">
                             <label>Has any court or tribunal ordered you to pay money that you have not yet paid??</label>

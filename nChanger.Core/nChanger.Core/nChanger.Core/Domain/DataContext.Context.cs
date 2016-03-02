@@ -53,21 +53,21 @@ namespace nChanger.Core
         public virtual DbSet<UserType> UserTypes { get; set; }
         public virtual DbSet<InputFormTable> InputFormTables { get; set; }
         public virtual DbSet<InputFormSchemaView> InputFormSchemaViews { get; set; }
-
-        public virtual ObjectResult<string> UspSelectValueByColumnName(string value, string table, string userId)
+    
+        public virtual ObjectResult<string> uspSelectValueByColumnName(string value, string table, string userId)
         {
             var valueParameter = value != null ?
                 new ObjectParameter("value", value) :
                 new ObjectParameter("value", typeof(string));
-
+    
             var tableParameter = table != null ?
                 new ObjectParameter("table", table) :
                 new ObjectParameter("table", typeof(string));
-
+    
             var userIdParameter = userId != null ?
                 new ObjectParameter("userId", userId) :
                 new ObjectParameter("userId", typeof(string));
-
+    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("uspSelectValueByColumnName", valueParameter, tableParameter, userIdParameter);
         }
     }
