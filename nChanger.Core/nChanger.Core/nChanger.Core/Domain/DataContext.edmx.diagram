@@ -4,37 +4,40 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="74a1247f8740447b86da28e9db71e213" Name="Diagram1">
+      <Diagram DiagramId="3d150483d4094f47ab82b84f6bd4ceab" Name="Diagram1">
         <EntityTypeShape EntityType="nChangerDb.Country" Width="1.5" PointX="2.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="nChangerDb.CriminalOffenceInformation" Width="1.5" PointX="7.5" PointY="29.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="nChangerDb.DefineQuestion" Width="1.5" PointX="5.25" PointY="25.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerDb.CriminalOffenceInformation" Width="1.5" PointX="7.5" PointY="37.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerDb.DefineQuestion" Width="1.5" PointX="5.25" PointY="29.125" IsExpanded="true" />
         <EntityTypeShape EntityType="nChangerDb.FeatureMaster" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="nChangerDb.FieldMapping" Width="1.5" PointX="7.5" PointY="36.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="nChangerDb.FinancialInformation" Width="1.5" PointX="13.5" PointY="27.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="nChangerDb.FormInfo" Width="1.5" PointX="10.5" PointY="30.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="nChangerDb.FormSection" Width="1.5" PointX="8.25" PointY="21.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="nChangerDb.NameChangeInformation" Width="1.5" PointX="10.5" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerDb.FieldMapping" Width="1.5" PointX="7.5" PointY="44.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerDb.FinancialInformation" Width="1.5" PointX="13.5" PointY="36.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerDb.FormInfo" Width="1.5" PointX="10.5" PointY="38.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerDb.FormSection" Width="1.5" PointX="8.25" PointY="50.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerDb.GeneralQuestionUserResponse" Width="1.5" PointX="10.5" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerDb.GeneratedPdf" Width="1.5" PointX="10.5" PointY="42" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerDb.NameChangeInformation" Width="1.5" PointX="13.5" PointY="29.75" IsExpanded="true" />
         <EntityTypeShape EntityType="nChangerDb.Package" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="nChangerDb.PackageCategory" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="nChangerDb.PackageFeature" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="nChangerDb.ParentInformation" Width="1.5" PointX="10.5" PointY="33" IsExpanded="true" />
-        <EntityTypeShape EntityType="nChangerDb.PdfFormTemplate" Width="1.5" PointX="5.25" PointY="29" IsExpanded="true" />
-        <EntityTypeShape EntityType="nChangerDb.PersonalInformation" Width="1.5" PointX="16.5" PointY="25.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="nChangerDb.Province" Width="1.5" PointX="0.75" PointY="28.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="nChangerDb.ProvinceCategory" Width="1.5" PointX="3" PointY="27.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="nChangerDb.QuestionOption" Width="1.5" PointX="7.5" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerDb.ParentInformation" Width="1.5" PointX="13.5" PointY="44.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerDb.PdfFormTemplate" Width="1.5" PointX="5.25" PointY="37" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerDb.PersonalInformation" Width="1.5" PointX="16.5" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerDb.Province" Width="1.5" PointX="0.75" PointY="32.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerDb.ProvinceCategory" Width="1.5" PointX="3" PointY="32" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerDb.QuestionOption" Width="1.5" PointX="7.5" PointY="33.75" IsExpanded="true" />
         <EntityTypeShape EntityType="nChangerDb.State" Width="1.5" PointX="5" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="nChangerDb.TemplateTable" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="nChangerDb.UserFormDetail" Width="1.5" PointX="13.5" PointY="23.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="nChangerDb.UserPackage" Width="1.5" PointX="13.5" PointY="18.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="nChangerDb.User" Width="1.5" PointX="11.25" PointY="15.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="nChangerDb.UserType" Width="1.5" PointX="9" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerDb.UserFormDetail" Width="1.5" PointX="7.5" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerDb.UserPackage" Width="1.5" PointX="10.5" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerDb.User" Width="1.5" PointX="8.25" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="nChangerDb.UserType" Width="1.5" PointX="6" PointY="23.25" IsExpanded="true" />
         <EntityTypeShape EntityType="nChangerDb.InputFormTable" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="nChangerDb.InputFormSchemaView" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
         <AssociationConnector Association="nChangerDb.FK_State_Country" ManuallyRouted="false" />
         <AssociationConnector Association="nChangerDb.FK_CriminalOffenceInformation_CriminalOffenceInformation" ManuallyRouted="false" />
         <AssociationConnector Association="nChangerDb.FK_CriminalOffenceInformation_Users" ManuallyRouted="false" />
         <AssociationConnector Association="nChangerDb.FK_DefineQuestions_ProvinceCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="nChangerDb.FK_GeneralQuestionUserResponse_DefineQuestions" ManuallyRouted="false" />
         <AssociationConnector Association="nChangerDb.FK_QuestionOptions_DefineQuestions" ManuallyRouted="false" />
         <AssociationConnector Association="nChangerDb.FK_PackageFeature_FeatureMaster" ManuallyRouted="false" />
         <AssociationConnector Association="nChangerDb.FK_dbo_FieldMapping_dbo_PdfFormTemplate_PdfFormTemplateId" ManuallyRouted="false" />
@@ -42,6 +45,10 @@
         <AssociationConnector Association="nChangerDb.FK_FinancialInformation_Users" ManuallyRouted="false" />
         <AssociationConnector Association="nChangerDb.FK_FormInfo_FormSection" ManuallyRouted="false" />
         <AssociationConnector Association="nChangerDb.FK_FormInfo_PdfFormTemplate" ManuallyRouted="false" />
+        <AssociationConnector Association="nChangerDb.FK_GeneralQuestionUserResponse_PdfFormTemplate" ManuallyRouted="false" />
+        <AssociationConnector Association="nChangerDb.FK_GeneralQuestionUserResponse_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="nChangerDb.FK_GeneratedPdf_PdfFormTemplate" ManuallyRouted="false" />
+        <AssociationConnector Association="nChangerDb.FK_GeneratedPdf_Users" ManuallyRouted="false" />
         <AssociationConnector Association="nChangerDb.FK_NameChangeInformation_PdfFormTemplate" ManuallyRouted="false" />
         <AssociationConnector Association="nChangerDb.FK_NameChangeInformation_Users" ManuallyRouted="false" />
         <AssociationConnector Association="nChangerDb.FK_PackageFeature_Package" ManuallyRouted="false" />

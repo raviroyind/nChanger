@@ -139,6 +139,7 @@
     <Content Include="Content\UI-Table-master\table.min.css" />
     <Content Include="default.aspx" />
     <Content Include="eligiblityQuestions.aspx" />
+    <Content Include="Forms\CustomQuestions.aspx" />
     <Content Include="Forms\frmCriminalOffenceInformation.aspx" />
     <Content Include="Forms\frmFinancialInformation.aspx" />
     <Content Include="Forms\frmNameChangeInformation.aspx" />
@@ -153,6 +154,7 @@
     <Content Include="MailTemplates\activation.html" />
     <Content Include="MailTemplates\forgotPass.html" />
     <Content Include="MailTemplates\passwordChanged.html" />
+    <Content Include="MailTemplates\sendDocument.html" />
     <Content Include="MailTemplates\signup.html" />
     <Content Include="MailTemplates\signupComplete.html" />
     <Content Include="nchanger.ico" />
@@ -174,6 +176,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Secured\Billing.aspx" />
+    <Content Include="Secured\FormCompleted.aspx" />
     <Content Include="Secured\GeneralQuestions.aspx" />
     <Content Include="Secured\packageSelection.aspx" />
     <Content Include="selectPackage.aspx" />
@@ -440,6 +443,7 @@
     <Content Include="Style\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Style\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Style\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Properties\PublishProfiles\hh.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -775,6 +779,7 @@
     </Compile>
     <Compile Include="App_Code\FrmSection.cs" />
     <Compile Include="App_Code\PdfInjector.cs" />
+    <Compile Include="App_Code\UserForm.cs" />
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -795,6 +800,13 @@
     </Compile>
     <Compile Include="Forms.Master.designer.cs">
       <DependentUpon>Forms.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CustomQuestions.aspx.cs">
+      <DependentUpon>CustomQuestions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\CustomQuestions.aspx.designer.cs">
+      <DependentUpon>CustomQuestions.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmCriminalOffenceInformation.aspx.cs">
       <DependentUpon>frmCriminalOffenceInformation.aspx</DependentUpon>
@@ -865,6 +877,13 @@
     </Compile>
     <Compile Include="Secured\dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Secured\FormCompleted.aspx.cs">
+      <DependentUpon>FormCompleted.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secured\FormCompleted.aspx.designer.cs">
+      <DependentUpon>FormCompleted.aspx</DependentUpon>
     </Compile>
     <Compile Include="Secured\GeneralQuestions.aspx.cs">
       <DependentUpon>GeneralQuestions.aspx</DependentUpon>

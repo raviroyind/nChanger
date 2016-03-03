@@ -21,6 +21,8 @@ namespace nChanger.Core
             this.FieldMappings = new HashSet<FieldMapping>();
             this.FinancialInformations = new HashSet<FinancialInformation>();
             this.FormInfoes = new HashSet<FormInfo>();
+            this.GeneralQuestionUserResponses = new HashSet<GeneralQuestionUserResponse>();
+            this.GeneratedPdfs = new HashSet<GeneratedPdf>();
             this.NameChangeInformations = new HashSet<NameChangeInformation>();
             this.ParentInformations = new HashSet<ParentInformation>();
             this.PersonalInformations = new HashSet<PersonalInformation>();
@@ -45,6 +47,10 @@ namespace nChanger.Core
         public virtual ICollection<FinancialInformation> FinancialInformations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FormInfo> FormInfoes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GeneralQuestionUserResponse> GeneralQuestionUserResponses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GeneratedPdf> GeneratedPdfs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NameChangeInformation> NameChangeInformations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -12,11 +12,8 @@ namespace nChanger.WebUI.Secured
         protected void Page_Load(object sender, EventArgs e)
         {
             ancPayment.InnerHtml = "Proceed to Pay "+ Request.QueryString["p1"];
-
-            FormIndex =1;
-            var redirect =  Sections.Where(s => s.DisplayOrder.Equals(FormIndex)).FirstOrDefault().AspxPath;
-
-            ancPayment.HRef = Sections.Where(s => s.DisplayOrder.Equals(FormIndex)).FirstOrDefault().AspxPath;
+            ancPayment.HRef = "../Forms/CustomQuestions.aspx";
+              
         }
     }
 }

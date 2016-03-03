@@ -1,47 +1,57 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Forms.master.cs" Inherits="nChanger.WebUI.frmMasterPage" %>
+<%@ Register Src="~/UserControls/_topNav.ascx" TagPrefix="uc1" TagName="_topNav" %>
+
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-        <script type="text/javascript" src="../Scripts/jquery-2.2.0.js"></script>
-<link href="../Style/css/bootstrap.min.css" rel="stylesheet" />
-<link href="../Style/css/bootstrap-theme.min.css" rel="stylesheet" />
-<script src="../Style/js/bootstrap.min.js"></script>  
-    </asp:ContentPlaceHolder>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"  />
+    <title>:: nChanger ::</title>
+    <link href="Content/semantic.css" rel="stylesheet" />
+    <link href="Content/form.css" rel="stylesheet" />
+    <link href="nchanger.ico" rel="shortcut icon" type="image/x-icon"  />
+    
+    <script src="<%# ResolveClientUrl("Scripts/clipboard.min.js")%>"></script>
+    <script src="<%# ResolveClientUrl("Scripts/cookie.min.js")%>"></script>
+    <script src="<%# ResolveClientUrl("Scripts/easing.min.js")%>"></script>
+    <script src="<%# ResolveClientUrl("Scripts/highlight.min.js")%>"></script>
+    <script src="<%# ResolveClientUrl("Scripts/history.min.js")%>"></script>
+    <script src="<%# ResolveClientUrl("Scripts/tablesort.min.js")%>"></script>
+    <script src="<%# ResolveClientUrl("Scripts/semantic.min.js")%>"></script>
+    
+    <asp:ContentPlaceHolder runat="server" ID="head">
+        
+        </asp:ContentPlaceHolder>
 </head>
 <body>
   <form runat="server">
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" runat="server" href="~/">Forms</a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li> </li>
-                    </ul>
-                    <ul id="divLogInfo" runat="server" class="nav navbar-nav navbar-right" style="top: 10px;">
-                        <li>
-                            <a><i class="glyphicon glyphicon-user" style="color: #ffffff;"></i></a>
-                        </li>
-                        <li>
-                            <a id="ancLoginName" runat="server"></a>
-                        </li>
-                        <li>
-                          <%--  <asp:HyperLink runat="server" ID="hypLogout" CssClass="navbar-link" NavigateUrl="index.aspx?id=lg" Text="Logout"></asp:HyperLink>--%>
-                        </li>
-                    </ul>
+        <div class="ui inverted segment">
+                <div class="ui container fluid">
+                    <div class="ui inverted secondary menu">
+                        <div class="item">
+                           <a href="http://orcasolutions.in/">
+                                <i class="university icon large orange"></i>
+                                <span class="header">Name Changer</span>
+                            </a>
+                        </div>
+                        <div class="item">
+                            |
+                        </div>
+                        <div class="item">
+                            <i class="home icon large orange"></i>
+                            <a href="../Secured/dashboard.aspx" class="header">Home</a>
+                        </div>
+                        <div class="right item">
+                            <div class="item">
+                                <a href="index.aspx" id="ancLogin" runat="server">Login</a>
+                                <uc1:_topNav runat="server" ID="_topNav1" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
         <div class="container-fluid">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>

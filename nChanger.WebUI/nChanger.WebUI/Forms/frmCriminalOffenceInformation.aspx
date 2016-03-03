@@ -1,5 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="../Forms.Master" AutoEventWireup="true" CodeBehind="frmCriminalOffenceInformation.aspx.cs" Inherits="nChanger.WebUI.Forms.frmCriminalOffenceInformation" %>
-
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<script type="text/javascript" src="../Scripts/jquery-2.2.0.js"></script>
+<link href="../Style/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../Style/css/bootstrap-theme.min.css" rel="stylesheet" />
+<script src="../Style/js/bootstrap.min.js"></script>  
+    <link href="https://code.jquery.com/ui/1.12.0-beta.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+     
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="one wide column"></div>
     <div class="fourteen wide column">

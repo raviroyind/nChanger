@@ -47,6 +47,12 @@ namespace nChanger.WebUI
             set { Session[AppConfig.CurrentId] = value; }
         }
 
+        public string RecordId
+        {
+            get { return (Session[AppConfig.RecordId] == null ? "" : Session[AppConfig.RecordId].ToString()); }
+            set { Session[AppConfig.RecordId] = value; }
+        }
+
         public int FormIndex
         {
             get

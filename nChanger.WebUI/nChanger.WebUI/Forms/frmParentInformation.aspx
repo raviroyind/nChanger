@@ -1,5 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="../Forms.Master" AutoEventWireup="true" CodeBehind="frmParentInformation.aspx.cs" Inherits="nChanger.WebUI.Forms.FrmParentInformation" %>
-
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<script type="text/javascript" src="../Scripts/jquery-2.2.0.js"></script>
+<link href="../Style/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../Style/css/bootstrap-theme.min.css" rel="stylesheet" />
+<script src="../Style/js/bootstrap.min.js"></script>  
+    <link href="https://code.jquery.com/ui/1.12.0-beta.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="one wide column"></div>
     <div class="fourteen wide column">
@@ -139,7 +145,7 @@
                         <div class="col-md-5">
                         </div>
                         <div class="col-md-4">
-                            <asp:HyperLink runat="server" ID="hypBack" class="btn btn-sm btn-primary" NavigateUrl="../Forms/frmONPersonalInfo.aspx"><i class="glyphicon glyphicon-arrow-left"></i> Back</asp:HyperLink>
+                            <asp:HyperLink runat="server" ID="hypBack" class="btn btn-sm btn-primary" NavigateUrl="../Forms/frmPersonalInformation.aspx"><i class="glyphicon glyphicon-arrow-left"></i> Back</asp:HyperLink>
                             <asp:LinkButton runat="server" ID="btnSubmit" CausesValidation="True" class="btn btn-sm btn-primary" OnClick="btnSubmit_OnClick"><i class="glyphicon glyphicon-log-in"></i> Save &amp; Continue</asp:LinkButton>
                             <asp:LinkButton runat="server" ID="btnPreviewPdf" class="btn btn-sm btn-primary" OnClick="btnPreviewPdf_OnClick"><i class="glyphicon glyphicon-print"></i> Preview Pdf</asp:LinkButton>
                         </div>

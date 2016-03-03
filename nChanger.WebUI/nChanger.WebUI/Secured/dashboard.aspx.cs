@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using nameChanger.WebUI;
 using nChanger.Core;
  
 using nChanger.WebUI.Navigation;
@@ -17,8 +19,30 @@ namespace nChanger.WebUI.Secured
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
+            {
                 BindProvince();
+                BindForms();
+            }
         }
+
+        private void BindForms()
+        {
+           
+            using (var dataContext = new nChangerDb())
+            {
+                var lst =
+                    dataContext.GeneratedPdfs.Where(
+                        u => u.UserId.Equals(UserId))
+                        .ToList();
+
+                if (lst.Count>0)
+                {
+                    gvTemplate.DataSource = lst;
+                    gvTemplate.DataBind();
+                }
+            }
+        }
+
         private void BindProvince()
         {
             using (var dataContext = new nChangerDb())
@@ -40,6 +64,8 @@ namespace nChanger.WebUI.Secured
                             .ToList();
 
                     gvForms.DataBind();
+
+                    lblAviliableForms.Style.Add(HtmlTextWriterStyle.Display, "block");
                 }
             }
 
@@ -88,11 +114,31 @@ namespace nChanger.WebUI.Secured
                     }
 
                     CurrentId = pdfTemplateId.ToString();
+                    RecordId = Guid.NewGuid().ToString();
                     Response.Redirect("packageSelection.aspx?id="+pdfTemplateId.ToString());
                 }
                 
             }
             
+        }
+
+        protected void lnkFrm_OnClick(object sender, EventArgs e)
+        {
+            var lnkBtn = (LinkButton) sender;
+            CurrentId = lnkBtn.CommandArgument;
+            Response.Redirect("FormCompleted.aspx");
+        }
+
+        protected void lnkDelete_OnClick(object sender, EventArgs e)
+        {
+            //var lnkBtn = (LinkButton) sender;
+            //CurrentId = lnkBtn.CommandArgument;
+            //var id = Guid.Parse(CurrentId);
+
+            //using (var dataContext = new nChangerDb())
+            //{
+            //    dataContext.Database.ExecuteSqlCommand("")
+            //}
         }
     }
 }

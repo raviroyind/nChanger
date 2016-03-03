@@ -1,16 +1,12 @@
 ﻿<%@ Page Title="" Language="C#"  MasterPageFile="../Forms.Master"  AutoEventWireup="true" CodeBehind="frmPersonalInformation.aspx.cs" Inherits="nChanger.WebUI.Forms.FrmOnPersonalInfo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-<script type="text/javascript" src="../Scripts/jquery-2.2.0.js"></script>
+    <script src="../Scripts/jquery-2.2.0.min.js"></script>
 <link href="../Style/css/bootstrap.min.css" rel="stylesheet" />
 <link href="../Style/css/bootstrap-theme.min.css" rel="stylesheet" />
 <script src="../Style/js/bootstrap.min.js"></script>  
     <link href="https://code.jquery.com/ui/1.12.0-beta.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript">
-        $(function () {
-            $(".date-input").datepicker();
-        });
-    </script>
+   
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
       <div class="container fluid" style="width: 100%; margin-top: 3%;">
@@ -423,7 +419,7 @@
                         <div class="col-md-5">
                         </div>
                         <div class="col-md-3">
-                            <asp:HyperLink runat="server" ID="hypBack" class="btn btn-sm btn-primary" NavigateUrl="../Secured/Home.aspx"><i class="glyphicon glyphicon-arrow-left"></i> Back</asp:HyperLink>
+                            <asp:HyperLink runat="server" ID="hypBack" class="btn btn-sm btn-primary" NavigateUrl="CustomQuestions.aspx"><i class="glyphicon glyphicon-arrow-left"></i> Back</asp:HyperLink>
                             <asp:LinkButton runat="server" ID="btnSubmit" CausesValidation="True" class="btn btn-sm btn-primary" OnClick="btnSubmit_OnClick"><i class="glyphicon glyphicon-log-in"></i> Save &amp; Continue</asp:LinkButton>
                             <asp:LinkButton runat="server" ID="btnPreviewPdf" class="btn btn-sm btn-primary" OnClick="btnPreviewPdf_OnClick"><i class="glyphicon glyphicon-print"></i> Preview Pdf</asp:LinkButton>
                         </div>
@@ -434,4 +430,10 @@
             </div>
         </div>
     </div>
+    
+     <script type="text/javascript">
+        $(function () {
+            $(".date-input").datepicker();
+        });
+    </script>
 </asp:Content>

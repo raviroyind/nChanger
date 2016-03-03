@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity.Migrations;
 using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
@@ -197,6 +198,31 @@ namespace nChanger.WebUI.Forms
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
             divMsg.InnerText = Submit();
+            var sections = Sections;
+            var page = Path.GetFileName(Request.PhysicalPath);
+            var curret = Sections.FirstOrDefault(s => s.AspxPath.Contains(page));
+
+            using (var dataContext = new nChangerDb())
+            {
+                dataContext.Database.ExecuteSqlCommand("DELETE FROM UserFormDetail WHERE UserId='" + UserId +
+                                                       "' AND PdfTemplateId='" + CurrentId + "'  AND FrmGuid='" +
+                                                       curret.FrmGuid.ToString() + "'");
+
+                dataContext.UserFormDetails.AddOrUpdate(new UserFormDetail
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = UserId,
+                    AspxPath = curret.AspxPath,
+                    TableName = curret.TableName,
+                    PdfTemplateId = Guid.Parse(CurrentId),
+                    FrmGuid = curret.FrmGuid,
+                    Completed = "Y"
+                });
+
+                dataContext.SaveChanges();
+            }
+
+            Response.Redirect("../Secured/FormCompleted.aspx");
         }
 
         protected void btnPreviewPdf_OnClick(object sender, EventArgs e)

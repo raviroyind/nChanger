@@ -28,6 +28,42 @@ namespace nameChanger.WebUI
             var pdfFormFields = pdfStamper.AcroFields;
 
 
+            #region General Questions...
+
+            var generalQuestions = dataContext.GeneralQuestionUserResponses.FirstOrDefault(
+                                f => f.UserId.Equals(userId) && f.PdfFormTemplateId.Equals(pdfTemplateId));
+
+            if (generalQuestions != null)
+            {
+                foreach (var kvp in pdfFormFields.Fields)
+                {
+                    var fieldType = pdfFormFields.GetFieldType(kvp.Key);
+                    if (fieldType == 1)
+                        continue;
+
+                    foreach (var mapping in generalQuestions.PdfFormTemplate.FieldMappings)
+                    {
+
+                        if (mapping.PdfFieldName.Equals(kvp.Key))
+                        {
+                            try
+                            {
+                                var result = (from g in dataContext.GeneralQuestionUserResponses
+                                                       where g.Question.Equals(mapping.DbFieldName) && g.PdfFormTemplateId.Equals(pdfTemplateId) && g.UserId.Equals(userId)
+                                                       select g.UserAnswer).SingleOrDefault();
+
+                                pdfFormFields.SetField(mapping.PdfFieldName, fieldType == 2 ? GetPdfYesNo(result) : result);
+                            }
+                            catch (Exception exception)
+                            {
+                            }
+                        }
+                    }
+                }
+            }
+
+            #endregion General Questions...
+
             #region OnPersonalInformations...
 
             var frmOn = dataContext.PersonalInformations.FirstOrDefault(
@@ -51,7 +87,7 @@ namespace nameChanger.WebUI
                                 var result = dataContext.uspSelectValueByColumnName(mapping.DbFieldName,
                                     "dbo.PersonalInformation", userId).FirstOrDefault();
 
-                                pdfFormFields.SetField(mapping.PdfFieldName, fieldType == 2 ? "yes" : result);
+                                pdfFormFields.SetField(mapping.PdfFieldName, fieldType == 2 ? GetPdfYesNo(result) : result);
                             }
                             catch (Exception exception)
                             {
@@ -86,7 +122,7 @@ namespace nameChanger.WebUI
                                 var result = dataContext.uspSelectValueByColumnName(mapping.DbFieldName,
                                     "dbo.ParentInformation", userId).FirstOrDefault();
 
-                                pdfFormFields.SetField(mapping.PdfFieldName, fieldType == 2 ? "yes" : result);
+                                pdfFormFields.SetField(mapping.PdfFieldName, fieldType == 2 ? GetPdfYesNo(result) : result);
                             }
                             catch (Exception)
                             {
@@ -121,7 +157,7 @@ namespace nameChanger.WebUI
                                 var result = dataContext.uspSelectValueByColumnName(mapping.DbFieldName,
                                     "dbo.NameChangeInformation", userId).FirstOrDefault();
 
-                                pdfFormFields.SetField(mapping.PdfFieldName, fieldType == 2 ? "yes" : result);
+                                pdfFormFields.SetField(mapping.PdfFieldName, fieldType == 2 ? GetPdfYesNo(result) : result);
                             }
                             catch (Exception)
                             {
@@ -162,7 +198,7 @@ namespace nameChanger.WebUI
                                 var result = dataContext.uspSelectValueByColumnName(mapping.DbFieldName,
                                     "dbo.CriminalOffenceInformation", userId).FirstOrDefault();
 
-                                pdfFormFields.SetField(mapping.PdfFieldName, fieldType == 2 ? "yes" : result);
+                                pdfFormFields.SetField(mapping.PdfFieldName, fieldType == 2 ? GetPdfYesNo(result) : result);
                             }
                             catch (Exception exception)
                             {
@@ -198,7 +234,7 @@ namespace nameChanger.WebUI
                                 var result = dataContext.uspSelectValueByColumnName(mapping.DbFieldName,
                                     "dbo.FinancialInformation", userId).FirstOrDefault();
 
-                                pdfFormFields.SetField(mapping.PdfFieldName, fieldType == 2 ? "yes" : result);
+                                pdfFormFields.SetField(mapping.PdfFieldName, fieldType == 2 ? GetPdfYesNo(result) : result);
                             }
                             catch (Exception)
                             {

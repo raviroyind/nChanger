@@ -13,6 +13,15 @@ namespace nChanger.WebUI.Secured {
     public partial class Dashboard {
         
         /// <summary>
+        /// updProgress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdateProgress updProgress;
+        
+        /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace nChanger.WebUI.Secured {
         protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
         
         /// <summary>
+        /// lblAviliableForms control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblAviliableForms;
+        
+        /// <summary>
         /// gvForms control.
         /// </summary>
         /// <remarks>
@@ -56,5 +74,14 @@ namespace nChanger.WebUI.Secured {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvForms;
+        
+        /// <summary>
+        /// gvTemplate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvTemplate;
     }
 }

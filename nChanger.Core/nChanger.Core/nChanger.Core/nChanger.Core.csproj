@@ -90,6 +90,12 @@
     <Compile Include="Domain\FormSection.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Domain\GeneralQuestionUserResponse.cs">
+      <DependentUpon>DataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\GeneratedPdf.cs">
+      <DependentUpon>DataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Domain\InputFormSchemaView.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>

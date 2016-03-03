@@ -149,6 +149,9 @@ namespace nChanger.WebUI.Forms
 
             using (var dataContext = new nChangerDb())
             {
+                dataContext.Database.ExecuteSqlCommand("DELETE FROM UserFormDetail WHERE UserId='" + UserId +
+                                                       "' AND PdfTemplateId='" + CurrentId + "'  AND FrmGuid='" +
+                                                       curret.FrmGuid.ToString() + "'");
 
                 dataContext.UserFormDetails.AddOrUpdate(new UserFormDetail
                 {

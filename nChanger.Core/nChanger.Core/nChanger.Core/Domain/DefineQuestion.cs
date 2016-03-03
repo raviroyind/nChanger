@@ -17,6 +17,7 @@ namespace nChanger.Core
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DefineQuestion()
         {
+            this.GeneralQuestionUserResponses = new HashSet<GeneralQuestionUserResponse>();
             this.QuestionOptions = new HashSet<QuestionOption>();
         }
     
@@ -30,6 +31,8 @@ namespace nChanger.Core
         public string EntryId { get; set; }
     
         public virtual ProvinceCategory ProvinceCategory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GeneralQuestionUserResponse> GeneralQuestionUserResponses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuestionOption> QuestionOptions { get; set; }
     }

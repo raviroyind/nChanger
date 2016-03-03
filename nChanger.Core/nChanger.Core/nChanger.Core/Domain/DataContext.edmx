@@ -142,6 +142,34 @@
           <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FormOrder" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="GeneralQuestionUserResponse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PdfFormTemplateId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DefineQuestionId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Question" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="UserAnswer" Type="nvarchar" MaxLength="500" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="20" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GeneratedPdf">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PdfFormTemplateId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CompletedPdf" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryId" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'nChangerDb.dbo.InputFormTables' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="InputFormTables">
@@ -578,6 +606,74 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_GeneralQuestionUserResponse_DefineQuestions">
+          <End Role="DefineQuestions" Type="Self.DefineQuestions" Multiplicity="1" />
+          <End Role="GeneralQuestionUserResponse" Type="Self.GeneralQuestionUserResponse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DefineQuestions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GeneralQuestionUserResponse">
+              <PropertyRef Name="DefineQuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GeneralQuestionUserResponse_PdfFormTemplate">
+          <End Role="PdfFormTemplate" Type="Self.PdfFormTemplate" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GeneralQuestionUserResponse" Type="Self.GeneralQuestionUserResponse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PdfFormTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GeneralQuestionUserResponse">
+              <PropertyRef Name="PdfFormTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GeneralQuestionUserResponse_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GeneralQuestionUserResponse" Type="Self.GeneralQuestionUserResponse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="GeneralQuestionUserResponse">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GeneratedPdf_PdfFormTemplate">
+          <End Role="PdfFormTemplate" Type="Self.PdfFormTemplate" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GeneratedPdf" Type="Self.GeneratedPdf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PdfFormTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GeneratedPdf">
+              <PropertyRef Name="PdfFormTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GeneratedPdf_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GeneratedPdf" Type="Self.GeneratedPdf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="GeneratedPdf">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_NameChangeInformation_PdfFormTemplate">
           <End Role="PdfFormTemplate" Type="Self.PdfFormTemplate" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -810,6 +906,8 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
           <EntitySet Name="FinancialInformation" EntityType="Self.FinancialInformation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FormInfo" EntityType="Self.FormInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FormSection" EntityType="Self.FormSection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GeneralQuestionUserResponse" EntityType="Self.GeneralQuestionUserResponse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GeneratedPdf" EntityType="Self.GeneratedPdf" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NameChangeInformation" EntityType="Self.NameChangeInformation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Package" EntityType="Self.Package" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PackageCategory" EntityType="Self.PackageCategory" Schema="dbo" store:Type="Tables" />
@@ -894,6 +992,26 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
           <AssociationSet Name="FK_FormInfo_PdfFormTemplate" Association="Self.FK_FormInfo_PdfFormTemplate">
             <End Role="PdfFormTemplate" EntitySet="PdfFormTemplate" />
             <End Role="FormInfo" EntitySet="FormInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GeneralQuestionUserResponse_DefineQuestions" Association="Self.FK_GeneralQuestionUserResponse_DefineQuestions">
+            <End Role="DefineQuestions" EntitySet="DefineQuestions" />
+            <End Role="GeneralQuestionUserResponse" EntitySet="GeneralQuestionUserResponse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GeneralQuestionUserResponse_PdfFormTemplate" Association="Self.FK_GeneralQuestionUserResponse_PdfFormTemplate">
+            <End Role="PdfFormTemplate" EntitySet="PdfFormTemplate" />
+            <End Role="GeneralQuestionUserResponse" EntitySet="GeneralQuestionUserResponse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GeneralQuestionUserResponse_Users" Association="Self.FK_GeneralQuestionUserResponse_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="GeneralQuestionUserResponse" EntitySet="GeneralQuestionUserResponse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GeneratedPdf_PdfFormTemplate" Association="Self.FK_GeneratedPdf_PdfFormTemplate">
+            <End Role="PdfFormTemplate" EntitySet="PdfFormTemplate" />
+            <End Role="GeneratedPdf" EntitySet="GeneratedPdf" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GeneratedPdf_Users" Association="Self.FK_GeneratedPdf_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="GeneratedPdf" EntitySet="GeneratedPdf" />
           </AssociationSet>
           <AssociationSet Name="FK_NameChangeInformation_PdfFormTemplate" Association="Self.FK_NameChangeInformation_PdfFormTemplate">
             <End Role="PdfFormTemplate" EntitySet="PdfFormTemplate" />
@@ -1020,6 +1138,7 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
           <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="ProvinceCategory" Relationship="Self.FK_DefineQuestions_ProvinceCategory" FromRole="DefineQuestions" ToRole="ProvinceCategory" />
+          <NavigationProperty Name="GeneralQuestionUserResponses" Relationship="Self.FK_GeneralQuestionUserResponse_DefineQuestions" FromRole="DefineQuestions" ToRole="GeneralQuestionUserResponse" />
           <NavigationProperty Name="QuestionOptions" Relationship="Self.FK_QuestionOptions_DefineQuestions" FromRole="DefineQuestions" ToRole="QuestionOptions" />
         </EntityType>
         <EntityType Name="FeatureMaster">
@@ -1113,6 +1232,39 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
           <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FormOrder" Type="Int32" Nullable="false" />
           <NavigationProperty Name="FormInfoes" Relationship="Self.FK_FormInfo_FormSection" FromRole="FormSection" ToRole="FormInfo" />
+        </EntityType>
+        <EntityType Name="GeneralQuestionUserResponse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="PdfFormTemplateId" Type="Guid" Nullable="false" />
+          <Property Name="DefineQuestionId" Type="Guid" Nullable="false" />
+          <Property Name="Question" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserAnswer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DefineQuestion" Relationship="Self.FK_GeneralQuestionUserResponse_DefineQuestions" FromRole="GeneralQuestionUserResponse" ToRole="DefineQuestions" />
+          <NavigationProperty Name="PdfFormTemplate" Relationship="Self.FK_GeneralQuestionUserResponse_PdfFormTemplate" FromRole="GeneralQuestionUserResponse" ToRole="PdfFormTemplate" />
+          <NavigationProperty Name="User" Relationship="Self.FK_GeneralQuestionUserResponse_Users" FromRole="GeneralQuestionUserResponse" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="GeneratedPdf">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="PdfFormTemplateId" Type="Guid" Nullable="false" />
+          <Property Name="CompletedPdf" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PdfFormTemplate" Relationship="Self.FK_GeneratedPdf_PdfFormTemplate" FromRole="GeneratedPdf" ToRole="PdfFormTemplate" />
+          <NavigationProperty Name="User" Relationship="Self.FK_GeneratedPdf_Users" FromRole="GeneratedPdf" ToRole="Users" />
         </EntityType>
         <EntityType Name="NameChangeInformation">
           <Key>
@@ -1225,6 +1377,8 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
           <NavigationProperty Name="FieldMappings" Relationship="Self.FK_dbo_FieldMapping_dbo_PdfFormTemplate_PdfFormTemplateId" FromRole="PdfFormTemplate" ToRole="FieldMapping" />
           <NavigationProperty Name="FinancialInformations" Relationship="Self.FK_FinancialInformation_PdfFormTemplate" FromRole="PdfFormTemplate" ToRole="FinancialInformation" />
           <NavigationProperty Name="FormInfoes" Relationship="Self.FK_FormInfo_PdfFormTemplate" FromRole="PdfFormTemplate" ToRole="FormInfo" />
+          <NavigationProperty Name="GeneralQuestionUserResponses" Relationship="Self.FK_GeneralQuestionUserResponse_PdfFormTemplate" FromRole="PdfFormTemplate" ToRole="GeneralQuestionUserResponse" />
+          <NavigationProperty Name="GeneratedPdfs" Relationship="Self.FK_GeneratedPdf_PdfFormTemplate" FromRole="PdfFormTemplate" ToRole="GeneratedPdf" />
           <NavigationProperty Name="NameChangeInformations" Relationship="Self.FK_NameChangeInformation_PdfFormTemplate" FromRole="PdfFormTemplate" ToRole="NameChangeInformation" />
           <NavigationProperty Name="ParentInformations" Relationship="Self.FK_ParentInformation_PdfFormTemplate" FromRole="PdfFormTemplate" ToRole="ParentInformation" />
           <NavigationProperty Name="ProvinceCategory" Relationship="Self.FK_PdfFormTemplate_ProvinceCategory" FromRole="PdfFormTemplate" ToRole="ProvinceCategory" />
@@ -1406,6 +1560,8 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="CriminalOffenceInformations" Relationship="Self.FK_CriminalOffenceInformation_Users" FromRole="Users" ToRole="CriminalOffenceInformation" />
           <NavigationProperty Name="FinancialInformations" Relationship="Self.FK_FinancialInformation_Users" FromRole="Users" ToRole="FinancialInformation" />
+          <NavigationProperty Name="GeneralQuestionUserResponses" Relationship="Self.FK_GeneralQuestionUserResponse_Users" FromRole="Users" ToRole="GeneralQuestionUserResponse" />
+          <NavigationProperty Name="GeneratedPdfs" Relationship="Self.FK_GeneratedPdf_Users" FromRole="Users" ToRole="GeneratedPdf" />
           <NavigationProperty Name="NameChangeInformations" Relationship="Self.FK_NameChangeInformation_Users" FromRole="Users" ToRole="NameChangeInformation" />
           <NavigationProperty Name="ParentInformations" Relationship="Self.FK_ParentInformation_Users" FromRole="Users" ToRole="ParentInformation" />
           <NavigationProperty Name="PersonalInformations" Relationship="Self.FK_PersonalInformation_Users" FromRole="Users" ToRole="PersonalInformation" />
@@ -1524,6 +1680,18 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_GeneralQuestionUserResponse_DefineQuestions">
+          <End Role="DefineQuestions" Type="Self.DefineQuestion" Multiplicity="1" />
+          <End Role="GeneralQuestionUserResponse" Type="Self.GeneralQuestionUserResponse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DefineQuestions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GeneralQuestionUserResponse">
+              <PropertyRef Name="DefineQuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_QuestionOptions_DefineQuestions">
           <End Role="DefineQuestions" Type="Self.DefineQuestion" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -1617,6 +1785,62 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
             </Principal>
             <Dependent Role="FormInfo">
               <PropertyRef Name="PdfFormTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GeneralQuestionUserResponse_PdfFormTemplate">
+          <End Role="PdfFormTemplate" Type="Self.PdfFormTemplate" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GeneralQuestionUserResponse" Type="Self.GeneralQuestionUserResponse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PdfFormTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GeneralQuestionUserResponse">
+              <PropertyRef Name="PdfFormTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GeneralQuestionUserResponse_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GeneralQuestionUserResponse" Type="Self.GeneralQuestionUserResponse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="GeneralQuestionUserResponse">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GeneratedPdf_PdfFormTemplate">
+          <End Role="PdfFormTemplate" Type="Self.PdfFormTemplate" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GeneratedPdf" Type="Self.GeneratedPdf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PdfFormTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GeneratedPdf">
+              <PropertyRef Name="PdfFormTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GeneratedPdf_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GeneratedPdf" Type="Self.GeneratedPdf" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="GeneratedPdf">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1800,7 +2024,7 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="nChangerDb22" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="nChangerDbEntitiesaa" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Countries" EntityType="Self.Country" />
           <EntitySet Name="CriminalOffenceInformations" EntityType="Self.CriminalOffenceInformation" />
           <EntitySet Name="DefineQuestions" EntityType="Self.DefineQuestion" />
@@ -1809,6 +2033,8 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
           <EntitySet Name="FinancialInformations" EntityType="Self.FinancialInformation" />
           <EntitySet Name="FormInfoes" EntityType="Self.FormInfo" />
           <EntitySet Name="FormSections" EntityType="Self.FormSection" />
+          <EntitySet Name="GeneralQuestionUserResponses" EntityType="Self.GeneralQuestionUserResponse" />
+          <EntitySet Name="GeneratedPdfs" EntityType="Self.GeneratedPdf" />
           <EntitySet Name="NameChangeInformations" EntityType="Self.NameChangeInformation" />
           <EntitySet Name="Packages" EntityType="Self.Package" />
           <EntitySet Name="PackageCategories" EntityType="Self.PackageCategory" />
@@ -1843,6 +2069,10 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
             <End Role="ProvinceCategory" EntitySet="ProvinceCategories" />
             <End Role="DefineQuestions" EntitySet="DefineQuestions" />
           </AssociationSet>
+          <AssociationSet Name="FK_GeneralQuestionUserResponse_DefineQuestions" Association="Self.FK_GeneralQuestionUserResponse_DefineQuestions">
+            <End Role="DefineQuestions" EntitySet="DefineQuestions" />
+            <End Role="GeneralQuestionUserResponse" EntitySet="GeneralQuestionUserResponses" />
+          </AssociationSet>
           <AssociationSet Name="FK_QuestionOptions_DefineQuestions" Association="Self.FK_QuestionOptions_DefineQuestions">
             <End Role="DefineQuestions" EntitySet="DefineQuestions" />
             <End Role="QuestionOptions" EntitySet="QuestionOptions" />
@@ -1870,6 +2100,22 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
           <AssociationSet Name="FK_FormInfo_PdfFormTemplate" Association="Self.FK_FormInfo_PdfFormTemplate">
             <End Role="PdfFormTemplate" EntitySet="PdfFormTemplates" />
             <End Role="FormInfo" EntitySet="FormInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GeneralQuestionUserResponse_PdfFormTemplate" Association="Self.FK_GeneralQuestionUserResponse_PdfFormTemplate">
+            <End Role="PdfFormTemplate" EntitySet="PdfFormTemplates" />
+            <End Role="GeneralQuestionUserResponse" EntitySet="GeneralQuestionUserResponses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GeneralQuestionUserResponse_Users" Association="Self.FK_GeneralQuestionUserResponse_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="GeneralQuestionUserResponse" EntitySet="GeneralQuestionUserResponses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GeneratedPdf_PdfFormTemplate" Association="Self.FK_GeneratedPdf_PdfFormTemplate">
+            <End Role="PdfFormTemplate" EntitySet="PdfFormTemplates" />
+            <End Role="GeneratedPdf" EntitySet="GeneratedPdfs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GeneratedPdf_Users" Association="Self.FK_GeneratedPdf_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="GeneratedPdf" EntitySet="GeneratedPdfs" />
           </AssociationSet>
           <AssociationSet Name="FK_NameChangeInformation_PdfFormTemplate" Association="Self.FK_NameChangeInformation_PdfFormTemplate">
             <End Role="PdfFormTemplate" EntitySet="PdfFormTemplates" />
@@ -1934,7 +2180,7 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="nChangerDbStoreContainer" CdmEntityContainer="nChangerDb22">
+        <EntityContainerMapping StorageEntityContainer="nChangerDbStoreContainer" CdmEntityContainer="nChangerDbEntitiesaa">
           <EntitySetMapping Name="Countries">
             <EntityTypeMapping TypeName="nChangerDb.Country">
               <MappingFragment StoreEntitySet="Country">
@@ -2077,6 +2323,36 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
                 <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
                 <ScalarProperty Name="EntryId" ColumnName="EntryId" />
                 <ScalarProperty Name="FormOrder" ColumnName="FormOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeneralQuestionUserResponses">
+            <EntityTypeMapping TypeName="nChangerDb.GeneralQuestionUserResponse">
+              <MappingFragment StoreEntitySet="GeneralQuestionUserResponse">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PdfFormTemplateId" ColumnName="PdfFormTemplateId" />
+                <ScalarProperty Name="DefineQuestionId" ColumnName="DefineQuestionId" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="UserAnswer" ColumnName="UserAnswer" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeneratedPdfs">
+            <EntityTypeMapping TypeName="nChangerDb.GeneratedPdf">
+              <MappingFragment StoreEntitySet="GeneratedPdf">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PdfFormTemplateId" ColumnName="PdfFormTemplateId" />
+                <ScalarProperty Name="CompletedPdf" ColumnName="CompletedPdf" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -44,6 +44,7 @@
             </div>
         </div>
         <div class="one wide column"></div>
+     
     </div>
     <h3 class="ui dividing header"></h3>
     <div class="one wide column"></div>

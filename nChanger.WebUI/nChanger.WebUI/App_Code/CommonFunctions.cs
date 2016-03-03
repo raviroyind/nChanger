@@ -16,9 +16,6 @@ namespace nChanger.WebUI
 {
     public class CommonFunctions : Page
     { 
-
-       
-
         /// <summary>
         /// Used to populate a list control with countries.
         /// </summary>
@@ -138,7 +135,7 @@ namespace nChanger.WebUI
         }
          
 
-        public static bool SendMail(string toEmail, string subject, bool isBodyHtml, string body, bool enableSsl)
+        public static bool SendMail(string toEmail, string subject, bool isBodyHtml, string body, bool enableSsl, Attachment attachment=null)
         {
             var bSuccess = true;
             var fromEmail = Convert.ToString(ConfigurationManager.AppSettings["SMPT_USER"]);
@@ -155,6 +152,10 @@ namespace nChanger.WebUI
                 msg.Subject = subject;
                 msg.Body = body;
                 msg.IsBodyHtml = true;
+                
+                if(attachment!=null) 
+                    msg.Attachments.Add(attachment);
+
                 SmtpClient client = new SmtpClient();
                 client.Host = "relay-hosting.secureserver.net";
                 client.Port = Convert.ToInt32(ConfigurationManager.AppSettings["SMPT_PORT"]);

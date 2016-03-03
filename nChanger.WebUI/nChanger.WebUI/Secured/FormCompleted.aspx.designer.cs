@@ -7,45 +7,63 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace nChanger.WebUI {
+namespace nChanger.WebUI.Secured {
     
     
-    public partial class frmMasterPage {
+    public partial class FormCompleted {
         
         /// <summary>
-        /// head control.
+        /// lblMsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.Label lblMsg;
         
         /// <summary>
-        /// ancLogin control.
+        /// hypFile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor ancLogin;
+        protected global::System.Web.UI.WebControls.HyperLink hypFile;
         
         /// <summary>
-        /// _topNav1 control.
+        /// txtEmailId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::nChanger.WebUI.UserControls._topNav _topNav1;
+        protected global::System.Web.UI.WebControls.TextBox txtEmailId;
         
         /// <summary>
-        /// MainContent control.
+        /// lnkSend control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.LinkButton lnkSend;
+        
+        /// <summary>
+        /// lnkDownload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkDownload;
+        
+        /// <summary>
+        /// hypBack control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hypBack;
     }
 }
