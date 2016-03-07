@@ -122,12 +122,52 @@ namespace nChanger.WebUI.Secured
             
         }
 
+        protected void lnkViewForm_OnClick(object sender, EventArgs e)
+        {
+            var linkButton = (LinkButton)sender;
+
+            var recordId = Guid.Parse(linkButton.CommandArgument);
+            
+            using (var dataContext = new nChangerDb())
+            {
+                var genPdf = dataContext.GeneratedPdfs.Find(recordId);
+
+                if(genPdf==null)
+                    return;
+
+                var pdfTemplateId = genPdf.PdfFormTemplateId;
+
+                var pdfTemplate = dataContext.PdfFormTemplates.Find(pdfTemplateId);
+
+                if (pdfTemplate != null)
+                {
+                    Sections = new List<FrmSection>();
+                    foreach (var form in pdfTemplate.FormInfoes.OrderBy(f => f.FormSection.FormOrder))
+                    {
+                        var path = form.FormSection.FormPath;
+                        Sections.Add(new FrmSection
+                        {
+                            FrmGuid = form.FormSection.Id,
+                            TableName = form.FormSection.TableName,
+                            AspxPath = form.FormSection.FormPath,
+                            DisplayOrder = form.FormSection.FormOrder
+                        });
+                    }
+
+                    CurrentId = pdfTemplateId.ToString();
+                    RecordId = recordId.ToString();
+                    Response.Redirect("../Forms/CustomQuestions.aspx");
+                }
+            }
+        }
+
         protected void lnkFrm_OnClick(object sender, EventArgs e)
         {
             var lnkBtn = (LinkButton) sender;
             CurrentId = lnkBtn.CommandArgument;
             Response.Redirect("FormCompleted.aspx");
         }
+
 
         protected void lnkDelete_OnClick(object sender, EventArgs e)
         {
@@ -140,5 +180,6 @@ namespace nChanger.WebUI.Secured
             //    dataContext.Database.ExecuteSqlCommand("")
             //}
         }
+         
     }
 }

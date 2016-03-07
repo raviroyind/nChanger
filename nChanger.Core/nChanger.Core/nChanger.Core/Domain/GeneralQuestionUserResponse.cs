@@ -15,6 +15,7 @@ namespace nChanger.Core
     public partial class GeneralQuestionUserResponse
     {
         public System.Guid Id { get; set; }
+        public System.Guid RecordId { get; set; }
         public System.Guid PdfFormTemplateId { get; set; }
         public System.Guid DefineQuestionId { get; set; }
         public string Question { get; set; }

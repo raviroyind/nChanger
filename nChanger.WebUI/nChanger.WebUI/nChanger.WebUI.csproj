@@ -70,6 +70,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Users\Ravi Roy\Downloads\TinyMCE_ASP.Net - Validation\Bin\Moxiecode.TinyMCE.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.ServiceModel" />
@@ -93,6 +97,8 @@
     <Content Include="Account\passwordRecovery.aspx" />
     <Content Include="Account\signupComplete.aspx" />
     <Content Include="Admin\dashboard.aspx" />
+    <Content Include="Admin\DefineEligiblityCriteria.aspx" />
+    <Content Include="Admin\EligiblityCriteria.aspx" />
     <Content Include="Admin\FieldMapping.aspx" />
     <Content Include="Admin\ManagePackage.aspx" />
     <Content Include="Admin\ManagePackageFeatures.aspx" />
@@ -177,7 +183,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Secured\Billing.aspx" />
     <Content Include="Secured\FormCompleted.aspx" />
-    <Content Include="Secured\GeneralQuestions.aspx" />
     <Content Include="Secured\packageSelection.aspx" />
     <Content Include="selectPackage.aspx" />
     <Content Include="Style\css\bootstrap-theme.css" />
@@ -707,6 +712,20 @@
     <Compile Include="Admin\dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\DefineEligiblityCriteria.aspx.cs">
+      <DependentUpon>DefineEligiblityCriteria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\DefineEligiblityCriteria.aspx.designer.cs">
+      <DependentUpon>DefineEligiblityCriteria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\EligiblityCriteria.aspx.cs">
+      <DependentUpon>EligiblityCriteria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EligiblityCriteria.aspx.designer.cs">
+      <DependentUpon>EligiblityCriteria.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\FieldMapping.aspx.cs">
       <DependentUpon>FieldMapping.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -885,13 +904,6 @@
     <Compile Include="Secured\FormCompleted.aspx.designer.cs">
       <DependentUpon>FormCompleted.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Secured\GeneralQuestions.aspx.cs">
-      <DependentUpon>GeneralQuestions.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Secured\GeneralQuestions.aspx.designer.cs">
-      <DependentUpon>GeneralQuestions.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Secured\packageSelection.aspx.cs">
       <DependentUpon>packageSelection.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -980,6 +992,10 @@
     <ProjectReference Include="..\..\nChanger.Core\nChanger.Core\nChanger.Core\nChanger.Core.csproj">
       <Project>{0f451e38-ab1a-4fb2-a2cb-6e0599e6a4e2}</Project>
       <Name>nChanger.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\nChanger.Stripe\Stripe.csproj">
+      <Project>{8abf9b27-bf46-4a3d-bcaf-ab0ea18f8266}</Project>
+      <Name>Stripe</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

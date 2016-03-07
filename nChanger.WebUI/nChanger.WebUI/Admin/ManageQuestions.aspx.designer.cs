@@ -58,6 +58,24 @@ namespace nChanger.WebUI.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtOptionLabel;
         
         /// <summary>
+        /// txtDropDownOptions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDropDownOptions;
+        
+        /// <summary>
+        /// ddlPreset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPreset;
+        
+        /// <summary>
         /// btnAddQuestion control.
         /// </summary>
         /// <remarks>
@@ -110,6 +128,15 @@ namespace nChanger.WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hidOptions;
+        
+        /// <summary>
+        /// hidPreset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidPreset;
         
         /// <summary>
         /// ddlCategory control.

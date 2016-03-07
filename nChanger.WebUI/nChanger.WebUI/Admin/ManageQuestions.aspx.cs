@@ -61,6 +61,12 @@ namespace nChanger.WebUI.Admin
                         ddlCategory.CssClass = "ui normal selection dropdown disabled";
                         ddlCategory.Items.FindByValue(categoryId.ToString()).Selected = true;
                     }
+
+                    if (ddlCategory.SelectedIndex != 0)
+                    {
+                        ddlCategoryAdd.ClearSelection();
+                        ddlCategoryAdd.Items.FindByValue(ddlCategory.SelectedValue).Selected = true;
+                    }
                 }
                 
                 if (questionsList.Count > 0)
@@ -95,6 +101,7 @@ namespace nChanger.WebUI.Admin
                         ProvinceCategoryId = string.IsNullOrEmpty(hidProvinceCategoryId.Value)?Guid.Parse(ddlCategoryAdd.SelectedValue):Guid.Parse(hidProvinceCategoryId.Value),
                         Question = hidQuestion.Value,
                         QuestionType = hidQuestionType.Value,
+                        DataSource = string.IsNullOrEmpty(hidPreset.Value)?null:hidPreset.Value,
                         IsActive =true,
                         EntryDate = DateTime.Now,
                         EntryIP = CommonFunctions.GetIpAddress(),
@@ -210,18 +217,41 @@ namespace nChanger.WebUI.Admin
                             ddlCategoryAdd.CssClass = "ui normal selection dropdown disabled";
                         }
                         else
-                            ddlCategoryAdd.CssClass = "ui normal selection dropdown";
+                        {
+                            ddlCategoryAdd.ClearSelection();
+                            ddlCategoryAdd.Items.FindByValue(question.ProvinceCategoryId.ToString()).Selected = true;
+                            ddlCategoryAdd.CssClass = "ui normal selection dropdown disabled";
+                        }
+
+                        if (!string.IsNullOrEmpty(question.DataSource))
+                        {
+                            ddlPreset.ClearSelection();
+                            ddlPreset.Items.FindByValue(question.DataSource).Selected = true;
+                        }
+
 
                         if (question.QuestionOptions.Count > 0)
                         {
-                            txtOptionLabel.Text = string.Empty;
-                            foreach (var option in question.QuestionOptions)
+                            if (question.QuestionType.Equals("chk") || question.QuestionType.Equals("rdb"))
                             {
-                                txtOptionLabel.Text += option.OptionLabel + ",";
-                            }
+                                txtOptionLabel.Text = string.Empty;
+                                foreach (var option in question.QuestionOptions.OrderBy(q => q.EntryDate))
+                                {
+                                    txtOptionLabel.Text += option.OptionLabel + ",";
+                                }
 
-                            if (txtOptionLabel.Text.EndsWith(","))
-                                txtOptionLabel.Text = txtOptionLabel.Text.Substring(0, txtOptionLabel.Text.Length - 1);
+                                if (txtOptionLabel.Text.EndsWith(","))
+                                    txtOptionLabel.Text = txtOptionLabel.Text.Substring(0, txtOptionLabel.Text.Length - 1);
+
+                            }else if (question.QuestionType.Equals("ddl"))
+                            {
+                                txtDropDownOptions.Text =  string.Empty;
+                                foreach (var option in question.QuestionOptions.OrderBy(q=> q.EntryDate))
+                                {
+                                    txtDropDownOptions.Text += option.OptionLabel + "\r\n";
+                                }
+                            }
+                            
                         }
 
                         ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString(), "loadEdit()", true);
@@ -256,6 +286,9 @@ namespace nChanger.WebUI.Admin
                         break;
                     case "rdb":
                         lblType.Text = "Radio button";
+                        break;
+                    case "ddl":
+                        lblType.Text = "Dropdown";
                         break;
                 }
             }
@@ -348,7 +381,14 @@ namespace nChanger.WebUI.Admin
             hidQuestionType.Value = string.Empty;
             txtQuestion.Text = string.Empty;
             txtOptionLabel.Text = string.Empty;
-           
+            hidPreset.Value = string.Empty;
+            ddlCategoryAdd.CssClass = "ui normal selection dropdown";
+            ddlPreset.ClearSelection();
+            ddlPreset.SelectedIndex = 0;
+
+            ddlQuestionTypeAdd.ClearSelection();
+            ddlQuestionTypeAdd.SelectedIndex = 0;
+
             if (Request.QueryString["id"] != null)
                 BindQuestions(Guid.Parse(Request.QueryString["id"]));
             else

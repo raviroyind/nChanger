@@ -3,7 +3,6 @@
        <script src="../Scripts/jquery-2.2.0.min.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    
        <div style="padding-left: 10%;">
         <div class="one wide column"></div>
         <div class="fourteen wide column bordered round-corners">
@@ -87,11 +86,11 @@
                         </tbody>
                     <tfoot>
                     <tr>
-                        <td colspan="4">
+                        <th colspan="4">
                             <asp:HyperLink runat="server" ID="hypBack"  CssClass="ui button green" NavigateUrl="dashboard.aspx">
                                     <i class="arrow left icon"></i> Back
                                 </asp:HyperLink>
-                        </td>
+                        </th>
                     </tr>
                     </tfoot>
                     </table>
@@ -102,6 +101,7 @@
 
         </div>
     </div>
+    <asp:HiddenField runat="server" ID="hidFile"/>
     <script type="text/javascript">
         function showAlert() {
             $("#success-alert").show().delay(5000).fadeOut();

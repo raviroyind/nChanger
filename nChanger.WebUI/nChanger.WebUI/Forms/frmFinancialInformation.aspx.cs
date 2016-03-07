@@ -17,87 +17,82 @@ namespace nChanger.WebUI.Forms
                 FormIndex = 5;
                 Display();
             }
-        }
+        } 
 
         private void Display()
         { 
-                try
+            try
+            {
+                hypBack.NavigateUrl = "../Forms/frmCriminalOffenceInformation.aspx?id=" + CurrentId;
+                var id = Guid.Parse(RecordId);
+
+                using (var dataContext = new nChangerDb())
                 {
-                    hypBack.NavigateUrl = "../Forms/frmCriminalOffenceInformation.aspx?id=" + CurrentId;
-                    var id = Guid.Parse(CurrentId);
+                    var financialInformation = dataContext.FinancialInformations.Find(id);
 
-                    using (var dataContext = new nChangerDb())
+                    if (financialInformation != null)
                     {
-                        var frmFinancialInformation =
-                            dataContext.FinancialInformations.FirstOrDefault(
-                                f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
+                        rdLstCourtOrTribunalOrder.SelectedIndex = financialInformation.CourtOrTribunalOrder
+                            ? 0
+                            : 1;
 
-                        if (frmFinancialInformation != null)
+                        txtCourtFileNumber.Text = financialInformation.CourtFileNumber;
+                        txtNameOfCourt.Text = financialInformation.NameOfCourt;
+
+                        if (financialInformation.DateOfCourtOrderDay > 0 &&
+                            financialInformation.DateOfCourtOrderMonth > 0 &&
+                            financialInformation.DateOfCourtOrderYear > 0)
                         {
-                            rdLstCourtOrTribunalOrder.SelectedIndex = frmFinancialInformation.CourtOrTribunalOrder
-                                ? 0
-                                : 1;
-
-                            txtCourtFileNumber.Text = frmFinancialInformation.CourtFileNumber;
-                            txtNameOfCourt.Text = frmFinancialInformation.NameOfCourt;
-
-                            if (frmFinancialInformation.DateOfCourtOrderDay > 0 &&
-                                frmFinancialInformation.DateOfCourtOrderMonth > 0 &&
-                                frmFinancialInformation.DateOfCourtOrderYear > 0)
-                            {
-                                DateTime dt = new DateTime(frmFinancialInformation.DateOfCourtOrderYear.Value,
-                                    frmFinancialInformation.DateOfCourtOrderMonth.Value,
-                                    frmFinancialInformation.DateOfCourtOrderDay.Value);
-                                txtDateCourtOrder.Text = dt.ToString("MM/dd/yyyy");
-                            }
-
-                            txtNameOfPersonWhoSuedYou.Text = frmFinancialInformation.NameOfPersonWhoSuedYou;
-                            txtAddressCourtTribunal.Text = frmFinancialInformation.AddressCourtTribunal;
-
-                            rdLstSheriffDirected.SelectedIndex = frmFinancialInformation.SheriffDirected ? 0 : 1;
-                            txtWritNumber.Text = frmFinancialInformation.WritNumber;
-                            txtNameOfSherrif.Text = frmFinancialInformation.NameOfSherrif;
-                            txtAddressOfSheriff.Text = frmFinancialInformation.AddressOfSheriff;
-
-                            rdLstLiensOrSecurityInterests.SelectedIndex =
-                                frmFinancialInformation.LiensOrSecurityInterests ? 0 : 1;
-                            txtLiensOrSecurityInterestsNameOfPerson.Text =
-                                frmFinancialInformation.LiensOrSecurityInterestsNameOfPerson;
-                            txtAmountOfMoneyOwed.Text = frmFinancialInformation.AmountOfMoneyOwed;
-                            txtRegitrationNumber.Text = frmFinancialInformation.RegitrationNumber;
-
-                            rdLstFinancialStatementsRegistered.SelectedIndex =
-                                frmFinancialInformation.FinancialStatementsRegistered ? 0 : 1;
-                            txtFinancialStatementsRegitrationNumber.Text =
-                                frmFinancialInformation.FinancialStatementsRegitrationNumber;
-
-                            rdLstUndischargedBankrupt.SelectedIndex = frmFinancialInformation.UndischargedBankrupt
-                                ? 0
-                                : 1;
-                            txtDetailsOfBankruptcy.Text = frmFinancialInformation.DetailsOfBankruptcy;
+                            DateTime dt = new DateTime(financialInformation.DateOfCourtOrderYear.Value,
+                                financialInformation.DateOfCourtOrderMonth.Value,
+                                financialInformation.DateOfCourtOrderDay.Value);
+                            txtDateCourtOrder.Text = dt.ToString("MM/dd/yyyy");
                         }
+
+                        txtNameOfPersonWhoSuedYou.Text = financialInformation.NameOfPersonWhoSuedYou;
+                        txtAddressCourtTribunal.Text = financialInformation.AddressCourtTribunal;
+
+                        rdLstSheriffDirected.SelectedIndex = financialInformation.SheriffDirected ? 0 : 1;
+                        txtWritNumber.Text = financialInformation.WritNumber;
+                        txtNameOfSherrif.Text = financialInformation.NameOfSherrif;
+                        txtAddressOfSheriff.Text = financialInformation.AddressOfSheriff;
+
+                        rdLstLiensOrSecurityInterests.SelectedIndex =
+                            financialInformation.LiensOrSecurityInterests ? 0 : 1;
+                        txtLiensOrSecurityInterestsNameOfPerson.Text =
+                            financialInformation.LiensOrSecurityInterestsNameOfPerson;
+                        txtAmountOfMoneyOwed.Text = financialInformation.AmountOfMoneyOwed;
+                        txtRegitrationNumber.Text = financialInformation.RegitrationNumber;
+
+                        rdLstFinancialStatementsRegistered.SelectedIndex =
+                            financialInformation.FinancialStatementsRegistered ? 0 : 1;
+                        txtFinancialStatementsRegitrationNumber.Text =
+                            financialInformation.FinancialStatementsRegitrationNumber;
+
+                        rdLstUndischargedBankrupt.SelectedIndex = financialInformation.UndischargedBankrupt
+                            ? 0
+                            : 1;
+                        txtDetailsOfBankruptcy.Text = financialInformation.DetailsOfBankruptcy;
                     }
                 }
-                catch (Exception ex)
-                {
+            }
+            catch (Exception ex)
+            {
 
-                }
+            }
             
         }
 
         private string Submit()
         {
-            var id = Guid.Parse(CurrentId);
+            var id = Guid.Parse(RecordId);
             var returnMessage = string.Empty;
             try
             {
                 using (var dataContext = new nChangerDb())
                 {
-                    var dbEntry =
-                        dataContext.FinancialInformations.FirstOrDefault(
-                            f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
-
-
+                    var dbEntry = dataContext.FinancialInformations.Find(id);
+                     
                     if (dbEntry != null)
                     {
                         dbEntry.UserId = UserId;
@@ -136,8 +131,8 @@ namespace nChanger.WebUI.Forms
                     {
                         var entry = new FinancialInformation
                         {
-                            Id = Guid.NewGuid(),
-                            PdfFormTemplateId = id,
+                            Id = id,
+                            PdfFormTemplateId = Guid.Parse(CurrentId),
                             UserId = UserId,
                             CourtOrTribunalOrder = rdLstCourtOrTribunalOrder.SelectedIndex == 0,
                             CourtFileNumber = txtCourtFileNumber.Text,
@@ -180,8 +175,7 @@ namespace nChanger.WebUI.Forms
                     dataContext.SaveChanges();
 
                     returnMessage = "Data submitted successfully!";
-                    btnPreviewPdf.CssClass = string.Empty;
-                    btnPreviewPdf.CssClass = "btn btn-sm btn-primary";
+                     
                 }
             }
             catch (DbEntityValidationException ex)
@@ -224,33 +218,5 @@ namespace nChanger.WebUI.Forms
 
             Response.Redirect("../Secured/FormCompleted.aspx");
         }
-
-        protected void btnPreviewPdf_OnClick(object sender, EventArgs e)
-        {
-            var id = Guid.Parse(CurrentId);
-            using (var dataContext = new nChangerDb())
-            {
-                var frmOn =
-                            dataContext.FinancialInformations.FirstOrDefault(
-                                f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
-
-                if (frmOn != null)
-                {
-                    var file = new FileInfo(PdfInjector.FillForm(id, UserId));
-
-                    Response.Clear();
-                    Response.ClearHeaders();
-                    Response.ClearContent();
-                    Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name);
-                    Response.AddHeader("Content-Length", file.Length.ToString());
-                    Response.ContentType = "text/plain";
-                    Response.Flush();
-                    Response.TransmitFile(file.FullName);
-                    Response.End();
-                }
-            }
-        }
-
-       
     }
 }

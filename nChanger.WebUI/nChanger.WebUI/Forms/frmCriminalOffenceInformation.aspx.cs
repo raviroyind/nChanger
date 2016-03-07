@@ -29,59 +29,50 @@ namespace nChanger.WebUI.Forms
                 {
                     using (var dataContext = new nChangerDb())
                     {
-                        var id = Guid.Parse(CurrentId);
+                        var id = Guid.Parse(RecordId);
 
-                    var frmCriminalOffenceInformation =
-                            dataContext.CriminalOffenceInformations.FirstOrDefault(
-                                f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
+                        var criminalOffenceInformation = dataContext.CriminalOffenceInformations.Find(id);
 
-                        if (frmCriminalOffenceInformation != null)
+                        if (criminalOffenceInformation != null)
                         {
-                            //hypBack.NavigateUrl = "../Forms/frmNameChangeInformation.aspx";
+                            hypBack.NavigateUrl = "../Forms/frmNameChangeInformation.aspx";
+                         
+                            rdLstOutstandingCourtProceedings.SelectedIndex = criminalOffenceInformation.OutstandingCourtProceedings ? 0 : 1;
 
-                            btnPreviewPdf.CssClass = string.Empty;
-                            btnPreviewPdf.CssClass = "btn btn-sm btn-primary";
+                            txtCourtFileNumber.Text = criminalOffenceInformation.CourtFileNumber;
+                            txtCourtName.Text = criminalOffenceInformation.CourtName;
+                            txtCourtAddress.Text = criminalOffenceInformation.CourtAddress;
+                            txtDescribeProceedings.Text = criminalOffenceInformation.DescribeProceedings;
 
-                            rdLstOutstandingCourtProceedings.SelectedIndex = frmCriminalOffenceInformation.OutstandingCourtProceedings ? 0 : 1;
-
-                            txtCourtFileNumber.Text = frmCriminalOffenceInformation.CourtFileNumber;
-                            txtCourtName.Text = frmCriminalOffenceInformation.CourtName;
-                            txtCourtAddress.Text = frmCriminalOffenceInformation.CourtAddress;
-                            txtDescribeProceedings.Text = frmCriminalOffenceInformation.DescribeProceedings;
-
-                            rdLstOutstandingEnforcementOrders.SelectedIndex = frmCriminalOffenceInformation.OutstandingEnforcementOrders ? 0 : 1;
+                            rdLstOutstandingEnforcementOrders.SelectedIndex = criminalOffenceInformation.OutstandingEnforcementOrders ? 0 : 1;
 
 
-                            txtDetailsOfOutstandingEnforcementOrders.Text = frmCriminalOffenceInformation.DetailsOfOutstandingEnforcementOrders;
+                            txtDetailsOfOutstandingEnforcementOrders.Text = criminalOffenceInformation.DetailsOfOutstandingEnforcementOrders;
 
-                            rdLstEverConvictedOfCriminalOffence.SelectedIndex = frmCriminalOffenceInformation.EverConvictedOfCriminalOffence ? 0 : 1;
-
-
-                            txtDetailsOfCriminalOffence.Text = frmCriminalOffenceInformation.DetailsOfCriminalOffence;
-
-                            rdLstFoundGuiltyDischarged.SelectedIndex = frmCriminalOffenceInformation.FoundGuiltyDischarged ? 0 : 1;
+                            rdLstEverConvictedOfCriminalOffence.SelectedIndex = criminalOffenceInformation.EverConvictedOfCriminalOffence ? 0 : 1;
 
 
-                            txtFoundGuiltyDetailsOfOffence.Text = frmCriminalOffenceInformation.FoundGuiltyDetailsOfOffence;
+                            txtDetailsOfCriminalOffence.Text = criminalOffenceInformation.DetailsOfCriminalOffence;
 
-                            rdLstAdultSentenceImposed.SelectedIndex = frmCriminalOffenceInformation.AdultSentenceImposed ? 0 : 1;
+                            rdLstFoundGuiltyDischarged.SelectedIndex = criminalOffenceInformation.FoundGuiltyDischarged ? 0 : 1;
 
 
-                            txtDescribeAdultSentence.Text = frmCriminalOffenceInformation.DescribeAdultSentence;
+                            txtFoundGuiltyDetailsOfOffence.Text = criminalOffenceInformation.FoundGuiltyDetailsOfOffence;
 
-                            rdLstPendingCharges.SelectedIndex = frmCriminalOffenceInformation.PendingCharges ? 0 : 1;
+                            rdLstAdultSentenceImposed.SelectedIndex = criminalOffenceInformation.AdultSentenceImposed ? 0 : 1;
 
-                            txtPendingChargesCourtNumber.Text = frmCriminalOffenceInformation.PendingChargesCourtNumber;
 
-                            txtPendingChargesCourtName.Text = frmCriminalOffenceInformation.PendingChargesCourtName;
-                            txtPendingChargesCourtAddress.Text = frmCriminalOffenceInformation.PendingChargesCourtAddress;
-                            txtPendingChargesDescribe.Text = frmCriminalOffenceInformation.PendingChargesDescribe;
+                            txtDescribeAdultSentence.Text = criminalOffenceInformation.DescribeAdultSentence;
+
+                            rdLstPendingCharges.SelectedIndex = criminalOffenceInformation.PendingCharges ? 0 : 1;
+
+                            txtPendingChargesCourtNumber.Text = criminalOffenceInformation.PendingChargesCourtNumber;
+
+                            txtPendingChargesCourtName.Text = criminalOffenceInformation.PendingChargesCourtName;
+                            txtPendingChargesCourtAddress.Text = criminalOffenceInformation.PendingChargesCourtAddress;
+                            txtPendingChargesDescribe.Text = criminalOffenceInformation.PendingChargesDescribe;
                         }
-                        else
-                        {
-                            btnPreviewPdf.CssClass = string.Empty;
-                            btnPreviewPdf.CssClass = "btn btn-sm btn-primary disabled";
-                        }
+                        
                     }
                 }
                 catch (Exception)
@@ -93,17 +84,14 @@ namespace nChanger.WebUI.Forms
 
         private string Submit()
         {
-            var id = Guid.Parse(CurrentId);
+            var id = Guid.Parse(RecordId);
             var returnMessage = string.Empty;
             try
             {
                 using (var dataContext = new nChangerDb())
                 {
-                    var dbEntry =
-                        dataContext.CriminalOffenceInformations.FirstOrDefault(
-                            f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
-
-
+                    var dbEntry = dataContext.CriminalOffenceInformations.Find(id);
+                    
                     if (dbEntry != null)
                     {
                         dbEntry.UserId = UserId;
@@ -134,8 +122,8 @@ namespace nChanger.WebUI.Forms
                     {
                         var entry = new CriminalOffenceInformation
                         {
-                            Id = Guid.NewGuid(),
-                            PdfFormTemplateId = id,
+                            Id = id,
+                            PdfFormTemplateId = Guid.Parse(CurrentId),
                             UserId = UserId,
                             OutstandingCourtProceedings = rdLstOutstandingCourtProceedings.SelectedIndex == 0,
                             CourtFileNumber = txtCourtFileNumber.Text,
@@ -167,8 +155,7 @@ namespace nChanger.WebUI.Forms
                     dataContext.SaveChanges();
 
                     returnMessage = "Data submitted successfully!";
-                    btnPreviewPdf.CssClass = string.Empty;
-                    btnPreviewPdf.CssClass = "btn btn-sm btn-primary";
+                     
                 }
             }
             catch (DbEntityValidationException ex)
@@ -221,31 +208,6 @@ namespace nChanger.WebUI.Forms
 
             Response.Redirect(redirect);
         }
-
-        protected void btnPreviewPdf_OnClick(object sender, EventArgs e)
-        {
-            var id = Guid.Parse(CurrentId);
-            using (var dataContext = new nChangerDb())
-            {
-                var frmOn =
-                            dataContext.CriminalOffenceInformations.FirstOrDefault(
-                                f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
-
-                if (frmOn != null)
-                {
-                    var file = new FileInfo(PdfInjector.FillForm(id, UserId));
-
-                    Response.Clear();
-                    Response.ClearHeaders();
-                    Response.ClearContent();
-                    Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name);
-                    Response.AddHeader("Content-Length", file.Length.ToString());
-                    Response.ContentType = "text/plain";
-                    Response.Flush();
-                    Response.TransmitFile(file.FullName);
-                    Response.End();
-                }
-            }
-        }
+ 
     }
 }

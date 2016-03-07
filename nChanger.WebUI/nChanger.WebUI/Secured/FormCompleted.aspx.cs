@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.IO;
-using System.Linq;
 using System.Net.Mail;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
 using nameChanger.WebUI;
 using nChanger.Core;
 
@@ -15,7 +10,7 @@ namespace nChanger.WebUI.Secured
 {
     public partial class FormCompleted : AppBasePage
     {
-        private FileInfo _fileInfo;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -24,30 +19,32 @@ namespace nChanger.WebUI.Secured
 
         private void Display()
         {
-            var id = Guid.Parse(CurrentId);
+            var id = Guid.Parse(RecordId);
+            var pdfFormTemplateid = Guid.Parse(CurrentId);
             var dataContext =new nChangerDb();
 
-            _fileInfo = new FileInfo(PdfInjector.FillForm(id, UserId));
-              
-            var template = dataContext.PdfFormTemplates.Find(id);
+            var  fileInfo = new FileInfo(PdfInjector.FillForm(pdfFormTemplateid,id, UserId));
+
+            hidFile.Value = fileInfo.FullName; 
+
+            var template = dataContext.PdfFormTemplates.Find(pdfFormTemplateid);
 
 
             if (template != null)
             {
-                hypFile.NavigateUrl = "../Output/"+ Path.GetFileName(_fileInfo.Name);
-                hypFile.Text = Path.GetFileName(_fileInfo.Name);
+                hypFile.NavigateUrl = "../Output/"+ Path.GetFileName(fileInfo.Name);
+                hypFile.Text = Path.GetFileName(fileInfo.Name);
             }
 
-            UpdateGeneratedPdf(_fileInfo);
+            UpdateGeneratedPdf(fileInfo);
         }
 
         protected void lnkSend_OnClick(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtEmailId.Text))
             {
-                var id = Guid.Parse(CurrentId);
-                _fileInfo = new FileInfo(PdfInjector.FillForm(id, UserId));
-                var attachement = new Attachment(_fileInfo.FullName);
+                var fInfo = new FileInfo(hidFile.Value);
+                var attachement = new Attachment(fInfo.FullName);
                 var streamReader = new StreamReader(Server.MapPath(@"~/MailTemplates/sendDocument.html"));
                 var htmlContent = streamReader.ReadToEnd();
                 var mailBody = htmlContent.Replace("[USER]", UserName);
@@ -65,27 +62,27 @@ namespace nChanger.WebUI.Secured
         }
 
         protected void lnkDownload_OnClick(object sender, EventArgs e)
-        {
-            var id = Guid.Parse(CurrentId);
-            _fileInfo = new FileInfo(PdfInjector.FillForm(id, UserId));
+        { 
+            var fInfo = new FileInfo(hidFile.Value);
             Response.Clear();
             Response.ClearHeaders();
             Response.ClearContent();
-            Response.AddHeader("Content-Disposition", "attachment; filename=" + _fileInfo.Name);
-            Response.AddHeader("Content-Length", _fileInfo.Length.ToString());
+            Response.AddHeader("Content-Disposition", "attachment; filename=" + fInfo.Name);
+            Response.AddHeader("Content-Length", fInfo.Length.ToString());
             Response.ContentType = "text/plain";
             Response.Flush();
-            Response.TransmitFile(_fileInfo.FullName);
+            Response.TransmitFile(fInfo.FullName);
             Response.End();
         }
 
 
         private void UpdateGeneratedPdf(FileInfo fileInfo)
         {
-            var id = Guid.Parse(CurrentId);
+            var id = Guid.Parse(RecordId);
+            var pdfFormTemplateid = Guid.Parse(CurrentId);
             using (var dataContext=new nChangerDb())
             {
-                var dbEntry = dataContext.GeneratedPdfs.SingleOrDefault(g => g.PdfFormTemplateId.Equals(id) && g.UserId.Equals(UserId));
+                var dbEntry = dataContext.GeneratedPdfs.Find(id);
                 if (dbEntry != null)
                 {
                     dataContext.GeneratedPdfs.Remove(dbEntry);
@@ -94,8 +91,8 @@ namespace nChanger.WebUI.Secured
 
                 dataContext.GeneratedPdfs.AddOrUpdate(new GeneratedPdf
                 {
-                    Id=Guid.NewGuid(),
-                    PdfFormTemplateId = id,
+                    Id=id,
+                    PdfFormTemplateId = pdfFormTemplateid,
                     UserId = UserId,
                     CompletedPdf ="../Output/"+Path.GetFileName(fileInfo.Name),
                     EntryDate = DateTime.Now,

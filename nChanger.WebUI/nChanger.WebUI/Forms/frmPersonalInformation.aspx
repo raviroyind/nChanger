@@ -9,7 +9,7 @@
    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-      <div class="container fluid" style="width: 100%; margin-top: 3%;">
+      <div class="container fluid" style="width: 100%; margin-top:1%;">
         <div class="panel panel-info" style="margin-bottom: 5%;">
             <div class="panel-heading">
               <strong>A. Information about you.</strong>
@@ -421,7 +421,6 @@
                         <div class="col-md-3">
                             <asp:HyperLink runat="server" ID="hypBack" class="btn btn-sm btn-primary" NavigateUrl="CustomQuestions.aspx"><i class="glyphicon glyphicon-arrow-left"></i> Back</asp:HyperLink>
                             <asp:LinkButton runat="server" ID="btnSubmit" CausesValidation="True" class="btn btn-sm btn-primary" OnClick="btnSubmit_OnClick"><i class="glyphicon glyphicon-log-in"></i> Save &amp; Continue</asp:LinkButton>
-                            <asp:LinkButton runat="server" ID="btnPreviewPdf" class="btn btn-sm btn-primary" OnClick="btnPreviewPdf_OnClick"><i class="glyphicon glyphicon-print"></i> Preview Pdf</asp:LinkButton>
                         </div>
                         <div class="col-md-4">
                         </div>

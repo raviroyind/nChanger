@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using nChanger.WebUI.Navigation;
@@ -96,6 +97,13 @@ namespace nChanger.WebUI
                 else
                     Response.Redirect("../adminlogin.aspx?id=tm");
             }
+
+            if (!string.IsNullOrEmpty(UserType))
+            {
+                if(Request.Url.AbsolutePath.Contains("Admin") && !UserType.Equals("AU"))
+                    Response.Redirect("../Index.aspx?id=ua");
+            }
+
             base.OnLoad(e);
 
         }
@@ -157,6 +165,34 @@ namespace nChanger.WebUI
                 ViewState["sortDirection"] = "ASC";
             }
 
+        }
+
+        public static List<string> GetCountriesList()
+        {
+            List<string> list = new List<string>();
+            CultureInfo[] cultures = CultureInfo.GetCultures(CultureTypes.AllCultures & CultureTypes.SpecificCultures);
+            foreach (CultureInfo info in cultures)
+            {
+                RegionInfo info2 = new RegionInfo(info.LCID);
+                if (!list.Contains(info2.EnglishName))
+                {
+                    list.Add(info2.EnglishName);
+                }
+            }
+
+            list.Sort();
+            return list;
+        }
+
+        public static List<string> GetYears()
+        {
+            List<string> list = new List<string>();
+            for (int i = DateTime.Now.Year; i > 1899; i--)
+            {
+                list.Add(i.ToString());
+            }
+
+            return list;
         }
 
 

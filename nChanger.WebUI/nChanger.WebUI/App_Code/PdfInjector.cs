@@ -10,11 +10,11 @@ namespace nameChanger.WebUI
 {
     public static class PdfInjector
     {
-        public static string FillForm(Guid pdfTemplateId, string userId)
+        public static string FillForm(Guid pdfFormTemplateId, Guid recordId, string userId)
         {
             var dataContext = new nChangerDb();
 
-            var pdfTemplate = dataContext.PdfFormTemplates.Find(pdfTemplateId);
+            var pdfTemplate = dataContext.PdfFormTemplates.Find(pdfFormTemplateId);
 
             if (pdfTemplate == null)
                 return string.Empty;
@@ -30,44 +30,50 @@ namespace nameChanger.WebUI
 
             #region General Questions...
 
-            var generalQuestions = dataContext.GeneralQuestionUserResponses.FirstOrDefault(
-                                f => f.UserId.Equals(userId) && f.PdfFormTemplateId.Equals(pdfTemplateId));
+            var generalQuestions = dataContext.GeneralQuestionUserResponses.Where(g => g.RecordId.Equals(recordId)).ToList();
 
-            if (generalQuestions != null)
+            if (generalQuestions.Count > 0)
             {
-                foreach (var kvp in pdfFormFields.Fields)
+
+                foreach (var generalQuestion in generalQuestions)
                 {
-                    var fieldType = pdfFormFields.GetFieldType(kvp.Key);
-                    if (fieldType == 1)
-                        continue;
-
-                    foreach (var mapping in generalQuestions.PdfFormTemplate.FieldMappings)
+                    foreach (var kvp in pdfFormFields.Fields)
                     {
+                        var fieldType = pdfFormFields.GetFieldType(kvp.Key);
+                        if (fieldType == 1)
+                            continue;
 
-                        if (mapping.PdfFieldName.Equals(kvp.Key))
+                        foreach (var mapping in generalQuestion.PdfFormTemplate.FieldMappings)
                         {
-                            try
-                            {
-                                var result = (from g in dataContext.GeneralQuestionUserResponses
-                                                       where g.Question.Equals(mapping.DbFieldName) && g.PdfFormTemplateId.Equals(pdfTemplateId) && g.UserId.Equals(userId)
-                                                       select g.UserAnswer).SingleOrDefault();
 
-                                pdfFormFields.SetField(mapping.PdfFieldName, fieldType == 2 ? GetPdfYesNo(result) : result);
-                            }
-                            catch (Exception exception)
+                            if (mapping.PdfFieldName.Equals(kvp.Key))
                             {
+                                try
+                                {
+                                    var result = (from g in dataContext.GeneralQuestionUserResponses
+                                                  where g.Question.Equals(mapping.DbFieldName) && 
+                                                  g.PdfFormTemplateId.Equals(pdfFormTemplateId) && 
+                                                  g.UserId.Equals(userId) &&
+                                                  g.RecordId.Equals(recordId) 
+                                                  select g.UserAnswer).SingleOrDefault();
+
+                                    pdfFormFields.SetField(mapping.PdfFieldName, fieldType == 2 ? GetPdfYesNo(result) : result);
+                                }
+                                catch (Exception exception)
+                                {
+                                }
                             }
                         }
                     }
                 }
+                
             }
 
             #endregion General Questions...
 
             #region OnPersonalInformations...
 
-            var frmOn = dataContext.PersonalInformations.FirstOrDefault(
-                                f => f.UserId.Equals(userId) && f.PdfFormTemplateId.Equals(pdfTemplateId));
+            var frmOn = dataContext.PersonalInformations.Find(recordId);
 
             if (frmOn != null)
             {
@@ -101,8 +107,7 @@ namespace nameChanger.WebUI
 
             #region ParentInformation...
 
-            var frmParentInformation = dataContext.ParentInformations.FirstOrDefault(
-                                f => f.UserId.Equals(userId) && f.PdfFormTemplateId.Equals(pdfTemplateId));
+            var frmParentInformation = dataContext.ParentInformations.Find(recordId);
 
             if (frmParentInformation != null)
             {
@@ -136,8 +141,7 @@ namespace nameChanger.WebUI
 
             #region NameChangeInformation...
 
-            var frmNameChangeInformation = dataContext.NameChangeInformations.FirstOrDefault(
-                                f => f.UserId.Equals(userId) && f.PdfFormTemplateId.Equals(pdfTemplateId));
+            var frmNameChangeInformation = dataContext.NameChangeInformations.Find(recordId);
 
             if (frmNameChangeInformation != null)
             {
@@ -171,8 +175,7 @@ namespace nameChanger.WebUI
 
             #region CriminalOffenceInformation...
 
-            var frmCriminalOffenceInformation = dataContext.CriminalOffenceInformations.FirstOrDefault(
-                                f => f.UserId.Equals(userId) && f.PdfFormTemplateId.Equals(pdfTemplateId));
+            var frmCriminalOffenceInformation = dataContext.CriminalOffenceInformations.Find(recordId);
 
             if (frmCriminalOffenceInformation != null)
             {
@@ -213,8 +216,7 @@ namespace nameChanger.WebUI
 
             #region FinancialInformation...
 
-            var frmFinancialInformation = dataContext.FinancialInformations.FirstOrDefault(
-                                f => f.UserId.Equals(userId) && f.PdfFormTemplateId.Equals(pdfTemplateId));
+            var frmFinancialInformation = dataContext.FinancialInformations.Find(recordId);
 
             if (frmFinancialInformation != null)
             {

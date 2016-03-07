@@ -11,26 +11,37 @@
     </div>
 
     <%-- Modal Popup --%>
-    <div class="ui modal" id="divQuestion">
+    <div class="ui modal" id="divQuestion" style="margin-bottom: 10%; top: 5%;">
         <i class="close icon black" onclick="$('.modal').modal('hide');"></i>
         <div class="header">
             <h3 class="ui header green">Add Question</h3>
         </div>
         <div class="content">
             <div class="ui form fluid">
-                <div class="field"> 
-                        Category : <asp:DropDownList runat="server" ID="ddlCategoryAdd" CssClass="ui normal selection dropdown"/>
-                </div> 
+                <asp:ValidationSummary runat="server" DisplayMode="BulletList" ShowMessageBox="False" ValidationGroup="add" CssClass="frmErrors" ShowSummary="True" />
+                <div class="field">
+                     <label>Category</label>
+                    <div class="field">
+                    <asp:DropDownList runat="server" ID="ddlCategoryAdd" CssClass="ui normal selection dropdown" />
+                         <asp:RequiredFieldValidator runat="server" InitialValue="SEL" ForeColor="White" CssClass="ui field error" ValidationGroup="add"
+                            ControlToValidate="ddlCategoryAdd" ErrorMessage="Please select a Category." Text="!"></asp:RequiredFieldValidator>
+                </div>
+                    </div>
                 <div class="field">
                     <div class="field">
                         <label>Question</label>
-                        <asp:TextBox runat="server" ID="txtQuestion"  MaxLength="500" ></asp:TextBox>
+                         <div class="field">
+                        <asp:TextBox runat="server" ID="txtQuestion" MaxLength="500"></asp:TextBox>
+                        <asp:RequiredFieldValidator runat="server" ForeColor="White" CssClass="ui field error" ValidationGroup="add"
+                            ControlToValidate="txtQuestion" ErrorMessage="Please enter a value for Question." Text="!"></asp:RequiredFieldValidator>
+                              </div>
                     </div>
                 </div>
 
                 <h3 class="ui divider"></h3>
-
+                
                 <div class="field">
+                    <label>Question Type</label>
                     <div class="field fluid">
                         <asp:DropDownList runat="server" ID="ddlQuestionTypeAdd" CssClass="ui normal selection dropdown">
                             <Items>
@@ -38,29 +49,60 @@
                                 <asp:ListItem Value="txt" Text="Input box"></asp:ListItem>
                                 <asp:ListItem Value="tar" Text="Text area"></asp:ListItem>
                                 <asp:ListItem Value="chk" Text="Check box"></asp:ListItem>
+                                <asp:ListItem Value="ddl" Text="Dropdown"></asp:ListItem>
                                 <asp:ListItem Value="rdb" Text="Radio button"></asp:ListItem>
                             </Items>
                         </asp:DropDownList>
+                       <asp:RequiredFieldValidator runat="server" InitialValue="SEL" ForeColor="White" CssClass="ui field error" ValidationGroup="add"
+                            ControlToValidate="ddlQuestionTypeAdd" ErrorMessage="Please select a value for Type." Text="!"></asp:RequiredFieldValidator>
                     </div>
                 </div>
 
                 <h3 class="ui divider"></h3>
-                
+
                 <div id="divOptions" style="display: none;">
-                     <h3 class="ui header green">Check-box/ Radio button Options</h3> (enter comma separated options like Choice 1, Choice 2...)
+                    <h3 class="ui header green">Check-box/ Radio button Options</h3>
+                    (enter comma separated options like Choice 1, Choice 2...)
                     <div class="field">
-                        
+
                         <div class="field">
-                            <asp:TextBox runat="server" ID="txtOptionLabel"  MaxLength="100"></asp:TextBox>
+                            <asp:TextBox runat="server" ID="txtOptionLabel" MaxLength="100"></asp:TextBox>
                         </div>
-                     </div>
-                     <h3 class="ui divider"></h3>
+                    </div>
                 </div>
                 
+                <div id="divDropDownOptions" style="display: none;">
+                    <h3 class="ui divider"></h3>
+                    <div class="three fields">
+                        <div class="field">
+                            <h3 class="ui header green">Dropdown Options. </h3><label> (one per line)</label>
+                            <asp:TextBox runat="server" ID="txtDropDownOptions" Rows="7" Width="200" Columns="5" TextMode="MultiLine"></asp:TextBox>
+                        </div>
+                        <div class="field">
+                            <h3>Or</h3>
+                            <label>Use a Preset List</label>
+                           <asp:DropDownList runat="server" ID="ddlPreset" CssClass="ui normal selection dropdown">
+                            <Items>
+                                <asp:ListItem Value="SEL" Text="--Select--"></asp:ListItem>
+                                <asp:ListItem Value="COUNTRIES" Text="Countries"></asp:ListItem>
+                                <asp:ListItem Value="US_STATES" Text="US States"></asp:ListItem>
+                                <asp:ListItem Value="CN_STATES" Text="Canadian Provinces"></asp:ListItem>
+                                <asp:ListItem Value="US_STATES_CN_STATES" Text="US States & Canadian Provinces"></asp:ListItem>
+                                <asp:ListItem Value="MONTH" Text="Months"></asp:ListItem>
+                                <asp:ListItem Value="YEARS" Text="Years"></asp:ListItem>
+                            </Items>
+                        </asp:DropDownList>
+                        </div>
+                        <div class="field">
+                            
+                        </div>
+                    </div>
+                  </div>
+
                 <div class="actions">
                     <div class="ui button" onclick="$('.modal').modal('hide');">Cancel</div>
-                    <asp:LinkButton runat="server" ID="btnAddQuestion"
-                        OnClientClick="javascript:doCustomPost();" UseSubmitBehavior="false"
+                    <asp:LinkButton runat="server" ID="btnAddQuestion" CausesValidation="True"
+                        ValidationGroup="add" OnClientClick="javascript:doCustomPost();" UseSubmitBehavior="false"
                         CssClass="ui green button" OnClick="btnAddQuestion_OnClick">
                             <i class="plus sign icon White"></i>Submit
                     </asp:LinkButton>
@@ -72,7 +114,8 @@
     <asp:HiddenField runat="server" ID="hidProvinceCategoryId" />
     <asp:HiddenField runat="server" ID="hidQuestionType" />
     <asp:HiddenField runat="server" ID="hidQuestion" />
-     <asp:HiddenField runat="server" ID="hidOptions" />
+    <asp:HiddenField runat="server" ID="hidOptions" />
+    <asp:HiddenField runat="server" ID="hidPreset" />
     <%-- Modal Popup End--%>
 
     <div class="ui sixteen wide column fluid">
@@ -85,8 +128,8 @@
                     <a href="ManageProvinces.aspx" class="section">Provinces</a>
                     <i class="right chevron icon divider"></i>
                     <span class="section active">Category : </span>
-                        
-                    <asp:DropDownList runat="server" ID="ddlCategory" CssClass="ui normal selection dropdown" AutoPostBack="True" OnSelectedIndexChanged="ddlCategory_OnSelectedIndexChanged"  />
+
+                    <asp:DropDownList runat="server" ID="ddlCategory" CssClass="ui normal selection dropdown" AutoPostBack="True" OnSelectedIndexChanged="ddlCategory_OnSelectedIndexChanged" />
                 </div>
             </div>
         </div>
@@ -97,7 +140,7 @@
         <div class="ui grid">
             <div class="one wide column"></div>
             <div class="fourteen wide column">
-                <uc1:paging  ID="ucPaging" runat="server" Align="right" PageSize="10" 
+                <uc1:paging ID="ucPaging" runat="server" Align="right" PageSize="10"
                     OnNavigator_Click="ImgbtnNavigator_Click" ShowNoOfRecordsDropDown="True"
                     OnNoOfRecords_SelectedIndexChanged="ddlNoOfRecords_IndexChanged"
                     OnPageNo_Changed="txtPageNo_Changed" />
@@ -142,7 +185,7 @@
                                     CommandArgument="QuestionType"></asp:LinkButton>
                             </HeaderTemplate>
                             <ItemTemplate>
-                               <asp:Label CssClass="ui label yellow" ID="lblType" runat="server" Text='<%#Eval("QuestionType") %>'></asp:Label>
+                                <asp:Label CssClass="ui label yellow" ID="lblType" runat="server" Text='<%#Eval("QuestionType") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
@@ -181,28 +224,35 @@
 
         $(document).ready(function () {
             $("#MainContent_ddlQuestionTypeAdd").on("change", function () {
-                if (this.value == "chk" || this.value == "rdb")
-                {
+                if (this.value == "chk" || this.value == "rdb") {
                     $("#divOptions").show();
+                    $("#divDropDownOptions").hide();
                 }
-                else {
+                else if (this.value == "ddl") {
                     $("#divOptions").hide();
+                    $("#divDropDownOptions").show();
                 }
             });
         });
 
 
-       $(document).on("click", "#MainContent_hypAddQuestion", function() {
-           $("#divQuestion").modal({
-               detachable: false,
-               observeChanges: false,
-               onShow: function() {
-                   document.getElementById("<%=txtQuestion.ClientID%>").value = "";
-                   document.getElementById('<%=hidOptions.ClientID %>').value = "";
-                   document.getElementById('<%=txtOptionLabel.ClientID %>').value = "";
+        $(document).on("click", "#MainContent_hypAddQuestion", function () {
+            $("#divQuestion").modal({
+                detachable: false,
+                observeChanges: false,
+                onShow: function () {
+                    Page_ClientValidate('');
+                    document.getElementById("<%=txtQuestion.ClientID%>").value = "";
+                    document.getElementById('<%=hidOptions.ClientID %>').value = "";
+                    document.getElementById('<%=txtOptionLabel.ClientID %>').value = "";
                },
-               onHide: function() {
+               onHide: function () {
                    $("#divOptions").hide();
+                   $("#divDropDownOptions").hide();
+                   Page_ClientValidate('');
+
+                   $("MainContent_ddlQuestionTypeAdd#elem").prop('selectedIndex', 0);
+                   $("MainContent_ddlPreset#elem").prop('selectedIndex', 0);
                }
            }).modal("show").modal("refresh");
        });
@@ -211,40 +261,66 @@
            $("#divQuestion").modal({
                detachable: true,
                observeChanges: true,
-               onHide: function() {
+               onHide: function () {
                    $("#divOptions").hide();
+                   $("#divDropDownOptions").hide();
+                   Page_ClientValidate('');
+                  
+                   $("MainContent_ddlQuestionTypeAdd#elem").prop('selectedIndex', 0);
+                   $("MainContent_ddlPreset#elem").prop('selectedIndex', 0);
+                    
                },
-               onShow:function() {
+               onShow: function () {
                    var e = document.getElementById('<%=ddlQuestionTypeAdd.ClientID%>');
                    var controlType = e.options[e.selectedIndex].value;
                    if (controlType == "chk" || controlType == "rdb") {
                        $("#divOptions").show();
+                   } else if (controlType == "ddl") {
+                       $("#divDropDownOptions").show();
                    }
                }
            }).modal("show").modal("refresh");
-            
+
        }
 
-       function doCustomPost() {
-           var modalQuestion = document.getElementById("<%=txtQuestion.ClientID%>");
+        function doCustomPost() {
 
-           var e = document.getElementById("<%=ddlQuestionTypeAdd.ClientID%>");
-           var modalQuestionType = e.options[e.selectedIndex].value;
-           
-           var modalProvinceAdd = document.getElementById('<%=ddlCategoryAdd.ClientID%>');
-           var provCategoryId = modalProvinceAdd.options[modalProvinceAdd.selectedIndex].value;
-           
-           document.getElementById('<%=hidProvinceCategoryId.ClientID %>').value = provCategoryId;
-           document.getElementById('<%=hidQuestion.ClientID %>').value = modalQuestion.value;
-           document.getElementById('<%=hidQuestionType.ClientID %>').value = modalQuestionType;
-           document.getElementById('<%=hidOptions.ClientID %>').value = document.getElementById("<%=txtOptionLabel.ClientID%>").value;
-           document.getElementById("<%=txtOptionLabel.ClientID%>").value = "";
-           
-           $(".modal").modal("hide");
-       }
+            if (Page_ClientValidate('add')) {
+                var modalQuestion = document.getElementById("<%=txtQuestion.ClientID%>");
 
-        function showAlert() {
-            $("#success-alert").show().delay(5000).fadeOut();
+                var e = document.getElementById("<%=ddlQuestionTypeAdd.ClientID%>");
+                var modalQuestionType = e.options[e.selectedIndex].value;
+
+                var modalProvinceAdd = document.getElementById('<%=ddlCategoryAdd.ClientID%>');
+                var provCategoryId = modalProvinceAdd.options[modalProvinceAdd.selectedIndex].value;
+
+                document.getElementById('<%=hidProvinceCategoryId.ClientID %>').value = provCategoryId;
+                document.getElementById('<%=hidQuestion.ClientID %>').value = modalQuestion.value;
+                document.getElementById('<%=hidQuestionType.ClientID %>').value = modalQuestionType;
+
+                var e = document.getElementById('<%=ddlQuestionTypeAdd.ClientID%>');
+                   var controlType = e.options[e.selectedIndex].value;
+                   if (controlType == "chk" || controlType == "rdb") {
+                        document.getElementById('<%=hidOptions.ClientID %>').value = document.getElementById("<%=txtOptionLabel.ClientID%>").value;
+                        document.getElementById("<%=txtOptionLabel.ClientID%>").value = "";
+                   } else if (controlType == "ddl") {
+
+                       var textarea = document.getElementById("<%=txtDropDownOptions.ClientID%>").value;
+                       var res = textarea.replace(/(\r\n|\n|\r)/gm, ",");
+
+                       document.getElementById('<%=hidOptions.ClientID %>').value = res;
+                       document.getElementById("<%=txtDropDownOptions.ClientID%>").value = "";
+                       document.getElementById("<%=hidPreset.ClientID%>").value = $("#MainContent_ddlPreset option:selected").val();
+                         
+                   }
+
+
+                $(".modal").modal("hide");
+            }
         }
+
+       function showAlert() {
+           $("#success-alert").show().delay(5000).fadeOut();
+       }
     </script>
 </asp:Content>

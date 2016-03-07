@@ -29,109 +29,96 @@ namespace nChanger.WebUI.Forms
              
                 try
                 {
-                    var id = Guid.Parse(CurrentId);
+                    var id = Guid.Parse(RecordId);
 
                     using (var dataContext = new nChangerDb())
                     {
-                        var pdfFoemTemplate = dataContext.PdfFormTemplates.Find(id);
-                        var questions = pdfFoemTemplate.ProvinceCategory.DefineQuestions;
 
-                    var frmOn =
-                            dataContext.PersonalInformations.FirstOrDefault(
-                                f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
+                        var personalInformation = dataContext.PersonalInformations.Find(id);
+                     
+                        if (personalInformation != null)
+                        { 
+                            txtPresentFirstName.Text = personalInformation.PresentFirstName;
+                            txtPresentMiddleName.Text = personalInformation.PresentMiddleName;
+                            txtPresentLastName.Text = personalInformation.PresentLastName;
 
-                        
+                            if(!string.IsNullOrEmpty(personalInformation.Sex))
+                               rdListSex.Items.FindByValue(personalInformation.Sex).Selected = true;
 
-                        if (frmOn != null)
-                        {
-                            btnPreviewPdf.CssClass = string.Empty;
-                            btnPreviewPdf.CssClass = "btn btn-sm btn-primary";
+                            txtMailAddStreetNo.Text = personalInformation.MailAddStreetNo;
+                            txtMailAddPOBox.Text = personalInformation.MailAddPOBox;
+                            txtMailAddAptSuitNo.Text = personalInformation.MailAddAptSuitNo;
+                            txtMailAddBuzzerNo.Text = personalInformation.MailAddBuzzerNo;
+                            txtMailAddCityTownVillage.Text = personalInformation.MailAddCityTownVillage;
+                            txtMailAddProvience.Text = personalInformation.MailAddProvience;
+                            txtMailAddPostalCode.Text = personalInformation.MailAddPostalCode;
+                            txtMailAddHomePhoneCode.Text = personalInformation.MailAddHomePhoneCode;
+                            txtMailAddHomePhoneNo.Text = personalInformation.MailAddHomePhoneNo;
+                            txtMailAddWorkPhoneCode.Text = personalInformation.MailAddWorkPhoneCode;
+                            txtMailAddWorkPhoneNo.Text = personalInformation.MailAddWorkPhoneNo;
 
-                            txtPresentFirstName.Text = frmOn.PresentFirstName;
-                            txtPresentMiddleName.Text = frmOn.PresentMiddleName;
-                            txtPresentLastName.Text = frmOn.PresentLastName;
+                            if (personalInformation.LivedInOntarioYears.HasValue)
+                                txtLivedInOntarioYears.Text = personalInformation.LivedInOntarioYears.Value.ToString();
 
-                            if(!string.IsNullOrEmpty(frmOn.Sex))
-                               rdListSex.Items.FindByValue(frmOn.Sex).Selected = true;
+                            if (personalInformation.LivedInOntarioMonths.HasValue)
+                                txtLivedInOntarioMonths.Text = personalInformation.LivedInOntarioMonths.Value.ToString();
 
-                            txtMailAddStreetNo.Text = frmOn.MailAddStreetNo;
-                            txtMailAddPOBox.Text = frmOn.MailAddPOBox;
-                            txtMailAddAptSuitNo.Text = frmOn.MailAddAptSuitNo;
-                            txtMailAddBuzzerNo.Text = frmOn.MailAddBuzzerNo;
-                            txtMailAddCityTownVillage.Text = frmOn.MailAddCityTownVillage;
-                            txtMailAddProvience.Text = frmOn.MailAddProvience;
-                            txtMailAddPostalCode.Text = frmOn.MailAddPostalCode;
-                            txtMailAddHomePhoneCode.Text = frmOn.MailAddHomePhoneCode;
-                            txtMailAddHomePhoneNo.Text = frmOn.MailAddHomePhoneNo;
-                            txtMailAddWorkPhoneCode.Text = frmOn.MailAddWorkPhoneCode;
-                            txtMailAddWorkPhoneNo.Text = frmOn.MailAddWorkPhoneNo;
-
-                            if (frmOn.LivedInOntarioYears.HasValue)
-                                txtLivedInOntarioYears.Text = frmOn.LivedInOntarioYears.Value.ToString();
-
-                            if (frmOn.LivedInOntarioMonths.HasValue)
-                                txtLivedInOntarioMonths.Text = frmOn.LivedInOntarioMonths.Value.ToString();
-
-                            if (!string.IsNullOrWhiteSpace(frmOn.LivedInOntarioPast12Months))
-                                rdListLivedInOntarioPast12Months.Items.FindByValue(frmOn.LivedInOntarioPast12Months)
+                            if (!string.IsNullOrWhiteSpace(personalInformation.LivedInOntarioPast12Months))
+                                rdListLivedInOntarioPast12Months.Items.FindByValue(personalInformation.LivedInOntarioPast12Months)
                                     .Selected = true;
 
-                            if (frmOn.DOBMonth > 0 && frmOn.DOBDay > 0 && frmOn.DOBYear > 0)
+                            if (personalInformation.DOBMonth > 0 && personalInformation.DOBDay > 0 && personalInformation.DOBYear > 0)
                             {
-                                DateTime dt = new DateTime(frmOn.DOBYear.Value, frmOn.DOBMonth.Value, frmOn.DOBDay.Value);
+                                DateTime dt = new DateTime(personalInformation.DOBYear.Value, personalInformation.DOBMonth.Value, personalInformation.DOBDay.Value);
                                 txtDOB.Text = dt.ToString("MM/dd/yyyy");
                             }
                                 
-                            txtBirthCityTownVillage.Text = frmOn.BirthCityTownVillage;
-                            txtBirthProvinceOrState.Text = frmOn.BirthProvinceOrState;
-                            txtBirthCountry.Text = frmOn.BirthCountry;
-                            txtNewFirstName.Text = frmOn.NewFirstName;
-                            txtNewMiddleName.Text = frmOn.NewMiddleName;
-                            txtNewLastName.Text = frmOn.NewLastName;
+                            txtBirthCityTownVillage.Text = personalInformation.BirthCityTownVillage;
+                            txtBirthProvinceOrState.Text = personalInformation.BirthProvinceOrState;
+                            txtBirthCountry.Text = personalInformation.BirthCountry;
+                            txtNewFirstName.Text = personalInformation.NewFirstName;
+                            txtNewMiddleName.Text = personalInformation.NewMiddleName;
+                            txtNewLastName.Text = personalInformation.NewLastName;
 
-                            if (!string.IsNullOrWhiteSpace(frmOn.Married))
-                                rdListMarried.Items.FindByValue(frmOn.Married).Selected = true;
+                            if (!string.IsNullOrWhiteSpace(personalInformation.Married))
+                                rdListMarried.Items.FindByValue(personalInformation.Married).Selected = true;
 
-                            txtPartnerFisrtName.Text = frmOn.PartnerFisrtName;
-                            txtPartnerMiddleName.Text = frmOn.PartnerMiddleName;
-                            txtPartnerLastName.Text = frmOn.PartnerLastName;
+                            txtPartnerFisrtName.Text = personalInformation.PartnerFisrtName;
+                            txtPartnerMiddleName.Text = personalInformation.PartnerMiddleName;
+                            txtPartnerLastName.Text = personalInformation.PartnerLastName;
 
-                            if (frmOn.DateMarriedMonth > 0 && frmOn.DateMarriedDay > 0 && frmOn.DateMarriedYear > 0)
+                            if (personalInformation.DateMarriedMonth > 0 && personalInformation.DateMarriedDay > 0 && personalInformation.DateMarriedYear > 0)
                             {
-                                DateTime dt = new DateTime(frmOn.DateMarriedYear.Value, frmOn.DateMarriedMonth.Value, frmOn.DateMarriedDay.Value);
+                                DateTime dt = new DateTime(personalInformation.DateMarriedYear.Value, personalInformation.DateMarriedMonth.Value, personalInformation.DateMarriedDay.Value);
                                 txtDateMarried.Text = dt.ToString("MM/dd/yyyy");
                             }
                                
-                            txtCityTownMarried.Text = frmOn.CityTownMarried;
-                            txtStateOrProvinceMarried.Text = frmOn.StateOrProvinceMarried;
+                            txtCityTownMarried.Text = personalInformation.CityTownMarried;
+                            txtStateOrProvinceMarried.Text = personalInformation.StateOrProvinceMarried;
 
-                            if (!string.IsNullOrWhiteSpace(frmOn.CountryMarried))
-                                ddlCountryMarried.Items.FindByValue(frmOn.CountryMarried).Selected = true;
+                            if (!string.IsNullOrWhiteSpace(personalInformation.CountryMarried))
+                                ddlCountryMarried.Items.FindByValue(personalInformation.CountryMarried).Selected = true;
 
-                            if (!string.IsNullOrWhiteSpace(frmOn.JDeclarationSigned))
-                                rdListJDeclarationSigned.Items.FindByValue(frmOn.JDeclarationSigned).Selected = true;
+                            if (!string.IsNullOrWhiteSpace(personalInformation.JDeclarationSigned))
+                                rdListJDeclarationSigned.Items.FindByValue(personalInformation.JDeclarationSigned).Selected = true;
 
-                            txtJDeclarationPersonFirstName.Text = frmOn.JDeclarationPersonFirstName;
-                            txtJDeclarationPersonMiddleName.Text = frmOn.JDeclarationPersonMiddleName;
-                            txtJDeclarationPersonLastName.Text = frmOn.JDeclarationPersonLastName;
+                            txtJDeclarationPersonFirstName.Text = personalInformation.JDeclarationPersonFirstName;
+                            txtJDeclarationPersonMiddleName.Text = personalInformation.JDeclarationPersonMiddleName;
+                            txtJDeclarationPersonLastName.Text = personalInformation.JDeclarationPersonLastName;
 
-                            if (frmOn.SentRegistrarMonth > 0 && frmOn.SentRegistrarDay > 0 &&
-                                frmOn.SentRegistrarYear > 0)
+                            if (personalInformation.SentRegistrarMonth > 0 && personalInformation.SentRegistrarDay > 0 &&
+                                personalInformation.SentRegistrarYear > 0)
                             {
-                                DateTime dt = new DateTime(frmOn.SentRegistrarYear.Value, frmOn.SentRegistrarMonth.Value, frmOn.SentRegistrarDay.Value);
+                                DateTime dt = new DateTime(personalInformation.SentRegistrarYear.Value, personalInformation.SentRegistrarMonth.Value, personalInformation.SentRegistrarDay.Value);
                                 txtSentRegistrarDate.Text = dt.ToString("MM/dd/yyyy");
                             }
                                 
 
-                            if (!string.IsNullOrWhiteSpace(frmOn.SubmittedForm4))
-                                rdListSubmittedForm4.Items.FindByValue(frmOn.SubmittedForm4).Selected = true;
+                            if (!string.IsNullOrWhiteSpace(personalInformation.SubmittedForm4))
+                                rdListSubmittedForm4.Items.FindByValue(personalInformation.SubmittedForm4).Selected = true;
 
                         }
-                        else
-                        {
-                            btnPreviewPdf.CssClass = string.Empty;
-                            btnPreviewPdf.CssClass = "btn btn-sm btn-primary disabled";
-                        }
+                         
                     }
 
                 }
@@ -176,15 +163,14 @@ namespace nChanger.WebUI.Forms
         private string Submit()
         {
 
-            var id = Guid.Parse(CurrentId);
+            var id = Guid.Parse(RecordId);
             var returnMessage = string.Empty;
             try
             {
                 using (var dataContext=new nChangerDb())
                 {
-                     var dbEntry =
-                            dataContext.PersonalInformations.FirstOrDefault(
-                                f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
+                    var dbEntry = dataContext.PersonalInformations.Find(id);
+
                     if (dbEntry != null)
                     {
                         dbEntry.PresentFirstName = txtPresentFirstName.Text;
@@ -243,8 +229,8 @@ namespace nChanger.WebUI.Forms
                     {
                         var entry = new PersonalInformation
                         {
-                            Id=Guid.NewGuid(),
-                            PdfFormTemplateId = id,
+                            Id=id,
+                            PdfFormTemplateId = Guid.Parse(CurrentId),
                             UserId = Convert.ToString(Session["USER_KEY"]),
                             PresentFirstName = txtPresentFirstName.Text,
                             PresentMiddleName = txtPresentMiddleName.Text,
@@ -303,8 +289,7 @@ namespace nChanger.WebUI.Forms
                     dataContext.SaveChanges();
 
                     returnMessage = "Data submitted successfully!";
-                    btnPreviewPdf.CssClass = string.Empty;
-                    btnPreviewPdf.CssClass = "btn btn-sm btn-primary";
+                    
                 }
             }
             catch (DbEntityValidationException ex)
@@ -314,34 +299,6 @@ namespace nChanger.WebUI.Forms
 
             return returnMessage;
         }
-
-        protected void btnPreviewPdf_OnClick(object sender, EventArgs e)
-        {
-            var id = Guid.Parse(CurrentId);
-            using (var dataContext = new nChangerDb())
-            {
-                var frmOn =
-                            dataContext.PersonalInformations.FirstOrDefault(
-                                f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
-
-                if (frmOn != null)
-                {
-                    var file = new FileInfo(PdfInjector.FillForm(id,UserId));
-
-                    Response.Clear();
-                    Response.ClearHeaders();
-                    Response.ClearContent();
-                    Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name);
-                    Response.AddHeader("Content-Length", file.Length.ToString());
-                    Response.ContentType = "text/plain";
-                    Response.Flush();
-                    Response.TransmitFile(file.FullName);
-                    Response.End();
-                }
-            }
-                
-        }
-      
-     
+         
     }
 }

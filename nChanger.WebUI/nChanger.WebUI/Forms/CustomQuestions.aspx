@@ -51,7 +51,7 @@
                     <asp:Label runat="server" ID="lblMsg" Style="color: maroon; font-weight: bold;"></asp:Label>
                     <h4 class="ui dividing header orange"><i class="signup icon"></i>General Questions</h4>
 
-                    <table id="tblFields" class="ui compact celled definition table borderless" runat="server">
+                    <table id="tblFields" class="ui table borderless" runat="server">
                     </table>
                      
                     <div class="actions">
@@ -66,5 +66,8 @@
 
         </div>
     </div>
-     
+    <script type="text/javascript" src="../Scripts/semantic.min.js"></script>
+    <script type="text/javascript">
+        $('.ui.fluid.search.selection.dropdown').dropdown();
+    </script>
 </asp:Content>

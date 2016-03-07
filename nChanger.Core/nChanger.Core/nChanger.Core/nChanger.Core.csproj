@@ -75,6 +75,9 @@
     <Compile Include="Domain\DefineQuestion.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Domain\EligibilityCriteria.cs">
+      <DependentUpon>DataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Domain\FeatureMaster.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>

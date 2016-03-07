@@ -30,56 +30,48 @@ namespace nChanger.WebUI.Forms
             try
             {
                 hypBack.NavigateUrl = "../Forms/frmParentInformation.aspx?id=" + CurrentId;
-                var id = Guid.Parse(CurrentId);
+                var id = Guid.Parse(RecordId);
 
                 using (var dataContext = new nChangerDb())
                 {
-                    var frmNameChangeInformation =
-                        dataContext.NameChangeInformations.FirstOrDefault(
-                            f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
+                    var nameChangeInformation = dataContext.NameChangeInformations.Find(id);
 
-                    if (frmNameChangeInformation != null)
+                    if (nameChangeInformation != null)
                     {
-                        btnPreviewPdf.CssClass = string.Empty;
-                        btnPreviewPdf.CssClass = "btn btn-sm btn-primary";
+                         
+                        txtResonForNameChange.Text = nameChangeInformation.ResonForNameChange;
 
-                        txtResonForNameChange.Text = frmNameChangeInformation.ResonForNameChange;
-
-                        if (!string.IsNullOrEmpty(frmNameChangeInformation.ChangedNamePriviously))
+                        if (!string.IsNullOrEmpty(nameChangeInformation.ChangedNamePriviously))
                             rdListChangedNamePriviously.Items.FindByValue(
-                                frmNameChangeInformation.ChangedNamePriviously).Selected = true;
+                                nameChangeInformation.ChangedNamePriviously).Selected = true;
 
 
-                        if (frmNameChangeInformation.PreviousNameChangeMonth > 0 && frmNameChangeInformation.PreviousNameChangeDay > 0 && frmNameChangeInformation.PreviousNameChangeYear > 0)
+                        if (nameChangeInformation.PreviousNameChangeMonth > 0 && nameChangeInformation.PreviousNameChangeDay > 0 && nameChangeInformation.PreviousNameChangeYear > 0)
                         {
-                            DateTime dt = new DateTime(frmNameChangeInformation.PreviousNameChangeYear.Value, frmNameChangeInformation.PreviousNameChangeMonth.Value, frmNameChangeInformation.PreviousNameChangeDay.Value);
+                            DateTime dt = new DateTime(nameChangeInformation.PreviousNameChangeYear.Value, nameChangeInformation.PreviousNameChangeMonth.Value, nameChangeInformation.PreviousNameChangeDay.Value);
                             txtPreviousNameChangeDate.Text = dt.ToString("MM/dd/yyyy");
                         }
 
                              
-                        txtPreviousFirstName.Text =  frmNameChangeInformation.PreviousFirstName;
-                        txtPreviousMiddleName.Text= frmNameChangeInformation.PreviousMiddleName;
-                        txtPreviousLastName.Text = frmNameChangeInformation.PreviousLastName;
-                        txtFirstNameAfterChange.Text = frmNameChangeInformation.FirstNameAfterChange;
-                        txtMiddleNameAfterChange.Text = frmNameChangeInformation.MiddleNameAfterChange;
-                        txtLastNameAfterChange.Text = frmNameChangeInformation.LastNameAfterChange;
-                        txtPreviousNameChangeProvince.Text = frmNameChangeInformation.PreviousNameChangeProvince;
+                        txtPreviousFirstName.Text =  nameChangeInformation.PreviousFirstName;
+                        txtPreviousMiddleName.Text= nameChangeInformation.PreviousMiddleName;
+                        txtPreviousLastName.Text = nameChangeInformation.PreviousLastName;
+                        txtFirstNameAfterChange.Text = nameChangeInformation.FirstNameAfterChange;
+                        txtMiddleNameAfterChange.Text = nameChangeInformation.MiddleNameAfterChange;
+                        txtLastNameAfterChange.Text = nameChangeInformation.LastNameAfterChange;
+                        txtPreviousNameChangeProvince.Text = nameChangeInformation.PreviousNameChangeProvince;
 
-                        if (!string.IsNullOrEmpty(frmNameChangeInformation.PreviousNameChangeCountry))
-                            ddlCountry.Items.FindByValue(frmNameChangeInformation.PreviousNameChangeCountry)
+                        if (!string.IsNullOrEmpty(nameChangeInformation.PreviousNameChangeCountry))
+                            ddlCountry.Items.FindByValue(nameChangeInformation.PreviousNameChangeCountry)
                                 .Selected = true;
 
-                        if(frmNameChangeInformation.AppliedForChangeAndRefused != null && frmNameChangeInformation.AppliedForChangeAndRefused.Value)
+                        if(nameChangeInformation.AppliedForChangeAndRefused != null && nameChangeInformation.AppliedForChangeAndRefused.Value)
                             rdLstAppliedForChangeAndRefused.SelectedIndex = 0;
                         else
                             rdLstAppliedForChangeAndRefused.SelectedIndex = 1;
 
                     }
-                    else
-                    {
-                        btnPreviewPdf.CssClass = string.Empty;
-                        btnPreviewPdf.CssClass = "btn btn-sm btn-primary disabled";
-                    }
+                    
                 }
             }
             catch (Exception)
@@ -91,15 +83,13 @@ namespace nChanger.WebUI.Forms
 
         private string Submit()
         {
-            var id = Guid.Parse(CurrentId);
+            var id = Guid.Parse(RecordId);
             var returnMessage = string.Empty;
             try
             {
                 using (var dataContext = new nChangerDb())
                 {
-                    var dbEntry =
-                        dataContext.NameChangeInformations.FirstOrDefault(
-                            f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
+                    var dbEntry = dataContext.NameChangeInformations.Find(id);
                      
                     if (dbEntry != null)
                     {
@@ -131,8 +121,8 @@ namespace nChanger.WebUI.Forms
                     {
                         var entry = new NameChangeInformation()
                         {
-                            Id = Guid.NewGuid(),
-                            PdfFormTemplateId = id,
+                            Id =id,
+                            PdfFormTemplateId = Guid.Parse(CurrentId),
                             UserId = UserId,
                             ResonForNameChange = txtResonForNameChange.Text,
                             ChangedNamePriviously = rdListChangedNamePriviously.SelectedIndex != -1? rdListChangedNamePriviously.SelectedValue:string.Empty,
@@ -160,8 +150,7 @@ namespace nChanger.WebUI.Forms
                     dataContext.SaveChanges();
 
                     returnMessage = "Data submitted successfully!";
-                    btnPreviewPdf.CssClass = string.Empty;
-                    btnPreviewPdf.CssClass = "btn btn-sm btn-primary";
+                    
                 }
             }
             catch (DbEntityValidationException ex)
@@ -210,31 +199,6 @@ namespace nChanger.WebUI.Forms
             var redirect = Sections.Where(s => s.DisplayOrder.Equals(nextPage)).FirstOrDefault().AspxPath;
 
             Response.Redirect(redirect);
-        }
-
-        protected void btnPreviewPdf_OnClick(object sender, EventArgs e)
-        {
-            var id = Guid.Parse(CurrentId);
-            using (var dataContext = new nChangerDb())
-            {
-                var frmOn = dataContext.NameChangeInformations.FirstOrDefault(
-                                f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
-
-                if (frmOn != null)
-                {
-                    var file = new FileInfo(PdfInjector.FillForm(id, UserId));
-
-                    Response.Clear();
-                    Response.ClearHeaders();
-                    Response.ClearContent();
-                    Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name);
-                    Response.AddHeader("Content-Length", file.Length.ToString());
-                    Response.ContentType = "text/plain";
-                    Response.Flush();
-                    Response.TransmitFile(file.FullName);
-                    Response.End();
-                }
-            }
         }
     }
 }

@@ -25,36 +25,28 @@ namespace nChanger.WebUI.Forms
         {
             try
             {
-                var id = Guid.Parse(CurrentId);
+                var id = Guid.Parse(RecordId);
 
-                hypBack.NavigateUrl = "../Forms/frmONPersonalInfo.aspx?id=" + CurrentId;
+                hypBack.NavigateUrl = "../Forms/frmONPersonalInfo.aspx?id=" + RecordId;
 
                 using (var dataContext = new nChangerDb())
                 {
-                    var frmParentInformation =
-                        dataContext.ParentInformations.FirstOrDefault(
-                            f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
+                    var parentInformation = dataContext.ParentInformations.Find(id);
 
-                    if (frmParentInformation != null)
+                    if (parentInformation != null)
                     {
-                        btnPreviewPdf.CssClass = string.Empty;
-                        btnPreviewPdf.CssClass = "btn btn-sm btn-primary";
-
-                        txtFatherFirstName.Text = frmParentInformation.FatherFirstName;	
-                        txtFatherMiddleName.Text = frmParentInformation.FatherMiddleName;
-                        txtFatherLastName.Text = frmParentInformation.FatherLastName;
-                        txtFatherLastNameOther.Text = frmParentInformation.FatherOtherLastName;
-                        txtMotherFirstName.Text = frmParentInformation.MotherFirstName;
-                        txtMotherMiddleName.Text = frmParentInformation.MotherMiddleName;
-                        txtMotherLastNameBorn.Text = frmParentInformation.MotherLastNameWhenBorn;
-                        txtMotherLastNamePresent.Text = frmParentInformation.MotherLastNamePresent;
-                        txtMotherLastNameOther.Text = frmParentInformation.MotherLastNameOther;
+                        
+                        txtFatherFirstName.Text = parentInformation.FatherFirstName;	
+                        txtFatherMiddleName.Text = parentInformation.FatherMiddleName;
+                        txtFatherLastName.Text = parentInformation.FatherLastName;
+                        txtFatherLastNameOther.Text = parentInformation.FatherOtherLastName;
+                        txtMotherFirstName.Text = parentInformation.MotherFirstName;
+                        txtMotherMiddleName.Text = parentInformation.MotherMiddleName;
+                        txtMotherLastNameBorn.Text = parentInformation.MotherLastNameWhenBorn;
+                        txtMotherLastNamePresent.Text = parentInformation.MotherLastNamePresent;
+                        txtMotherLastNameOther.Text = parentInformation.MotherLastNameOther;
                     }
-                    else
-                    {
-                        btnPreviewPdf.CssClass = string.Empty;
-                        btnPreviewPdf.CssClass = "btn btn-sm btn-primary disabled";
-                    }
+                     
                 }
             }
             catch (Exception)
@@ -107,17 +99,14 @@ namespace nChanger.WebUI.Forms
         private string Submit()
         {
 
-            var id = Guid.Parse(CurrentId);
+            var id = Guid.Parse(RecordId);
             var returnMessage = string.Empty;
             try
             {
                 using (var dataContext = new nChangerDb())
                 {
-                    var dbEntry =
-                        dataContext.ParentInformations.FirstOrDefault(
-                            f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
-
-
+                    var dbEntry = dataContext.ParentInformations.Find(id);
+                     
                     if (dbEntry != null)
                     {
                          dbEntry.FatherFirstName = txtFatherFirstName.Text;
@@ -140,8 +129,8 @@ namespace nChanger.WebUI.Forms
                     {
                         var entry = new ParentInformation()
                         {
-                            Id = Guid.NewGuid(),
-                            PdfFormTemplateId = id,
+                            Id = id,
+                            PdfFormTemplateId = Guid.Parse(CurrentId),
                             UserId = UserId,
                             FatherFirstName = txtFatherFirstName.Text,
                             FatherMiddleName = txtFatherMiddleName.Text,
@@ -165,8 +154,7 @@ namespace nChanger.WebUI.Forms
                     dataContext.SaveChanges();
 
                     returnMessage = "Data submitted successfully!";
-                    btnPreviewPdf.CssClass = string.Empty;
-                    btnPreviewPdf.CssClass = "btn btn-sm btn-primary";
+                    
                 }
             }
             catch (DbEntityValidationException ex)
@@ -176,32 +164,5 @@ namespace nChanger.WebUI.Forms
 
             return returnMessage;
         }
-
-        protected void btnPreviewPdf_OnClick(object sender, EventArgs e)
-        {
-            var id = Guid.Parse(CurrentId);
-            using (var dataContext = new nChangerDb())
-            {
-                var frmOn =
-                            dataContext.ParentInformations.FirstOrDefault(
-                                f => f.UserId.Equals(UserId) && f.PdfFormTemplateId.Equals(id));
-
-                if (frmOn != null)
-                {
-                    var file = new FileInfo(PdfInjector.FillForm(id, UserId));
-
-                    Response.Clear();
-                    Response.ClearHeaders();
-                    Response.ClearContent();
-                    Response.AddHeader("Content-Disposition", "attachment; filename=" + file.Name);
-                    Response.AddHeader("Content-Length", file.Length.ToString());
-                    Response.ContentType = "text/plain";
-                    Response.Flush();
-                    Response.TransmitFile(file.FullName);
-                    Response.End();
-                }
-            }
-        }
-  
     }
 }

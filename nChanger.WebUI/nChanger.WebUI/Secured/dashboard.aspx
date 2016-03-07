@@ -64,7 +64,7 @@
                                             <asp:BoundField DataField="TemplateName"  HeaderText="Form">
                                                 <ItemStyle Width="35%"></ItemStyle>
                                                 </asp:BoundField>
-                                           <asp:TemplateField>
+                                          <%-- <asp:TemplateField>
                                                 <HeaderStyle Width="15%" />
                                                 <HeaderTemplate>
                                                   Pdf
@@ -72,7 +72,7 @@
                                                 <ItemTemplate>
                                                            <asp:HyperLink ID="hypMap" runat="server" CssClass="ui button orange" NavigateUrl='<%# "../Pdf/"+ Eval("PdfFileName")%>'>View Pdf</asp:HyperLink>
                                                 </ItemTemplate>
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
                                             <asp:TemplateField>
                                                 <HeaderStyle Width="50%" />
                                                 <HeaderTemplate>
@@ -102,28 +102,35 @@
                                     </EmptyDataTemplate>
                                     <Columns>
                                         <asp:TemplateField>
+                                               <%-- <HeaderStyle Width="15%" />--%>
+                                                <HeaderTemplate>
+                                                  Pdf
+                                                </HeaderTemplate>
+                                                <ItemTemplate>
+                                                           <asp:HyperLink ID="hypMap" runat="server"   Text='<%# Path.GetFileName(Eval("CompletedPdf").ToString())%>'></asp:HyperLink>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        <asp:TemplateField>
                                             <HeaderTemplate>
                                             </HeaderTemplate>
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="lnkFrm" runat="server" CssClass="ui button large fluid inverted green"
+                                                <asp:LinkButton ID="lnkFrm" runat="server" CssClass="ui button green"
                                                     CommandArgument='<%#Eval("PdfFormTemplateId").ToString() %>' CommandName="View"
                                                     OnClick="lnkFrm_OnClick">
-                                                      <%# Path.GetFileName(Eval("CompletedPdf").ToString())%>
+                                                      Email/Download
                                                 </asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <%--<asp:TemplateField>
-                                            <HeaderTemplate>
-                                                Actions
-                                            </HeaderTemplate>
+                                        <asp:TemplateField>
+                                             
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="lnkDelete" runat="server" CssClass="ui button small"
+                                                 <asp:LinkButton ID="lnkViewForm" runat="server" CssClass="ui button"
                                                     CommandArgument='<%#Eval("Id").ToString() %>' CommandName="View"
-                                                    OnClick="lnkDelete_OnClick">
-                                                     <i class="delete icon"></i>
+                                                    OnClick="lnkViewForm_OnClick">
+                                                     <i class="edit icon orange"></i> Input Data
                                                 </asp:LinkButton>
                                             </ItemTemplate>
-                                        </asp:TemplateField>--%>
+                                        </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
                             </div>

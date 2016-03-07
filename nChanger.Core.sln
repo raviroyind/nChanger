@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9AB664
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stripe", "nChanger.Stripe\Stripe.csproj", "{8ABF9B27-BF46-4A3D-BCAF-AB0EA18F8266}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +30,10 @@ Global
 		{1C2F4C44-1CCE-47BD-9F3C-EC9BA6046CFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C2F4C44-1CCE-47BD-9F3C-EC9BA6046CFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C2F4C44-1CCE-47BD-9F3C-EC9BA6046CFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ABF9B27-BF46-4A3D-BCAF-AB0EA18F8266}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ABF9B27-BF46-4A3D-BCAF-AB0EA18F8266}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ABF9B27-BF46-4A3D-BCAF-AB0EA18F8266}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ABF9B27-BF46-4A3D-BCAF-AB0EA18F8266}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

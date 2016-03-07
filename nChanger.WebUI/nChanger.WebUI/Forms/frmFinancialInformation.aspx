@@ -12,19 +12,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="one wide column"></div>
-    <div class="fourteen wide column">
-        <div class="ui small breadcrumb">
-            <a href="../Secured/dashboard.aspx" class="active section"></a>
-           
-            <a href="#" class="section">Forms</a>
-            <i class="right chevron icon divider"></i>
-            <div class="active section">
-            </div>
-        </div>
-    </div>
-    <div class="one wide column"></div>
-    
+      
      <div class="container fluid" style="width: 100%; margin-top: 2%;">
         <div class="panel panel-info" style="margin-bottom: 5%;">
             <div class="panel-heading">
@@ -206,7 +194,6 @@
                         <div class="col-md-4">
                             <asp:HyperLink runat="server" ID="hypBack" class="btn btn-sm btn-primary" NavigateUrl="../Forms/frmCriminalOffenceInformation.aspx"><i class="glyphicon glyphicon-arrow-left"></i> Back</asp:HyperLink>
                             <asp:LinkButton runat="server" ID="btnSubmit" CausesValidation="True" class="btn btn-sm btn-primary" OnClick="btnSubmit_OnClick"><i class="glyphicon glyphicon-log-in"></i> Save &amp; Continue</asp:LinkButton>
-                            <asp:LinkButton runat="server" ID="btnPreviewPdf" class="btn btn-sm btn-primary" OnClick="btnPreviewPdf_OnClick"><i class="glyphicon glyphicon-print"></i> Preview Pdf</asp:LinkButton>
                         </div>
                         <div class="col-md-3">
                         </div>

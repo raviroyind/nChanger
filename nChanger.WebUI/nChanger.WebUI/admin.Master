@@ -96,6 +96,20 @@
                                   </div>
                             </div>
                         </div>
+                        
+                        <div class="item">
+                            |
+                        </div>
+                        <div class="ui dropdown item" tabindex="0">
+                            <i class="cubes icon large orange"></i>
+                            <a href="#" class="header">Settings</a>
+                            <i class="dropdown icon"></i>
+                           <div class="menu transition hidden" tabindex="-1">
+                             <div class="ui item black">
+                                <a href="../Admin/EligiblityCriteria.aspx" class="ui header">Eligiblity Criteria</a>
+                                  </div>
+                            </div>
+                        </div>
 
                         <div class="right item">
                             <div class="item">

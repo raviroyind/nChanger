@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="nChangerDb.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="nChangerDb.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Country">
           <Key>
             <PropertyRef Name="CountryId" />
@@ -52,6 +52,20 @@
           <Property Name="ProvinceCategoryId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="QuestionType" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Question" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+          <Property Name="DataSource" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="EligibilityCriteria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CriteriaHeading" Type="nvarchar" MaxLength="200" />
+          <Property Name="Criteria" Type="nvarchar(max)" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="EntryDate" Type="datetime" Nullable="false" />
           <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -147,6 +161,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RecordId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="PdfFormTemplateId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="DefineQuestionId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Question" Type="nvarchar" MaxLength="500" Nullable="false" />
@@ -377,7 +392,7 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormTables' does not have a pr
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="DefineQuestionsId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="OptionLabel" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="OptionLabel" Type="nvarchar" MaxLength="500" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="EntryDate" Type="datetime" Nullable="false" />
           <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -901,6 +916,7 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
           <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CriminalOffenceInformation" EntityType="Self.CriminalOffenceInformation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DefineQuestions" EntityType="Self.DefineQuestions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EligibilityCriteria" EntityType="Self.EligibilityCriteria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FeatureMaster" EntityType="Self.FeatureMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FieldMapping" EntityType="Self.FieldMapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FinancialInformation" EntityType="Self.FinancialInformation" Schema="dbo" store:Type="Tables" />
@@ -1078,8 +1094,7 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="nChangerDb" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1137,9 +1152,23 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+          <Property Name="DataSource" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ProvinceCategory" Relationship="Self.FK_DefineQuestions_ProvinceCategory" FromRole="DefineQuestions" ToRole="ProvinceCategory" />
           <NavigationProperty Name="GeneralQuestionUserResponses" Relationship="Self.FK_GeneralQuestionUserResponse_DefineQuestions" FromRole="DefineQuestions" ToRole="GeneralQuestionUserResponse" />
           <NavigationProperty Name="QuestionOptions" Relationship="Self.FK_QuestionOptions_DefineQuestions" FromRole="DefineQuestions" ToRole="QuestionOptions" />
+        </EntityType>
+        <EntityType Name="EligibilityCriteria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="CriteriaHeading" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Criteria" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="FeatureMaster">
           <Key>
@@ -1238,6 +1267,7 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="RecordId" Type="Guid" Nullable="false" />
           <Property Name="PdfFormTemplateId" Type="Guid" Nullable="false" />
           <Property Name="DefineQuestionId" Type="Guid" Nullable="false" />
           <Property Name="Question" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
@@ -1479,7 +1509,7 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="DefineQuestionsId" Type="Guid" Nullable="false" />
-          <Property Name="OptionLabel" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OptionLabel" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -2024,10 +2054,11 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="nChangerDbEntitiesaa" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="nChangerDbEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Countries" EntityType="Self.Country" />
           <EntitySet Name="CriminalOffenceInformations" EntityType="Self.CriminalOffenceInformation" />
           <EntitySet Name="DefineQuestions" EntityType="Self.DefineQuestion" />
+          <EntitySet Name="EligibilityCriterias" EntityType="Self.EligibilityCriteria" />
           <EntitySet Name="FeatureMasters" EntityType="Self.FeatureMaster" />
           <EntitySet Name="FieldMappings" EntityType="Self.FieldMapping" />
           <EntitySet Name="FinancialInformations" EntityType="Self.FinancialInformation" />
@@ -2180,7 +2211,7 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="nChangerDbStoreContainer" CdmEntityContainer="nChangerDbEntitiesaa">
+        <EntityContainerMapping StorageEntityContainer="nChangerDbStoreContainer" CdmEntityContainer="nChangerDbEntities1">
           <EntitySetMapping Name="Countries">
             <EntityTypeMapping TypeName="nChangerDb.Country">
               <MappingFragment StoreEntitySet="Country">
@@ -2229,6 +2260,21 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
                 <ScalarProperty Name="ProvinceCategoryId" ColumnName="ProvinceCategoryId" />
                 <ScalarProperty Name="QuestionType" ColumnName="QuestionType" />
                 <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="DataSource" ColumnName="DataSource" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EligibilityCriterias">
+            <EntityTypeMapping TypeName="nChangerDb.EligibilityCriteria">
+              <MappingFragment StoreEntitySet="EligibilityCriteria">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CriteriaHeading" ColumnName="CriteriaHeading" />
+                <ScalarProperty Name="Criteria" ColumnName="Criteria" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
                 <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
@@ -2330,6 +2376,7 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
             <EntityTypeMapping TypeName="nChangerDb.GeneralQuestionUserResponse">
               <MappingFragment StoreEntitySet="GeneralQuestionUserResponse">
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RecordId" ColumnName="RecordId" />
                 <ScalarProperty Name="PdfFormTemplateId" ColumnName="PdfFormTemplateId" />
                 <ScalarProperty Name="DefineQuestionId" ColumnName="DefineQuestionId" />
                 <ScalarProperty Name="Question" ColumnName="Question" />
