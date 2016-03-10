@@ -26457,7 +26457,7 @@ a.ui.card:hover,
 .ui.checkbox input[type="checkbox"],
 .ui.checkbox input[type="radio"] {
   cursor: pointer;
-  /*position: absolute;*/
+  position: absolute;
   top: 0px;
   left: 0px;
   opacity: 0 !important;

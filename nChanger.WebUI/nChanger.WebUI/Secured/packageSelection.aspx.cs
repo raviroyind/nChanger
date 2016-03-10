@@ -46,7 +46,7 @@ namespace nChanger.WebUI.Secured
 
                     sbBuilder.Append("<hr class=\"ui divider header\"> ");
                     sbBuilder.Append("<div>");
-                    sbBuilder.Append("<a class=\"large ui " + GetButtonColor(iCount) + " button fluid\" href=\"Billing.aspx?p1="+ package.Price.ToString("C") + "\"><i class=\"ui check circular icon small\"></i>Select");
+                    sbBuilder.Append("<a class=\"large ui " + GetButtonColor(iCount) + " button fluid\" href=\"Billing.aspx?id="+ package.Id + "\"><i class=\"ui check circular icon small\"></i>Select");
 
                     sbBuilder.Append("</a>");
                     sbBuilder.Append("</div>");

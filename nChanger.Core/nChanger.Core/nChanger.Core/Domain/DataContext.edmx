@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="nChangerDb.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="nChangerDb.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Country">
           <Key>
             <PropertyRef Name="CountryId" />
@@ -441,6 +441,22 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormTables' does not have a pr
           <Property Name="UserId" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="PackageId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserPayment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PackageId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FailureCode" Type="nvarchar" MaxLength="500" />
+          <Property Name="FailureMessage" Type="nvarchar(max)" />
+          <Property Name="PaymentDate" Type="datetime" Nullable="false" />
+          <Property Name="EntryIP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="UserId" />
@@ -466,6 +482,7 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormTables' does not have a pr
           <Property Name="VerificationCode" Type="nvarchar" MaxLength="50" />
           <Property Name="IP" Type="nvarchar" MaxLength="50" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsEligibilityConfirmed" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="UserType">
           <Key>
@@ -895,6 +912,20 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserPayment_UserPayment">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserPayment" Type="Self.UserPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserPayment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Users_UserType">
           <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
@@ -938,6 +969,7 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
           <EntitySet Name="TemplateTable" EntityType="Self.TemplateTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserFormDetail" EntityType="Self.UserFormDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserPackages" EntityType="Self.UserPackages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserPayment" EntityType="Self.UserPayment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InputFormTables" EntityType="Self.InputFormTables" store:Type="Tables" store:Schema="dbo">
@@ -1089,12 +1121,17 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
             <End Role="Users" EntitySet="Users" />
             <End Role="UserPackages" EntitySet="UserPackages" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserPayment_UserPayment" Association="Self.FK_UserPayment_UserPayment">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserPayment" EntitySet="UserPayment" />
+          </AssociationSet>
           <AssociationSet Name="FK_Users_UserType" Association="Self.FK_Users_UserType">
             <End Role="UserType" EntitySet="UserType" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="nChangerDb" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1563,6 +1600,23 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
           <Property Name="PackageId" Type="Guid" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Self.FK_UserPackages_Users" FromRole="UserPackages" ToRole="Users" />
         </EntityType>
+        <EntityType Name="UserPayment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PackageId" Type="Guid" Nullable="false" />
+          <Property Name="Currency" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FailureCode" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FailureMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EntryIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserPayment_UserPayment" FromRole="UserPayment" ToRole="Users" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserId" />
@@ -1588,6 +1642,7 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
           <Property Name="VerificationCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsEligibilityConfirmed" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="CriminalOffenceInformations" Relationship="Self.FK_CriminalOffenceInformation_Users" FromRole="Users" ToRole="CriminalOffenceInformation" />
           <NavigationProperty Name="FinancialInformations" Relationship="Self.FK_FinancialInformation_Users" FromRole="Users" ToRole="FinancialInformation" />
           <NavigationProperty Name="GeneralQuestionUserResponses" Relationship="Self.FK_GeneralQuestionUserResponse_Users" FromRole="Users" ToRole="GeneralQuestionUserResponse" />
@@ -1597,6 +1652,7 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
           <NavigationProperty Name="PersonalInformations" Relationship="Self.FK_PersonalInformation_Users" FromRole="Users" ToRole="PersonalInformation" />
           <NavigationProperty Name="UserFormDetails" Relationship="Self.FK_UserFormDetail_Users" FromRole="Users" ToRole="UserFormDetail" />
           <NavigationProperty Name="UserPackages" Relationship="Self.FK_UserPackages_Users" FromRole="Users" ToRole="UserPackages" />
+          <NavigationProperty Name="UserPayments" Relationship="Self.FK_UserPayment_UserPayment" FromRole="Users" ToRole="UserPayment" />
           <NavigationProperty Name="UserType" Relationship="Self.FK_Users_UserType" FromRole="Users" ToRole="UserType" />
         </EntityType>
         <EntityType Name="UserType">
@@ -2042,6 +2098,20 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserPayment_UserPayment">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserPayment" Type="Self.UserPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserPayment">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Users_UserType">
           <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
           <End Role="Users" Type="Self.User" Multiplicity="*" />
@@ -2054,7 +2124,7 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="nChangerDbEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="nChangerDbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Countries" EntityType="Self.Country" />
           <EntitySet Name="CriminalOffenceInformations" EntityType="Self.CriminalOffenceInformation" />
           <EntitySet Name="DefineQuestions" EntityType="Self.DefineQuestion" />
@@ -2080,6 +2150,7 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
           <EntitySet Name="TemplateTables" EntityType="Self.TemplateTable" />
           <EntitySet Name="UserFormDetails" EntityType="Self.UserFormDetail" />
           <EntitySet Name="UserPackages" EntityType="Self.UserPackage" />
+          <EntitySet Name="UserPayments" EntityType="Self.UserPayment" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="UserTypes" EntityType="Self.UserType" />
           <EntitySet Name="InputFormTables" EntityType="Self.InputFormTable" />
@@ -2196,6 +2267,10 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
             <End Role="Users" EntitySet="Users" />
             <End Role="UserPackages" EntitySet="UserPackages" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserPayment_UserPayment" Association="Self.FK_UserPayment_UserPayment">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserPayment" EntitySet="UserPayments" />
+          </AssociationSet>
           <AssociationSet Name="FK_Users_UserType" Association="Self.FK_Users_UserType">
             <End Role="UserType" EntitySet="UserTypes" />
             <End Role="Users" EntitySet="Users" />
@@ -2211,7 +2286,7 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="nChangerDbStoreContainer" CdmEntityContainer="nChangerDbEntities1">
+        <EntityContainerMapping StorageEntityContainer="nChangerDbStoreContainer" CdmEntityContainer="nChangerDbEntities">
           <EntitySetMapping Name="Countries">
             <EntityTypeMapping TypeName="nChangerDb.Country">
               <MappingFragment StoreEntitySet="Country">
@@ -2655,6 +2730,23 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="UserPayments">
+            <EntityTypeMapping TypeName="nChangerDb.UserPayment">
+              <MappingFragment StoreEntitySet="UserPayment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PackageId" ColumnName="PackageId" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="FailureCode" ColumnName="FailureCode" />
+                <ScalarProperty Name="FailureMessage" ColumnName="FailureMessage" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="EntryIP" ColumnName="EntryIP" />
+                <ScalarProperty Name="EntryId" ColumnName="EntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="nChangerDb.User">
               <MappingFragment StoreEntitySet="Users">
@@ -2679,6 +2771,7 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
                 <ScalarProperty Name="VerificationCode" ColumnName="VerificationCode" />
                 <ScalarProperty Name="IP" ColumnName="IP" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsEligibilityConfirmed" ColumnName="IsEligibilityConfirmed" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

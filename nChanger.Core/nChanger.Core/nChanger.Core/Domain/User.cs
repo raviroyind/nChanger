@@ -26,6 +26,7 @@ namespace nChanger.Core
             this.PersonalInformations = new HashSet<PersonalInformation>();
             this.UserFormDetails = new HashSet<UserFormDetail>();
             this.UserPackages = new HashSet<UserPackage>();
+            this.UserPayments = new HashSet<UserPayment>();
         }
     
         public System.Guid Id { get; set; }
@@ -49,6 +50,7 @@ namespace nChanger.Core
         public string VerificationCode { get; set; }
         public string IP { get; set; }
         public bool IsActive { get; set; }
+        public bool IsEligibilityConfirmed { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CriminalOffenceInformation> CriminalOffenceInformations { get; set; }
@@ -68,6 +70,8 @@ namespace nChanger.Core
         public virtual ICollection<UserFormDetail> UserFormDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserPackage> UserPackages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserPayment> UserPayments { get; set; }
         public virtual UserType UserType { get; set; }
     }
 }

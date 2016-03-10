@@ -18,50 +18,51 @@ namespace nChanger.WebUI
 
             #region Working....
 
-            //var myCharge = new StripeChargeCreateOptions
-            //{
-            //    Amount = 5153,
-            //    Currency = "usd",
-            //    Description = "Charge it like it's hot",
-            //    Source = new StripeSourceOptions()
-            //    {
-            //        // set this property if using a token
-                 
+            var myCharge = new StripeChargeCreateOptions
+            {
+                Amount =(int) (29.99 *100),
+                Currency = "usd",
+                Description = "Charge it like it's hot 2",
+                Source = new StripeSourceOptions()
+                {
+                    // set this property if using a token
 
-            //        // set these properties if passing full card details (do not
-            //        // set these properties if you set TokenId)
-            //        Object = "card",
-            //        Number = "4242424242424242",
-            //        ExpirationYear = "2022",
-            //        ExpirationMonth = "10",
-            //        AddressCountry = "US", // optional
-            //        AddressLine1 = "24 Beef Flank St", // optional
-            //        AddressLine2 = "Apt 24", // optional
-            //        AddressCity = "Biggie Smalls", // optional
-            //        AddressState = "NC", // optional
-            //        AddressZip = "27617", // optional
-            //        Name = "Joe Meatballs", // optional
-            //        Cvc = "1223" // optional
-            //    },
-            //    //ApplicationFee = 25,
-            //    Capture = true
-            //};
 
-            //// always set these properties
+                    // set these properties if passing full card details (do not
+                    // set these properties if you set TokenId)
+                    Object = "card",
+                    Number = "4242424242424242",
+                    ExpirationYear = "2022",
+                    ExpirationMonth = "10",
+                    AddressCountry = "US", // optional
+                    AddressLine1 = "24 Beef Flank St", // optional
+                    AddressLine2 = "Apt 24", // optional
+                    AddressCity = "Biggie Smalls", // optional
+                    AddressState = "NC", // optional
+                    AddressZip = "27617", // optional
+                    Name = "Joe Meatballs 2", // optional
+                    Cvc = "1223" // optional
+                },
+                //ApplicationFee = 25,
+                Capture = true
+            };
 
-            //// set this if you want to
+            // always set these properties
 
-            //// setting up the card
+            // set this if you want to
 
-            //// set this property if using a customer
-            ////myCharge.CustomerId = *customerId *;
+            // setting up the card
 
-            //// set this if you have your own application fees (you must have your application configured first within Stripe)
+            //set this property if using a customer
+            //myCharge.CustomerId = "postman2021";
 
-            //// (not required) set this to false if you don't want to capture the charge yet - requires you call capture later
+            // set this if you have your own application fees (you must have your application configured first within Stripe)
 
-            //var chargeService = new StripeChargeService(ConfigurationManager.AppSettings["StripeApiKey"]);
-            //var stripeCharge = chargeService.Create(myCharge);
+            // (not required) set this to false if you don't want to capture the charge yet - requires you call capture later
+
+            var chargeService = new StripeChargeService(ConfigurationManager.AppSettings["StripeApiKey"]);
+            var stripeCharge = chargeService.Create(myCharge);
+            
 
             #endregion Working....
         }

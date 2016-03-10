@@ -24,7 +24,7 @@ namespace nChanger.Core
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-           // throw new UnintentionalCodeFirstException();
+            //throw new UnintentionalCodeFirstException();
         }
     
         public virtual DbSet<Country> Countries { get; set; }
@@ -52,6 +52,7 @@ namespace nChanger.Core
         public virtual DbSet<TemplateTable> TemplateTables { get; set; }
         public virtual DbSet<UserFormDetail> UserFormDetails { get; set; }
         public virtual DbSet<UserPackage> UserPackages { get; set; }
+        public virtual DbSet<UserPayment> UserPayments { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserType> UserTypes { get; set; }
         public virtual DbSet<InputFormTable> InputFormTables { get; set; }

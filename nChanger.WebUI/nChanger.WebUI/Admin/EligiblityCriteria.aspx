@@ -23,7 +23,6 @@
             <div class="one wide column"></div>
             <div class="fourteen wide column">
                   <asp:HyperLink runat="server" CssClass="ui right floated button disabled" ID="hypEdit" NavigateUrl="#">
-                     
                   </asp:HyperLink>
             </div>
             <div class="one wide column"></div>
@@ -31,7 +30,8 @@
             <div class="one wide column"></div>
             <div class="fourteen wide column">
                  <div class="field">
-                     <label>Criteria  Heading</label>
+                     <label class="ui label">Criteria  Heading</label>
+                     <h3 class="ui dividing header green"></h3>
                      <asp:Label runat="server" CssClass="ui header green" ID="lblCriteriaHeading"></asp:Label>
                  </div>
             </div>
@@ -40,6 +40,8 @@
 
             <div class="one wide column"></div>
             <div class="fourteen wide column">
+                 <label class="ui label">Criteria</label>
+                 <h3 class="ui dividing header green"></h3>
                 <div id="divCriteria" runat="server">
                     <h3 class="ui header green">No Criteria Defined!</h3>
                 </div>

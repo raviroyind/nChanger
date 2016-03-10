@@ -8,8 +8,6 @@
     <div class="ui warning message fluid" style="display: none;" id="success-alert">
         <asp:Label ID="lblMsg" Style="font-size: 1.2em; font-weight: bold;" runat="server"></asp:Label>
     </div>
-
-
     <div class="ui grid">
         <div class="one wide column"></div>
         <div class="fourteen wide column">
@@ -55,6 +53,9 @@
                     <div class="ui dividing header"></div>
                     <div class="one wide column"></div>
                     <div class="fourteen wide column">
+                        <asp:HyperLink runat="server" CssClass="ui left floated button green" NavigateUrl="EligiblityCriteria.aspx">
+                          <i class="arrow left icon large"></i>    Back
+                        </asp:HyperLink>
                         <asp:LinkButton runat="server" ID="btnSubmit" OnClick="btnSubmit_OnClick" CssClass="ui right floated button">
                     <i class="plus icon large green"></i>
                     Submit

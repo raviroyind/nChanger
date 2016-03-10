@@ -150,6 +150,9 @@
     <Compile Include="Domain\UserPackage.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Domain\UserPayment.cs">
+      <DependentUpon>DataContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Domain\UserType.cs">
       <DependentUpon>DataContext.tt</DependentUpon>
     </Compile>

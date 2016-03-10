@@ -182,8 +182,11 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Secured\Billing.aspx" />
+    <Content Include="Secured\ConfirmEligibility.aspx" />
     <Content Include="Secured\FormCompleted.aspx" />
     <Content Include="Secured\packageSelection.aspx" />
+    <Content Include="Secured\PaymentResponse.aspx" />
+    <Content Include="Secured\StripePayment.aspx" />
     <Content Include="selectPackage.aspx" />
     <Content Include="Style\css\bootstrap-theme.css" />
     <Content Include="Style\css\bootstrap-theme.min.css" />
@@ -890,6 +893,13 @@
     <Compile Include="Secured\Billing.aspx.designer.cs">
       <DependentUpon>Billing.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Secured\ConfirmEligibility.aspx.cs">
+      <DependentUpon>ConfirmEligibility.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secured\ConfirmEligibility.aspx.designer.cs">
+      <DependentUpon>ConfirmEligibility.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Secured\dashboard.aspx.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -911,12 +921,26 @@
     <Compile Include="Secured\packageSelection.aspx.designer.cs">
       <DependentUpon>packageSelection.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Secured\PaymentResponse.aspx.cs">
+      <DependentUpon>PaymentResponse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secured\PaymentResponse.aspx.designer.cs">
+      <DependentUpon>PaymentResponse.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Secured\Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Secured\Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Secured\StripePayment.aspx.cs">
+      <DependentUpon>StripePayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secured\StripePayment.aspx.designer.cs">
+      <DependentUpon>StripePayment.aspx</DependentUpon>
     </Compile>
     <Compile Include="selectPackage.aspx.cs">
       <DependentUpon>selectPackage.aspx</DependentUpon>

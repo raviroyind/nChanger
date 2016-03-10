@@ -194,7 +194,7 @@
                     <h1 class="ui inverted header"><i class="ui university icon massive orange"></i>Name Changer
                     </h1>
                     <h2>Fill once and use whenever required.</h2>
-                     <a class="ui huge primary button" href="eligiblityQuestions.aspx">Get Started <i class="right arrow icon"></i></a> 
+                     <a class="ui huge primary button" href="Account/signup.aspx">Get Started <i class="right arrow icon"></i></a> 
                 </div>
 
             </div>
