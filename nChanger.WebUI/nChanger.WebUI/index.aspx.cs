@@ -98,8 +98,9 @@ namespace nChanger.WebUI
                                     appBase.Session.Add("USER_KEY", user.UserId);
                                     appBase.Session.Add("USR_NAME", user.FirstName + " " + user.LastName);
                                     appBase.Session.Add("USER_TYPE", user.UserTypeId);
+                                    appBase.Session.Add("IS_PAID", user.IsPaidMember != null && user.IsPaidMember.Value ?"Y":"N");
 
-                                    if(user.IsEligibilityConfirmed)
+                                    if (user.IsEligibilityConfirmed)
                                         Response.Redirect("~/Secured/dashboard.aspx");
                                     else
                                         Response.Redirect("~/Secured/ConfirmEligibility.aspx");

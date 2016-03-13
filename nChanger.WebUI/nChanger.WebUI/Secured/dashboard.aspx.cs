@@ -115,7 +115,11 @@ namespace nChanger.WebUI.Secured
 
                     CurrentId = pdfTemplateId.ToString();
                     RecordId = Guid.NewGuid().ToString();
-                    Response.Redirect("packageSelection.aspx?id="+pdfTemplateId.ToString());
+
+                    if(IsUserPaid.Equals("N") || IsUserPaid.Equals(""))
+                        Response.Redirect("packageSelection.aspx?id="+pdfTemplateId.ToString());
+                    else
+                        Response.Redirect("../Forms/CustomQuestions.aspx");
                 }
                 
             }

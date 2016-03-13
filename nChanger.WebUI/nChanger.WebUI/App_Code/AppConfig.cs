@@ -19,6 +19,7 @@ namespace nChanger.WebUI
         public static string RecordId = "RECORD_ID";
         public static string CurrentFormIndex = "CURRENT_FRM_INDEX";
         public static string FormSetions = "FRM_SECTIONS";
+        public static string Paid = "IS_PAID";
         #endregion
 
     }

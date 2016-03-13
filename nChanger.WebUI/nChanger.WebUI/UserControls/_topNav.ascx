@@ -1,11 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="_topNav.ascx.cs" Inherits="nChanger.WebUI.UserControls._topNav" %>
 <link href="../Content/login.css" rel="stylesheet" />
-
  <nav>
   <ul>
     <li id="login" runat="server">
       <a id="login-trigger" href="#">
-        <span>▼</span>
+        <span id="spn">▼</span>
       </a>
       <div id="login-content">
         <div>
@@ -16,7 +15,6 @@
         </div>
       </div>                 
     </li>
-    
     <li id="signup">
        <asp:HyperLink runat="server" ID="hypUserInfo"> </asp:HyperLink>
     </li>
@@ -30,6 +28,11 @@
 
             if ($(this).hasClass('active')) $(this).find('span').html('&#x25B2;');
             else $(this).find('span').html('&#x25BC;');
-        })
+        });
+    });
+    
+    $("#login-content").mouseleave(function () {
+        $(this).hide();
+        $('#spn').html('&#x25BC;');
     });
 </script>

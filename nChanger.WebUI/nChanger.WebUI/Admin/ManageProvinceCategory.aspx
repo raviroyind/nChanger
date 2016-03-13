@@ -82,7 +82,7 @@
                 <h3 class="ui header orange">
                     <div class="item">
                         <asp:HyperLink runat="server" ID="hypAddCat" CssClass="ui button" Text="Add" NavigateUrl="#" ToolTip="Add Category"><strong><i class="plus icon green large"></i>&nbsp;Add&nbsp;Category</strong></asp:HyperLink>
-                        <asp:HyperLink runat="server" ID="hypBack" CssClass="ui button green" Text="Back" NavigateUrl="ManageProvinces.aspx" ToolTip="Back to province listing."><strong><i class="arrow left icon large"></i>&nbsp;Back</strong></asp:HyperLink>
+                        <asp:HyperLink runat="server" ID="hypBack" CssClass="ui button green" Text="Back" onclick="window.history.back();" ToolTip="Back to province listing."><strong><i class="arrow left icon large"></i>&nbsp;Back</strong></asp:HyperLink>
                     </div>
                     <div class="item">
                     </div>

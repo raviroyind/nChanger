@@ -106,6 +106,7 @@
     <Content Include="Admin\ManageProvinceCategory.aspx" />
     <Content Include="Admin\ManageProvinces.aspx" />
     <Content Include="Admin\ManageQuestions.aspx" />
+    <Content Include="Admin\Payments.aspx" />
     <Content Include="Admin\uploadify.swf" />
     <Content Include="Admin\UserDetails.aspx" />
     <Content Include="Admin\UserList.aspx" />
@@ -777,6 +778,13 @@
     </Compile>
     <Compile Include="Admin\ManageQuestions.aspx.designer.cs">
       <DependentUpon>ManageQuestions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Payments.aspx.cs">
+      <DependentUpon>Payments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Payments.aspx.designer.cs">
+      <DependentUpon>Payments.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\UserDetails.aspx.cs">
       <DependentUpon>UserDetails.aspx</DependentUpon>

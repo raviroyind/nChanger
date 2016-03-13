@@ -76,7 +76,7 @@
                 
                 <div class="one wide column"></div>
                 <div class="fourteen wide column">
-                    <asp:HyperLink runat="server" ID="hypBack" CssClass="ui button green" Text="Back" NavigateUrl="ManageProvinceCategory.aspx" ToolTip="Back to province categories."><strong><i class="arrow left icon large"></i>&nbsp;Back</strong></asp:HyperLink>
+                    <asp:HyperLink runat="server" ID="hypBack" CssClass="ui button green" Text="Back" onclick="window.history.back();" ToolTip="Back to province categories."><strong><i class="arrow left icon large"></i>&nbsp;Back</strong></asp:HyperLink>
                 </div>
                 <div class="one wide column"></div>
 

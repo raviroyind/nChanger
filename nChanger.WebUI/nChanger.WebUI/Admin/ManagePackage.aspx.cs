@@ -139,7 +139,6 @@ namespace nChanger.WebUI.Admin
 
         #endregion Paging and Sorting
 
-
         protected void gvPackage_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowIndex != gvPackage.EditIndex)
@@ -218,7 +217,6 @@ namespace nChanger.WebUI.Admin
             chkIsActive.Checked = true;
             BindPackages();
         }
-
 
         public bool Submit()
         {

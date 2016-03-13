@@ -5,14 +5,7 @@
         <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <%--<asp:UpdateProgress ID="updProgress"
-        AssociatedUpdatePanelID="updatePanelPdf"
-        runat="server">
-        <ProgressTemplate>
-            <div id="spinner" class="divspinner">
-            </div>
-        </ProgressTemplate>
-    </asp:UpdateProgress>--%>
+    
       <div class="ui warning message fluid" style="display: none;" id="success-alert">
         <asp:Label ID="lblMsg" Style="font-size: 1.2em; font-weight: bold;" runat="server" Text="Template mapping saved!"></asp:Label>
     </div>
@@ -102,10 +95,7 @@
         </div>
     </div>
     <div class="one wide column"></div>
-    
-   <%-- <asp:UpdatePanel runat="server" ID="updatePanelPdf">
-        <ContentTemplate>--%>
-              <div class="ui grid">
+     <div class="ui grid">
                 <div class="one wide column"></div>
                 <div class="fourteen wide column">
                     <uc1:Paging ID="ucPaging" runat="server" Align="right" PageSize="250" OnNavigator_Click="ImgbtnNavigator_Click" ShowNoOfRecordsDropDown="True"
@@ -122,7 +112,7 @@
                               <asp:LinkButton runat="server" ID="btnSubmit" Width="200" CausesValidation="False" CssClass="ui orange button" TabIndex="0" OnClick="btnSubmit_OnClick">
                             <i class="database icon large"></i>Submit
                               </asp:LinkButton>
-                                <asp:HyperLink runat="server" ID="hypBack" CssClass="ui button green" Text="Back" NavigateUrl="ManagePdfTemplate.aspx" ToolTip="Back to form listing."><strong><i class="arrow left icon large"></i>&nbsp;Back</strong></asp:HyperLink>
+                                <asp:HyperLink runat="server" ID="hypBack" CssClass="ui button green" Text="Back" onclick="window.history.back();" ToolTip="Back to form listing."><strong><i class="arrow left icon large"></i>&nbsp;Back</strong></asp:HyperLink>
                                <asp:LinkButton runat="server" ID="btnEditFields" OnClick="btnEditFields_OnClick" Visible="False" CssClass="ui right floated blue button">
                                    <i class="edit icon large"></i>
                                    Edit Field Bindings

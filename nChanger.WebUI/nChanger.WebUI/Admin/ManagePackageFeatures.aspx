@@ -68,7 +68,7 @@
                 <h3 class="ui header orange">
                     <div class="item">
                         <asp:HyperLink runat="server" ID="hypFeature" CssClass="ui button" Text="Add" NavigateUrl="#" ToolTip="Add Feature"><strong><i class="plus icon green large"></i>&nbsp;Add&nbsp;Feature</strong></asp:HyperLink>
-                        <asp:HyperLink runat="server" ID="hypBack" CssClass="ui button green" Text="Back" NavigateUrl="dashboard.aspx" ToolTip="Back to dashboard."><strong><i class="arrow left icon large"></i>&nbsp;Back</strong></asp:HyperLink>
+                        <asp:HyperLink runat="server" ID="hypBack" CssClass="ui button green" Text="Back" onclick="window.history.back();" ToolTip="Back to dashboard."><strong><i class="arrow left icon large"></i>&nbsp;Back</strong></asp:HyperLink>
                     </div>
                     <div class="item">
                     </div>

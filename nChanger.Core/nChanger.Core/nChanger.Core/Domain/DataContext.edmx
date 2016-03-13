@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="nChangerDb.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="nChangerDb.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Country">
           <Key>
             <PropertyRef Name="CountryId" />
@@ -483,6 +483,7 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormTables' does not have a pr
           <Property Name="IP" Type="nvarchar" MaxLength="50" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsEligibilityConfirmed" Type="bit" Nullable="false" />
+          <Property Name="IsPaidMember" Type="bit" />
         </EntityType>
         <EntityType Name="UserType">
           <Key>
@@ -1130,8 +1131,7 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="nChangerDb" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1654,6 +1654,7 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
           <NavigationProperty Name="UserPackages" Relationship="Self.FK_UserPackages_Users" FromRole="Users" ToRole="UserPackages" />
           <NavigationProperty Name="UserPayments" Relationship="Self.FK_UserPayment_UserPayment" FromRole="Users" ToRole="UserPayment" />
           <NavigationProperty Name="UserType" Relationship="Self.FK_Users_UserType" FromRole="Users" ToRole="UserType" />
+          <Property Name="IsPaidMember" Type="Boolean" />
         </EntityType>
         <EntityType Name="UserType">
           <Key>
@@ -2750,6 +2751,7 @@ warning 6002: The table/view 'nChangerDb.dbo.InputFormSchemaView' does not have 
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="nChangerDb.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IsPaidMember" ColumnName="IsPaidMember" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />

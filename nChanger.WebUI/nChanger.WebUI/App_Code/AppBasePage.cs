@@ -33,6 +33,15 @@ namespace nChanger.WebUI
             }
         }
 
+
+        public string IsUserPaid
+        {
+            get
+            {
+                return (Session[AppConfig.Paid] == null ? "" : Session[AppConfig.Paid].ToString());
+            }
+        }
+
         public string PreviousPageId
         {
             get

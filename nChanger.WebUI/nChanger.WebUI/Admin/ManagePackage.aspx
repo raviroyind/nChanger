@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin.Master" AutoEventWireup="true" CodeBehind="ManagePackage.aspx.cs" Inherits="nChanger.WebUI.Admin.ManagePackage" %>
+
 <%@ Register TagPrefix="uc1" TagName="paging" Src="~/UserControls/Paging.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <script type="text/javascript" src="../Scripts/jquery-2.2.0.js"></script>
@@ -31,11 +32,11 @@
                         </div>
                     </div>
                 </div>
-                  <h3 class="ui header green">Select Package Features</h3>
+                <h3 class="ui header green">Select Package Features</h3>
                 <div class="field fluid">
-                     <asp:CheckBoxList runat="server" ID="chkFeatures" RepeatColumns="2"  RepeatDirection="Vertical" CssClass="ui checkbox large fluid" CellPadding="40" CellSpacing="40" />
+                    <asp:CheckBoxList runat="server" ID="chkFeatures" RepeatColumns="2" RepeatDirection="Vertical" CssClass="ui checkbox large fluid" CellPadding="40" CellSpacing="40" />
                 </div>
-                 <h3 class="ui divider"></h3>
+                <h3 class="ui divider"></h3>
                 <div class="field">
                     <div class="field">
                         <div class="ui toggle checkbox green">
@@ -55,7 +56,7 @@
             </div>
         </div>
     </div>
-         
+
     <div class="ui warning message fluid" style="display: none;" id="success-alert">
         <asp:Label ID="lblMsg" Style="font-size: 1.2em; font-weight: bold;" runat="server"></asp:Label>
     </div>
@@ -83,7 +84,7 @@
                 <h3 class="ui header orange">
                     <div class="item">
                         <asp:HyperLink runat="server" ID="hypPackage" CssClass="ui button" Text="Add" NavigateUrl="#" ToolTip="Add Category"><strong><i class="plus icon green large"></i>&nbsp;Add&nbsp;Package</strong></asp:HyperLink>
-                        <asp:HyperLink runat="server" ID="hypBack" CssClass="ui button green" Text="Back" NavigateUrl="dashboard.aspx" ToolTip="Back to dashboard."><strong><i class="arrow left icon large"></i>&nbsp;Back</strong></asp:HyperLink>
+                        <asp:HyperLink runat="server" ID="hypBack" CssClass="ui button green" Text="Back" onclick="window.history.back();" ToolTip="Back to dashboard."><strong><i class="arrow left icon large"></i>&nbsp;Back</strong></asp:HyperLink>
                     </div>
                     <div class="item">
                     </div>
@@ -140,10 +141,10 @@
                                     CommandArgument="IsActive"> </asp:LinkButton>
                             </HeaderTemplate>
                             <ItemTemplate>
-                               <%# Convert.ToBoolean(Eval("IsActive").ToString())? "<i class='ui check icon green large'/>":"" %>
+                                <%# Convert.ToBoolean(Eval("IsActive").ToString())? "<i class='ui check icon green large'/>":"" %>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        
+
                         <asp:TemplateField>
                             <HeaderTemplate>
                                 <asp:LinkButton ID="lnkbtnEntryDate" runat="server" CommandArgument="EntryDate" OnClick="gvPackage_Sorting"
@@ -156,7 +157,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                         <asp:CommandField ButtonType="Image"
+                        <asp:CommandField ButtonType="Image"
                             SelectImageUrl="../images/edit.png"
                             HeaderText="Actions"
                             DeleteImageUrl="../images/delete.png"
@@ -176,7 +177,6 @@
     <script type="text/javascript" src="../Scripts/semantic.min.js"></script>
     <script src="../Scripts/jquery.maskMoney.min.js"></script>
     <script type="text/javascript">
-        
         $('.ui.normal.selection.dropdown.compact').dropdown();
         $(document).on('click', "#MainContent_hypPackage", function () {
             $('#divPackage').modal({
@@ -186,7 +186,7 @@
                     document.getElementById("<%=txtPackageName.ClientID%>").value = "";
                     document.getElementById("<%=txtPrice.ClientID%>").value = "";
                 },
-                onHide:function() {
+                onHide: function () {
                     clearCheck();
                 }
             }).modal('show').modal('refresh');
@@ -204,9 +204,7 @@
             affixesStay: false, // set if the symbol will stay in the field after the user exits the field. 
             symbolPosition: 'left' // use this setting to position the symbol at the left or right side of the value. default 'left'
         });
-
-
-
+         
         function loadEdit() {
             $('#divPackage').modal({
                 detachable: true,
